@@ -1,7 +1,12 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 using Super_Cartes_Infinies.Data;
 using Super_Cartes_Infinies.Hubs;
 using Super_Cartes_Infinies.Services;
+using Super_Cartes_Infinies.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +16,37 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseSqlServer(connectionString);
     options.UseLazyLoadingProxies();
+});
+
+builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(options =>
+{
+    options.SaveToken = true;
+    options.RequireHttpsMetadata = false; // Lors du développement
+    options.TokenValidationParameters = new TokenValidationParameters()
+    {
+        ValidateAudience = true,
+        ValidateIssuer = true,
+        ValidAudience = "http://localhost:4200", // Client -> HTTP
+        ValidIssuer = "https://localhost:7216", // Serveur -> HTTPS
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8
+        .GetBytes("LooOOongue Phrase SiNoN Ça ne Marchera PaAaAAAaAas !"))
+    };
+});
+
+builder.Services.Configure<IdentityOptions>(options =>
+{
+    options.Password.RequireDigit = false;
+    options.Password.RequiredLength = 5;
+    options.Password.RequireLowercase = false;
+    options.Password.RequireUppercase = false;
+    options.Password.RequireNonAlphanumeric = false;
 });
 
 builder.Services.AddCors(options =>
@@ -50,6 +86,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseCors("AllowAll");
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

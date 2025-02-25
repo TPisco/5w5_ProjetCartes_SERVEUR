@@ -8,10 +8,12 @@ namespace Super_Cartes_Infinies.Services
 	public class PlayersService
     {
         private ApplicationDbContext _dbContext;
+        private StartingCardsService _startingCardsService;
 
-        public PlayersService(ApplicationDbContext context)
+        public PlayersService(ApplicationDbContext context, StartingCardsService startingCardsService)
         {
             _dbContext = context;
+            _startingCardsService = startingCardsService;
         }
 
         public Player CreatePlayer(IdentityUser user)
@@ -25,6 +27,7 @@ namespace Super_Cartes_Infinies.Services
 
             // TODO: Utilisez le service StartingCardsService pour obtenir les cartes de départ
             // TODO: Ajoutez ces cartes au joueur en utilisant le modèle OwnedCard que vous allez devoir ajouter
+
 
             _dbContext.Add(p);
             _dbContext.SaveChanges();
