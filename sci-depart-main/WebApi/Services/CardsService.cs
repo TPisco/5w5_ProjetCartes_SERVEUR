@@ -24,6 +24,24 @@ namespace Super_Cartes_Infinies.Services
         {
             return _dbContext.Cards;
         }
+
+        public async Task<Card?> CreateCard(string name,int manaCost, int health, int Attaque, string imageURL)
+        {
+            if (_dbContext == null) return null;
+
+            Card newCard = new Card()
+            {
+                Name = name,
+                Cost = manaCost,
+                Health = health,
+                Attack = Attaque,
+                ImageUrl = imageURL
+            };
+            _dbContext.Cards.Add(newCard);
+            await _dbContext.SaveChangesAsync();
+            return newCard;
+        }
+
     }
 }
 

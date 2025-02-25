@@ -36,6 +36,9 @@ namespace Super_Cartes_Infinies.Models
         public string UserBId { get; set; }
         public virtual MatchPlayerData PlayerDataA { get; set; }
         public virtual MatchPlayerData PlayerDataB { get; set; }
+
+        //FK GameConfig
+        public int GameConfigId { get; set; }
     }
 }
 
