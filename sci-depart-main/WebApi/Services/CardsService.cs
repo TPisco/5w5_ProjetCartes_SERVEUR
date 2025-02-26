@@ -42,6 +42,31 @@ namespace Super_Cartes_Infinies.Services
             return newCard;
         }
 
+        public async Task<Card?> EditCard(int cardId, string name, int manaCost, int health, int attack, string imageURL)
+        {
+            var card = await _dbContext.Cards.FindAsync(cardId);
+            if (card == null)
+                return null;
+
+            card.Name = name;
+            card.Cost = manaCost;
+            card.Health = health;
+            card.Attack = attack;
+            card.ImageUrl = imageURL;
+
+            await _dbContext.SaveChangesAsync();
+            return card;
+        }
+
+        public async Task<bool> DeleteCard(int cardId)
+        {
+            var card = await _dbContext.Cards.FindAsync(cardId);
+            if (card == null)
+                return false;
+
+            _dbContext.Cards.Remove(card);
+            await _dbContext.SaveChangesAsync();
+            return true;
+        }
     }
 }
-

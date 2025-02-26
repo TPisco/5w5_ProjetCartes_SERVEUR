@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Super_Cartes_Infinies.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,6 @@ namespace Models.Models
     {
         public int id { get; set; }
 
-        public List<OwnedCard> OwnedCards { get; set; }
+        public List<Card> Cards { get; set; }
     }
 }
