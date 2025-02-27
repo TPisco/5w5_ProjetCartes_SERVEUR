@@ -17,7 +17,7 @@ namespace Super_Cartes_Infinies.Models
 		[JsonIgnore]
 		public virtual IdentityUser User { get; set; }
 
-        public List<OwnedCard> OwnedCards { get; set; }
+        public virtual List<OwnedCard> OwnedCards { get; set; }
     }
 }
 
