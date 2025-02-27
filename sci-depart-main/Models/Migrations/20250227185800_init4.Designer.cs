@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Super_Cartes_Infinies.Data;
 
@@ -11,9 +12,11 @@ using Super_Cartes_Infinies.Data;
 namespace Models.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250227185800_init4")]
+    partial class init4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -154,15 +157,15 @@ namespace Models.Migrations
                         {
                             Id = "11111111-1111-1111-1111-111111111111",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "badde83b-e335-4db1-9873-61ae822d75e2",
+                            ConcurrencyStamp = "10ff9abb-ad5e-44d0-b859-04edb716a57e",
                             Email = "admin@admin.com",
                             EmailConfirmed = true,
                             LockoutEnabled = true,
                             NormalizedEmail = "ADMIN@ADMIN.COM",
                             NormalizedUserName = "ADMIN@ADMIN.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEL5bF+ROlq3rr6TyAIt6e0nPM+RYGMfWkNaZEQB+6w8n4665vxzH9EgFJHn6CYSAJA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAELGSVDqUH83sZtGBtg3kAoTUB7PSWMy4kSFAoEN6cNWsQheYW2SLJ9zwEpBefToF9g==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "bbbe45fe-482e-470f-929e-55f93eb05409",
+                            SecurityStamp = "b1c950e0-019e-4231-bd91-70b5939a336b",
                             TwoFactorEnabled = false,
                             UserName = "admin@admin.com"
                         },
@@ -170,22 +173,22 @@ namespace Models.Migrations
                         {
                             Id = "User1Id",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "b30d1929-15b1-47ba-9bec-def3ab0d9eec",
+                            ConcurrencyStamp = "85bcb1bd-659d-4eaa-b519-5b663b29b163",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "cd294ab4-5081-433f-ab7e-ba12b638d17b",
+                            SecurityStamp = "33165ee0-8a69-4669-a515-c6d17095331c",
                             TwoFactorEnabled = false
                         },
                         new
                         {
                             Id = "User2Id",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e67f9d86-c9c6-4938-86bb-c544bc22890d",
+                            ConcurrencyStamp = "9dc4a52b-7e2d-4ae5-9e48-099ce94aa434",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "0b0c6d41-5c31-4566-9f6f-1858fc403cd7",
+                            SecurityStamp = "db5df231-c3d3-4e27-9b19-6933b884edbc",
                             TwoFactorEnabled = false
                         });
                 });
@@ -326,21 +329,21 @@ namespace Models.Migrations
 
             modelBuilder.Entity("Models.Models.StartingCards", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
 
-                    b.Property<int>("CardID")
+                    b.Property<int>("CardId")
                         .HasColumnType("int");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("id");
 
-                    b.HasIndex("CardID");
+                    b.HasIndex("CardId");
 
                     b.ToTable("StartingCards");
                 });
@@ -474,6 +477,9 @@ namespace Models.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("GameConfigId")
+                        .HasColumnType("int");
 
                     b.Property<bool>("IsMatchCompleted")
                         .HasColumnType("bit");
@@ -682,7 +688,7 @@ namespace Models.Migrations
                 {
                     b.HasOne("Super_Cartes_Infinies.Models.Card", "Card")
                         .WithMany()
-                        .HasForeignKey("CardID")
+                        .HasForeignKey("CardId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

@@ -9,8 +9,12 @@ namespace Models.Models
 {
     public class StartingCards
     {
-        public int id { get; set; }
+        public int Id { get; set; }
 
-        public List<Card> Cards { get; set; }
+        public virtual Card Card { get; set; }
+
+        public int Quantity { get; set; }
+
+        public int CardID { get; set; }
     }
 }

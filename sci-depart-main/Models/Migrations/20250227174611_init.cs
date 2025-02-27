@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Models.Migrations
 {
     /// <inheritdoc />
-    public partial class Bugfix : Migration
+    public partial class init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -115,8 +115,8 @@ namespace Models.Migrations
                 name: "AspNetUserLogins",
                 columns: table => new
                 {
-                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ProviderKey = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    LoginProvider = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    ProviderKey = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
                     ProviderDisplayName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
@@ -160,8 +160,8 @@ namespace Models.Migrations
                 columns: table => new
                 {
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    LoginProvider = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
                     Value = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -327,9 +327,9 @@ namespace Models.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "11111111-1111-1111-1111-111111111111", 0, "7e2692a1-12bf-42d8-8c39-5238575f3204", "admin@admin.com", true, true, null, "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAIAAYagAAAAEGH0CsTzUBBeXzYM0yfTmHiRx19RR2crbgVXC/J4htl6hZcvYOPPFopsIYDv6KfUEA==", null, false, "586b3925-dcb4-4e1f-9bcf-be8fa1f85fa1", false, "admin@admin.com" },
-                    { "User1Id", 0, "baf1be69-01b7-442b-987f-906385a8f7bd", null, false, false, null, null, null, null, null, false, "2cbfbbc7-eaa3-4154-bc67-97c5a41da8e5", false, null },
-                    { "User2Id", 0, "8df8dd40-04cc-4aa8-9fc2-66b56114c61d", null, false, false, null, null, null, null, null, false, "f71dd5b3-b3b8-49b8-9ce2-dbce35911914", false, null }
+                    { "11111111-1111-1111-1111-111111111111", 0, "790c12b4-9f39-48a9-8288-ab42e0b609ae", "admin@admin.com", true, true, null, "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAIAAYagAAAAEAqELuW5EHk/TI/Ce6q1vFD5Bl8v5QOhOJ5HEnGxcBO7Ia7kwgP96JInEdpWSucYRA==", null, false, "a38a02b4-791e-4bce-bb20-517a77fddb73", false, "admin@admin.com" },
+                    { "User1Id", 0, "4e8537c7-472b-440e-ab8d-17c64c6b4caa", null, false, false, null, null, null, null, null, false, "10611f40-b388-4e81-8dcb-bf5fa0d34a19", false, null },
+                    { "User2Id", 0, "26b7291c-c8e3-4d69-acc9-707295a21cab", null, false, false, null, null, null, null, null, false, "d9e7892d-2dfe-4a37-9aff-632e66a70e49", false, null }
                 });
 
             migrationBuilder.InsertData(

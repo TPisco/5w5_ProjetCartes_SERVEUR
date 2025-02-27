@@ -2,6 +2,7 @@
 using Super_Cartes_Infinies.Data;
 using Super_Cartes_Infinies.Models;
 using Super_Cartes_Infinies.Services;
+using System.Collections;
 
 namespace Super_Cartes_Infinies.Controllers
 {
@@ -32,74 +33,7 @@ namespace Super_Cartes_Infinies.Controllers
         {
             return Ok(_cardsService.GetPlayersCards("TheIdOfTheUser"));
         }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create()
-        {
-           
-            String? name = Request.Form["name"];
-            String? manaString = Request.Form["mana"];
-            String? attackString = Request.Form["attack"];
-            String? healthString = Request.Form["health"];
-            String? url = Request.Form["url"];
+        
 
-            
-            int mana = int.Parse(manaString);
-            int attack = int.Parse(attackString);
-            int health = int.Parse(healthString);
-
-           
-
-            Card? newCard = await _cardsService.CreateCard(name, mana, health, attack, url);
-
-            
-            if (newCard == null)
-                return StatusCode(StatusCodes.Status500InternalServerError);
-
-
-            return Ok(newCard);
-        }
-
-        // POST: CardsController/Edit/5
-
-        // POST: CardsController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(int cardId)
-        {
-            String? name = Request.Form["name"];
-            String? manaString = Request.Form["mana"];
-            String? attackString = Request.Form["attack"];
-            String? healthString = Request.Form["health"];
-            String? url = Request.Form["url"];
-
-            int mana = int.Parse(manaString);
-            int attack = int.Parse(attackString);
-            int health = int.Parse(healthString);
-
-            
-
-            Card? updatedCard = await _cardsService.EditCard(cardId, name, mana, health, attack, url);
-
-            if (updatedCard == null)
-                return StatusCode(StatusCodes.Status404NotFound); // Card not found
-
-            return Ok(updatedCard);
-        }
-
-      
-        // POST: CardsController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Delete(int id, IFormCollection collection)
-        {
-           
-            bool success = await _cardsService.DeleteCard(id);
-
-            if (!success)
-                return StatusCode(StatusCodes.Status404NotFound); // Card not found
-
-            return RedirectToAction(nameof(GetAllCards)); 
-        }
-    }
+    } 
 }
