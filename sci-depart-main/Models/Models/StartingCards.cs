@@ -13,8 +13,6 @@ namespace Models.Models
 
         public virtual Card Card { get; set; }
 
-        public int Quantity { get; set; }
-
         public int CardID { get; set; }
     }
 }

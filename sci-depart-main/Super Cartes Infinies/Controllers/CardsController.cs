@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,7 @@ using Super_Cartes_Infinies.Models;
 
 namespace Super_Cartes_Infinies.Controllers
 {
+    [Authorize(Roles = "adminRole")]
     public class CardsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -58,7 +60,7 @@ namespace Super_Cartes_Infinies.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(card);
+                _context.Cards.Add(card);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
@@ -97,7 +99,7 @@ namespace Super_Cartes_Infinies.Controllers
             {
                 try
                 {
-                    _context.Update(card);
+                    _context.Cards.Update(card);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)

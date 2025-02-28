@@ -178,29 +178,46 @@ namespace Super_Cartes_Infinies.Data
             {
                 new StartingCards
                 {
-                    Card = SeedCards()[0], Quantity =1
+                   Id=1, Card = SeedCards()[0], CardID = SeedCards()[0].Id
                 },
                 new StartingCards
                 {
-                    Card = SeedCards()[3], Quantity =1
+                    Id=2,Card = SeedCards()[3], CardID = SeedCards()[3].Id
                 },
                 new StartingCards
                 {
-                    Card = SeedCards()[5], Quantity =1
+                    Id=3,Card = SeedCards()[5], CardID = SeedCards()[5].Id
                 },
                 new StartingCards
                 {
-                    Card = SeedCards()[4], Quantity =2
+                    Id=4,Card = SeedCards()[4], CardID = SeedCards()[4].Id
                 },
                 new StartingCards
                 {
-                    Card = SeedCards()[2], Quantity =2
+                    Id=5,Card = SeedCards()[2], CardID = SeedCards()[2].Id
                 },
                 new StartingCards
                 {
-                    Card = SeedCards()[9], Quantity =2
+                   Id=6, Card = SeedCards()[9], CardID = SeedCards()[9].Id
                 },
+                new StartingCards
+                {
+                    Id=7,Card = SeedCards()[4], CardID = SeedCards()[4].Id
+                },
+                new StartingCards
+                {
+                    Id=8,Card = SeedCards()[2], CardID = SeedCards()[2].Id
+                },
+                new StartingCards
+                {
+                    Id=9,Card = SeedCards()[9], CardID = SeedCards()[9].Id
+                }
             };
+        }
+
+        public static GameConfig seedGameConfig()
+        {
+            return new GameConfig { id = 1, nbCardsToDraw = 4, QtManaParTour = 3 };
         }
     }
 }

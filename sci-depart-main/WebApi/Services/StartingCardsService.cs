@@ -28,23 +28,13 @@ namespace Super_Cartes_Infinies.Services
             foreach(StartingCards sCard in startingCardsBase)
             {
                 Card card = sCard.Card;
-
-                for(int i = 0; i< sCard.Quantity; i++)
-                {
-                    startingCards.Add(card);
-                }
-                
+                startingCards.Add(card);
             }
-
 
             return startingCards;
         }
 
-        public void UpdateStartingCards(List<int> selectedCardIds)
-        {
-
-            
-        }
+        
     }
 }
 
