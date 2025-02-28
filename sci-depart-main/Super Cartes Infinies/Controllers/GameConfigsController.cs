@@ -8,12 +8,10 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Models.Models;
 using Super_Cartes_Infinies.Data;
-using Super_Cartes_Infinies.Models;
 
 namespace Super_Cartes_Infinies.Controllers
 {
-
-    [Authorize(Roles = "adminRole")]
+    [Authorize(Roles = "admin")]
     public class GameConfigsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -26,7 +24,41 @@ namespace Super_Cartes_Infinies.Controllers
         // GET: GameConfigs
         public async Task<IActionResult> Index()
         {
-            var gameConfig = await _context.GameConfigs.FindAsync(1);
+            return View(await _context.GameConfigs.ToListAsync());
+        }
+
+
+        //// GET: GameConfigs/Create
+        //public IActionResult Create()
+        //{
+        //    return View();
+        //}
+
+        //// POST: GameConfigs/Create
+        //// To protect from overposting attacks, enable the specific properties you want to bind to.
+        //// For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Create([Bind("id,QtManaParTour,nbCardsToDraw")] GameConfig gameConfig)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        _context.Add(gameConfig);
+        //        await _context.SaveChangesAsync();
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    return View(gameConfig);
+        //}
+
+        // GET: GameConfigs/Edit/5
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var gameConfig = await _context.GameConfigs.FindAsync(id);
             if (gameConfig == null)
             {
                 return NotFound();
@@ -34,11 +66,17 @@ namespace Super_Cartes_Infinies.Controllers
             return View(gameConfig);
         }
 
-        // POST: GameConfigs
+        // POST: GameConfigs/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Index([Bind("id,QtManaParTour,nbCardsToDraw")] GameConfig gameConfig)
+        public async Task<IActionResult> Edit(int id, [Bind("id,QtManaParTour,nbCardsToDraw")] GameConfig gameConfig)
         {
+            if (id != gameConfig.id)
+            {
+                return NotFound();
+            }
 
             if (ModelState.IsValid)
             {
@@ -63,10 +101,42 @@ namespace Super_Cartes_Infinies.Controllers
             return View(gameConfig);
         }
 
+        //// GET: GameConfigs/Delete/5
+        //public async Task<IActionResult> Delete(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    var gameConfig = await _context.GameConfigs
+        //        .FirstOrDefaultAsync(m => m.id == id);
+        //    if (gameConfig == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return View(gameConfig);
+        //}
+
+        //// POST: GameConfigs/Delete/5
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> DeleteConfirmed(int id)
+        //{
+        //    var gameConfig = await _context.GameConfigs.FindAsync(id);
+        //    if (gameConfig != null)
+        //    {
+        //        _context.GameConfigs.Remove(gameConfig);
+        //    }
+
+        //    await _context.SaveChangesAsync();
+        //    return RedirectToAction(nameof(Index));
+        //}
+
         private bool GameConfigExists(int id)
         {
-            return _context.Cards.Any(e => e.Id == id);
+            return _context.GameConfigs.Any(e => e.id == id);
         }
-
     }
 }

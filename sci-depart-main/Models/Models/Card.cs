@@ -15,7 +15,6 @@ namespace Super_Cartes_Infinies.Models
 		public int Cost { get; set; }
         public string ImageUrl { get; set; } = "";
 
-		public virtual List<OwnedCard> OwnedCards { get; set; }
     }
 }
 

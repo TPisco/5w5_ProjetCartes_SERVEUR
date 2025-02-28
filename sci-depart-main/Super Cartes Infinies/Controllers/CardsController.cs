@@ -6,12 +6,13 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Models.Models;
 using Super_Cartes_Infinies.Data;
 using Super_Cartes_Infinies.Models;
 
 namespace Super_Cartes_Infinies.Controllers
 {
-    [Authorize(Roles = "adminRole")]
+    [Authorize(Roles = "admin")]
     public class CardsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -58,6 +59,8 @@ namespace Super_Cartes_Infinies.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name,Attack,Health,Cost,ImageUrl")] Card card)
         {
+          
+
             if (ModelState.IsValid)
             {
                 _context.Cards.Add(card);

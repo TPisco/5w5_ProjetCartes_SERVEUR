@@ -4,12 +4,12 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>StartingCards</h1>
 
 
 <form asp-action="Index" method="get" class="mb-3">
     <div class="input-group">
-        <input type="text" name="name" class="form-control" placeholder="Rechercher une carte..." value="@ViewData["name"]" />
+        <input type="text" name="name" class="form-control" placeholder="Rechercher une carte..."  />
         <button type="submit" class="btn btn-primary">Rechercher</button>
         <a asp-action="Index" class="btn btn-secondary">Réinitialiser</a>
     </div>
@@ -45,7 +45,6 @@
                 @Html.DisplayFor(modelItem => item.Card.Name)
             </td>
             <td>
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>

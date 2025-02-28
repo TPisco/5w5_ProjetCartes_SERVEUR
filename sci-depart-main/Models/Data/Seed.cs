@@ -178,41 +178,42 @@ namespace Super_Cartes_Infinies.Data
             {
                 new StartingCards
                 {
-                   Id=1, Card = SeedCards()[0], CardID = SeedCards()[0].Id
+                   Id=1, CardID = SeedCards()[0].Id
                 },
                 new StartingCards
                 {
-                    Id=2,Card = SeedCards()[3], CardID = SeedCards()[3].Id
+                    Id=2, CardID = SeedCards()[3].Id
                 },
                 new StartingCards
                 {
-                    Id=3,Card = SeedCards()[5], CardID = SeedCards()[5].Id
+                    Id=3, CardID = SeedCards()[5].Id
                 },
                 new StartingCards
                 {
-                    Id=4,Card = SeedCards()[4], CardID = SeedCards()[4].Id
+                    Id=4, CardID = SeedCards()[4].Id
                 },
                 new StartingCards
                 {
-                    Id=5,Card = SeedCards()[2], CardID = SeedCards()[2].Id
+                    Id=5, CardID = SeedCards()[2].Id
                 },
                 new StartingCards
                 {
-                   Id=6, Card = SeedCards()[9], CardID = SeedCards()[9].Id
+                   Id=6, CardID = SeedCards()[9].Id
                 },
                 new StartingCards
                 {
-                    Id=7,Card = SeedCards()[4], CardID = SeedCards()[4].Id
+                    Id=7, CardID = SeedCards()[4].Id
                 },
                 new StartingCards
                 {
-                    Id=8,Card = SeedCards()[2], CardID = SeedCards()[2].Id
+                    Id=8, CardID = SeedCards()[2].Id
                 },
                 new StartingCards
                 {
-                    Id=9,Card = SeedCards()[9], CardID = SeedCards()[9].Id
+                    Id=9, CardID = SeedCards()[9].Id
                 }
             };
+
         }
 
         public static GameConfig seedGameConfig()

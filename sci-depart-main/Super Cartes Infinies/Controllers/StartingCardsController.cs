@@ -13,7 +13,7 @@ using Super_Cartes_Infinies.Models;
 namespace Super_Cartes_Infinies.Controllers
 {
 
-    [Authorize(Roles = "adminRole")]
+    [Authorize(Roles = "admin")]
     public class StartingCardsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -28,11 +28,16 @@ namespace Super_Cartes_Infinies.Controllers
 
 
         // GET: StartingCardsController
-        public ActionResult Index()
+        public async Task<ActionResult> Index(string? name)
         {
-            string? name = ViewData["name"] as string;
+            
 
             List<StartingCards> startingCards = _context.StartingCards.Include(c=>c.Card).ToList();
+
+            foreach(StartingCards s in startingCards)
+            {
+                s.Card = await _context.Cards.FindAsync(s.CardID);
+            }
 
             if (name == null)
             {
@@ -52,7 +57,7 @@ namespace Super_Cartes_Infinies.Controllers
         {
           
             Card Card = await _context.Cards.FindAsync(id);
-            if (Card != null)
+            if (Card == null)
             {
                 return BadRequest();
             }
@@ -72,26 +77,6 @@ namespace Super_Cartes_Infinies.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // GET: StartingCards/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var startingCards = await _context.StartingCards
-                .Include(s => s.Card)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (startingCards == null)
-            {
-                return NotFound();
-            }
-
-            return View(startingCards);
-        }
-
-   
 
       
 
