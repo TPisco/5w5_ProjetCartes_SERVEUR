@@ -9,7 +9,6 @@ using Microsoft.EntityFrameworkCore;
 using Models.Models;
 using Super_Cartes_Infinies.Data;
 using Super_Cartes_Infinies.Models;
-using Super_Cartes_Infinies.Services;
 
 namespace Super_Cartes_Infinies.Controllers
 {
@@ -19,12 +18,10 @@ namespace Super_Cartes_Infinies.Controllers
     {
         private readonly ApplicationDbContext _context;
 
-        private readonly StartingCardsService _startingCardsService;
 
-        public StartingCardsController(ApplicationDbContext context, StartingCardsService startingCardsService)
+        public StartingCardsController(ApplicationDbContext context)
         {
             _context = context;
-            _startingCardsService = startingCardsService;
         }
 
 
@@ -35,17 +32,17 @@ namespace Super_Cartes_Infinies.Controllers
         {
             string? name = ViewData["name"] as string;
 
-            List<Card> startingCards = _startingCardsService.GetStartingCards();
+            List<StartingCards> startingCards = _context.StartingCards.Include(c=>c.Card).ToList();
 
             if (name == null)
             {
-                List<Card> sortedCards = startingCards.OrderBy(c => c.Name).ToList();
+                List<StartingCards> sortedCards = startingCards.OrderBy(c => c.Card.Name).ToList();
                 return View(sortedCards);
             }
             else
             {
-                List<Card> selectedCards = startingCards.Where(c => c.Name.Contains(name)).ToList();
-                List<Card> sortedCards = selectedCards.OrderBy(c => c.Name).ToList();
+                List<StartingCards> selectedCards = startingCards.Where(c => c.Card.Name.Contains(name)).ToList();
+                List<StartingCards> sortedCards = selectedCards.OrderBy(c => c.Card.Name).ToList();
                 return View(sortedCards);
             }
         }
