@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using Models.Models.Dtos;
@@ -88,6 +89,12 @@ namespace WebApi.Controllers
             }
         }
 
+        [Authorize]
+        [HttpGet]
+        public ActionResult<string[]> PrivateData()
+        {
+            return new string[] { "figue", "banane", "noix" };
         }
+    }
     }
 
