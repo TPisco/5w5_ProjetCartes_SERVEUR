@@ -26,6 +26,7 @@ namespace Super_Cartes_Infinies.Services
                 Name = user.Email!
             };
 
+
             // TODO: Utilisez le service StartingCardsService pour obtenir les cartes de départ
             var StartingCards = _startingCardsService.GetStartingCards();
             // TODO: Ajoutez ces cartes au joueur en utilisant le modèle OwnedCard que vous allez devoir ajouter
@@ -33,13 +34,14 @@ namespace Super_Cartes_Infinies.Services
             {
                 var ownedCards = new OwnedCards()
                 {
-                    PlayerId = p.Id,
-                    Card = OwnedCard
+                    PlayerId = user.Id,
+                    Card = OwnedCard,
+                    CardId = OwnedCard.Id,
                 };
-                _dbContext.Add(ownedCards);
+                _dbContext.OwnedCard.Add(ownedCards);
             }
 
-            _dbContext.Add(p);
+            _dbContext.Players.Add(p);
             _dbContext.SaveChanges();
 
             return p;

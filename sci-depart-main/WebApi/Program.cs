@@ -18,7 +18,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseLazyLoadingProxies();
 });
 
-builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>()
+builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+    .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultTokenProviders();
 
 
@@ -56,7 +57,7 @@ builder.Services.AddAuthentication(options =>
         ValidateAudience = true,
         ValidateIssuer = true,
         ValidAudience = "http://localhost:4200", // Client -> HTTP
-        ValidIssuer = "https://localhost:7216", // Serveur -> HTTPS
+        ValidIssuer = "https://localhost:7179", // Serveur -> HTTPS
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8
         .GetBytes("LooOOongue Phrase SiNoN Ça ne Marchera PaAaAAAaAas !"))
     };

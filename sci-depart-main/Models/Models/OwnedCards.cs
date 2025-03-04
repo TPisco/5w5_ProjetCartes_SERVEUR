@@ -2,6 +2,7 @@
 using Super_Cartes_Infinies.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Text.Json.Serialization;
@@ -16,6 +17,10 @@ namespace Models.Models
         public int CardId { get; set; }
 
         public virtual Card Card { get; set; }
-        public int PlayerId { get; set; }
+
+        public virtual IdentityUser User { get; set; }
+
+        public string PlayerId { get; set; }
+
     }
 }

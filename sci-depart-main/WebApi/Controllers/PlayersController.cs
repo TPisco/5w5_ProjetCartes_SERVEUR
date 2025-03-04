@@ -46,6 +46,8 @@ namespace WebApi.Controllers
             }
 
             Player player = _playerService.CreatePlayer(identityUser);
+            Login();
+
             return Ok(new { Message = "Inscription réussie." });
         }
 
