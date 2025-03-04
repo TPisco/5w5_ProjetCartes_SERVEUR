@@ -31,10 +31,10 @@ namespace Super_Cartes_Infinies.Services
             // TODO: Ajoutez ces cartes au joueur en utilisant le modèle OwnedCard que vous allez devoir ajouter
             foreach (var OwnedCard in StartingCards)
             {
-                var ownedCards = new OwnedCard()
+                var ownedCards = new OwnedCards()
                 {
                     PlayerId = p.Id,
-                    CardId = OwnedCard.Id
+                    Card = OwnedCard
                 };
                 _dbContext.Add(ownedCards);
             }
