@@ -1,4 +1,4 @@
-﻿using Models.Interfaces;
+using Models.Interfaces;
 
 namespace Super_Cartes_Infinies.Models
 {

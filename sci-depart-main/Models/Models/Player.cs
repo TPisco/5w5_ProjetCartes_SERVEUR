@@ -1,4 +1,4 @@
-﻿using System.Text.Json.Serialization;
+using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Identity;
 using Models.Interfaces;
 using Models.Models;
@@ -17,7 +17,7 @@ namespace Super_Cartes_Infinies.Models
 		[JsonIgnore]
 		public virtual IdentityUser User { get; set; }
 
-        public virtual List<OwnedCard> OwnedCards { get; set; }
+        public virtual List<OwnedCards> OwnedCards { get; set; }
     }
 }
 

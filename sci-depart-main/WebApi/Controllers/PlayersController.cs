@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Azure.Identity;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using Models.Models.Dtos;
@@ -15,7 +17,7 @@ namespace WebApi.Controllers
     public class PlayersController : Controller
     {
         readonly UserManager<IdentityUser> _userManager;
-        readonly PlayersService _playerService;
+        public PlayersService _playerService;
 
         public PlayersController(UserManager<IdentityUser> userManager, PlayersService playerService)
         {
@@ -24,7 +26,7 @@ namespace WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Register(RegisterDTO register)
+        public async Task<IActionResult> Register(RegisterDTO register)
         {
             if (register.Password != register.PasswordConfirm)
             {
@@ -33,24 +35,34 @@ namespace WebApi.Controllers
             }
             IdentityUser identityUser = new IdentityUser()
             {
-                UserName = register.Username,
+                UserName = register.Email,
                 Email = register.Email
             };
             IdentityResult identityResult = await _userManager.CreateAsync(identityUser, register.Password);
-            _playerService.CreatePlayer(identityUser);
             if (!identityResult.Succeeded)
             {
+                var errors = string.Join(", ", identityResult.Errors.Select(e => e.Description));
                 return StatusCode(StatusCodes.Status500InternalServerError,
-                    new { Message = "La création de l'utilisateur à échoué." });
+                    new { Message = $"La création de l'utilisateur a échoué: {errors}" });
             }
-            return Ok(new { Message = "Inscription réussie." });
 
+            Player player = _playerService.CreatePlayer(identityUser);
+
+            var loginDTO = new LoginDTO
+            {
+                Username = register.Email,
+                Password = register.Password
+            };
+            Login(loginDTO);
+
+            return Ok(new { Message = "Inscription réussie." });
         }
+
 
         [HttpPost]
         public async Task<ActionResult> Login(LoginDTO login)
         {
-            IdentityUser? identityUser = await _userManager.FindByNameAsync(login.Username);
+            IdentityUser? identityUser = await _userManager.FindByEmailAsync(login.Username);
             if (identityUser == null)
             {
                 identityUser = await _userManager.FindByEmailAsync(login.Username);
@@ -68,7 +80,7 @@ namespace WebApi.Controllers
                 SymmetricSecurityKey key = new SymmetricSecurityKey(Encoding.UTF8
                     .GetBytes("LooOOongue Phrase SiNoN Ça ne Marchera PaAaAAAaAas !"));
                 JwtSecurityToken token = new JwtSecurityToken(
-                    issuer: "https://localhost:7216",
+                    issuer: "https://localhost:7179",
                     audience: "http://localhost:4200",
                     claims: authClaims,
                     expires: DateTime.Now.AddMinutes(300),
@@ -88,6 +100,12 @@ namespace WebApi.Controllers
             }
         }
 
+        [Authorize]
+        [HttpGet]
+        public ActionResult<string[]> PrivateData()
+        {
+            return new string[] { "figue", "banane", "noix" };
         }
+    }
     }
 

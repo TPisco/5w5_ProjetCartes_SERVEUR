@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Models.Models;
 using Super_Cartes_Infinies.Data;
 using Super_Cartes_Infinies.Models;
 
@@ -25,11 +26,21 @@ namespace Super_Cartes_Infinies.Services
                 Name = user.Email!
             };
 
+
             // TODO: Utilisez le service StartingCardsService pour obtenir les cartes de départ
+            var StartingCards = _startingCardsService.GetStartingCards();
             // TODO: Ajoutez ces cartes au joueur en utilisant le modèle OwnedCard que vous allez devoir ajouter
+            foreach (var OwnedCard in StartingCards)
+            {
+                var ownedCards = new OwnedCards()
+                {
+                    player = p,
+                    Card = OwnedCard,
+                };
+                _dbContext.OwnedCard.Add(ownedCards);
+            }
 
-
-            _dbContext.Add(p);
+            _dbContext.Players.Add(p);
             _dbContext.SaveChanges();
 
             return p;
