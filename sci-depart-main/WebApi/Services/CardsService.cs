@@ -30,6 +30,7 @@ namespace Super_Cartes_Infinies.Services
         {
             return _dbContext.Cards;
         }
+
+       
     }
 }
-

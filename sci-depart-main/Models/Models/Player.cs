@@ -1,4 +1,4 @@
-﻿using System.Text.Json.Serialization;
+using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Identity;
 using Models.Interfaces;
 using Models.Models;

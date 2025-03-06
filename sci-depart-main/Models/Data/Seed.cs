@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using Microsoft.AspNetCore.Identity;
+using Models.Models;
 using Super_Cartes_Infinies.Models;
 
 namespace Super_Cartes_Infinies.Data
@@ -15,83 +16,83 @@ namespace Super_Cartes_Infinies.Data
                 new Card
                 {
                     Id = 1,
-                    Name = "Chat Dragon",
-                    Attack = 3,
-                    Health = 3,
-                    Cost = 3,
-                    ImageUrl = "https://i.pinimg.com/originals/a8/16/49/a81649bd4b0f032ce633161c5a076b87.jpg"
+                    Name = "Dracolosse",
+                    Attack = 5,
+                    Health = 8,
+                    Cost = 5,
+                    ImageUrl = "https://pm1.aminoapps.com/6906/f456d54f84291a3e3a9532251214cda80cbef906r1-335-431v2_hq.jpg"
                 }, new Card
                 {
                     Id = 2,
-                    Name = "Chat Awesome",
-                    Attack = 2,
+                    Name = "Rayquaza",
+                    Attack = 10,
                     Health = 5,
-                    Cost = 3,
-                    ImageUrl = "https://i0.wp.com/thediscerningcat.com/wp-content/uploads/2021/02/tabby-cat-wearing-sunglasses.jpg"
+                    Cost = 9,
+                    ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/384.png"
                 }, new Card
                 {
                     Id = 3,
-                    Name = "Chatton Laser",
+                    Name = "Rondoudou",
                     Attack = 2,
                     Health = 1,
                     Cost = 1,
-                    ImageUrl = "https://cdn.wallpapersafari.com/27/53/SZ8PO9.jpg"
+                    ImageUrl = "https://upload.wikimedia.org/wikipedia/en/2/22/Pok%C3%A9mon_Jigglypuff_art.png"
                 }, new Card
                 {
                     Id = 4,
-                    Name = "Chat Spacial",
+                    Name = "Mewtwo",
                     Attack = 8,
                     Health = 4,
-                    Cost = 4,
-                    ImageUrl = "https://wallpapers.com/images/hd/epic-cat-poster-baavft05ylgta4j8.jpg"
+                    Cost = 6,
+                    ImageUrl = "https://e7.pngegg.com/pngimages/993/391/png-clipart-pokemon-character-illustration-pokemon-x-and-y-pokemon-go-pokemon-black-white-mewtwo-pokemon-go-purple-mammal.png"
                 }, new Card
                 {
                     Id = 5,
-                    Name = "Chat Guerrier",
+                    Name = "Gardevoir",
                     Attack = 7,
                     Health = 7,
                     Cost = 5,
-                    ImageUrl = "https://i.etsystatic.com/6230905/r/il/32aa5a/3474618751/il_fullxfull.3474618751_mfvf.jpg"
+                    ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/282.png"
                 }, new Card
                 {
                     Id = 6,
-                    Name = "Chat Laser",
+                    Name = "Alakazam",
                     Attack = 4,
                     Health = 2,
                     Cost = 2,
-                    ImageUrl = "https://store.playstation.com/store/api/chihiro/00_09_000/container/AU/en/99/EP2402-CUSA05624_00-ETH0000000002875/0/image?_version=00_09_000&platform=chihiro&bg_color=000000&opacity=100&w=720&h=720"
+                    ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/065.png"
                 }, new Card
                 {
                     Id = 7,
-                    Name = "Jedi Chat",
+                    Name = "Onix",
                     Attack = 6,
                     Health = 3,
                     Cost = 4,
-                    ImageUrl = "https://images.squarespace-cdn.com/content/51b3dc8ee4b051b96ceb10de/1394662654865-JKOZ7ZFF39247VYDTGG9/hilarious-jedi-cats-fight-video-preview.jpg?content-type=image%2Fjpeg"
+                    ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/095.png"
                 }, new Card
                 {
                     Id = 8,
-                    Name = "Blob Chat",
+                    Name = "Ronflex",
                     Attack = 1,
                     Health = 9,
                     Cost = 2,
-                    ImageUrl = "https://i.ytimg.com/vi/2I7pZlUhZak/maxresdefault.jpg"
+                    ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/143.png"
                 }, new Card
                 {
                     Id = 9,
-                    Name = "Jedi Chatton",
+                    Name = "Mew",
                     Attack = 5,
                     Health = 1,
                     Cost = 2,
-                    ImageUrl = "https://townsquare.media/site/142/files/2011/08/jedicats.jpg?w=980&q=75"
+                    ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/151.png"
                 }, new Card
                 {
                     Id = 10,
-                    Name = "Chat Furtif",
+                    Name = "Dracofeu",
                     Attack = 6,
                     Health = 1,
                     Cost = 2,
-                    ImageUrl = "https://cdn.theatlantic.com/thumbor/fOZjgqHH0RmXA1A5ek-yDz697W4=/133x0:2091x1020/1200x625/media/img/mt/2015/12/RTRD62Q/original.jpg"
+                    ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/006_f2.png"
                 }
             };
         }
@@ -169,6 +170,55 @@ namespace Super_Cartes_Infinies.Data
                     UserId = "User2Id"
                 }
             };
+        }
+
+     public static StartingCards[] seedStartingCards()
+        {
+            return new StartingCards[]
+            {
+                new StartingCards
+                {
+                   Id=1, CardID = SeedCards()[0].Id
+                },
+                new StartingCards
+                {
+                    Id=2, CardID = SeedCards()[3].Id
+                },
+                new StartingCards
+                {
+                    Id=3, CardID = SeedCards()[5].Id
+                },
+                new StartingCards
+                {
+                    Id=4, CardID = SeedCards()[4].Id
+                },
+                new StartingCards
+                {
+                    Id=5, CardID = SeedCards()[2].Id
+                },
+                new StartingCards
+                {
+                   Id=6, CardID = SeedCards()[9].Id
+                },
+                new StartingCards
+                {
+                    Id=7, CardID = SeedCards()[4].Id
+                },
+                new StartingCards
+                {
+                    Id=8, CardID = SeedCards()[2].Id
+                },
+                new StartingCards
+                {
+                    Id=9, CardID = SeedCards()[9].Id
+                }
+            };
+
+        }
+
+        public static GameConfig seedGameConfig()
+        {
+            return new GameConfig { id = 1, nbCardsToDraw = 4, QtManaParTour = 3 };
         }
     }
 }
