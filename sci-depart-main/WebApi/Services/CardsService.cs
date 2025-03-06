@@ -23,7 +23,7 @@ namespace Super_Cartes_Infinies.Services
 
 
 
-            return _dbContext.Cards.Take(8).ToList();
+            return _dbContext.OwnedCard.Where(u => u.player.UserId == userId).Select(c => c.Card).ToList();
         }
 
         public IEnumerable<Card> GetAllCards()

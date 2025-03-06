@@ -34,9 +34,8 @@ namespace Super_Cartes_Infinies.Services
             {
                 var ownedCards = new OwnedCards()
                 {
-                    PlayerId = user.Id,
+                    player = p,
                     Card = OwnedCard,
-                    CardId = OwnedCard.Id,
                 };
                 _dbContext.OwnedCard.Add(ownedCards);
             }

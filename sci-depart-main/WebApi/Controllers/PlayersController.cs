@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Azure.Identity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -46,7 +47,13 @@ namespace WebApi.Controllers
             }
 
             Player player = _playerService.CreatePlayer(identityUser);
-            Login();
+
+            var loginDTO = new LoginDTO
+            {
+                Username = register.Email,
+                Password = register.Password
+            };
+            Login(loginDTO);
 
             return Ok(new { Message = "Inscription réussie." });
         }

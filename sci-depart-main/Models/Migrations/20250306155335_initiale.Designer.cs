@@ -12,7 +12,7 @@ using Super_Cartes_Infinies.Data;
 namespace Models.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250304142217_initiale")]
+    [Migration("20250306155335_initiale")]
     partial class initiale
     {
         /// <inheritdoc />
@@ -157,15 +157,15 @@ namespace Models.Migrations
                         {
                             Id = "11111111-1111-1111-1111-111111111111",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "4a88f2bd-0f48-4d9c-9f17-0e97be9f82c9",
+                            ConcurrencyStamp = "9fe6e34f-ffa8-4e90-99e7-a9edce35c85b",
                             Email = "admin@admin.com",
                             EmailConfirmed = true,
                             LockoutEnabled = true,
                             NormalizedEmail = "ADMIN@ADMIN.COM",
                             NormalizedUserName = "ADMIN@ADMIN.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEIZfHufn21/cO8fESPgyCqqI470FWkQkQt3s/hB1NVallifpXEM/K7FYJamAN1yywg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAENEUjTI1oW+KB2BqTJnhZO7lQdihxEeuF1QHbKPUZFndxJto2NmxcD44JZ7G9khSTg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "85c6c053-5b98-4055-88c2-595536c5e434",
+                            SecurityStamp = "03bbdf7e-cc3a-49ad-8cf1-ac5c8a48be90",
                             TwoFactorEnabled = false,
                             UserName = "admin@admin.com"
                         },
@@ -173,22 +173,22 @@ namespace Models.Migrations
                         {
                             Id = "User1Id",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "55bede3e-19d7-4bf1-af38-efad017fdb68",
+                            ConcurrencyStamp = "3d4f7490-a0b8-49e4-9d3d-cf8265a60ad7",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "b60b86b5-1f94-4870-b66a-40b0efbc1af2",
+                            SecurityStamp = "ff81144e-1089-48e0-b3ea-8faa9fced0ae",
                             TwoFactorEnabled = false
                         },
                         new
                         {
                             Id = "User2Id",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "82e1ed70-c26b-4442-8f3f-92708b95256b",
+                            ConcurrencyStamp = "f87b0630-1411-438a-978e-90f457826edc",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "91f24d8e-922f-46b1-b09f-6693c0d6aeaf",
+                            SecurityStamp = "00d43cdf-024f-48de-9e13-c47379f99261",
                             TwoFactorEnabled = false
                         });
                 });
@@ -292,14 +292,14 @@ namespace Models.Migrations
                     b.Property<int>("CardId")
                         .HasColumnType("int");
 
-                    b.Property<int>("PlayerId")
+                    b.Property<int>("playerId")
                         .HasColumnType("int");
 
                     b.HasKey("id");
 
                     b.HasIndex("CardId");
 
-                    b.HasIndex("PlayerId");
+                    b.HasIndex("playerId");
 
                     b.ToTable("OwnedCard");
                 });
@@ -630,15 +630,15 @@ namespace Models.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Super_Cartes_Infinies.Models.Player", "Player")
+                    b.HasOne("Super_Cartes_Infinies.Models.Player", "player")
                         .WithMany("OwnedCards")
-                        .HasForeignKey("PlayerId")
+                        .HasForeignKey("playerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Card");
 
-                    b.Navigation("Player");
+                    b.Navigation("player");
                 });
 
             modelBuilder.Entity("Super_Cartes_Infinies.Models.Match", b =>

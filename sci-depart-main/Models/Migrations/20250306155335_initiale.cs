@@ -223,7 +223,7 @@ namespace Models.Migrations
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CardId = table.Column<int>(type: "int", nullable: false),
-                    PlayerId = table.Column<int>(type: "int", nullable: false)
+                    playerId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -235,8 +235,8 @@ namespace Models.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_OwnedCard_Players_PlayerId",
-                        column: x => x.PlayerId,
+                        name: "FK_OwnedCard_Players_playerId",
+                        column: x => x.playerId,
                         principalTable: "Players",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -326,9 +326,9 @@ namespace Models.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "11111111-1111-1111-1111-111111111111", 0, "4a88f2bd-0f48-4d9c-9f17-0e97be9f82c9", "admin@admin.com", true, true, null, "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAIAAYagAAAAEIZfHufn21/cO8fESPgyCqqI470FWkQkQt3s/hB1NVallifpXEM/K7FYJamAN1yywg==", null, false, "85c6c053-5b98-4055-88c2-595536c5e434", false, "admin@admin.com" },
-                    { "User1Id", 0, "55bede3e-19d7-4bf1-af38-efad017fdb68", null, false, false, null, null, null, null, null, false, "b60b86b5-1f94-4870-b66a-40b0efbc1af2", false, null },
-                    { "User2Id", 0, "82e1ed70-c26b-4442-8f3f-92708b95256b", null, false, false, null, null, null, null, null, false, "91f24d8e-922f-46b1-b09f-6693c0d6aeaf", false, null }
+                    { "11111111-1111-1111-1111-111111111111", 0, "9fe6e34f-ffa8-4e90-99e7-a9edce35c85b", "admin@admin.com", true, true, null, "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAIAAYagAAAAENEUjTI1oW+KB2BqTJnhZO7lQdihxEeuF1QHbKPUZFndxJto2NmxcD44JZ7G9khSTg==", null, false, "03bbdf7e-cc3a-49ad-8cf1-ac5c8a48be90", false, "admin@admin.com" },
+                    { "User1Id", 0, "3d4f7490-a0b8-49e4-9d3d-cf8265a60ad7", null, false, false, null, null, null, null, null, false, "ff81144e-1089-48e0-b3ea-8faa9fced0ae", false, null },
+                    { "User2Id", 0, "f87b0630-1411-438a-978e-90f457826edc", null, false, false, null, null, null, null, null, false, "00d43cdf-024f-48de-9e13-c47379f99261", false, null }
                 });
 
             migrationBuilder.InsertData(
@@ -422,9 +422,9 @@ namespace Models.Migrations
                 column: "CardId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OwnedCard_PlayerId",
+                name: "IX_OwnedCard_playerId",
                 table: "OwnedCard",
-                column: "PlayerId");
+                column: "playerId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PlayableCard_CardId",

@@ -154,15 +154,15 @@ namespace Models.Migrations
                         {
                             Id = "11111111-1111-1111-1111-111111111111",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "959561a5-3a88-46f3-8b7d-9cb43ee50b09",
+                            ConcurrencyStamp = "9fe6e34f-ffa8-4e90-99e7-a9edce35c85b",
                             Email = "admin@admin.com",
                             EmailConfirmed = true,
                             LockoutEnabled = true,
                             NormalizedEmail = "ADMIN@ADMIN.COM",
                             NormalizedUserName = "ADMIN@ADMIN.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEM/bj8QDf98y8XL/TpI7WqLqpTjZ9nOed+5YFXDBM274PNLbdzhazvM6JtKq49osAg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAENEUjTI1oW+KB2BqTJnhZO7lQdihxEeuF1QHbKPUZFndxJto2NmxcD44JZ7G9khSTg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "4929b095-4862-4bab-928c-a25658c52f6f",
+                            SecurityStamp = "03bbdf7e-cc3a-49ad-8cf1-ac5c8a48be90",
                             TwoFactorEnabled = false,
                             UserName = "admin@admin.com"
                         },
@@ -170,22 +170,22 @@ namespace Models.Migrations
                         {
                             Id = "User1Id",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a0bf8f14-14f8-47ac-906a-ee6e9300e3a3",
+                            ConcurrencyStamp = "3d4f7490-a0b8-49e4-9d3d-cf8265a60ad7",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "e7b6062f-a09a-41fd-ab33-7946c306f8aa",
+                            SecurityStamp = "ff81144e-1089-48e0-b3ea-8faa9fced0ae",
                             TwoFactorEnabled = false
                         },
                         new
                         {
                             Id = "User2Id",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "654e12c5-6df4-4101-bcf2-fd55b85803f8",
+                            ConcurrencyStamp = "f87b0630-1411-438a-978e-90f457826edc",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "955f6fc9-5ca4-461f-8517-c4f38b75e426",
+                            SecurityStamp = "00d43cdf-024f-48de-9e13-c47379f99261",
                             TwoFactorEnabled = false
                         });
                 });
@@ -289,23 +289,14 @@ namespace Models.Migrations
                     b.Property<int>("CardId")
                         .HasColumnType("int");
 
-                    b.Property<string>("PlayerId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("PlayerId1")
+                    b.Property<int>("playerId")
                         .HasColumnType("int");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("id");
 
                     b.HasIndex("CardId");
 
-                    b.HasIndex("PlayerId1");
-
-                    b.HasIndex("UserId");
+                    b.HasIndex("playerId");
 
                     b.ToTable("OwnedCard");
                 });
@@ -636,17 +627,15 @@ namespace Models.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Super_Cartes_Infinies.Models.Player", null)
+                    b.HasOne("Super_Cartes_Infinies.Models.Player", "player")
                         .WithMany("OwnedCards")
-                        .HasForeignKey("PlayerId1");
-
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("playerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Card");
 
-                    b.Navigation("User");
+                    b.Navigation("player");
                 });
 
             modelBuilder.Entity("Super_Cartes_Infinies.Models.Match", b =>

@@ -18,9 +18,10 @@ namespace Models.Models
 
         public virtual Card Card { get; set; }
 
-        public virtual IdentityUser User { get; set; }
+        [JsonIgnore]
+        public virtual Player player { get; set; }
 
-        public string PlayerId { get; set; }
+
 
     }
 }
