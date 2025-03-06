@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Super_Cartes_Infinies.Data;
 
@@ -11,13 +12,15 @@ using Super_Cartes_Infinies.Data;
 namespace Models.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250227174611_init")]
+    partial class init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.11")
+                .HasAnnotation("ProductVersion", "8.0.8")
                 .HasAnnotation("Proxies:ChangeTracking", false)
                 .HasAnnotation("Proxies:CheckEquality", false)
                 .HasAnnotation("Proxies:LazyLoading", true)
@@ -154,15 +157,15 @@ namespace Models.Migrations
                         {
                             Id = "11111111-1111-1111-1111-111111111111",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "166b19e0-f6b3-4dd0-94ec-b97fd54032f8",
+                            ConcurrencyStamp = "790c12b4-9f39-48a9-8288-ab42e0b609ae",
                             Email = "admin@admin.com",
                             EmailConfirmed = true,
                             LockoutEnabled = true,
                             NormalizedEmail = "ADMIN@ADMIN.COM",
                             NormalizedUserName = "ADMIN@ADMIN.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEKRcBK9EnBDU0cOntfaeRP5C0k9iJmmrbGV1D2eKXr9HZiNRnGfulbsaOSrU6dnGCg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEAqELuW5EHk/TI/Ce6q1vFD5Bl8v5QOhOJ5HEnGxcBO7Ia7kwgP96JInEdpWSucYRA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "8093df44-822c-4b5b-ae0f-000465357242",
+                            SecurityStamp = "a38a02b4-791e-4bce-bb20-517a77fddb73",
                             TwoFactorEnabled = false,
                             UserName = "admin@admin.com"
                         },
@@ -170,22 +173,22 @@ namespace Models.Migrations
                         {
                             Id = "User1Id",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "6b2444b6-4fd2-448e-ba7c-a5179625365b",
+                            ConcurrencyStamp = "4e8537c7-472b-440e-ab8d-17c64c6b4caa",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "bb5dab07-3426-46cf-b1d4-6fdfad8d03c1",
+                            SecurityStamp = "10611f40-b388-4e81-8dcb-bf5fa0d34a19",
                             TwoFactorEnabled = false
                         },
                         new
                         {
                             Id = "User2Id",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "9f7a1ae9-5d4f-4172-93bc-cb134b69f151",
+                            ConcurrencyStamp = "26b7291c-c8e3-4d69-acc9-707295a21cab",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "f1263217-5cf9-479b-944d-0a137df64dfa",
+                            SecurityStamp = "d9e7892d-2dfe-4a37-9aff-632e66a70e49",
                             TwoFactorEnabled = false
                         });
                 });
@@ -282,33 +285,6 @@ namespace Models.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("Models.Models.GameConfig", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
-
-                    b.Property<int>("QtManaParTour")
-                        .HasColumnType("int");
-
-                    b.Property<int>("nbCardsToDraw")
-                        .HasColumnType("int");
-
-                    b.HasKey("id");
-
-                    b.ToTable("GameConfigs");
-
-                    b.HasData(
-                        new
-                        {
-                            id = 1,
-                            QtManaParTour = 3,
-                            nbCardsToDraw = 4
-                        });
-                });
-
             modelBuilder.Entity("Models.Models.OwnedCard", b =>
                 {
                     b.Property<int>("id")
@@ -325,74 +301,11 @@ namespace Models.Migrations
 
                     b.HasKey("id");
 
+                    b.HasIndex("CardId");
+
                     b.HasIndex("PlayerId");
 
-                    b.ToTable("OwnedCards");
-                });
-
-            modelBuilder.Entity("Models.Models.StartingCards", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("CardID")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CardID");
-
-                    b.ToTable("StartingCards");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CardID = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CardID = 4
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CardID = 6
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CardID = 5
-                        },
-                        new
-                        {
-                            Id = 5,
-                            CardID = 3
-                        },
-                        new
-                        {
-                            Id = 6,
-                            CardID = 10
-                        },
-                        new
-                        {
-                            Id = 7,
-                            CardID = 5
-                        },
-                        new
-                        {
-                            Id = 8,
-                            CardID = 3
-                        },
-                        new
-                        {
-                            Id = 9,
-                            CardID = 10
-                        });
+                    b.ToTable("OwnedCard");
                 });
 
             modelBuilder.Entity("Super_Cartes_Infinies.Models.Card", b =>
@@ -428,20 +341,20 @@ namespace Models.Migrations
                         new
                         {
                             Id = 1,
-                            Attack = 5,
-                            Cost = 5,
-                            Health = 8,
-                            ImageUrl = "https://pm1.aminoapps.com/6906/f456d54f84291a3e3a9532251214cda80cbef906r1-335-431v2_hq.jpg",
-                            Name = "Dracolosse"
+                            Attack = 3,
+                            Cost = 3,
+                            Health = 3,
+                            ImageUrl = "https://i.pinimg.com/originals/a8/16/49/a81649bd4b0f032ce633161c5a076b87.jpg",
+                            Name = "Chat Dragon"
                         },
                         new
                         {
                             Id = 2,
-                            Attack = 10,
-                            Cost = 9,
+                            Attack = 2,
+                            Cost = 3,
                             Health = 5,
-                            ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/384.png",
-                            Name = "Rayquaza"
+                            ImageUrl = "https://i0.wp.com/thediscerningcat.com/wp-content/uploads/2021/02/tabby-cat-wearing-sunglasses.jpg",
+                            Name = "Chat Awesome"
                         },
                         new
                         {
@@ -449,17 +362,17 @@ namespace Models.Migrations
                             Attack = 2,
                             Cost = 1,
                             Health = 1,
-                            ImageUrl = "https://upload.wikimedia.org/wikipedia/en/2/22/Pok%C3%A9mon_Jigglypuff_art.png",
-                            Name = "Rondoudou"
+                            ImageUrl = "https://cdn.wallpapersafari.com/27/53/SZ8PO9.jpg",
+                            Name = "Chatton Laser"
                         },
                         new
                         {
                             Id = 4,
                             Attack = 8,
-                            Cost = 6,
+                            Cost = 4,
                             Health = 4,
-                            ImageUrl = "https://e7.pngegg.com/pngimages/993/391/png-clipart-pokemon-character-illustration-pokemon-x-and-y-pokemon-go-pokemon-black-white-mewtwo-pokemon-go-purple-mammal.png",
-                            Name = "Mewtwo"
+                            ImageUrl = "https://wallpapers.com/images/hd/epic-cat-poster-baavft05ylgta4j8.jpg",
+                            Name = "Chat Spacial"
                         },
                         new
                         {
@@ -467,8 +380,8 @@ namespace Models.Migrations
                             Attack = 7,
                             Cost = 5,
                             Health = 7,
-                            ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/282.png",
-                            Name = "Gardevoir"
+                            ImageUrl = "https://i.etsystatic.com/6230905/r/il/32aa5a/3474618751/il_fullxfull.3474618751_mfvf.jpg",
+                            Name = "Chat Guerrier"
                         },
                         new
                         {
@@ -476,8 +389,8 @@ namespace Models.Migrations
                             Attack = 4,
                             Cost = 2,
                             Health = 2,
-                            ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/065.png",
-                            Name = "Alakazam"
+                            ImageUrl = "https://store.playstation.com/store/api/chihiro/00_09_000/container/AU/en/99/EP2402-CUSA05624_00-ETH0000000002875/0/image?_version=00_09_000&platform=chihiro&bg_color=000000&opacity=100&w=720&h=720",
+                            Name = "Chat Laser"
                         },
                         new
                         {
@@ -485,8 +398,8 @@ namespace Models.Migrations
                             Attack = 6,
                             Cost = 4,
                             Health = 3,
-                            ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/095.png",
-                            Name = "Onix"
+                            ImageUrl = "https://images.squarespace-cdn.com/content/51b3dc8ee4b051b96ceb10de/1394662654865-JKOZ7ZFF39247VYDTGG9/hilarious-jedi-cats-fight-video-preview.jpg?content-type=image%2Fjpeg",
+                            Name = "Jedi Chat"
                         },
                         new
                         {
@@ -494,8 +407,8 @@ namespace Models.Migrations
                             Attack = 1,
                             Cost = 2,
                             Health = 9,
-                            ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/143.png",
-                            Name = "Ronflex"
+                            ImageUrl = "https://i.ytimg.com/vi/2I7pZlUhZak/maxresdefault.jpg",
+                            Name = "Blob Chat"
                         },
                         new
                         {
@@ -503,8 +416,8 @@ namespace Models.Migrations
                             Attack = 5,
                             Cost = 2,
                             Health = 1,
-                            ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/151.png",
-                            Name = "Mew"
+                            ImageUrl = "https://townsquare.media/site/142/files/2011/08/jedicats.jpg?w=980&q=75",
+                            Name = "Jedi Chatton"
                         },
                         new
                         {
@@ -512,8 +425,8 @@ namespace Models.Migrations
                             Attack = 6,
                             Cost = 2,
                             Health = 1,
-                            ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/006_f2.png",
-                            Name = "Dracofeu"
+                            ImageUrl = "https://cdn.theatlantic.com/thumbor/fOZjgqHH0RmXA1A5ek-yDz697W4=/133x0:2091x1020/1200x625/media/img/mt/2015/12/RTRD62Q/original.jpg",
+                            Name = "Chat Furtif"
                         });
                 });
 
@@ -524,6 +437,9 @@ namespace Models.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("GameConfigId")
+                        .HasColumnType("int");
 
                     b.Property<bool>("IsMatchCompleted")
                         .HasColumnType("bit");
@@ -715,22 +631,17 @@ namespace Models.Migrations
 
             modelBuilder.Entity("Models.Models.OwnedCard", b =>
                 {
+                    b.HasOne("Super_Cartes_Infinies.Models.Card", null)
+                        .WithMany("OwnedCards")
+                        .HasForeignKey("CardId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Super_Cartes_Infinies.Models.Player", null)
                         .WithMany("OwnedCards")
                         .HasForeignKey("PlayerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Models.Models.StartingCards", b =>
-                {
-                    b.HasOne("Super_Cartes_Infinies.Models.Card", "Card")
-                        .WithMany()
-                        .HasForeignKey("CardID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Card");
                 });
 
             modelBuilder.Entity("Super_Cartes_Infinies.Models.Match", b =>
@@ -799,6 +710,11 @@ namespace Models.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Super_Cartes_Infinies.Models.Card", b =>
+                {
+                    b.Navigation("OwnedCards");
                 });
 
             modelBuilder.Entity("Super_Cartes_Infinies.Models.MatchPlayerData", b =>

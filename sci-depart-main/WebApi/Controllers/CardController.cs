@@ -2,6 +2,7 @@
 using Super_Cartes_Infinies.Data;
 using Super_Cartes_Infinies.Models;
 using Super_Cartes_Infinies.Services;
+using System.Collections;
 
 namespace Super_Cartes_Infinies.Controllers
 {
@@ -32,5 +33,7 @@ namespace Super_Cartes_Infinies.Controllers
         {
             return Ok(_cardsService.GetPlayersCards("TheIdOfTheUser"));
         }
-    }
+        
+
+    } 
 }
