@@ -32,11 +32,11 @@ namespace Super_Cartes_Infinies.Controllers
         // Et l'utiliser pour obtenir l'Id de l'utilisateur
         [Authorize]
         [HttpGet]
-        public ActionResult<IEnumerable<Card>> GetPlayersCards()
+        public async Task<ActionResult<IEnumerable<Card>>> GetPlayersCards()
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            return Ok(_cardsService.GetPlayersCards(userId));
+            return Ok(await _cardsService.GetPlayersCards(userId));
         }
         
 
