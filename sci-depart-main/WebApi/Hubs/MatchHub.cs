@@ -37,9 +37,6 @@ public class MatchHub : Hub
         return $"Match_{matchId}";
     }
 
-
-
-
     //Connexion
     public override async Task OnConnectedAsync()
     {
@@ -55,6 +52,8 @@ public class MatchHub : Hub
         if (joiningMatchData != null)
         {
             await Clients.Client(signalRUserId).SendAsync("JoiningMatchData", joiningMatchData);
+
+
 
             string PlayerAUserId = joiningMatchData.PlayerA.UserId;
             string OtherPlayerId = joiningMatchData.OtherPlayerConnectionId;
