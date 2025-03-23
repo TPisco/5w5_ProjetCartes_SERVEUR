@@ -27,8 +27,6 @@ public class MatchHub : Hub
         _context = context;
         _matchesService = matchesService;
     }
-
-
     private string signalRUserId
     {
         get { return Context.ConnectionId!; }
