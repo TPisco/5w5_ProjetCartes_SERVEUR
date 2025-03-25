@@ -45,8 +45,11 @@ public class MatchHub : Hub
 
   
     //Join Match
-    public async Task onJoinMatchAsync(string userId, string? connectionId, int? specificMatchId)
+    public async Task onJoinMatchAsync(int? specificMatchId)
     {
+        string? connectionId = Context.ConnectionId;
+        string userId = Context.UserIdentifier;
+
         JoiningMatchData? joiningMatchData = await _matchesService.JoinMatch(userId, connectionId, specificMatchId);
 
         if (joiningMatchData != null)
@@ -82,8 +85,9 @@ public class MatchHub : Hub
     }
 
     //End Turn
-    public async Task onEndTurnAsync(string userId, int matchId)
+    public async Task onEndTurnAsync( int matchId)
     {
+        string userId = Context.UserIdentifier;
         var EndTurnEvent = await _matchesService.EndTurn(userId, matchId);
 
         await Clients.Group(groupName(matchId)).SendAsync("EndTurn", EndTurnEvent);
@@ -91,8 +95,10 @@ public class MatchHub : Hub
 
 
     //Surrender
-    public async Task onSurrenderAsync(string userId,int matchId)
+    public async Task onSurrenderAsync(int matchId)
+       
     {
+        string userId = Context.UserIdentifier;
         var SurrenderEvent = await _matchesService.Surrender(userId, matchId);
 
         await Clients.Group(groupName(matchId)).SendAsync("Surrender", SurrenderEvent);

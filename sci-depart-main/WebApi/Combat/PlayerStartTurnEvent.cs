@@ -1,4 +1,5 @@
-﻿using Super_Cartes_Infinies.Models;
+﻿using Microsoft.AspNetCore.Mvc;
+using Super_Cartes_Infinies.Models;
 using Super_Cartes_Infinies.Services;
 
 namespace Super_Cartes_Infinies.Combat
@@ -22,7 +23,7 @@ namespace Super_Cartes_Infinies.Combat
             this.Events.Add(dCE);
 
             // TODO: Faire gagner le Mana selon la configuration
-            GainManaEvent gME = new GainManaEvent(playerData, _matchConfigurationService.GetNbManaPerTurn());
+            GainManaEvent gME = new GainManaEvent(playerData,nbManaPerTurn);
             this.Events.Add(gME);
         }
 
