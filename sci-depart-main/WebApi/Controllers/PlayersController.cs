@@ -48,14 +48,9 @@ namespace WebApi.Controllers
 
             Player player = _playerService.CreatePlayer(identityUser);
 
-            var loginDTO = new LoginDTO
-            {
-                Username = register.Email,
-                Password = register.Password
-            };
-            Login(loginDTO);
+          
 
-            return Ok(new { Message = "Inscription réussie." });
+            return  Ok(new { Message = "Inscription réussie." });
         }
 
 
@@ -90,6 +85,7 @@ namespace WebApi.Controllers
                 {
                     token = new JwtSecurityTokenHandler().WriteToken(token),
                     validTo = token.ValidTo,
+                    playerId = identityUser.Id,
                     username = identityUser.UserName // Ceci sert déjà à afficher / cacher certains boutons côté Angular
                 });
             }
