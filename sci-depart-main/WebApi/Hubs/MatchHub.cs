@@ -78,6 +78,8 @@ public class MatchHub : Hub
 
                 await Clients.Client(joiningMatchData.OtherPlayerConnectionId).SendAsync("StartMatch", startMatchEvent);
                 await Clients.Client(signalRUserId).SendAsync("StartMatch", startMatchEvent);
+
+               // await Clients.Group(joiningMatchData.Match.Id.ToString()).SendAsync("StartMatch", startMatchEvent);
             }
         }
         else
