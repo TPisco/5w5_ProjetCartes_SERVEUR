@@ -4,6 +4,7 @@ using Super_Cartes_Infinies.Data;
 using Super_Cartes_Infinies.Models;
 using Super_Cartes_Infinies.Models.Dtos;
 using Super_Cartes_Infinies.Services;
+using System.Text.RegularExpressions;
 
 namespace Super_Cartes_Infinies.Hubs;
 
@@ -62,11 +63,22 @@ public class MatchHub : Hub
             string OtherPlayerId = joiningMatchData.OtherPlayerConnectionId;
             int MatchId = joiningMatchData.Match.Id;
 
-            // On envoie les bonnes données à l'autre joueur.
+            // On envoie les bonnes donnéesy à l'autre joueur.
             JoiningMatchData? joiningMatchDataOtherPlayer = await _matchesService.JoinMatch(PlayerAUserId,OtherPlayerId,MatchId);
 
 
             await Clients.Client(joiningMatchData.OtherPlayerConnectionId).SendAsync("joiningMatch", joiningMatchDataOtherPlayer);
+
+            if (!joiningMatchData.IsStarted)
+            {
+                var startMatchEvent = await _matchesService.StartMatch(userId, joiningMatchData.Match);
+
+                await Groups.AddToGroupAsync(signalRUserId, groupName(joiningMatchData.Match.Id));
+                await Groups.AddToGroupAsync(joiningMatchData.OtherPlayerConnectionId, groupName(joiningMatchData.Match.Id));
+
+                await Clients.Client(joiningMatchData.OtherPlayerConnectionId).SendAsync("StartMatch", startMatchEvent);
+                await Clients.Client(signalRUserId).SendAsync("StartMatch", startMatchEvent);
+            }
         }
         else
         {
@@ -74,15 +86,7 @@ public class MatchHub : Hub
         }
     }
 
-    //Start Match
-    public async Task onStartMatchAsync(Match match)
-    {
-        var startMatchEvent = await _matchesService.StartMatch(signalRUserId, match);
-
-        await Groups.AddToGroupAsync(signalRUserId, groupName(match.Id));
-
-        await Clients.Clients(signalRUserId).SendAsync("StartMatch", startMatchEvent);
-    }
+ 
 
     //End Turn
     public async Task onEndTurnAsync( int matchId)
