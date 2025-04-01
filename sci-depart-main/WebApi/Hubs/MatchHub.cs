@@ -55,36 +55,32 @@ public class MatchHub : Hub
 
         if (joiningMatchData != null)
         {
-            await Clients.Client(signalRUserId).SendAsync("JoiningMatchData", joiningMatchData);
+            await Clients.Client(connectionId).SendAsync("JoiningMatchData", joiningMatchData);
+            if(joiningMatchData.OtherPlayerConnectionId != null)
+            {
+                await Clients.Client(joiningMatchData.OtherPlayerConnectionId).SendAsync("JoiningMatchData", joiningMatchData);
+            }
+            //await Clients.Group(joiningMatchData.Match.Id.ToString()).SendAsync("JoiningMatchData", joiningMatchData);
 
 
-
-            string PlayerAUserId = joiningMatchData.PlayerA.UserId;
-            string OtherPlayerId = joiningMatchData.OtherPlayerConnectionId;
-            int MatchId = joiningMatchData.Match.Id;
-
-            // On envoie les bonnes donnéesy à l'autre joueur.
-            JoiningMatchData? joiningMatchDataOtherPlayer = await _matchesService.JoinMatch(PlayerAUserId,OtherPlayerId,MatchId);
-
-
-            await Clients.Client(joiningMatchData.OtherPlayerConnectionId).SendAsync("joiningMatch", joiningMatchDataOtherPlayer);
 
             if (!joiningMatchData.IsStarted)
             {
                 var startMatchEvent = await _matchesService.StartMatch(userId, joiningMatchData.Match);
 
-                await Groups.AddToGroupAsync(signalRUserId, groupName(joiningMatchData.Match.Id));
+                await Groups.AddToGroupAsync(connectionId, groupName(joiningMatchData.Match.Id));
                 await Groups.AddToGroupAsync(joiningMatchData.OtherPlayerConnectionId, groupName(joiningMatchData.Match.Id));
 
+
                 await Clients.Client(joiningMatchData.OtherPlayerConnectionId).SendAsync("StartMatch", startMatchEvent);
-                await Clients.Client(signalRUserId).SendAsync("StartMatch", startMatchEvent);
+                await Clients.Client(connectionId).SendAsync("StartMatch", startMatchEvent);
 
                // await Clients.Group(joiningMatchData.Match.Id.ToString()).SendAsync("StartMatch", startMatchEvent);
             }
         }
         else
         {
-            await Clients.Client(signalRUserId).SendAsync("LookingForOtherPlayer", "Waiting on another player for match.");
+            await Clients.Client(connectionId).SendAsync("LookingForOtherPlayer", "Waiting on another player for match.");
         }
     }
 

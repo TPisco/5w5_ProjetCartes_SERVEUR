@@ -58,6 +58,7 @@ namespace WebApi.Controllers
         public async Task<ActionResult> Login(LoginDTO login)
         {
             IdentityUser? identityUser = await _userManager.FindByEmailAsync(login.Username);
+            Player player =  _playerService.GetPlayerFromUserId(identityUser.Id);
             if (identityUser == null)
             {
                 identityUser = await _userManager.FindByEmailAsync(login.Username);
@@ -86,7 +87,8 @@ namespace WebApi.Controllers
                     token = new JwtSecurityTokenHandler().WriteToken(token),
                     validTo = token.ValidTo,
                     playerId = identityUser.Id,
-                    username = identityUser.UserName // Ceci sert déjà à afficher / cacher certains boutons côté Angular
+                    username = identityUser.UserName, // Ceci sert déjà à afficher / cacher certains boutons côté Angular
+                    userIntID = player.Id
                 });
             }
             else
