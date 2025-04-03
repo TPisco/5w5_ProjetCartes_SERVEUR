@@ -72,6 +72,7 @@ namespace WebApi.Controllers
                 {
                     authClaims.Add(new Claim(ClaimTypes.Role, role));
                 }
+                authClaims.Add(new Claim("PlayerId", player.Id.ToString()));
                 authClaims.Add(new Claim(ClaimTypes.NameIdentifier, identityUser.Id));
                 SymmetricSecurityKey key = new SymmetricSecurityKey(Encoding.UTF8
                     .GetBytes("LooOOongue Phrase SiNoN Ça ne Marchera PaAaAAAaAas !"));

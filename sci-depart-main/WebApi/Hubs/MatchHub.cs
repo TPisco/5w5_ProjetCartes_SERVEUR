@@ -28,15 +28,9 @@ public class MatchHub : Hub
         _context = context;
         _matchesService = matchesService;
     }
-    private string signalRUserId
-    {
-        get { return Context.ConnectionId!; }
-    }
+   
 
-    private string groupName(int? matchId)
-    {
-        return $"Match_{matchId}";
-    }
+
 
     //Connexion
     public override async Task OnConnectedAsync()
@@ -53,13 +47,19 @@ public class MatchHub : Hub
 
         JoiningMatchData? joiningMatchData = await _matchesService.JoinMatch(userId, connectionId, specificMatchId);
 
+        
+
         if (joiningMatchData != null)
         {
             await Clients.Client(connectionId).SendAsync("JoiningMatchData", joiningMatchData);
-            if(joiningMatchData.OtherPlayerConnectionId != null)
+            if (joiningMatchData.OtherPlayerConnectionId != null)
             {
                 await Clients.Client(joiningMatchData.OtherPlayerConnectionId).SendAsync("JoiningMatchData", joiningMatchData);
             }
+
+            await Groups.AddToGroupAsync(connectionId,joiningMatchData.Match.Id.ToString());
+            await Groups.AddToGroupAsync(joiningMatchData.OtherPlayerConnectionId, joiningMatchData.Match.Id.ToString());
+
             //await Clients.Group(joiningMatchData.Match.Id.ToString()).SendAsync("JoiningMatchData", joiningMatchData);
 
 
@@ -68,14 +68,11 @@ public class MatchHub : Hub
             {
                 var startMatchEvent = await _matchesService.StartMatch(userId, joiningMatchData.Match);
 
-                await Groups.AddToGroupAsync(connectionId, groupName(joiningMatchData.Match.Id));
-                await Groups.AddToGroupAsync(joiningMatchData.OtherPlayerConnectionId, groupName(joiningMatchData.Match.Id));
 
+                //await Clients.Client(joiningMatchData.OtherPlayerConnectionId).SendAsync("StartMatch", startMatchEvent);
+                //await Clients.Client(connectionId).SendAsync("StartMatch", startMatchEvent);
 
-                await Clients.Client(joiningMatchData.OtherPlayerConnectionId).SendAsync("StartMatch", startMatchEvent);
-                await Clients.Client(connectionId).SendAsync("StartMatch", startMatchEvent);
-
-               // await Clients.Group(joiningMatchData.Match.Id.ToString()).SendAsync("StartMatch", startMatchEvent);
+               await Clients.Group(joiningMatchData.Match.Id.ToString()).SendAsync("StartMatch", startMatchEvent);
             }
         }
         else
@@ -90,9 +87,17 @@ public class MatchHub : Hub
     public async Task onEndTurnAsync( int matchId)
     {
         string userId = Context.UserIdentifier;
+  
         var EndTurnEvent = await _matchesService.EndTurn(userId, matchId);
 
-        await Clients.Group(groupName(matchId)).SendAsync("EndTurn", EndTurnEvent);
+
+        if (EndTurnEvent == null)
+        {
+            throw new InvalidOperationException("Failed to end the turn");
+        }
+
+        await Clients.Group(matchId.ToString()).SendAsync("EndTurn", EndTurnEvent);
+
     }
 
 
@@ -103,7 +108,7 @@ public class MatchHub : Hub
         string userId = Context.UserIdentifier;
         var SurrenderEvent = await _matchesService.Surrender(userId, matchId);
 
-        await Clients.Group(groupName(matchId)).SendAsync("Surrender", SurrenderEvent);
+        await Clients.Group(matchId.ToString()).SendAsync("Surrender", SurrenderEvent);
     }
 
 }
