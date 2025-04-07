@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Models.Interfaces;
 using Models.Models;
 
@@ -14,6 +15,10 @@ namespace Super_Cartes_Infinies.Models
 		public int Health { get; set; }
 		public int Cost { get; set; }
         public string ImageUrl { get; set; } = "";
+
+        [ValidateNever]
+        public virtual List<CardPower> CardPowers { get; set; }
+
 
     }
 }
