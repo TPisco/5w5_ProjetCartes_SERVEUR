@@ -14,7 +14,8 @@ namespace Models.Models
         public const int HEAL_ID = 3;
 
         public int Id { get; set; }
-
+        
+        public int Value { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public string Icon { get; set; }
