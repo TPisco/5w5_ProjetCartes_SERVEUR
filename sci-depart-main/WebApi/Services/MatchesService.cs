@@ -154,6 +154,7 @@ namespace Super_Cartes_Infinies.Services
             }
 
             int nbManaPerTurn = _matchConfigurationService.GetNbManaPerTurn();
+            
             var playerEndTurnEvent = new PlayerEndTurnEvent(match, currentPlayerData, opposingPlayerData, nbManaPerTurn);
 
             await _dbContext.SaveChangesAsync();
