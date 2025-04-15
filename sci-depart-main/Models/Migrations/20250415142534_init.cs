@@ -84,6 +84,22 @@ namespace Models.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Power",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Value = table.Column<int>(type: "int", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Icon = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Power", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -129,8 +145,8 @@ namespace Models.Migrations
                 name: "AspNetUserLogins",
                 columns: table => new
                 {
-                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ProviderKey = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    LoginProvider = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    ProviderKey = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
                     ProviderDisplayName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
@@ -174,8 +190,8 @@ namespace Models.Migrations
                 columns: table => new
                 {
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    LoginProvider = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
                     Value = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -224,6 +240,33 @@ namespace Models.Migrations
                         name: "FK_StartingCards_Cards_CardID",
                         column: x => x.CardID,
                         principalTable: "Cards",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CardPower",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CardId = table.Column<int>(type: "int", nullable: false),
+                    PowerId = table.Column<int>(type: "int", nullable: false),
+                    Value = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CardPower", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_CardPower_Cards_CardId",
+                        column: x => x.CardId,
+                        principalTable: "Cards",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_CardPower_Power_PowerId",
+                        column: x => x.PowerId,
+                        principalTable: "Power",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -359,9 +402,9 @@ namespace Models.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "11111111-1111-1111-1111-111111111111", 0, "92588650-5102-421d-8bde-43dfd7d66bb7", "admin@admin.com", true, true, null, "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAIAAYagAAAAELdIzs3eo/jtY+y8OI0n3mRwEafuRColAKM4PKFVqEBruGDGUwOH8kF59LtqcbA1dQ==", null, false, "7c4383b1-f192-4ded-b483-258664fc44c0", false, "admin@admin.com" },
-                    { "User1Id", 0, "4fc773c5-3694-454c-890a-0da0bb079578", null, false, false, null, null, null, null, null, false, "6678471e-7c3c-4e1c-ab58-003de4e96168", false, null },
-                    { "User2Id", 0, "e92d6e22-e7ed-4e9d-ad17-79d843357109", null, false, false, null, null, null, null, null, false, "6ef3b7b8-8043-46d1-8e73-372544fe9298", false, null }
+                    { "11111111-1111-1111-1111-111111111111", 0, "a6e11c11-5293-4f89-86e4-637be533d971", "admin@admin.com", true, true, null, "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAIAAYagAAAAEL97xq7I+3kmkGZ5ZRi4rUF1vzm8ggt1W7rXGmBh5X0Av+nSLUpZ0K61ssuiamx8CQ==", null, false, "e0147e76-b1f6-435a-b2b9-a9b5848afb4f", false, "admin@admin.com" },
+                    { "User1Id", 0, "a6bce0dd-ba15-4a6d-8102-c9fddc39dd17", null, false, false, null, null, null, null, null, false, "9922c63e-60ed-4971-9f9a-aadebe25351e", false, null },
+                    { "User2Id", 0, "2fed6698-c02b-4f1d-84fd-b9e0e33b8275", null, false, false, null, null, null, null, null, false, "4383eca9-40c8-4e0f-8f2a-cff37b92cee8", false, null }
                 });
 
             migrationBuilder.InsertData(
@@ -456,6 +499,16 @@ namespace Models.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_CardPower_CardId",
+                table: "CardPower",
+                column: "CardId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CardPower_PowerId",
+                table: "CardPower",
+                column: "PowerId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Matches_PlayerDataAId",
                 table: "Matches",
                 column: "PlayerDataAId");
@@ -535,6 +588,9 @@ namespace Models.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "CardPower");
+
+            migrationBuilder.DropTable(
                 name: "GameConfigs");
 
             migrationBuilder.DropTable(
@@ -551,6 +607,9 @@ namespace Models.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "Power");
 
             migrationBuilder.DropTable(
                 name: "MatchPlayersData");
