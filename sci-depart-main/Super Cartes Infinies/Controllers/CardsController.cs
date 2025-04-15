@@ -78,11 +78,17 @@ namespace Super_Cartes_Infinies.Controllers
                 return NotFound();
             }
 
-            var card = await _context.Cards.FindAsync(id);
+
+            //var card = await _context.Cards.FindAsync(id);
+
+            var card = await _context.Cards.Include(c => c.CardPowers).ThenInclude(cp => cp.Power).FirstOrDefaultAsync(c => c.Id == id);
+
             if (card == null)
             {
                 return NotFound();
             }
+
+            ViewBag.AllPowers = _context.Power.ToListAsync();
             return View(card);
         }
 
@@ -91,7 +97,7 @@ namespace Super_Cartes_Infinies.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Attack,Health,Cost,ImageUrl")] Card card)
+        public async Task<IActionResult> Edit(int id, int[] selectedPowers, int[] powerValues, [Bind("Id,Name,Attack,Health,Cost,ImageUrl")] Card card)
         {
             if (id != card.Id)
             {
@@ -102,9 +108,32 @@ namespace Super_Cartes_Infinies.Controllers
             {
                 try
                 {
+                    for (int i = 0; i < selectedPowers.Length; i++)
+                    {
+                        var powerId = selectedPowers[i];
+                        var value = powerValues[i];
+
+                        var existingPower = card.CardPowers.FirstOrDefault(cp => cp.PowerId == powerId);
+
+                        if (existingPower != null)
+                        {
+                            existingPower.Value = value;
+                        }
+                        else
+                        {
+                            var cardPower = new CardPower
+                            {
+                                CardId = card.Id,
+                                PowerId = powerId,
+                                Value = value
+                            };
+                        }
+                    }
+
                     _context.Cards.Update(card);
                     await _context.SaveChangesAsync();
                 }
+
                 catch (DbUpdateConcurrencyException)
                 {
                     if (!CardExists(card.Id))
@@ -118,6 +147,7 @@ namespace Super_Cartes_Infinies.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewBag.AllPowers = _context.Power.ToListAsync();
             return View(card);
         }
 

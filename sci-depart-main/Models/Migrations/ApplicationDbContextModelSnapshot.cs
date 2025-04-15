@@ -17,7 +17,7 @@ namespace Models.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.10")
+                .HasAnnotation("ProductVersion", "8.0.11")
                 .HasAnnotation("Proxies:ChangeTracking", false)
                 .HasAnnotation("Proxies:CheckEquality", false)
                 .HasAnnotation("Proxies:LazyLoading", true)
@@ -154,15 +154,15 @@ namespace Models.Migrations
                         {
                             Id = "11111111-1111-1111-1111-111111111111",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "b2dd47ba-ab68-4631-ae66-e7fb4f54330b",
+                            ConcurrencyStamp = "38ff5f1b-1ef8-4812-b044-3a3c8ac7d4e3",
                             Email = "admin@admin.com",
                             EmailConfirmed = true,
                             LockoutEnabled = true,
                             NormalizedEmail = "ADMIN@ADMIN.COM",
                             NormalizedUserName = "ADMIN@ADMIN.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAECMz6i5Glile0OK2434fdJ3SOJgEWXp2+QyEUMLO9KuIttcVhC1k1Fx2VCZPaY+k+Q==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEN36ZlcQc8QLVmd2jX1q7ftDnnpTWwp/d6RqtquKpa2x0kkc1OTfrX+1QPOmi86oEQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "66103260-996a-4cf5-91b3-725c47bb7a82",
+                            SecurityStamp = "62437150-1784-45f1-8cd8-1410d906591d",
                             TwoFactorEnabled = false,
                             UserName = "admin@admin.com"
                         },
@@ -170,22 +170,22 @@ namespace Models.Migrations
                         {
                             Id = "User1Id",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "88b6e5fa-e1a1-4540-af25-467cb4f8a3d0",
+                            ConcurrencyStamp = "b7b96b79-bdef-416f-b012-d1f4803eee8e",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "57fc19df-7fd5-4a9a-ac29-a8c9a924759f",
+                            SecurityStamp = "4e491847-bead-4d97-b01c-c341f7ba44fd",
                             TwoFactorEnabled = false
                         },
                         new
                         {
                             Id = "User2Id",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "70eeb74c-7331-4f03-89da-a5d81a29de76",
+                            ConcurrencyStamp = "fea01f1c-0b27-4a38-b469-af7f5913244f",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "f37e5b15-8ac9-4eac-b569-d815807fb142",
+                            SecurityStamp = "6f7a4d26-e139-4e7a-898c-f9efff7332f4",
                             TwoFactorEnabled = false
                         });
                 });
@@ -218,10 +218,12 @@ namespace Models.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("ProviderKey")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
@@ -265,10 +267,12 @@ namespace Models.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
@@ -362,9 +366,58 @@ namespace Models.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Icon")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Value")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.ToTable("Power");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "Permet à une carte d’attaquer en « premier » et de ne pas recevoir de dégât si elle tue la carte de l’adversaire.",
+                            Icon = "🥇",
+                            Name = "First Strike",
+                            Value = 0
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Description = "Lorsqu’une carte défend, elle inflige X de dégâts AVANT de recevoir des dégâts. Si l’attaquant est tué par ces dégâts, l’attaque s’arrête et le défenseur ne reçoit pas de dégâts.",
+                            Icon = "🌹",
+                            Name = "Thorns",
+                            Value = 0
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Description = "Soigne les cartes alliées de X incluant elle-même AVANT d’attaquer (mais les cartes ne peuvent pas avoir plus de health qu’au départ.)",
+                            Icon = "💖",
+                            Name = "Heal",
+                            Value = 0
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Description = "Augmente la défense d'une carte de X",
+                            Icon = "🛡️",
+                            Name = "Shield",
+                            Value = 0
+                        });
                 });
 
             modelBuilder.Entity("Models.Models.StartingCards", b =>

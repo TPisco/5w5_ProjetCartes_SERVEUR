@@ -38,11 +38,44 @@
                 <input asp-for="ImageUrl" class="form-control" />
                 <span asp-validation-for="ImageUrl" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>
+
+    <!-- Power -->
+    <div class="col">
+        <br />
+    <div class="row">
+        <div class="col-md-4">
+            @foreach(var powers in Model.CardPowers)
+            {
+                    <div>
+                        @powers.Power.Name
+                    </div>
+                }
+                <select name="power" id="power" class="form-control">
+                <option value="Thorns">Thorns</option>
+                <option value="FirstStrike">First Strike</option>
+                <option value="Heal">Heal</option>
+                <option value="Shield">Shield</option>
+            </select>
+        </div>
+        <div class="col-4">
+            <div class="form-group mb-0">
+                <input asp-for="ImageUrl" class="form-control" type="number" />
+                <span asp-validation-for="ImageUrl" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-1">
+            <input type="submit" value="+" class="btn btn-primary" />
+        </div>
+    </div>
+    </div>
+
+
 </div>
 
 <div>
