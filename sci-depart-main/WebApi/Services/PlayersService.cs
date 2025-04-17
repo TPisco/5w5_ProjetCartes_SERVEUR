@@ -40,6 +40,7 @@ namespace Super_Cartes_Infinies.Services
 
             startingDeck.Name = "Default";
             startingDeck.IsCurrent = true;
+            startingDeck.DeckCards = new List<DeckCards>();
             // TODO: Ajoutez ces cartes au joueur en utilisant le modèle OwnedCard que vous allez devoir ajouter
             foreach (var OwnedCard in StartingCards)
             {
@@ -64,6 +65,8 @@ namespace Super_Cartes_Infinies.Services
             p.Decks.Add(startingDeck);
 
             _dbContext.Players.Add(p);
+            //Ajout du deck dans la database
+            _dbContext.Decks.Add(startingDeck);
             _dbContext.SaveChanges();
 
             return p;

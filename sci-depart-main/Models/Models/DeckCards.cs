@@ -10,7 +10,7 @@ namespace Models.Models
     public class DeckCards
     {
 
-       
+        public int Id { get; set; }
 
         // OwnedCard
         [JsonIgnore]
