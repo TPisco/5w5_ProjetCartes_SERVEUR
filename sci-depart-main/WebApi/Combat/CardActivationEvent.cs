@@ -19,29 +19,40 @@ namespace WebApi.Combat
             {
                 var atkCard = attacker.BattleField[i];
 
-                if (atkCard.HasPower(Power.HEAL_ID))
-                    Events.Add(new HealEvent(attacker, atkCard));
+                
                 //Modifier apres avec SHIELD_ID
-                if (atkCard.HasPower(3))
+                if (atkCard.HasPower(Power.SHIELD_ID))
                     Events.Add(new ShieldEvent(attacker, atkCard));
-
-                if (atkCard.HasPower(Power.FIRST_STRIKE_ID))
-                {
-                    Events.Add(new FirstStrikeEvent(match, attacker, defender, i));
-                    continue;
-                }
 
                 if (i < defender.BattleField.Count)
                 {
                     var defCard = defender.BattleField[i];
 
-                    Events.Add(new CardDamageEvent(atkCard.Attack, defCard, defender));
-                    Events.Add(new CardDamageEvent(defCard.Attack, atkCard, attacker));
+                    if (atkCard.HasPower(Power.FIRST_STRIKE_ID))
+                    {
+                        if ( defCard.Health- atkCard.Attack <= 0)
+                        {
+                            Events.Add(new FirstStrikeEvent(match, attacker, defender, i));
+                            continue;
+                        }
+                    }
 
                     if (defCard.HasPower(Power.THORNS_ID))
                     {
                         Events.Add(new ThornsEvent(defCard, atkCard, attacker));
+                        if (atkCard.Health - defCard.GetPowerValue(Power.THORNS_ID) <= 0) continue;
                     }
+
+                    Events.Add(new CardDamageEvent(atkCard.Attack, defCard, defender));
+
+                    if (atkCard.HasPower(Power.HEAL_ID))
+                        Events.Add(new HealEvent(attacker, atkCard));
+
+                    Events.Add(new CardDamageEvent(defCard.Attack, atkCard, attacker));
+
+                   
+
+
                 }
                 else
                 {

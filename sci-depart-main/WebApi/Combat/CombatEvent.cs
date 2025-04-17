@@ -8,10 +8,10 @@ namespace WebApi.Combat
     {
         public override string EventType => "Combat";
 
-        public CombatEvent(Match match)
+        public CombatEvent(Match match , MatchPlayerData CurrentPlayer,MatchPlayerData OppositePlayer)
         {
-            var attacker = match.IsPlayerATurn ? match.PlayerDataA : match.PlayerDataB;
-            var defender = match.IsPlayerATurn ? match.PlayerDataB : match.PlayerDataA;
+            var attacker = CurrentPlayer;
+            var defender = OppositePlayer;
 
             Events = new List<MatchEvent>
         {

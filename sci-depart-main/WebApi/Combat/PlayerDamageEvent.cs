@@ -14,14 +14,18 @@ namespace WebApi.Combat
         {
             PlayerId = playerData.Id;
             Damage = damage;
+            if (playerData.Health - damage < 0)
+            {
+                playerData.Health = 0;
+            }
+            else { playerData.Health -= damage; }
 
-            playerData.Health -= damage;
 
             if (playerData.Health <= 0)
             {
                 Events = new List<MatchEvent>
             {
-                new PlayerDeathEvent(match,playerData,oppositePlayer)
+                new PlayerDeathEvent(match,oppositePlayer,playerData)
             };
             }
         }

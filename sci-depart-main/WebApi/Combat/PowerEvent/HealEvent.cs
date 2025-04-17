@@ -15,7 +15,16 @@ namespace WebApi.Combat.PowerEvent
             CardId = card.Id;
             PlayerId = player.PlayerId;
             int amount = card.GetPowerValue(Power.HEAL_ID);
-            card.Health += amount;
+            for(int i = player.BattleField.Count - 1; i >= 0; i--)
+            {
+                if(player.BattleField[i].Health+amount > player.BattleField[i].Card.Health)
+                {
+                    player.BattleField[i].Health = player.BattleField[i].Card.Health;
+                }
+                else { player.BattleField[i].Health += amount; }
+               
+            }
+            
         }
     }
 }

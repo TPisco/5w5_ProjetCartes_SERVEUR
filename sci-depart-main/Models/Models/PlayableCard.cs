@@ -30,6 +30,10 @@ namespace Super_Cartes_Infinies.Models
             //Remplace la proppriété CardPowers par une méthode
             // On pourrait aussi faire un Contains() sur la liste de pouvoirs
             //CardPowers.Contains(powerId);
+            if (Card.CardPowers == null)
+            {
+                return false;
+            }
 
             if(Card.CardPowers.Any(p => p.Power.Id == powerId))
             {
@@ -46,6 +50,7 @@ namespace Super_Cartes_Infinies.Models
             // Simplement retourner 0 si la carte ne possède pas ce pouvoir.
 
             CardPower cardPower = Card.CardPowers.FirstOrDefault(p => p.Power.Id == powerId);
+            if (cardPower != null && cardPower.Power.Value == 0) return cardPower != null ? cardPower.Value : 0;
             return cardPower != null ? cardPower.Power.Value : 0;
             
         }

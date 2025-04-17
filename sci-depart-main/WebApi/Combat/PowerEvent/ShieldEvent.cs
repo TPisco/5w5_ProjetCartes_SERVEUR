@@ -15,7 +15,7 @@ namespace WebApi.Combat.PowerEvent
             //a terminer mettre power id a SHILD_ID
             CardId = card.Id;
             PlayerId = player.PlayerId;
-            int amount = card.GetPowerValue(3);
+            int amount = card.GetPowerValue(Power.SHIELD_ID);
             card.Health += amount;
         }
     }

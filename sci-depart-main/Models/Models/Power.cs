@@ -12,6 +12,7 @@ namespace Models.Models
         public const int FIRST_STRIKE_ID = 1;
         public const int THORNS_ID = 2;
         public const int HEAL_ID = 3;
+        public const int SHIELD_ID = 4;
 
         public int Id { get; set; }
         
@@ -19,5 +20,7 @@ namespace Models.Models
         public string Name { get; set; }
         public string Description { get; set; }
         public string Icon { get; set; }
+
+        public bool HasValue { get; set; }
     }
 }
