@@ -82,7 +82,7 @@ namespace Super_Cartes_Infinies.Controllers
 
             //var card = await _context.Cards.FindAsync(id);
 
-            var card = await _context.Cards.Include(c => c.CardPowers).ThenInclude(cp => cp.Power).FirstOrDefaultAsync(c => c.Id == id);
+            var card = await _context.Cards.Include(c => c.CardPowers).ThenInclude(cp => cp.Power).FirstOrDefaultAsync(m => m.Id == id);
 
             if (card == null)
             {
@@ -99,10 +99,54 @@ namespace Super_Cartes_Infinies.Controllers
             // Filtre la liste des pouvoirs par ID pour avoir que des uniques.
             var availablePowers = allPowers
                 .DistinctBy(p => p.Id)
-                .ToList(); 
+                .ToList();
 
-            ViewBag.AllPowers = new SelectList(availablePowers, "Id", "Name");
+            ViewBag.AllPowers = availablePowers;
             return View(card);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Power(int id, int selectedPowers, int powerValues)
+        {
+            var card = await _context.Cards.FindAsync(id);
+            
+            if (card == null) { return NotFound(); }
+            
+                // Je créer un CardPower avec les valeurs du formulaires
+                var cardPower = new CardPower
+                {
+                    CardId = card.Id,
+                    PowerId = selectedPowers,
+                    Value = powerValues
+                };
+
+                _context.cardPowers.Add(cardPower);
+                await _context.SaveChangesAsync();
+                ViewBag.AllPowers = _context.Power.ToList();
+                return RedirectToAction("Edit", new { id = card.Id });
+
+            
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeletePower(int powerId, int cardId)
+        {
+
+            var cardPower = await _context.cardPowers.FirstOrDefaultAsync(cp => cp.CardId == cardId && cp.PowerId == powerId);
+            
+            if (cardPower == null)
+            {
+                return NotFound();
+            }
+
+            _context.cardPowers.Remove(cardPower);
+            await _context.SaveChangesAsync();
+
+
+            // IL Y A PEUT ETRE UNE ERREUR ICI
+            return RedirectToAction("Edit", new { id = cardId });
         }
 
         // POST: Cards/Edit/5
@@ -121,31 +165,6 @@ namespace Super_Cartes_Infinies.Controllers
             {
                 try
                 {
-                    // Si Cardpower n'existe pas, je vais créer une liste
-                    if (card.CardPowers == null)
-                    {
-                        card.CardPowers = new List<CardPower>();
-                    }
-
-                        var existingPower = card.CardPowers.FirstOrDefault(cp => cp.PowerId == selectedPowers);
-
-                        if (existingPower != null)
-                        {
-                            existingPower.Value = powerValues;
-                        }
-                        else
-                        {
-                            // Je créer un CardPower avec les valeurs du formulaires
-                            var cardPower = new CardPower
-                            {
-                                CardId = card.Id,
-                                PowerId = selectedPowers,
-                                Value = powerValues
-                            };
-
-                        //_context.Cards.Add();
-                        }
-
                     _context.Cards.Update(card);
                     await _context.SaveChangesAsync();
                 }
@@ -163,7 +182,7 @@ namespace Super_Cartes_Infinies.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewBag.AllPowers = new SelectList(await _context.Power.ToListAsync(), "Id", "Name");
+            ViewBag.AllPowers = _context.Power.ToList();
             return View(card);
         }
 

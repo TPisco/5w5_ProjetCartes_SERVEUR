@@ -92,7 +92,8 @@ namespace Models.Migrations
                     Value = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Icon = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Icon = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    HasValue = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -245,7 +246,7 @@ namespace Models.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CardPower",
+                name: "cardPowers",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -256,15 +257,15 @@ namespace Models.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CardPower", x => x.Id);
+                    table.PrimaryKey("PK_cardPowers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_CardPower_Cards_CardId",
+                        name: "FK_cardPowers_Cards_CardId",
                         column: x => x.CardId,
                         principalTable: "Cards",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_CardPower_Power_PowerId",
+                        name: "FK_cardPowers_Power_PowerId",
                         column: x => x.PowerId,
                         principalTable: "Power",
                         principalColumn: "Id",
@@ -402,9 +403,9 @@ namespace Models.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "11111111-1111-1111-1111-111111111111", 0, "38ff5f1b-1ef8-4812-b044-3a3c8ac7d4e3", "admin@admin.com", true, true, null, "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAIAAYagAAAAEN36ZlcQc8QLVmd2jX1q7ftDnnpTWwp/d6RqtquKpa2x0kkc1OTfrX+1QPOmi86oEQ==", null, false, "62437150-1784-45f1-8cd8-1410d906591d", false, "admin@admin.com" },
-                    { "User1Id", 0, "b7b96b79-bdef-416f-b012-d1f4803eee8e", null, false, false, null, null, null, null, null, false, "4e491847-bead-4d97-b01c-c341f7ba44fd", false, null },
-                    { "User2Id", 0, "fea01f1c-0b27-4a38-b469-af7f5913244f", null, false, false, null, null, null, null, null, false, "6f7a4d26-e139-4e7a-898c-f9efff7332f4", false, null }
+                    { "11111111-1111-1111-1111-111111111111", 0, "f58d7dce-522b-440e-a140-5ac3e1408742", "admin@admin.com", true, true, null, "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAIAAYagAAAAEF6qhIEf9t4KWNWLymAu/dWseijUE0wyAk9pUpJhE4bmCoPfGbMbCXLttdfxQ/5vtw==", null, false, "859f76bd-f519-473b-890d-3d013fbd9121", false, "admin@admin.com" },
+                    { "User1Id", 0, "eecc1ae5-f1c0-470c-9885-51157313e059", null, false, false, null, null, null, null, null, false, "02bd5e82-bab2-488a-b9d0-f091f0ccc422", false, null },
+                    { "User2Id", 0, "439e50c2-9fc3-4ee5-ae16-f2843cdabbde", null, false, false, null, null, null, null, null, false, "03676e65-3778-46da-b528-fcaf23593d4b", false, null }
                 });
 
             migrationBuilder.InsertData(
@@ -431,13 +432,13 @@ namespace Models.Migrations
 
             migrationBuilder.InsertData(
                 table: "Power",
-                columns: new[] { "Id", "Description", "Icon", "Name", "Value" },
+                columns: new[] { "Id", "Description", "HasValue", "Icon", "Name", "Value" },
                 values: new object[,]
                 {
-                    { 1, "Permet à une carte d’attaquer en « premier » et de ne pas recevoir de dégât si elle tue la carte de l’adversaire.", "🥇", "First Strike", 0 },
-                    { 2, "Lorsqu’une carte défend, elle inflige X de dégâts AVANT de recevoir des dégâts. Si l’attaquant est tué par ces dégâts, l’attaque s’arrête et le défenseur ne reçoit pas de dégâts.", "🌹", "Thorns", 0 },
-                    { 3, "Soigne les cartes alliées de X incluant elle-même AVANT d’attaquer (mais les cartes ne peuvent pas avoir plus de health qu’au départ.)", "💖", "Heal", 0 },
-                    { 4, "Augmente la défense d'une carte de X", "🛡️", "Shield", 0 }
+                    { 1, "Permet à une carte d’attaquer en « premier » et de ne pas recevoir de dégât si elle tue la carte de l’adversaire.", false, "🥇", "First Strike", 0 },
+                    { 2, "Lorsqu’une carte défend, elle inflige X de dégâts AVANT de recevoir des dégâts. Si l’attaquant est tué par ces dégâts, l’attaque s’arrête et le défenseur ne reçoit pas de dégâts.", true, "🌹", "Thorns", 0 },
+                    { 3, "Soigne les cartes alliées de X incluant elle-même AVANT d’attaquer (mais les cartes ne peuvent pas avoir plus de health qu’au départ.)", true, "💖", "Heal", 0 },
+                    { 4, "Augmente la défense d'une carte de X", true, "🛡️", "Shield", 0 }
                 });
 
             migrationBuilder.InsertData(
@@ -510,13 +511,13 @@ namespace Models.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CardPower_CardId",
-                table: "CardPower",
+                name: "IX_cardPowers_CardId",
+                table: "cardPowers",
                 column: "CardId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CardPower_PowerId",
-                table: "CardPower",
+                name: "IX_cardPowers_PowerId",
+                table: "cardPowers",
                 column: "PowerId");
 
             migrationBuilder.CreateIndex(
@@ -599,7 +600,7 @@ namespace Models.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "CardPower");
+                name: "cardPowers");
 
             migrationBuilder.DropTable(
                 name: "GameConfigs");

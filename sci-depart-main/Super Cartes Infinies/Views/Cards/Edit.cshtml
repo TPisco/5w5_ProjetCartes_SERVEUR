@@ -52,12 +52,19 @@
         <br />
 
         <h5>Power(s) Added:</h5>
+
         @if (Model.CardPowers != null && Model.CardPowers.Any())
         {
             <ul>
                 @foreach (var cardPower in Model.CardPowers)
                 {
-                    <li>@cardPower.Power.Name </li>
+                    <li>@cardPower.Power.Icon @cardPower.Power.Name @cardPower.Value </li>
+
+                    <form asp-action="DeletePower">
+                        <button type="submit" class="btn btn-danger">Remove</button>
+                        <input type="hidden" name="powerId"/>
+                        <input type="hidden" name="cardId" />
+                    </form>
                 }
             </ul>
         }
@@ -66,29 +73,30 @@
             <p>No powers added yet.</p>
         }
 
-        <form>
-    <div class="row">
-        <div class="col-md-4">
-            @foreach(var powers in Model.CardPowers)
-            {
-                    <div>
-                        @powers.Power.Name
-                    </div>
-                }
-                @Html.DropDownList("SelectedPowerId", (SelectList)ViewBag.AllPowers, "Select a Power", new { @class = "form-control" })
+        <form asp-action="Power">
+    <input type="hidden" asp-for="Id" />
 
-        </div>
-        <div class="col-4">
-            <div class="form-group mb-0">
-                <input asp-for="ImageUrl" class="form-control" type="number" />
-                <span asp-validation-for="ImageUrl" class="text-danger"></span>
+        <div class="row">
+            <div class="col-md-4">
+                    <select name="selectedPowers" class="form-control">
+                       
+                        @foreach (var power in ViewBag.AllPowers)
+                        {
+                            <option value="@power.Id">@power.Icon @power.Name</option>
+                        }
+                    </select>
+
+            </div>
+            <div class="col-4">
+                <div class="form-group mb-0">
+                    <input type="number" name="powerValues" class="form-control" min="0" />
+                </div>
+            </div>
+            <div class="col-1">
+                <input type="submit" value="+" class="btn btn-primary" />
             </div>
         </div>
-        <div class="col-1">
-            <input type="submit" value="+" class="btn btn-primary" />
-        </div>
-    </div>
-        </form>
+    </form>
     </div>
 
 </div>
