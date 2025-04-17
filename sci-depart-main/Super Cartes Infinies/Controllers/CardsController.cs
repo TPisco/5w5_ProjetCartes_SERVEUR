@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Azure.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -88,7 +89,19 @@ namespace Super_Cartes_Infinies.Controllers
                 return NotFound();
             }
 
-            ViewBag.AllPowers = _context.Power.ToListAsync();
+            var existingPower = card.CardPowers.Select(cp => cp.PowerId).ToList();
+
+            // Récupère données depuis BD
+            var allPowers = await _context.Power
+                .Where(p => !existingPower.Contains(p.Id))
+                .ToListAsync();
+
+            // Filtre la liste des pouvoirs par ID pour avoir que des uniques.
+            var availablePowers = allPowers
+                .DistinctBy(p => p.Id)
+                .ToList(); 
+
+            ViewBag.AllPowers = new SelectList(availablePowers, "Id", "Name");
             return View(card);
         }
 
@@ -97,7 +110,7 @@ namespace Super_Cartes_Infinies.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, int[] selectedPowers, int[] powerValues, [Bind("Id,Name,Attack,Health,Cost,ImageUrl")] Card card)
+        public async Task<IActionResult> Edit(int id, int selectedPowers, int powerValues, [Bind("Id,Name,Attack,Health,Cost,ImageUrl")] Card card)
         {
             if (id != card.Id)
             {
@@ -108,27 +121,30 @@ namespace Super_Cartes_Infinies.Controllers
             {
                 try
                 {
-                    for (int i = 0; i < selectedPowers.Length; i++)
+                    // Si Cardpower n'existe pas, je vais créer une liste
+                    if (card.CardPowers == null)
                     {
-                        var powerId = selectedPowers[i];
-                        var value = powerValues[i];
+                        card.CardPowers = new List<CardPower>();
+                    }
 
-                        var existingPower = card.CardPowers.FirstOrDefault(cp => cp.PowerId == powerId);
+                        var existingPower = card.CardPowers.FirstOrDefault(cp => cp.PowerId == selectedPowers);
 
                         if (existingPower != null)
                         {
-                            existingPower.Value = value;
+                            existingPower.Value = powerValues;
                         }
                         else
                         {
+                            // Je créer un CardPower avec les valeurs du formulaires
                             var cardPower = new CardPower
                             {
                                 CardId = card.Id,
-                                PowerId = powerId,
-                                Value = value
+                                PowerId = selectedPowers,
+                                Value = powerValues
                             };
+
+                        //_context.Cards.Add();
                         }
-                    }
 
                     _context.Cards.Update(card);
                     await _context.SaveChangesAsync();
@@ -147,7 +163,7 @@ namespace Super_Cartes_Infinies.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewBag.AllPowers = _context.Power.ToListAsync();
+            ViewBag.AllPowers = new SelectList(await _context.Power.ToListAsync(), "Id", "Name");
             return View(card);
         }
 

@@ -66,5 +66,6 @@ public class ApplicationDbContext : IdentityDbContext
     public DbSet<Power> Power { get; set; } = default!;
 
 
+
 }
 

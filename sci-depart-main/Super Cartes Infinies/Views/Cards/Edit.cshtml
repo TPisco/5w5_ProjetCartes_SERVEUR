@@ -13,6 +13,7 @@
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
+
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
                 <input asp-for="Name" class="form-control" />
@@ -45,9 +46,27 @@
         </form>
     </div>
 
+
     <!-- Power -->
     <div class="col">
         <br />
+
+        <h5>Power(s) Added:</h5>
+        @if (Model.CardPowers != null && Model.CardPowers.Any())
+        {
+            <ul>
+                @foreach (var cardPower in Model.CardPowers)
+                {
+                    <li>@cardPower.Power.Name </li>
+                }
+            </ul>
+        }
+        else
+        {
+            <p>No powers added yet.</p>
+        }
+
+        <form>
     <div class="row">
         <div class="col-md-4">
             @foreach(var powers in Model.CardPowers)
@@ -56,12 +75,8 @@
                         @powers.Power.Name
                     </div>
                 }
-                <select name="power" id="power" class="form-control">
-                <option value="Thorns">Thorns</option>
-                <option value="FirstStrike">First Strike</option>
-                <option value="Heal">Heal</option>
-                <option value="Shield">Shield</option>
-            </select>
+                @Html.DropDownList("SelectedPowerId", (SelectList)ViewBag.AllPowers, "Select a Power", new { @class = "form-control" })
+
         </div>
         <div class="col-4">
             <div class="form-group mb-0">
@@ -73,8 +88,8 @@
             <input type="submit" value="+" class="btn btn-primary" />
         </div>
     </div>
+        </form>
     </div>
-
 
 </div>
 
