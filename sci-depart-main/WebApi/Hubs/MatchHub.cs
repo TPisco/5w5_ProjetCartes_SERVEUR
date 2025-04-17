@@ -103,12 +103,21 @@ public class MatchHub : Hub
 
     //Surrender
     public async Task onSurrenderAsync(int matchId)
-       
     {
         string userId = Context.UserIdentifier;
         var SurrenderEvent = await _matchesService.Surrender(userId, matchId);
 
         await Clients.Group(matchId.ToString()).SendAsync("Surrender", SurrenderEvent);
+    }
+
+
+    //playCard
+    public async Task onPlayCardAsync(int matchId,int CardBeingPlayedId)
+    {
+        string userId = Context.UserIdentifier;
+        var playCardEvent = _matchesService.PlayCard(userId, CardBeingPlayedId, matchId);
+
+        await Clients.Group(matchId.ToString()).SendAsync("PlayCard", playCardEvent);
     }
 
 }
