@@ -255,6 +255,60 @@ namespace Tests.Services
             Assert.AreEqual(0, _opposingPlayerData.Graveyard.Count);
         }
 
+
+        [TestMethod]
+        public void Shield()
+        {
+            Power shieldPower = new Power
+            {
+                Id = Power.SHIELD_ID
+            };
+
+            // On donne le pouvoir Heal à l'attaquant
+            CardPower cardPower = new CardPower
+            {
+                Power = shieldPower,
+                Card = _cardA,
+                Value = 3
+            };
+            _cardA.CardPowers = new List<CardPower> { cardPower };
+
+            var damagedPlayableCard = new PlayableCard(_cardA)
+            {
+                Id = 3
+            };
+
+            // On retire 2 PVs à l'attaquant et 4 PVs à l'autre carte de l'attaquant
+            _playableCardA.Health -= 2;
+            damagedPlayableCard.Health -= 4;
+
+            _currentPlayerData.BattleField.Add(_playableCardA);
+            _currentPlayerData.BattleField.Add(damagedPlayableCard);
+
+            _opposingPlayerData.BattleField.Add(_playableCardB);
+
+            var playerTurnEvent = new PlayerEndTurnEvent(_match, _currentPlayerData, _opposingPlayerData, NB_MANA_PER_TURN);
+
+            Assert.AreEqual(_currentPlayerData.PlayerId, playerTurnEvent.PlayerId);
+
+            // _playableCardA devrait avoir retrouvé ses points de vie initiaux            
+            Assert.AreEqual(_cardA.Health - _playableCardB.Attack, _playableCardA.Health);
+            Assert.AreEqual(_cardB.Health - _playableCardA.Attack, _playableCardB.Health);
+
+            // damagePlayableCard devrait avoir été guéri de 3 de ses 4 de dégâts
+            Assert.AreEqual(_cardB.Health - 1, damagedPlayableCard.Health);
+
+            // Le damagedPlayableCard tue le joueur adverse car il n'y avait pas de carte pour le protéger
+            Assert.AreEqual(0, _opposingPlayerData.Health);
+            Assert.AreEqual(1, _currentPlayerData.Health);
+
+            // Toutes les cartes sont encore en jeu
+            Assert.AreEqual(2, _currentPlayerData.BattleField.Count);
+            Assert.AreEqual(0, _currentPlayerData.Graveyard.Count);
+            Assert.AreEqual(1, _opposingPlayerData.BattleField.Count);
+            Assert.AreEqual(0, _opposingPlayerData.Graveyard.Count);
+        }
+
         [TestMethod]
         public void HasPower()
         {
