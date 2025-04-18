@@ -9,14 +9,15 @@ namespace WebApi.Combat.PowerEvent
         public override string EventType => "Shield";
         public int CardId { get; set; }
         public int PlayerId { get; set; }
+        public int Shield { get; set; }
 
         public ShieldEvent(MatchPlayerData player, PlayableCard card)
         {
             //a terminer mettre power id a SHILD_ID
             CardId = card.Id;
             PlayerId = player.PlayerId;
-            int amount = card.GetPowerValue(Power.SHIELD_ID);
-            card.Health += amount;
+            Shield = card.GetPowerValue(Power.SHIELD_ID);
+            card.Health += Shield;
         }
     }
 }

@@ -9,12 +9,14 @@ namespace WebApi.Combat
         public override string EventType => "CardDamage";
         public int Damage { get; set; }
         public int PlayerId { get; set; }
+        public int CardId { get; set; }
 
         public CardDamageEvent(int damage, PlayableCard card, MatchPlayerData playerData)
         {
 
             Damage = damage;
             PlayerId = playerData.Id;
+            CardId = card.Id;
 
             if (card.Health - damage < 0)
             {

@@ -9,19 +9,20 @@ namespace WebApi.Combat.PowerEvent
         public override string EventType => "Heal";
         public int CardId { get; set; }
         public int PlayerId { get; set; }
+        public int Heal {  get; set; }
 
         public HealEvent(MatchPlayerData player, PlayableCard card)
         {
             CardId = card.Id;
             PlayerId = player.PlayerId;
-            int amount = card.GetPowerValue(Power.HEAL_ID);
+            Heal = card.GetPowerValue(Power.HEAL_ID);
             for(int i = player.BattleField.Count - 1; i >= 0; i--)
             {
-                if(player.BattleField[i].Health+amount > player.BattleField[i].Card.Health)
+                if(player.BattleField[i].Health+ Heal > player.BattleField[i].Card.Health)
                 {
                     player.BattleField[i].Health = player.BattleField[i].Card.Health;
                 }
-                else { player.BattleField[i].Health += amount; }
+                else { player.BattleField[i].Health += Heal; }
                
             }
             
