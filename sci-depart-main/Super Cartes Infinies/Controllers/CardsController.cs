@@ -101,6 +101,9 @@ namespace Super_Cartes_Infinies.Controllers
                 .DistinctBy(p => p.Id)
                 .ToList();
 
+            bool allPowersAdded = availablePowers.Count == 0;
+            ViewData["AllPowersAdded"] = allPowersAdded;
+
             ViewBag.AllPowers = availablePowers;
             return View(card);
         }
@@ -123,18 +126,21 @@ namespace Super_Cartes_Infinies.Controllers
 
                 _context.cardPowers.Add(cardPower);
                 await _context.SaveChangesAsync();
+
                 ViewBag.AllPowers = _context.Power.ToList();
                 return RedirectToAction("Edit", new { id = card.Id });
 
             
         }
 
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeletePower(int powerId, int cardId)
         {
 
-            var cardPower = await _context.cardPowers.FirstOrDefaultAsync(cp => cp.CardId == cardId && cp.PowerId == powerId);
+            var cardPower = await _context.cardPowers
+                .FirstOrDefaultAsync(cp => cp.CardId == cardId && cp.PowerId == powerId);
             
             if (cardPower == null)
             {

@@ -1,7 +1,12 @@
 ﻿@model Super_Cartes_Infinies.Models.Card
 
+@using Models.Models;
 @{
     ViewData["Title"] = "Edit";
+    var powers = (List<Models.Models.Power>)ViewBag.AllPowers;
+    var hasValueTrue = ViewData["HasValueTrue"] as bool? ?? true;
+    var allPowersAdded = ViewData["AllPowersAdded"] as bool? ?? false;
+
 }
 
 <h1>Edit</h1>
@@ -62,8 +67,8 @@
 
                     <form asp-action="DeletePower">
                         <button type="submit" class="btn btn-danger">Remove</button>
-                        <input type="hidden" name="powerId"/>
-                        <input type="hidden" name="cardId" />
+                        <input type="hidden" name="powerId" value="@cardPower.PowerId" />
+                        <input type="hidden" name="cardId" value="@Model.Id" />
                     </form>
                 }
             </ul>
@@ -89,12 +94,13 @@
             </div>
             <div class="col-4">
                 <div class="form-group mb-0">
-                    <input type="number" name="powerValues" class="form-control" min="0" />
+                        <!--<input type="number" name="powerValues" class="form-control" min="0" /> -->
+                            <input type="number" name="powerValues" class="form-control" min="0" @(allPowersAdded ? "readonly" : "") />
                 </div>
             </div>
             <div class="col-1">
-                <input type="submit" value="+" class="btn btn-primary" />
-            </div>
+                    <input type="submit" value="+" class="btn btn-primary" @(allPowersAdded ? "disabled" : "") />
+                </div>
         </div>
     </form>
     </div>
