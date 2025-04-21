@@ -239,6 +239,40 @@ namespace Super_Cartes_Infinies.Data
             };
         }
 
+        public static CardPower[] SeedCardPowers()
+        {
+            return new CardPower[]
+    {
+        new CardPower
+        {
+            Id = 1,
+            CardId = 1, // Dracolosse
+            PowerId = 1 // First Strike
+        },
+        new CardPower
+        {
+            Id = 2,
+            CardId = 2, // Rayquaza
+            PowerId = 2, // Thorns
+            Value = 3 
+        },
+        new CardPower
+        {
+            Id = 3,
+            CardId = 3, // Rondoudou
+            PowerId = 3, // Heal
+            Value = 2 
+        },
+        new CardPower
+        {
+            Id = 4,
+            CardId = 4, // Mewtwo
+            PowerId = 4, // Shield
+            Value = 5 
+        }
+    };
+        }
+
         public static GameConfig seedGameConfig()
         {
             return new GameConfig { id = 1, nbCardsToDraw = 4, QtManaParTour = 3 };

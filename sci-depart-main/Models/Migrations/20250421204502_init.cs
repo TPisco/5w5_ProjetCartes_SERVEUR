@@ -403,9 +403,9 @@ namespace Models.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "11111111-1111-1111-1111-111111111111", 0, "3636934a-5982-4b50-bc6e-6b090add0509", "admin@admin.com", true, true, null, "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAIAAYagAAAAEDRLmGdwgIMKCoA6oiVlIEkul/DeITSBOGL3agUIMU46TgRaEPHTdRuFxUdGYSuRpQ==", null, false, "35f8f1ee-4ff7-46f3-ad58-9481926d28b3", false, "admin@admin.com" },
-                    { "User1Id", 0, "89ac40c5-c331-4d94-baa5-98e7e207db91", null, false, false, null, null, null, null, null, false, "cbc7899f-271e-4a50-8946-23f754fb9ccc", false, null },
-                    { "User2Id", 0, "1c155a23-d67b-45dc-b6c5-69fc2ca4e87d", null, false, false, null, null, null, null, null, false, "98153032-5b10-4ced-b737-c85ee660b690", false, null }
+                    { "11111111-1111-1111-1111-111111111111", 0, "79ff28e6-8fd3-42e8-bdc3-2f4e20853158", "admin@admin.com", true, true, null, "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAIAAYagAAAAEIZC6GpuPR/mHaKtI2MMzvX0HXtE38WyX6iGPCA1rwAAw5xD76YVlToitYZZHBjtWg==", null, false, "2ec0b6c8-62ab-4c9a-95c6-c5b86b559f1c", false, "admin@admin.com" },
+                    { "User1Id", 0, "766ec293-ec03-4a4f-b909-df60fc5ca859", null, false, false, null, null, null, null, null, false, "249fb32f-0acf-4adf-9c56-2261063bcd62", false, null },
+                    { "User2Id", 0, "6fbb3e1d-e2ca-41a5-8131-0a85896acdcc", null, false, false, null, null, null, null, null, false, "d663d7af-89c0-451b-b494-cdac8d56824f", false, null }
                 });
 
             migrationBuilder.InsertData(
@@ -469,6 +469,17 @@ namespace Models.Migrations
                     { 7, 5 },
                     { 8, 3 },
                     { 9, 10 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "cardPowers",
+                columns: new[] { "Id", "CardId", "PowerId", "Value" },
+                values: new object[,]
+                {
+                    { 1, 1, 1, 0 },
+                    { 2, 2, 2, 3 },
+                    { 3, 3, 3, 2 },
+                    { 4, 4, 4, 5 }
                 });
 
             migrationBuilder.CreateIndex(

@@ -12,7 +12,7 @@ using Super_Cartes_Infinies.Data;
 namespace Models.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250420185217_init")]
+    [Migration("20250421204502_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -157,15 +157,15 @@ namespace Models.Migrations
                         {
                             Id = "11111111-1111-1111-1111-111111111111",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "3636934a-5982-4b50-bc6e-6b090add0509",
+                            ConcurrencyStamp = "79ff28e6-8fd3-42e8-bdc3-2f4e20853158",
                             Email = "admin@admin.com",
                             EmailConfirmed = true,
                             LockoutEnabled = true,
                             NormalizedEmail = "ADMIN@ADMIN.COM",
                             NormalizedUserName = "ADMIN@ADMIN.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEDRLmGdwgIMKCoA6oiVlIEkul/DeITSBOGL3agUIMU46TgRaEPHTdRuFxUdGYSuRpQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEIZC6GpuPR/mHaKtI2MMzvX0HXtE38WyX6iGPCA1rwAAw5xD76YVlToitYZZHBjtWg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "35f8f1ee-4ff7-46f3-ad58-9481926d28b3",
+                            SecurityStamp = "2ec0b6c8-62ab-4c9a-95c6-c5b86b559f1c",
                             TwoFactorEnabled = false,
                             UserName = "admin@admin.com"
                         },
@@ -173,22 +173,22 @@ namespace Models.Migrations
                         {
                             Id = "User1Id",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "89ac40c5-c331-4d94-baa5-98e7e207db91",
+                            ConcurrencyStamp = "766ec293-ec03-4a4f-b909-df60fc5ca859",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "cbc7899f-271e-4a50-8946-23f754fb9ccc",
+                            SecurityStamp = "249fb32f-0acf-4adf-9c56-2261063bcd62",
                             TwoFactorEnabled = false
                         },
                         new
                         {
                             Id = "User2Id",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "1c155a23-d67b-45dc-b6c5-69fc2ca4e87d",
+                            ConcurrencyStamp = "6fbb3e1d-e2ca-41a5-8131-0a85896acdcc",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "98153032-5b10-4ced-b737-c85ee660b690",
+                            SecurityStamp = "d663d7af-89c0-451b-b494-cdac8d56824f",
                             TwoFactorEnabled = false
                         });
                 });
@@ -309,6 +309,36 @@ namespace Models.Migrations
                     b.HasIndex("PowerId");
 
                     b.ToTable("cardPowers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CardId = 1,
+                            PowerId = 1,
+                            Value = 0
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CardId = 2,
+                            PowerId = 2,
+                            Value = 3
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CardId = 3,
+                            PowerId = 3,
+                            Value = 2
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CardId = 4,
+                            PowerId = 4,
+                            Value = 5
+                        });
                 });
 
             modelBuilder.Entity("Models.Models.GameConfig", b =>

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Models.Models;
 using Super_Cartes_Infinies.Models;
+using System.Reflection.Emit;
 
 namespace Super_Cartes_Infinies.Data;
 
@@ -32,6 +33,7 @@ public class ApplicationDbContext : IdentityDbContext
         builder.Entity<GameConfig>().HasData(Seed.seedGameConfig());
 
         builder.Entity<Power>().HasData(Seed.SeedPower());
+        builder.Entity<CardPower>().HasData(Seed.SeedCardPowers());
 
         // Lorsque le modèle de données se complexifient, il faut éventuellement utiliser Fluent API
         // https://learn.microsoft.com/en-us/ef/ef6/modeling/code-first/fluent/types-and-properties
@@ -47,6 +49,7 @@ public class ApplicationDbContext : IdentityDbContext
             .WithMany()
             .OnDelete(DeleteBehavior.NoAction);
         // Fin de Fluent API
+
     }
 
     public DbSet<Card> Cards { get; set; } = default!;
