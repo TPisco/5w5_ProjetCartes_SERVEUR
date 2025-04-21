@@ -63,5 +63,8 @@ public class ApplicationDbContext : IdentityDbContext
 
     public DbSet<Deck> Decks { get; set; } = default;
 
+    //Ajout de la table DeckCards
+   // public DbSet<DeckCards> DeckCards { get; set; } = default;
+
 }
 

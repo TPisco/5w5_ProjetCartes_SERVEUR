@@ -47,6 +47,46 @@ namespace Super_Cartes_Infinies.Services
             return player.Decks;
         }
 
-       
+        //public async Task<List<Card>> GetAvailableCardsForDeckAsync(int deckId, string userId)
+        //{
+
+        //    Player player = await _dbContext.Players.FindAsync(userId);
+
+        //    var deckCards = await _dbContext.DeckCards
+        //        .Where(dc => dc.DeckId == deckId)
+        //        .Select(dc => dc.CardId)
+        //        .ToListAsync();
+
+        //    var ownedCards = await _dbContext.OwnedCards
+        //        .Where(oc => oc.PlayerId == playerId)
+        //        .ToListAsync();
+
+        //    return ownedCards
+        //        .Where(oc => !deckCards.Contains(oc.CardId) || oc.Quantity > deckCards.Count(dc => dc == oc.CardId))
+        //        .Select(oc => oc.Card)
+        //        .ToList();
+        //}
+
+
+        public async Task<List<OwnedCards>> GetAvailableCardsForDeckAsync(int deckId, int playerId)
+        {
+            var deckCards = await _dbContext.DeckCards
+                .Where(dc => dc.Deck.Id == deckId)
+                .Select(dc => dc.OwnedCard.Id)
+                .ToListAsync();
+
+            var ownedCards = await _dbContext.OwnedCards
+                .Where(oc => oc.player.Id == playerId)
+                .ToListAsync();
+
+            return ownedCards
+                .Where(oc => !deckCards.Contains(oc.id) || oc.CardId > deckCards.Count(dc => dc == oc.id))
+                .ToList();
+        }
+
+
+
+
+
     }
 }
