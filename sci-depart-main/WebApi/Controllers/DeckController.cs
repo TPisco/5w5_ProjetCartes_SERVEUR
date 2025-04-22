@@ -76,6 +76,19 @@ namespace WebApi.Controllers
         }
 
 
+        [HttpPost]
+        public async Task<ActionResult<IEnumerable<Deck>>> DeleteDeck( int deckId)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+
+            return Ok(await _decksService.DeleteDeckAsync(deckId, userId));
+
+        }
+
+
+
+
         // POST: DeckController/Create
         //[HttpPost]
         //[ValidateAntiForgeryToken]

@@ -50,6 +50,37 @@ namespace Super_Cartes_Infinies.Services
             return player.Decks;
         }
 
+        public async Task<IEnumerable<Deck>> DeleteDeckAsync(int deckId, string userId)
+        {
+            // Récupérer le joueur
+            var player = await _dbContext.Players
+                .Include(p => p.Decks)
+                .ThenInclude(d => d.DeckCards)
+                .FirstOrDefaultAsync(p => p.UserId == userId);
+
+            if (player == null)
+                throw new InvalidOperationException("Player not found.");
+
+            // Récupérer le deck et vérifier qu'il appartient au joueur
+            var deck = player.Decks.FirstOrDefault(d => d.Id == deckId);
+            if (deck == null)
+                throw new InvalidOperationException("Deck not found or does not belong to the player.");
+
+            // Supprimer les cartes associées au deck
+            _dbContext.DeckCards.RemoveRange(deck.DeckCards);
+
+            // Supprimer le deck
+            _dbContext.Decks.Remove(deck);
+
+            // Sauvegarder les modifications
+            await _dbContext.SaveChangesAsync();
+
+
+            return player.Decks;
+        }
+
+
+
         //public async Task<List<Card>> GetAvailableCardsForDeckAsync(int deckId, string userId)
         //{
 
@@ -93,19 +124,19 @@ namespace Super_Cartes_Infinies.Services
 
 
 
-        public async Task<bool> CanAddCardToDeckAsync(int deckId, int playerId)
-        {
+        //public async Task<bool> CanAddCardToDeckAsync(int deckId, int playerId)
+        //{
 
-            Player player = await _dbContext.Players.FindAsync(playerId);
+        //    Player player = await _dbContext.Players.FindAsync(playerId);
 
-            var deck =  player.Decks
-                .Where(d => d.Id == deckId ).FirstOrDefault();
-            //Vérification : Si le nombre de decks du joueur est supérieur ou égal à maxDecks ou si le nombre de cartes du deck est supérieur ou égal à maxCardsPerDeck, on ne peut pas ajouter de carte
+        //    var deck =  player.Decks
+        //        .Where(d => d.Id == deckId ).FirstOrDefault();
+        //    //Vérification : Si le nombre de decks du joueur est supérieur ou égal à maxDecks ou si le nombre de cartes du deck est supérieur ou égal à maxCardsPerDeck, on ne peut pas ajouter de carte
 
-            if (deck == null || player.Decks.Count >= maxDecks || deck.DeckCards.Count >= maxCardsPerDeck  ) return false;
-            //Devrait retourner vrai sinon
-            return true;
-        }
+        //    if (deck == null || player.Decks.Count >= maxDecks || deck.DeckCards.Count >= maxCardsPerDeck  ) return false;
+        //    //Devrait retourner vrai sinon
+        //    return true;
+        //}
 
 
         //Ajout d'une carte dans un deck
