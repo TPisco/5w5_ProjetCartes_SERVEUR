@@ -12,15 +12,15 @@ using Super_Cartes_Infinies.Data;
 namespace Models.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250422131827_restart")]
-    partial class restart
+    [Migration("20250422145909_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.10")
+                .HasAnnotation("ProductVersion", "8.0.11")
                 .HasAnnotation("Proxies:ChangeTracking", false)
                 .HasAnnotation("Proxies:CheckEquality", false)
                 .HasAnnotation("Proxies:LazyLoading", true)
@@ -157,15 +157,15 @@ namespace Models.Migrations
                         {
                             Id = "11111111-1111-1111-1111-111111111111",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "de0535d3-2cb3-42ae-af80-a0fabc32d74b",
+                            ConcurrencyStamp = "378e514c-8d3e-4813-8855-5d9395aa8e9d",
                             Email = "admin@admin.com",
                             EmailConfirmed = true,
                             LockoutEnabled = true,
                             NormalizedEmail = "ADMIN@ADMIN.COM",
                             NormalizedUserName = "ADMIN@ADMIN.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEAISxaaZX3sXru8fZ8bKF/eB2/UT9RC/5yL1XkTreayx4ZpatCS08UhbmxFk9c6vMQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEG/g80JmzvQauIhRjKneBhnpXSNR00QCHJvj4zygsKBlCCmZEG30cCiIf93tGKkXlg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "0372e784-5cc6-48ff-8567-4dffc55ae71c",
+                            SecurityStamp = "b863cad4-6c8f-4d24-8d41-04a667c9d7bc",
                             TwoFactorEnabled = false,
                             UserName = "admin@admin.com"
                         },
@@ -173,22 +173,22 @@ namespace Models.Migrations
                         {
                             Id = "User1Id",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "68becaec-008a-40a0-b00a-a33a3f35553e",
+                            ConcurrencyStamp = "95e69517-2296-4cf9-bec8-f03fa7f998f9",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "c1223306-8b54-41dc-9f4c-0cdbdadfb551",
+                            SecurityStamp = "75da46d7-165d-42b8-aefa-acbc9afa5446",
                             TwoFactorEnabled = false
                         },
                         new
                         {
                             Id = "User2Id",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e8fc1ee9-b76f-4f3f-b693-3d606579f3c7",
+                            ConcurrencyStamp = "d6b0b909-767d-48d1-b576-c1d0d9a1fc15",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "7bfda8ca-13c6-432b-ab61-31ab133e37f4",
+                            SecurityStamp = "221a1023-0ec3-4bad-84ed-0e4b03704e37",
                             TwoFactorEnabled = false
                         });
                 });
@@ -221,10 +221,12 @@ namespace Models.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("ProviderKey")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
@@ -268,10 +270,12 @@ namespace Models.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
@@ -345,9 +349,6 @@ namespace Models.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<bool>("Courant")
-                        .HasColumnType("bit");
-
                     b.Property<bool>("IsCurrent")
                         .HasColumnType("bit");
 
@@ -376,14 +377,14 @@ namespace Models.Migrations
                     b.Property<int>("DeckId")
                         .HasColumnType("int");
 
-                    b.Property<int>("OwnedCardid")
+                    b.Property<int>("OwnedCardId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("DeckId");
 
-                    b.HasIndex("OwnedCardid");
+                    b.HasIndex("OwnedCardId");
 
                     b.ToTable("DeckCards");
                 });
@@ -926,7 +927,7 @@ namespace Models.Migrations
 
                     b.HasOne("Models.Models.OwnedCards", "OwnedCard")
                         .WithMany()
-                        .HasForeignKey("OwnedCardid")
+                        .HasForeignKey("OwnedCardId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

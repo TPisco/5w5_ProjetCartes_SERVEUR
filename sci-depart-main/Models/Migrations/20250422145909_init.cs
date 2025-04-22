@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Models.Migrations
 {
     /// <inheritdoc />
-    public partial class fixDecks : Migration
+    public partial class init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -146,8 +146,8 @@ namespace Models.Migrations
                 name: "AspNetUserLogins",
                 columns: table => new
                 {
-                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ProviderKey = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    LoginProvider = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    ProviderKey = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
                     ProviderDisplayName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
@@ -191,8 +191,8 @@ namespace Models.Migrations
                 columns: table => new
                 {
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    LoginProvider = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
                     Value = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -279,7 +279,6 @@ namespace Models.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Courant = table.Column<bool>(type: "bit", nullable: false),
                     IsCurrent = table.Column<bool>(type: "bit", nullable: false),
                     PlayerId = table.Column<int>(type: "int", nullable: true)
                 },
@@ -420,7 +419,7 @@ namespace Models.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    OwnedCardid = table.Column<int>(type: "int", nullable: false),
+                    OwnedCardId = table.Column<int>(type: "int", nullable: false),
                     DeckId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -433,8 +432,8 @@ namespace Models.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_DeckCards_OwnedCard_OwnedCardid",
-                        column: x => x.OwnedCardid,
+                        name: "FK_DeckCards_OwnedCard_OwnedCardId",
+                        column: x => x.OwnedCardId,
                         principalTable: "OwnedCard",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
@@ -450,9 +449,9 @@ namespace Models.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "11111111-1111-1111-1111-111111111111", 0, "94c427ad-9f33-4168-a77c-d523999c0307", "admin@admin.com", true, true, null, "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAIAAYagAAAAEHba28M8lJdcZ0JFDWeFuPXwU97x8EKIud7OooKNjp/H6EIbC9D3XfzQbJlAD/SspQ==", null, false, "e2c4c36a-fbe2-4ac2-a421-c8ebe85d0e6b", false, "admin@admin.com" },
-                    { "User1Id", 0, "30da1077-3be1-4945-a95d-e05313ffbb5b", null, false, false, null, null, null, null, null, false, "2050f15e-ce9d-493f-8968-603928a839b4", false, null },
-                    { "User2Id", 0, "220d60bf-df76-4966-a02b-b2f90025acd7", null, false, false, null, null, null, null, null, false, "c7a0bf07-69e3-466a-8837-c4c790c69721", false, null }
+                    { "11111111-1111-1111-1111-111111111111", 0, "378e514c-8d3e-4813-8855-5d9395aa8e9d", "admin@admin.com", true, true, null, "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAIAAYagAAAAEG/g80JmzvQauIhRjKneBhnpXSNR00QCHJvj4zygsKBlCCmZEG30cCiIf93tGKkXlg==", null, false, "b863cad4-6c8f-4d24-8d41-04a667c9d7bc", false, "admin@admin.com" },
+                    { "User1Id", 0, "95e69517-2296-4cf9-bec8-f03fa7f998f9", null, false, false, null, null, null, null, null, false, "75da46d7-165d-42b8-aefa-acbc9afa5446", false, null },
+                    { "User2Id", 0, "d6b0b909-767d-48d1-b576-c1d0d9a1fc15", null, false, false, null, null, null, null, null, false, "221a1023-0ec3-4bad-84ed-0e4b03704e37", false, null }
                 });
 
             migrationBuilder.InsertData(
@@ -584,9 +583,9 @@ namespace Models.Migrations
                 column: "DeckId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DeckCards_OwnedCardid",
+                name: "IX_DeckCards_OwnedCardId",
                 table: "DeckCards",
-                column: "OwnedCardid");
+                column: "OwnedCardId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Decks_PlayerId",

@@ -17,7 +17,7 @@ namespace Models.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.10")
+                .HasAnnotation("ProductVersion", "8.0.11")
                 .HasAnnotation("Proxies:ChangeTracking", false)
                 .HasAnnotation("Proxies:CheckEquality", false)
                 .HasAnnotation("Proxies:LazyLoading", true)
@@ -154,15 +154,15 @@ namespace Models.Migrations
                         {
                             Id = "11111111-1111-1111-1111-111111111111",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "432ff023-0d5b-43d1-9448-623c37ad6eaa",
+                            ConcurrencyStamp = "378e514c-8d3e-4813-8855-5d9395aa8e9d",
                             Email = "admin@admin.com",
                             EmailConfirmed = true,
                             LockoutEnabled = true,
                             NormalizedEmail = "ADMIN@ADMIN.COM",
                             NormalizedUserName = "ADMIN@ADMIN.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEGH9yBvO1N3q3WhDIjWIJ+pJUV5RXCFvtQORxBqIMa8/RwNQKcIm248AO2rvt+mxdw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEG/g80JmzvQauIhRjKneBhnpXSNR00QCHJvj4zygsKBlCCmZEG30cCiIf93tGKkXlg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "eaf59771-d30e-403d-9f44-dc9a01cb91ab",
+                            SecurityStamp = "b863cad4-6c8f-4d24-8d41-04a667c9d7bc",
                             TwoFactorEnabled = false,
                             UserName = "admin@admin.com"
                         },
@@ -170,22 +170,22 @@ namespace Models.Migrations
                         {
                             Id = "User1Id",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "c1335df3-8b34-43e5-97c9-fd6fd2f4a69a",
+                            ConcurrencyStamp = "95e69517-2296-4cf9-bec8-f03fa7f998f9",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "2703c3fd-4589-4b96-a95a-035788a7c8ab",
+                            SecurityStamp = "75da46d7-165d-42b8-aefa-acbc9afa5446",
                             TwoFactorEnabled = false
                         },
                         new
                         {
                             Id = "User2Id",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "0e0c62ea-2d97-4975-8a7d-f539ba56acce",
+                            ConcurrencyStamp = "d6b0b909-767d-48d1-b576-c1d0d9a1fc15",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "3bdaddf6-139b-4164-9358-7b44623bccbc",
+                            SecurityStamp = "221a1023-0ec3-4bad-84ed-0e4b03704e37",
                             TwoFactorEnabled = false
                         });
                 });
@@ -218,10 +218,12 @@ namespace Models.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("ProviderKey")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
@@ -265,10 +267,12 @@ namespace Models.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
@@ -370,14 +374,14 @@ namespace Models.Migrations
                     b.Property<int>("DeckId")
                         .HasColumnType("int");
 
-                    b.Property<int>("OwnedCardid")
+                    b.Property<int>("OwnedCardId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("DeckId");
 
-                    b.HasIndex("OwnedCardid");
+                    b.HasIndex("OwnedCardId");
 
                     b.ToTable("DeckCards");
                 });
@@ -920,7 +924,7 @@ namespace Models.Migrations
 
                     b.HasOne("Models.Models.OwnedCards", "OwnedCard")
                         .WithMany()
-                        .HasForeignKey("OwnedCardid")
+                        .HasForeignKey("OwnedCardId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

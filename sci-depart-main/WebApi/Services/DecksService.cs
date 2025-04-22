@@ -155,6 +155,7 @@ namespace Super_Cartes_Infinies.Services
 
 
         //Ajout d'une carte dans un deck
+        //Remplacer int cardId pour que ca soit un OwnedCard id au lieu de Card
         public async Task<IEnumerable<Deck>> AddCardToDeckAsync(int deckId, int cardId, string userId)
         {
             // Récupérer le joueur

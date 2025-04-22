@@ -13,11 +13,14 @@ namespace Models.Models
         public int Id { get; set; }
 
         // OwnedCard
-        [JsonIgnore]
         public virtual OwnedCards OwnedCard { get; set; }
+
+        public int OwnedCardId { get; set; }
 
         //Deck Parent
         [JsonIgnore]
         public virtual Deck Deck { get; set; }
+
+        public  int DeckId { get; set; }
     }
 }

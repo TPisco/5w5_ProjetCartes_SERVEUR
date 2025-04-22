@@ -54,10 +54,9 @@ public class ApplicationDbContext : IdentityDbContext
 
 
         //Ajout éventuel de la relation many-to-many pour DeckCards
-        //builder.Entity<DeckCards>()
-        //.HasOne(dc => dc.Deck)
-        //.WithMany(d => d.DeckCards)
-        //.HasForeignKey(dc => dc.Deck.Id);
+        builder.Entity<DeckCards>()
+        .HasOne(dc => dc.Deck)
+        .WithMany(d => d.DeckCards);
 
         //builder.Entity<DeckCards>()
         //    .HasOne(dc => dc.OwnedCard)
