@@ -112,7 +112,7 @@ namespace WebApi.Controllers
         }
 
 
-        [HttpPost]
+        [HttpDelete]
         public async Task<ActionResult<IEnumerable<Deck>>> DeleteDeck( int deckId)
         {
             string? userId = User.FindFirstValue(ClaimTypes.NameIdentifier);

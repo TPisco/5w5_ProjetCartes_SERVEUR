@@ -41,17 +41,25 @@ namespace Super_Cartes_Infinies.Services
               .ThenInclude(d => d.DeckCards)
               .FirstOrDefaultAsync(p => p.UserId == userId);
 
-            //Création du nouveau Deck avec le nom fourni en paramètres
-            Deck newDeck = new Deck();
-            newDeck.Name = "Default";
-            newDeck.IsCurrent = false;
-            //Liste de DeckCards vide lors de la création
+
             List<DeckCards> deckCards = [];
-            newDeck.DeckCards = deckCards;
+            //Création du nouveau Deck avec le nom fourni en paramètres
+            Deck newDeck = new Deck()
+            {
+                Name = nom,
+                IsCurrent = false,
+                DeckCards = deckCards
+                
+
+            };
+           
+            //Liste de DeckCards vide lors de la création
+           
+           
 
             player.Decks.Add(newDeck);
             _dbContext.Decks.Add(newDeck);
-            _dbContext.SaveChanges();
+           await _dbContext.SaveChangesAsync();
 
 
             return player.Decks;
