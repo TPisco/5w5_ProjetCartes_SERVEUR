@@ -12,15 +12,15 @@ using Super_Cartes_Infinies.Data;
 namespace Models.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250417180645_DecksBugfix")]
-    partial class DecksBugfix
+    [Migration("20250422132717_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.11")
+                .HasAnnotation("ProductVersion", "8.0.10")
                 .HasAnnotation("Proxies:ChangeTracking", false)
                 .HasAnnotation("Proxies:CheckEquality", false)
                 .HasAnnotation("Proxies:LazyLoading", true)
@@ -157,15 +157,15 @@ namespace Models.Migrations
                         {
                             Id = "11111111-1111-1111-1111-111111111111",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "b28e60e5-6632-4a59-b2e7-70535d5898bd",
+                            ConcurrencyStamp = "432ff023-0d5b-43d1-9448-623c37ad6eaa",
                             Email = "admin@admin.com",
                             EmailConfirmed = true,
                             LockoutEnabled = true,
                             NormalizedEmail = "ADMIN@ADMIN.COM",
                             NormalizedUserName = "ADMIN@ADMIN.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEBShcTnQUra27/JUgJLYj04D3aF1vEyJEYu1bsGjroEBLoMRjaHExxgyD+uL4KG/xA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEGH9yBvO1N3q3WhDIjWIJ+pJUV5RXCFvtQORxBqIMa8/RwNQKcIm248AO2rvt+mxdw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "afb3c0d9-d055-43b9-a935-f557a491155e",
+                            SecurityStamp = "eaf59771-d30e-403d-9f44-dc9a01cb91ab",
                             TwoFactorEnabled = false,
                             UserName = "admin@admin.com"
                         },
@@ -173,22 +173,22 @@ namespace Models.Migrations
                         {
                             Id = "User1Id",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "341e8d39-f111-48ea-a279-047511fb2834",
+                            ConcurrencyStamp = "c1335df3-8b34-43e5-97c9-fd6fd2f4a69a",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "2af1073b-d354-4412-b98f-6eaba6c84467",
+                            SecurityStamp = "2703c3fd-4589-4b96-a95a-035788a7c8ab",
                             TwoFactorEnabled = false
                         },
                         new
                         {
                             Id = "User2Id",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "9bc1c81a-de18-4da6-9948-8139b7520440",
+                            ConcurrencyStamp = "0e0c62ea-2d97-4975-8a7d-f539ba56acce",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "50d0820c-67fc-45a7-83b6-af526115bc24",
+                            SecurityStamp = "3bdaddf6-139b-4164-9358-7b44623bccbc",
                             TwoFactorEnabled = false
                         });
                 });
@@ -221,12 +221,10 @@ namespace Models.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderKey")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
@@ -270,12 +268,10 @@ namespace Models.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
@@ -308,7 +304,37 @@ namespace Models.Migrations
 
                     b.HasIndex("PowerId");
 
-                    b.ToTable("CardPower");
+                    b.ToTable("cardPowers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CardId = 1,
+                            PowerId = 1,
+                            Value = 0
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CardId = 2,
+                            PowerId = 2,
+                            Value = 3
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CardId = 3,
+                            PowerId = 3,
+                            Value = 2
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CardId = 4,
+                            PowerId = 4,
+                            Value = 5
+                        });
                 });
 
             modelBuilder.Entity("Models.Models.Deck", b =>
@@ -421,6 +447,9 @@ namespace Models.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("HasValue")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Icon")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -435,6 +464,44 @@ namespace Models.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Power");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "Permet à une carte d’attaquer en « premier » et de ne pas recevoir de dégât si elle tue la carte de l’adversaire.",
+                            HasValue = false,
+                            Icon = "🥇",
+                            Name = "First Strike",
+                            Value = 0
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Description = "Lorsqu’une carte défend, elle inflige X de dégâts AVANT de recevoir des dégâts. Si l’attaquant est tué par ces dégâts, l’attaque s’arrête et le défenseur ne reçoit pas de dégâts.",
+                            HasValue = true,
+                            Icon = "🌹",
+                            Name = "Thorns",
+                            Value = 0
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Description = "Soigne les cartes alliées de X incluant elle-même AVANT d’attaquer (mais les cartes ne peuvent pas avoir plus de health qu’au départ.)",
+                            HasValue = true,
+                            Icon = "💖",
+                            Name = "Heal",
+                            Value = 0
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Description = "Augmente la défense d'une carte de X",
+                            HasValue = true,
+                            Icon = "🛡️",
+                            Name = "Shield",
+                            Value = 0
+                        });
                 });
 
             modelBuilder.Entity("Models.Models.StartingCards", b =>
@@ -829,7 +896,7 @@ namespace Models.Migrations
                         .IsRequired();
 
                     b.HasOne("Models.Models.Power", "Power")
-                        .WithMany()
+                        .WithMany("cardPowers")
                         .HasForeignKey("PowerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -966,6 +1033,11 @@ namespace Models.Migrations
             modelBuilder.Entity("Models.Models.Deck", b =>
                 {
                     b.Navigation("DeckCards");
+                });
+
+            modelBuilder.Entity("Models.Models.Power", b =>
+                {
+                    b.Navigation("cardPowers");
                 });
 
             modelBuilder.Entity("Super_Cartes_Infinies.Models.Card", b =>

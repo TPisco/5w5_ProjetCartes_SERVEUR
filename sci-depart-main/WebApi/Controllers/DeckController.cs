@@ -5,6 +5,7 @@ using Super_Cartes_Infinies.Services;
 using Super_Cartes_Infinies.Models;
 using System.Collections;
 using System.Security.Claims;
+using Models.Models.Dtos;
 using Models.Models;
 
 
@@ -30,31 +31,64 @@ namespace WebApi.Controllers
         [Authorize]
         public async Task<ActionResult<IEnumerable<Deck>>> GetPlayerDecks()
         {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            string? userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            return Ok(await _decksService.GetPlayerDecks(userId));
+
+
+           if(userId!= null)  return Ok(await _decksService.GetPlayerDecks(userId));
+
+            return StatusCode(StatusCodes.Status500InternalServerError,
+                    new { Message = "La recherche de decks a échoué." });
+
         }
 
-        // GET: DeckController/Details/5
-        // public ActionResult Details(int id)
-        // {
-        //  return View();
-        //  }
+
+        //[HttpGet]
+        //[Authorize]
+        //public async Task<ActionResult<IEnumerable<OwnedCards>>> GetCardsNotInDeck(int deckId)
+        //{
+        //    string? userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        //    if (string.IsNullOrEmpty(userId)) return Unauthorized();
+
+        //    var cardsNotInDeck = await _decksService.GetCardsNotInDeck(deckId, userId);
+        //    return Ok(cardsNotInDeck);
+        //}
+
+
 
         // GET: DeckController/Create
         [HttpPost]
-        public async Task<ActionResult> CreateDeck(string nom)
+        public async Task<ActionResult> CreateDeck(DeckDTO deckDto)
         {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            string? userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userId == null) return Unauthorized();
 
 
 
-            return Ok(await _decksService.CreateNewDeck(userId,nom));
+
+            return Ok(await _decksService.CreateNewDeck(userId, deckDto.Deckname));
         }
+
+        //[HttpPost]
+        //[Authorize]
+        //public async Task<ActionResult<Deck>> RendreCourant(int deckId)
+        //{
+        //    string? userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        //    if (string.IsNullOrEmpty(userId)) return Unauthorized();
+
+        //    var updatedDeck = await _decksService.SetDeckAsCurrent(deckId, userId);
+
+        //    if (updatedDeck == null)
+        //        return NotFound("Deck not found or does not belong to the user.");
+
+        //    return Ok(updatedDeck);
+        //}
+
+
 
         [HttpPost]
         public async Task<ActionResult<IEnumerable<Deck>>> AddCard(int cardId, int deckId) {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            string? userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
 
             return Ok(await _decksService.AddCardToDeckAsync(deckId, cardId, userId));
@@ -68,7 +102,9 @@ namespace WebApi.Controllers
         [HttpPost]
         public async Task<ActionResult<IEnumerable<Deck>>> RemoveCard(int cardId, int deckId)
         {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            string? userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userId == null) return Unauthorized();
+
 
 
             return Ok(await _decksService.RemoveCardFromDeckAsync(deckId, cardId, userId));
@@ -79,51 +115,15 @@ namespace WebApi.Controllers
         [HttpPost]
         public async Task<ActionResult<IEnumerable<Deck>>> DeleteDeck( int deckId)
         {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            string? userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+
 
 
             return Ok(await _decksService.DeleteDeckAsync(deckId, userId));
 
         }
 
-
-
-
-        // POST: DeckController/Create
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Create(IFormCollection collection)
-        //{
-        //    try
-        //    {
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
-
-        //// GET: DeckController/Edit/5
-        //public ActionResult Edit(int id)
-        //{
-        //    return View();
-        //}
-
-        //// POST: DeckController/Edit/5
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Edit(int id, IFormCollection collection)
-        //{
-        //    try
-        //    {
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
 
         // GET: DeckController/Delete/5
         [HttpDelete]
@@ -132,19 +132,5 @@ namespace WebApi.Controllers
             return Ok();
         }
 
-        // POST: DeckController/Delete/5
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Delete(int id, IFormCollection collection)
-        //{
-        //    try
-        //    {
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    catch
-        //    {
-        //        return Ok();
-        //    }
-        //}
     }
 }

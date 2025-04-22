@@ -5,56 +5,67 @@
 namespace Models.Migrations
 {
     /// <inheritdoc />
-    public partial class fix : Migration
+    public partial class init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropColumn(
+                name: "Courant",
+                table: "Decks");
+
             migrationBuilder.UpdateData(
                 table: "AspNetUsers",
                 keyColumn: "Id",
                 keyValue: "11111111-1111-1111-1111-111111111111",
                 columns: new[] { "ConcurrencyStamp", "PasswordHash", "SecurityStamp" },
-                values: new object[] { "7c074f43-4928-4826-a709-f513ce68a7b9", "AQAAAAIAAYagAAAAEFCKT6vnL+QCkADlsUYMXQBVkdSyUVcpI3GswFRp/Pup1cs4YZm65aGZR7orC4Egsw==", "11dd07a5-aaf0-4a0e-9335-b18784ed09ec" });
+                values: new object[] { "432ff023-0d5b-43d1-9448-623c37ad6eaa", "AQAAAAIAAYagAAAAEGH9yBvO1N3q3WhDIjWIJ+pJUV5RXCFvtQORxBqIMa8/RwNQKcIm248AO2rvt+mxdw==", "eaf59771-d30e-403d-9f44-dc9a01cb91ab" });
 
             migrationBuilder.UpdateData(
                 table: "AspNetUsers",
                 keyColumn: "Id",
                 keyValue: "User1Id",
                 columns: new[] { "ConcurrencyStamp", "SecurityStamp" },
-                values: new object[] { "22cc9545-e1c5-4304-a030-e645652f86f1", "771968c9-d09d-46be-b8b2-0e5336d12820" });
+                values: new object[] { "c1335df3-8b34-43e5-97c9-fd6fd2f4a69a", "2703c3fd-4589-4b96-a95a-035788a7c8ab" });
 
             migrationBuilder.UpdateData(
                 table: "AspNetUsers",
                 keyColumn: "Id",
                 keyValue: "User2Id",
                 columns: new[] { "ConcurrencyStamp", "SecurityStamp" },
-                values: new object[] { "00c128c8-bb8b-4909-a675-b3b36688c058", "af02e9e5-f7a1-413a-a54f-d90dc8788238" });
+                values: new object[] { "0e0c62ea-2d97-4975-8a7d-f539ba56acce", "3bdaddf6-139b-4164-9358-7b44623bccbc" });
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.AddColumn<bool>(
+                name: "Courant",
+                table: "Decks",
+                type: "bit",
+                nullable: false,
+                defaultValue: false);
+
             migrationBuilder.UpdateData(
                 table: "AspNetUsers",
                 keyColumn: "Id",
                 keyValue: "11111111-1111-1111-1111-111111111111",
                 columns: new[] { "ConcurrencyStamp", "PasswordHash", "SecurityStamp" },
-                values: new object[] { "d5035481-3c81-4844-b588-ef6d652ee911", "AQAAAAIAAYagAAAAEPyDqMP2v7MOsYrrH46fgEdIGsduatNYKm/xmfYc6KL7iPnnSVgaWkL+A2X9gkG9lA==", "d7262755-ad94-4e99-ad46-4242351dc2fa" });
+                values: new object[] { "de0535d3-2cb3-42ae-af80-a0fabc32d74b", "AQAAAAIAAYagAAAAEAISxaaZX3sXru8fZ8bKF/eB2/UT9RC/5yL1XkTreayx4ZpatCS08UhbmxFk9c6vMQ==", "0372e784-5cc6-48ff-8567-4dffc55ae71c" });
 
             migrationBuilder.UpdateData(
                 table: "AspNetUsers",
                 keyColumn: "Id",
                 keyValue: "User1Id",
                 columns: new[] { "ConcurrencyStamp", "SecurityStamp" },
-                values: new object[] { "7f29b69e-27af-4e95-907c-0c21fef0e82f", "36023313-0088-4c5f-b2c4-db7b4a315ece" });
+                values: new object[] { "68becaec-008a-40a0-b00a-a33a3f35553e", "c1223306-8b54-41dc-9f4c-0cdbdadfb551" });
 
             migrationBuilder.UpdateData(
                 table: "AspNetUsers",
                 keyColumn: "Id",
                 keyValue: "User2Id",
                 columns: new[] { "ConcurrencyStamp", "SecurityStamp" },
-                values: new object[] { "cb582bbb-1d72-4b5f-8eb9-a0a3ce184746", "53a2a492-13b8-4fec-8861-b6a58bf75cb3" });
+                values: new object[] { "e8fc1ee9-b76f-4f3f-b693-3d606579f3c7", "7bfda8ca-13c6-432b-ab61-31ab133e37f4" });
         }
     }
 }

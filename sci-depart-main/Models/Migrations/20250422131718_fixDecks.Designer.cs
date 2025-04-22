@@ -12,8 +12,8 @@ using Super_Cartes_Infinies.Data;
 namespace Models.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250417183640_bugfixIguess")]
-    partial class bugfixIguess
+    [Migration("20250422131718_fixDecks")]
+    partial class fixDecks
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -157,15 +157,15 @@ namespace Models.Migrations
                         {
                             Id = "11111111-1111-1111-1111-111111111111",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "d5035481-3c81-4844-b588-ef6d652ee911",
+                            ConcurrencyStamp = "94c427ad-9f33-4168-a77c-d523999c0307",
                             Email = "admin@admin.com",
                             EmailConfirmed = true,
                             LockoutEnabled = true,
                             NormalizedEmail = "ADMIN@ADMIN.COM",
                             NormalizedUserName = "ADMIN@ADMIN.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEPyDqMP2v7MOsYrrH46fgEdIGsduatNYKm/xmfYc6KL7iPnnSVgaWkL+A2X9gkG9lA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEHba28M8lJdcZ0JFDWeFuPXwU97x8EKIud7OooKNjp/H6EIbC9D3XfzQbJlAD/SspQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "d7262755-ad94-4e99-ad46-4242351dc2fa",
+                            SecurityStamp = "e2c4c36a-fbe2-4ac2-a421-c8ebe85d0e6b",
                             TwoFactorEnabled = false,
                             UserName = "admin@admin.com"
                         },
@@ -173,22 +173,22 @@ namespace Models.Migrations
                         {
                             Id = "User1Id",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "7f29b69e-27af-4e95-907c-0c21fef0e82f",
+                            ConcurrencyStamp = "30da1077-3be1-4945-a95d-e05313ffbb5b",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "36023313-0088-4c5f-b2c4-db7b4a315ece",
+                            SecurityStamp = "2050f15e-ce9d-493f-8968-603928a839b4",
                             TwoFactorEnabled = false
                         },
                         new
                         {
                             Id = "User2Id",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "cb582bbb-1d72-4b5f-8eb9-a0a3ce184746",
+                            ConcurrencyStamp = "220d60bf-df76-4966-a02b-b2f90025acd7",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "53a2a492-13b8-4fec-8861-b6a58bf75cb3",
+                            SecurityStamp = "c7a0bf07-69e3-466a-8837-c4c790c69721",
                             TwoFactorEnabled = false
                         });
                 });
@@ -304,7 +304,37 @@ namespace Models.Migrations
 
                     b.HasIndex("PowerId");
 
-                    b.ToTable("CardPower");
+                    b.ToTable("cardPowers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CardId = 1,
+                            PowerId = 1,
+                            Value = 0
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CardId = 2,
+                            PowerId = 2,
+                            Value = 3
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CardId = 3,
+                            PowerId = 3,
+                            Value = 2
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CardId = 4,
+                            PowerId = 4,
+                            Value = 5
+                        });
                 });
 
             modelBuilder.Entity("Models.Models.Deck", b =>
@@ -314,6 +344,9 @@ namespace Models.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("Courant")
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsCurrent")
                         .HasColumnType("bit");
@@ -417,6 +450,9 @@ namespace Models.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("HasValue")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Icon")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -431,6 +467,44 @@ namespace Models.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Power");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "Permet à une carte d’attaquer en « premier » et de ne pas recevoir de dégât si elle tue la carte de l’adversaire.",
+                            HasValue = false,
+                            Icon = "🥇",
+                            Name = "First Strike",
+                            Value = 0
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Description = "Lorsqu’une carte défend, elle inflige X de dégâts AVANT de recevoir des dégâts. Si l’attaquant est tué par ces dégâts, l’attaque s’arrête et le défenseur ne reçoit pas de dégâts.",
+                            HasValue = true,
+                            Icon = "🌹",
+                            Name = "Thorns",
+                            Value = 0
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Description = "Soigne les cartes alliées de X incluant elle-même AVANT d’attaquer (mais les cartes ne peuvent pas avoir plus de health qu’au départ.)",
+                            HasValue = true,
+                            Icon = "💖",
+                            Name = "Heal",
+                            Value = 0
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Description = "Augmente la défense d'une carte de X",
+                            HasValue = true,
+                            Icon = "🛡️",
+                            Name = "Shield",
+                            Value = 0
+                        });
                 });
 
             modelBuilder.Entity("Models.Models.StartingCards", b =>
@@ -825,7 +899,7 @@ namespace Models.Migrations
                         .IsRequired();
 
                     b.HasOne("Models.Models.Power", "Power")
-                        .WithMany()
+                        .WithMany("cardPowers")
                         .HasForeignKey("PowerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -962,6 +1036,11 @@ namespace Models.Migrations
             modelBuilder.Entity("Models.Models.Deck", b =>
                 {
                     b.Navigation("DeckCards");
+                });
+
+            modelBuilder.Entity("Models.Models.Power", b =>
+                {
+                    b.Navigation("cardPowers");
                 });
 
             modelBuilder.Entity("Super_Cartes_Infinies.Models.Card", b =>

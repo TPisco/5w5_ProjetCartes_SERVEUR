@@ -15,6 +15,8 @@ namespace Models.Models
         //Nom du deck
         public string Name { get; set; }
 
+      //  public bool Courant { get; set; }
+
         //Liste de DeckCards
         [JsonIgnore]
         public virtual List<DeckCards> DeckCards { get; set; }
