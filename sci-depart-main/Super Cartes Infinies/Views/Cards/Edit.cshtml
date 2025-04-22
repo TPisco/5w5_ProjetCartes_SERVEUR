@@ -1,7 +1,12 @@
 ﻿@model Super_Cartes_Infinies.Models.Card
 
+@using Models.Models;
 @{
     ViewData["Title"] = "Edit";
+    var powers = (List<Models.Models.Power>)ViewBag.AllPowers;
+    var hasValueTrue = ViewData["HasValueTrue"] as bool? ?? true;
+    var allPowersAdded = ViewData["AllPowersAdded"] as bool? ?? false;
+
 }
 
 <h1>Edit</h1>
@@ -13,6 +18,7 @@
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
+
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
                 <input asp-for="Name" class="form-control" />
@@ -38,11 +44,67 @@
                 <input asp-for="ImageUrl" class="form-control" />
                 <span asp-validation-for="ImageUrl" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>
+
+
+    <!-- Power -->
+    <div class="col">
+        <br />
+
+        <h5>Power(s) Added:</h5>
+
+        @if (Model.CardPowers != null && Model.CardPowers.Any())
+        {
+            <ul>
+                @foreach (var cardPower in Model.CardPowers)
+                {
+                    <li>@cardPower.Power.Icon @cardPower.Power.Name @cardPower.Value </li>
+
+                    <form asp-action="DeletePower">
+                        <button type="submit" class="btn btn-danger">Remove</button>
+                        <input type="hidden" name="powerId" value="@cardPower.PowerId" />
+                        <input type="hidden" name="cardId" value="@Model.Id" />
+                    </form>
+                }
+            </ul>
+        }
+        else
+        {
+            <p>No powers added yet.</p>
+        }
+
+        <form asp-action="Power">
+    <input type="hidden" asp-for="Id" />
+
+        <div class="row">
+            <div class="col-md-4">
+                    <select name="selectedPowers" class="form-control">
+                       
+                        @foreach (var power in ViewBag.AllPowers)
+                        {
+                            <option value="@power.Id">@power.Icon @power.Name</option>
+                        }
+                    </select>
+
+            </div>
+            <div class="col-4">
+                <div class="form-group mb-0">
+                        <!--<input type="number" name="powerValues" class="form-control" min="0" /> -->
+                            <input type="number" name="powerValues" class="form-control" min="0" @(allPowersAdded ? "readonly" : "") />
+                </div>
+            </div>
+            <div class="col-1">
+                    <input type="submit" value="+" class="btn btn-primary" @(allPowersAdded ? "disabled" : "") />
+                </div>
+        </div>
+    </form>
+    </div>
+
 </div>
 
 <div>

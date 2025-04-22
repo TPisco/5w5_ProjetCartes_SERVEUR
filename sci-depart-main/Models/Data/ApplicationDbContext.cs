@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Models.Models;
 using Super_Cartes_Infinies.Models;
+using System.Reflection.Emit;
 
 namespace Super_Cartes_Infinies.Data;
 
@@ -32,6 +33,9 @@ public class ApplicationDbContext : IdentityDbContext
         builder.Entity<GameConfig>().HasData(Seed.seedGameConfig());
         builder.Entity<Power>().HasData(Seed.SeedPower());
 
+        builder.Entity<Power>().HasData(Seed.SeedPower());
+        builder.Entity<CardPower>().HasData(Seed.SeedCardPowers());
+
         // Lorsque le modèle de données se complexifient, il faut éventuellement utiliser Fluent API
         // https://learn.microsoft.com/en-us/ef/ef6/modeling/code-first/fluent/types-and-properties
         // pour préciser certaines relations.
@@ -45,7 +49,9 @@ public class ApplicationDbContext : IdentityDbContext
             .HasOne(m => m.PlayerDataB)
             .WithMany()
             .OnDelete(DeleteBehavior.NoAction);
+
         // Fin de Fluent API
+
     }
 
     public DbSet<Card> Cards { get; set; } = default!;
@@ -56,11 +62,16 @@ public class ApplicationDbContext : IdentityDbContext
 
     public DbSet<MatchPlayerData> MatchPlayersData { get; set; } = default!;
 
-    public DbSet<StartingCards> StartingCards { get; set; } = default;
+    public DbSet<StartingCards> StartingCards { get; set; } = default!;
 
-    public DbSet<OwnedCards> OwnedCard { get; set; } = default;
+    public DbSet<OwnedCards> OwnedCard { get; set; } = default!;
 
-    public DbSet<GameConfig> GameConfigs { get; set; } = default;
+    public DbSet<GameConfig> GameConfigs { get; set; } = default!;
+
+    public DbSet<Power> Power { get; set; } = default!;
+
+    public DbSet<CardPower> cardPowers { get; set; } = default!;
+
 
 }
 

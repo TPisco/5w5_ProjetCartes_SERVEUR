@@ -1,7 +1,9 @@
-﻿using System;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Models.Models
@@ -20,6 +22,9 @@ namespace Models.Models
         public string Name { get; set; }
         public string Description { get; set; }
         public string Icon { get; set; }
+
+        [ValidateNever]
+        public virtual List<CardPower> cardPowers { get; set; }
 
         public bool HasValue { get; set; }
     }

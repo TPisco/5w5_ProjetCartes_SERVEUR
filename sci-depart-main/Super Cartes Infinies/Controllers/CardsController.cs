@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Azure.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -78,12 +79,80 @@ namespace Super_Cartes_Infinies.Controllers
                 return NotFound();
             }
 
-            var card = await _context.Cards.FindAsync(id);
+
+            //var card = await _context.Cards.FindAsync(id);
+
+            var card = await _context.Cards.Include(c => c.CardPowers).ThenInclude(cp => cp.Power).FirstOrDefaultAsync(m => m.Id == id);
+
             if (card == null)
             {
                 return NotFound();
             }
+
+            var existingPower = card.CardPowers.Select(cp => cp.PowerId).ToList();
+
+            // Récupère données depuis BD
+            var allPowers = await _context.Power
+                .Where(p => !existingPower.Contains(p.Id))
+                .ToListAsync();
+
+            // Filtre la liste des pouvoirs par ID pour avoir que des uniques.
+            var availablePowers = allPowers
+                .DistinctBy(p => p.Id)
+                .ToList();
+
+            bool allPowersAdded = availablePowers.Count == 0;
+            ViewData["AllPowersAdded"] = allPowersAdded;
+
+            ViewBag.AllPowers = availablePowers;
             return View(card);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Power(int id, int selectedPowers, int powerValues)
+        {
+            var card = await _context.Cards.FindAsync(id);
+            
+            if (card == null) { return NotFound(); }
+            
+                // Je créer un CardPower avec les valeurs du formulaires
+                var cardPower = new CardPower
+                {
+                    CardId = card.Id,
+                    PowerId = selectedPowers,
+                    Value = powerValues
+                };
+
+                _context.cardPowers.Add(cardPower);
+                await _context.SaveChangesAsync();
+
+                ViewBag.AllPowers = _context.Power.ToList();
+                return RedirectToAction("Edit", new { id = card.Id });
+
+            
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeletePower(int powerId, int cardId)
+        {
+
+            var cardPower = await _context.cardPowers
+                .FirstOrDefaultAsync(cp => cp.CardId == cardId && cp.PowerId == powerId);
+            
+            if (cardPower == null)
+            {
+                return NotFound();
+            }
+
+            _context.cardPowers.Remove(cardPower);
+            await _context.SaveChangesAsync();
+
+
+            // IL Y A PEUT ETRE UNE ERREUR ICI
+            return RedirectToAction("Edit", new { id = cardId });
         }
 
         // POST: Cards/Edit/5
@@ -91,7 +160,7 @@ namespace Super_Cartes_Infinies.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Attack,Health,Cost,ImageUrl")] Card card)
+        public async Task<IActionResult> Edit(int id, int selectedPowers, int powerValues, [Bind("Id,Name,Attack,Health,Cost,ImageUrl")] Card card)
         {
             if (id != card.Id)
             {
@@ -105,6 +174,7 @@ namespace Super_Cartes_Infinies.Controllers
                     _context.Cards.Update(card);
                     await _context.SaveChangesAsync();
                 }
+
                 catch (DbUpdateConcurrencyException)
                 {
                     if (!CardExists(card.Id))
@@ -118,6 +188,7 @@ namespace Super_Cartes_Infinies.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewBag.AllPowers = _context.Power.ToList();
             return View(card);
         }
 
