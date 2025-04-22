@@ -52,6 +52,30 @@ namespace WebApi.Controllers
             return Ok(await _decksService.CreateNewDeck(userId,nom));
         }
 
+        [HttpPost]
+        public async Task<ActionResult<IEnumerable<Deck>>> AddCard(int cardId, int deckId) {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+
+            return Ok(await _decksService.AddCardToDeckAsync(deckId, cardId, userId));
+
+        }
+
+
+
+
+
+        [HttpPost]
+        public async Task<ActionResult<IEnumerable<Deck>>> RemoveCard(int cardId, int deckId)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+
+            return Ok(await _decksService.RemoveCardFromDeckAsync(deckId, cardId, userId));
+
+        }
+
+
         // POST: DeckController/Create
         //[HttpPost]
         //[ValidateAntiForgeryToken]
