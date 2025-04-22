@@ -1,0 +1,23 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Text.Json.Serialization;
+using System.Threading.Tasks;
+
+namespace Models.Models
+{
+    public class DeckCards
+    {
+
+        public int Id { get; set; }
+
+        // OwnedCard
+        [JsonIgnore]
+        public virtual OwnedCards OwnedCard { get; set; }
+
+        //Deck Parent
+        [JsonIgnore]
+        public virtual Deck Deck { get; set; }
+    }
+}

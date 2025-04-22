@@ -9,6 +9,7 @@ using Super_Cartes_Infinies.Services;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using Models.Models;
 
 namespace WebApi.Controllers
 {
@@ -47,6 +48,8 @@ namespace WebApi.Controllers
             }
 
             Player player = _playerService.CreatePlayer(identityUser);
+          
+
 
           
 

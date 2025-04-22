@@ -12,20 +12,15 @@ using Super_Cartes_Infinies.Data;
 namespace Models.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-<<<<<<<< HEAD:sci-depart-main/Models/Migrations/20250422120855_init.Designer.cs
-    [Migration("20250422120855_init")]
-    partial class init
-========
-    [Migration("20250417193904_init23444")]
-    partial class init23444
->>>>>>>> origin/dev2:sci-depart-main/Models/Migrations/20250417193904_init23444.Designer.cs
+    [Migration("20250417183640_bugfixIguess")]
+    partial class bugfixIguess
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.11")
+                .HasAnnotation("ProductVersion", "8.0.10")
                 .HasAnnotation("Proxies:ChangeTracking", false)
                 .HasAnnotation("Proxies:CheckEquality", false)
                 .HasAnnotation("Proxies:LazyLoading", true)
@@ -162,25 +157,15 @@ namespace Models.Migrations
                         {
                             Id = "11111111-1111-1111-1111-111111111111",
                             AccessFailedCount = 0,
-<<<<<<<< HEAD:sci-depart-main/Models/Migrations/20250422120855_init.Designer.cs
-                            ConcurrencyStamp = "fc2d375c-8b07-474d-93ab-840cc0d1d441",
-========
-                            ConcurrencyStamp = "06648461-200c-4476-b6b5-a0c312373b8b",
->>>>>>>> origin/dev2:sci-depart-main/Models/Migrations/20250417193904_init23444.Designer.cs
+                            ConcurrencyStamp = "d5035481-3c81-4844-b588-ef6d652ee911",
                             Email = "admin@admin.com",
                             EmailConfirmed = true,
                             LockoutEnabled = true,
                             NormalizedEmail = "ADMIN@ADMIN.COM",
                             NormalizedUserName = "ADMIN@ADMIN.COM",
-<<<<<<<< HEAD:sci-depart-main/Models/Migrations/20250422120855_init.Designer.cs
-                            PasswordHash = "AQAAAAIAAYagAAAAEP+08AuGQH0hRlfhfmh4Lf1lX01kn7f6eapkY1MNIdOt2VhQ8qKJy92hpNZEffVtIw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEPyDqMP2v7MOsYrrH46fgEdIGsduatNYKm/xmfYc6KL7iPnnSVgaWkL+A2X9gkG9lA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "09387314-2579-4d3b-a3d5-f0678f280a50",
-========
-                            PasswordHash = "AQAAAAIAAYagAAAAED/TXnHVUdBKVMXvKSuZj4CFRuC1YXzTgseg30bTC+UBK3nQEt7lJVXLY5ufOTF66A==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "3a33e399-2033-4e30-addd-70737a6bb1fb",
->>>>>>>> origin/dev2:sci-depart-main/Models/Migrations/20250417193904_init23444.Designer.cs
+                            SecurityStamp = "d7262755-ad94-4e99-ad46-4242351dc2fa",
                             TwoFactorEnabled = false,
                             UserName = "admin@admin.com"
                         },
@@ -188,38 +173,22 @@ namespace Models.Migrations
                         {
                             Id = "User1Id",
                             AccessFailedCount = 0,
-<<<<<<<< HEAD:sci-depart-main/Models/Migrations/20250422120855_init.Designer.cs
-                            ConcurrencyStamp = "b786bda1-bc9b-47dc-af63-38b21b0dbc77",
+                            ConcurrencyStamp = "7f29b69e-27af-4e95-907c-0c21fef0e82f",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "90558779-63a7-4253-8fd6-b550a7d21f2c",
-========
-                            ConcurrencyStamp = "46c8965f-9d77-4fec-b8fc-0cb0eb79c218",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "a4ad7acd-f020-4658-9f3a-05c55425188b",
->>>>>>>> origin/dev2:sci-depart-main/Models/Migrations/20250417193904_init23444.Designer.cs
+                            SecurityStamp = "36023313-0088-4c5f-b2c4-db7b4a315ece",
                             TwoFactorEnabled = false
                         },
                         new
                         {
                             Id = "User2Id",
                             AccessFailedCount = 0,
-<<<<<<<< HEAD:sci-depart-main/Models/Migrations/20250422120855_init.Designer.cs
-                            ConcurrencyStamp = "16e87349-9566-4295-86ba-8bfee54b796b",
+                            ConcurrencyStamp = "cb582bbb-1d72-4b5f-8eb9-a0a3ce184746",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "1a336d7c-658f-4803-b0c4-a6326ec70424",
-========
-                            ConcurrencyStamp = "a276b69b-0c2e-4202-8869-cbef625e2c72",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "ebc1659c-cd6b-4ae3-bfd3-5edee452f21c",
->>>>>>>> origin/dev2:sci-depart-main/Models/Migrations/20250417193904_init23444.Designer.cs
+                            SecurityStamp = "53a2a492-13b8-4fec-8861-b6a58bf75cb3",
                             TwoFactorEnabled = false
                         });
                 });
@@ -252,12 +221,10 @@ namespace Models.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderKey")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
@@ -301,12 +268,10 @@ namespace Models.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
@@ -339,37 +304,55 @@ namespace Models.Migrations
 
                     b.HasIndex("PowerId");
 
-                    b.ToTable("cardPowers");
+                    b.ToTable("CardPower");
+                });
 
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CardId = 1,
-                            PowerId = 1,
-                            Value = 0
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CardId = 2,
-                            PowerId = 2,
-                            Value = 3
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CardId = 3,
-                            PowerId = 3,
-                            Value = 2
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CardId = 4,
-                            PowerId = 4,
-                            Value = 5
-                        });
+            modelBuilder.Entity("Models.Models.Deck", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("IsCurrent")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("PlayerId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PlayerId");
+
+                    b.ToTable("Decks");
+                });
+
+            modelBuilder.Entity("Models.Models.DeckCards", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("DeckId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OwnedCardid")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DeckId");
+
+                    b.HasIndex("OwnedCardid");
+
+                    b.ToTable("DeckCards");
                 });
 
             modelBuilder.Entity("Models.Models.GameConfig", b =>
@@ -434,9 +417,6 @@ namespace Models.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("HasValue")
-                        .HasColumnType("bit");
-
                     b.Property<string>("Icon")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -451,44 +431,6 @@ namespace Models.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Power");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Description = "Permet à une carte d’attaquer en « premier » et de ne pas recevoir de dégât si elle tue la carte de l’adversaire.",
-                            HasValue = false,
-                            Icon = "🥇",
-                            Name = "First Strike",
-                            Value = 0
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Description = "Lorsqu’une carte défend, elle inflige X de dégâts AVANT de recevoir des dégâts. Si l’attaquant est tué par ces dégâts, l’attaque s’arrête et le défenseur ne reçoit pas de dégâts.",
-                            HasValue = true,
-                            Icon = "🌹",
-                            Name = "Thorns",
-                            Value = 0
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Description = "Soigne les cartes alliées de X incluant elle-même AVANT d’attaquer (mais les cartes ne peuvent pas avoir plus de health qu’au départ.)",
-                            HasValue = true,
-                            Icon = "💖",
-                            Name = "Heal",
-                            Value = 0
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Description = "Augmente la défense d'une carte de X",
-                            HasValue = true,
-                            Icon = "🛡️",
-                            Name = "Shield",
-                            Value = 0
-                        });
                 });
 
             modelBuilder.Entity("Models.Models.StartingCards", b =>
@@ -883,7 +825,7 @@ namespace Models.Migrations
                         .IsRequired();
 
                     b.HasOne("Models.Models.Power", "Power")
-                        .WithMany("cardPowers")
+                        .WithMany()
                         .HasForeignKey("PowerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -891,6 +833,32 @@ namespace Models.Migrations
                     b.Navigation("Card");
 
                     b.Navigation("Power");
+                });
+
+            modelBuilder.Entity("Models.Models.Deck", b =>
+                {
+                    b.HasOne("Super_Cartes_Infinies.Models.Player", null)
+                        .WithMany("Decks")
+                        .HasForeignKey("PlayerId");
+                });
+
+            modelBuilder.Entity("Models.Models.DeckCards", b =>
+                {
+                    b.HasOne("Models.Models.Deck", "Deck")
+                        .WithMany("DeckCards")
+                        .HasForeignKey("DeckId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Models.Models.OwnedCards", "OwnedCard")
+                        .WithMany()
+                        .HasForeignKey("OwnedCardid")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Deck");
+
+                    b.Navigation("OwnedCard");
                 });
 
             modelBuilder.Entity("Models.Models.OwnedCards", b =>
@@ -991,9 +959,9 @@ namespace Models.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Models.Models.Power", b =>
+            modelBuilder.Entity("Models.Models.Deck", b =>
                 {
-                    b.Navigation("cardPowers");
+                    b.Navigation("DeckCards");
                 });
 
             modelBuilder.Entity("Super_Cartes_Infinies.Models.Card", b =>
@@ -1014,6 +982,8 @@ namespace Models.Migrations
 
             modelBuilder.Entity("Super_Cartes_Infinies.Models.Player", b =>
                 {
+                    b.Navigation("Decks");
+
                     b.Navigation("OwnedCards");
                 });
 #pragma warning restore 612, 618
