@@ -41,7 +41,6 @@ builder.Services.AddCors(options =>
         policy.WithOrigins("http://localhost:4200", "https://localhost:4200");
         policy.AllowAnyHeader();
         policy.AllowAnyMethod();
-        policy.AllowCredentials();
     });
 });
 
@@ -62,25 +61,6 @@ builder.Services.AddAuthentication(options =>
         ValidIssuer = "https://localhost:7179", // Serveur -> HTTPS
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8
         .GetBytes("LooOOongue Phrase SiNoN Ça ne Marchera PaAaAAAaAas !"))
-    };
-
-
-    options.Events = new JwtBearerEvents
-    {
-        OnMessageReceived = context =>
-        {
-            var accessToken = context.Request.Query["access_token"];
-
-            // If the request is for our hub...
-            var path = context.HttpContext.Request.Path;
-            if (!string.IsNullOrEmpty(accessToken) &&
-                (path.StartsWithSegments("/matchHub")))
-            {
-                // Read the token out of the query string
-                context.Token = accessToken;
-            }
-            return Task.CompletedTask;
-        }
     };
 });
 

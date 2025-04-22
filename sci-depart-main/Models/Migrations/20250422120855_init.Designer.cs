@@ -12,20 +12,15 @@ using Super_Cartes_Infinies.Data;
 namespace Models.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-<<<<<<<< HEAD:sci-depart-main/Models/Migrations/20250422120855_init.Designer.cs
     [Migration("20250422120855_init")]
     partial class init
-========
-    [Migration("20250417193904_init23444")]
-    partial class init23444
->>>>>>>> origin/dev2:sci-depart-main/Models/Migrations/20250417193904_init23444.Designer.cs
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.11")
+                .HasAnnotation("ProductVersion", "8.0.10")
                 .HasAnnotation("Proxies:ChangeTracking", false)
                 .HasAnnotation("Proxies:CheckEquality", false)
                 .HasAnnotation("Proxies:LazyLoading", true)
@@ -162,25 +157,15 @@ namespace Models.Migrations
                         {
                             Id = "11111111-1111-1111-1111-111111111111",
                             AccessFailedCount = 0,
-<<<<<<<< HEAD:sci-depart-main/Models/Migrations/20250422120855_init.Designer.cs
                             ConcurrencyStamp = "fc2d375c-8b07-474d-93ab-840cc0d1d441",
-========
-                            ConcurrencyStamp = "06648461-200c-4476-b6b5-a0c312373b8b",
->>>>>>>> origin/dev2:sci-depart-main/Models/Migrations/20250417193904_init23444.Designer.cs
                             Email = "admin@admin.com",
                             EmailConfirmed = true,
                             LockoutEnabled = true,
                             NormalizedEmail = "ADMIN@ADMIN.COM",
                             NormalizedUserName = "ADMIN@ADMIN.COM",
-<<<<<<<< HEAD:sci-depart-main/Models/Migrations/20250422120855_init.Designer.cs
                             PasswordHash = "AQAAAAIAAYagAAAAEP+08AuGQH0hRlfhfmh4Lf1lX01kn7f6eapkY1MNIdOt2VhQ8qKJy92hpNZEffVtIw==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "09387314-2579-4d3b-a3d5-f0678f280a50",
-========
-                            PasswordHash = "AQAAAAIAAYagAAAAED/TXnHVUdBKVMXvKSuZj4CFRuC1YXzTgseg30bTC+UBK3nQEt7lJVXLY5ufOTF66A==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "3a33e399-2033-4e30-addd-70737a6bb1fb",
->>>>>>>> origin/dev2:sci-depart-main/Models/Migrations/20250417193904_init23444.Designer.cs
                             TwoFactorEnabled = false,
                             UserName = "admin@admin.com"
                         },
@@ -188,38 +173,22 @@ namespace Models.Migrations
                         {
                             Id = "User1Id",
                             AccessFailedCount = 0,
-<<<<<<<< HEAD:sci-depart-main/Models/Migrations/20250422120855_init.Designer.cs
                             ConcurrencyStamp = "b786bda1-bc9b-47dc-af63-38b21b0dbc77",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "90558779-63a7-4253-8fd6-b550a7d21f2c",
-========
-                            ConcurrencyStamp = "46c8965f-9d77-4fec-b8fc-0cb0eb79c218",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "a4ad7acd-f020-4658-9f3a-05c55425188b",
->>>>>>>> origin/dev2:sci-depart-main/Models/Migrations/20250417193904_init23444.Designer.cs
                             TwoFactorEnabled = false
                         },
                         new
                         {
                             Id = "User2Id",
                             AccessFailedCount = 0,
-<<<<<<<< HEAD:sci-depart-main/Models/Migrations/20250422120855_init.Designer.cs
                             ConcurrencyStamp = "16e87349-9566-4295-86ba-8bfee54b796b",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "1a336d7c-658f-4803-b0c4-a6326ec70424",
-========
-                            ConcurrencyStamp = "a276b69b-0c2e-4202-8869-cbef625e2c72",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "ebc1659c-cd6b-4ae3-bfd3-5edee452f21c",
->>>>>>>> origin/dev2:sci-depart-main/Models/Migrations/20250417193904_init23444.Designer.cs
                             TwoFactorEnabled = false
                         });
                 });
@@ -252,12 +221,10 @@ namespace Models.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderKey")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
@@ -301,12 +268,10 @@ namespace Models.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
