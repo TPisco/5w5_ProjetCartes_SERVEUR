@@ -449,9 +449,9 @@ namespace Models.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "11111111-1111-1111-1111-111111111111", 0, "62873924-fdea-428a-96b5-138f2ec494b8", "admin@admin.com", true, true, null, "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAIAAYagAAAAEOG5V83ZzWlxair/YDwi1xpp8gbMwXKnS/HSsDW9OHk3ns/jD8ykZauSNVqooAhHzw==", null, false, "d0675877-3705-4edb-819f-dfd04e5b6dcd", false, "admin@admin.com" },
-                    { "User1Id", 0, "63387e7e-e652-4934-a6e9-0e9360bf91a2", null, false, false, null, null, null, null, null, false, "466a970c-83c7-4490-9198-2e635994f17b", false, null },
-                    { "User2Id", 0, "071eabaf-45eb-42da-98fe-665fc25332fe", null, false, false, null, null, null, null, null, false, "e700eb4b-07a6-4bb4-a22e-a89f60c37f29", false, null }
+                    { "11111111-1111-1111-1111-111111111111", 0, "e338cc93-6743-4180-af96-aa22c4d62719", "admin@admin.com", true, true, null, "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAIAAYagAAAAEG8y0X01Q9QiGfgDdKEmlrxDE3DbXSsWPkRrMnlSs5wkWTL0UNhTDAnKLRzmDXNh8A==", null, false, "1785739a-a1f9-4db1-b461-4fed0fb6ae7d", false, "admin@admin.com" },
+                    { "User1Id", 0, "20ff6eb6-41f1-4c20-aef2-f2ec954ffb5d", null, false, false, null, null, null, null, null, false, "c85efa15-e06f-4a38-bf8f-0c16412aab79", false, null },
+                    { "User2Id", 0, "68c3eaef-698e-48fd-b84d-731cef30407c", null, false, false, null, null, null, null, null, false, "fe2372a9-0ea1-4fc7-b688-f2ba6c519fc1", false, null }
                 });
 
             migrationBuilder.InsertData(

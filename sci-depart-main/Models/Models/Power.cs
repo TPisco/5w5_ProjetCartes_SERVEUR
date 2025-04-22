@@ -24,6 +24,7 @@ namespace Models.Models
         public string Icon { get; set; }
 
         [ValidateNever]
+        [JsonIgnore]
         public virtual List<CardPower> cardPowers { get; set; }
 
         public bool HasValue { get; set; }
