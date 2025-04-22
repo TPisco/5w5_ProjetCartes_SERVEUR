@@ -18,7 +18,6 @@ namespace Super_Cartes_Infinies.Models
         public string ImageUrl { get; set; } = "";
 
         [ValidateNever]
-		[JsonIgnore]
         public virtual List<CardPower> CardPowers { get; set; }
 
 

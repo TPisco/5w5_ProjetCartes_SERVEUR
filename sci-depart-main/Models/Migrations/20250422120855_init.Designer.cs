@@ -12,7 +12,7 @@ using Super_Cartes_Infinies.Data;
 namespace Models.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250421215150_init")]
+    [Migration("20250422120855_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -157,15 +157,15 @@ namespace Models.Migrations
                         {
                             Id = "11111111-1111-1111-1111-111111111111",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "7cd1e2c2-d70e-4aa8-b68f-bd90ac442937",
+                            ConcurrencyStamp = "fc2d375c-8b07-474d-93ab-840cc0d1d441",
                             Email = "admin@admin.com",
                             EmailConfirmed = true,
                             LockoutEnabled = true,
                             NormalizedEmail = "ADMIN@ADMIN.COM",
                             NormalizedUserName = "ADMIN@ADMIN.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEN2Vy2d6xmPl35cuDPoEpA7FqUngri3dOcb8bQuMnDraVSi5Sku/KlG6s547Rh2DLA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEP+08AuGQH0hRlfhfmh4Lf1lX01kn7f6eapkY1MNIdOt2VhQ8qKJy92hpNZEffVtIw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "a4dc17db-022a-4e1e-a9a6-a3f7c68ab68b",
+                            SecurityStamp = "09387314-2579-4d3b-a3d5-f0678f280a50",
                             TwoFactorEnabled = false,
                             UserName = "admin@admin.com"
                         },
@@ -173,22 +173,22 @@ namespace Models.Migrations
                         {
                             Id = "User1Id",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "387dd08d-3ed4-4bf4-a340-bc02bfb25032",
+                            ConcurrencyStamp = "b786bda1-bc9b-47dc-af63-38b21b0dbc77",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "97c84a8b-8581-4c71-b786-8ae6892e28e6",
+                            SecurityStamp = "90558779-63a7-4253-8fd6-b550a7d21f2c",
                             TwoFactorEnabled = false
                         },
                         new
                         {
                             Id = "User2Id",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "f8b0a876-7ed9-46e2-bff6-927d8cc865ec",
+                            ConcurrencyStamp = "16e87349-9566-4295-86ba-8bfee54b796b",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "7c5ce68e-130f-4cb9-8209-51d3bfaf0f1b",
+                            SecurityStamp = "1a336d7c-658f-4803-b0c4-a6326ec70424",
                             TwoFactorEnabled = false
                         });
                 });

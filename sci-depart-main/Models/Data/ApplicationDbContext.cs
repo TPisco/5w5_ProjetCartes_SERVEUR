@@ -48,6 +48,7 @@ public class ApplicationDbContext : IdentityDbContext
             .HasOne(m => m.PlayerDataB)
             .WithMany()
             .OnDelete(DeleteBehavior.NoAction);
+
         // Fin de Fluent API
 
     }
