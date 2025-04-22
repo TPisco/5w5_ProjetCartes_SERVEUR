@@ -31,7 +31,6 @@ public class ApplicationDbContext : IdentityDbContext
 
         builder.Entity<StartingCards>().HasData(Seed.seedStartingCards());
         builder.Entity<GameConfig>().HasData(Seed.seedGameConfig());
-        builder.Entity<Power>().HasData(Seed.SeedPower());
 
         builder.Entity<Power>().HasData(Seed.SeedPower());
         builder.Entity<CardPower>().HasData(Seed.SeedCardPowers());

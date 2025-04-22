@@ -274,30 +274,6 @@ namespace Super_Cartes_Infinies.Data
         }
 
 
-        public static Power[] SeedPower()
-        {
-            return new Power[]
-            {
-                new Power
-                {
-                    Id = 1, Name = "First Strike", Description = "Permet à une carte d’attaquer en « premier » et de ne pas recevoir de dégât si elle tue la carte de l’adversaire.", Icon = "🥇", HasValue = false
-                },
-                new Power
-                {
-                    Id = 2, Name = "Thorns", Description = "Lorsqu’une carte défend, elle inflige X de dégâts AVANT de recevoir des dégâts. Si l’attaquant est tué par ces dégâts, l’attaque s’arrête et le défenseur ne reçoit pas de dégâts.", Icon = "🌹", HasValue = true
-                },
-                new Power
-                {
-                    Id = 3, Name = "Heal", Description = "Soigne les cartes alliées de X incluant elle-même AVANT d’attaquer (mais les cartes ne peuvent pas avoir plus de health qu’au départ.)", Icon = "💖", HasValue = true
-                },
-                new Power
-                {
-                    Id = 4, Name = "Shield", Description = "Augmente la défense d'une carte de X", Icon = "🛡️", HasValue = true
-                },
-
-            };
-        }
-
         public static GameConfig seedGameConfig()
         {
             return new GameConfig { id = 1, nbCardsToDraw = 4, QtManaParTour = 3 };

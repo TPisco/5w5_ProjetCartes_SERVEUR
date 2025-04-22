@@ -12,8 +12,8 @@ using Super_Cartes_Infinies.Data;
 namespace Models.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250422115431_optionalBugfix")]
-    partial class optionalBugfix
+    [Migration("20250422123750_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -157,15 +157,15 @@ namespace Models.Migrations
                         {
                             Id = "11111111-1111-1111-1111-111111111111",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a13cba47-9c11-4787-a89b-437394190078",
+                            ConcurrencyStamp = "62873924-fdea-428a-96b5-138f2ec494b8",
                             Email = "admin@admin.com",
                             EmailConfirmed = true,
                             LockoutEnabled = true,
                             NormalizedEmail = "ADMIN@ADMIN.COM",
                             NormalizedUserName = "ADMIN@ADMIN.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEOPVvGcZHAacUlfscvhyP9kMX414FE/6uxk486ZU8G/buy/FsS+uQAxNWtTEXeEb/Q==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEOG5V83ZzWlxair/YDwi1xpp8gbMwXKnS/HSsDW9OHk3ns/jD8ykZauSNVqooAhHzw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "032d8d09-7c93-422a-a46f-5820e1b83215",
+                            SecurityStamp = "d0675877-3705-4edb-819f-dfd04e5b6dcd",
                             TwoFactorEnabled = false,
                             UserName = "admin@admin.com"
                         },
@@ -173,22 +173,22 @@ namespace Models.Migrations
                         {
                             Id = "User1Id",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "245d3ef7-5f08-408d-bf4c-44ffa3bfb7dc",
+                            ConcurrencyStamp = "63387e7e-e652-4934-a6e9-0e9360bf91a2",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "89ce6117-cf88-4720-9dae-e7ef8068064e",
+                            SecurityStamp = "466a970c-83c7-4490-9198-2e635994f17b",
                             TwoFactorEnabled = false
                         },
                         new
                         {
                             Id = "User2Id",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "3ee7e286-fbb1-4803-b8e6-d76c5e95d215",
+                            ConcurrencyStamp = "071eabaf-45eb-42da-98fe-665fc25332fe",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "fd70e892-5f43-45f5-838b-beca07314661",
+                            SecurityStamp = "e700eb4b-07a6-4bb4-a22e-a89f60c37f29",
                             TwoFactorEnabled = false
                         });
                 });
@@ -304,7 +304,37 @@ namespace Models.Migrations
 
                     b.HasIndex("PowerId");
 
-                    b.ToTable("CardPower");
+                    b.ToTable("cardPowers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CardId = 1,
+                            PowerId = 1,
+                            Value = 0
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CardId = 2,
+                            PowerId = 2,
+                            Value = 3
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CardId = 3,
+                            PowerId = 3,
+                            Value = 2
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CardId = 4,
+                            PowerId = 4,
+                            Value = 5
+                        });
                 });
 
             modelBuilder.Entity("Models.Models.Deck", b =>
@@ -417,6 +447,9 @@ namespace Models.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("HasValue")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Icon")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -431,6 +464,44 @@ namespace Models.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Power");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "Permet à une carte d’attaquer en « premier » et de ne pas recevoir de dégât si elle tue la carte de l’adversaire.",
+                            HasValue = false,
+                            Icon = "🥇",
+                            Name = "First Strike",
+                            Value = 0
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Description = "Lorsqu’une carte défend, elle inflige X de dégâts AVANT de recevoir des dégâts. Si l’attaquant est tué par ces dégâts, l’attaque s’arrête et le défenseur ne reçoit pas de dégâts.",
+                            HasValue = true,
+                            Icon = "🌹",
+                            Name = "Thorns",
+                            Value = 0
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Description = "Soigne les cartes alliées de X incluant elle-même AVANT d’attaquer (mais les cartes ne peuvent pas avoir plus de health qu’au départ.)",
+                            HasValue = true,
+                            Icon = "💖",
+                            Name = "Heal",
+                            Value = 0
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Description = "Augmente la défense d'une carte de X",
+                            HasValue = true,
+                            Icon = "🛡️",
+                            Name = "Shield",
+                            Value = 0
+                        });
                 });
 
             modelBuilder.Entity("Models.Models.StartingCards", b =>
@@ -825,7 +896,7 @@ namespace Models.Migrations
                         .IsRequired();
 
                     b.HasOne("Models.Models.Power", "Power")
-                        .WithMany()
+                        .WithMany("cardPowers")
                         .HasForeignKey("PowerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -962,6 +1033,11 @@ namespace Models.Migrations
             modelBuilder.Entity("Models.Models.Deck", b =>
                 {
                     b.Navigation("DeckCards");
+                });
+
+            modelBuilder.Entity("Models.Models.Power", b =>
+                {
+                    b.Navigation("cardPowers");
                 });
 
             modelBuilder.Entity("Super_Cartes_Infinies.Models.Card", b =>
