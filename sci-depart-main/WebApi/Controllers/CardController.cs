@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Models.Models;
 using Super_Cartes_Infinies.Data;
 using Super_Cartes_Infinies.Models;
 using Super_Cartes_Infinies.Services;
@@ -38,7 +40,6 @@ namespace Super_Cartes_Infinies.Controllers
 
             return Ok(await _cardsService.GetPlayersCards(userId));
         }
-        
 
     } 
 }
