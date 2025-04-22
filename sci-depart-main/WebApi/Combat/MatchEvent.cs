@@ -15,6 +15,6 @@ namespace Super_Cartes_Infinies.Combat
 
         public MatchEvent(){}
 
-        public List<MatchEvent>? Events { get; set; }
+        public List<MatchEvent> Events { get; set; } = [];
     }
 }
