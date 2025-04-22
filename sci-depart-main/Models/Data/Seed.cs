@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Drawing;
 using Microsoft.AspNetCore.Identity;
 using Models.Models;
@@ -272,6 +272,8 @@ namespace Super_Cartes_Infinies.Data
         }
     };
         }
+
+
 
         public static GameConfig seedGameConfig()
         {
