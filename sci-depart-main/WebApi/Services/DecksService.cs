@@ -155,8 +155,8 @@ namespace Super_Cartes_Infinies.Services
 
 
         //Ajout d'une carte dans un deck
-        //Remplacer int cardId pour que ca soit un OwnedCard id au lieu de Card
-        public async Task<IEnumerable<Deck>> AddCardToDeckAsync(int deckId, int cardId, string userId)
+        //TODO : Remplacer int cardId pour que ca soit un OwnedCard id au lieu de Card
+        public async Task<IEnumerable<Deck>> AddCardToDeckAsync(int deckId, int ownedCardId, string userId)
         {
             // Récupérer le joueur
             var player = await _dbContext.Players
@@ -183,7 +183,7 @@ namespace Super_Cartes_Infinies.Services
 
           //  var ownedId = player.OwnedCards.FirstOrDefault(oc => oc.id == cardId);
             // Récupérer la carte possédée
-            var ownedCard = player.OwnedCards.FirstOrDefault(oc => oc.CardId == cardId);
+            var ownedCard = player.OwnedCards.FirstOrDefault(oc => oc.id == ownedCardId);
             if (ownedCard == null)
                 throw new InvalidOperationException("Owned card not found or does not belong to the player.");
 

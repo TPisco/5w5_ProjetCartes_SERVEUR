@@ -87,11 +87,11 @@ namespace WebApi.Controllers
 
 
         [HttpPost]
-        public async Task<ActionResult<IEnumerable<Deck>>> AddCard(int cardId, int deckId) {
+        public async Task<ActionResult<IEnumerable<Deck>>> AddCard(int ownedCardId, int deckId) {
             string? userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
 
-            return Ok(await _decksService.AddCardToDeckAsync(deckId, cardId, userId));
+            return Ok(await _decksService.AddCardToDeckAsync(deckId, ownedCardId, userId));
 
         }
 
