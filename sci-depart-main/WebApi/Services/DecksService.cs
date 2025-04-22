@@ -21,8 +21,12 @@ namespace Super_Cartes_Infinies.Services
         
         public async Task<IEnumerable<Deck>> GetPlayerDecks(string userId)
         {
-          
-            Player player = await _dbContext.Players.FindAsync(userId);
+
+            // Player player = await _dbContext.Players.FindAsync(userId);
+            var player = await _dbContext.Players
+                 .Include(p => p.Decks)
+                 .ThenInclude(d => d.DeckCards)
+                 .FirstOrDefaultAsync(p => p.UserId == userId);
 
             return player.Decks;
         }
@@ -31,8 +35,11 @@ namespace Super_Cartes_Infinies.Services
         public async Task<IEnumerable<Deck>>CreateNewDeck(string userId, string nom)
         {
             //Recherche du joueur. On a besoin du joueur puisqu'on ajoute le nouveau deck à sa liste de Deck ensuite
-            Player player = await _dbContext.Players.FindAsync(userId);
-
+            //Player player = await _dbContext.Players.FindAsync(userId);
+            var player = await _dbContext.Players
+              .Include(p => p.Decks)
+              .ThenInclude(d => d.DeckCards)
+              .FirstOrDefaultAsync(p => p.UserId == userId);
 
             //Création du nouveau Deck avec le nom fourni en paramètres
             Deck newDeck = new Deck();
@@ -143,13 +150,13 @@ namespace Super_Cartes_Infinies.Services
         public async Task<IEnumerable<Deck>> AddCardToDeckAsync(int deckId, int cardId, string userId)
         {
             // Récupérer le joueur
-            //var player = await _dbContext.Players
-            //    .Include(p => p.OwnedCards)
-            //    .Include(p => p.Decks)
-            //    .ThenInclude(d => d.DeckCards)
-            //    .FirstOrDefaultAsync(p => p.Id == userId);
+            var player = await _dbContext.Players
+                .Include(p => p.OwnedCards)
+                .Include(p => p.Decks)
+                .ThenInclude(d => d.DeckCards)
+                .FirstOrDefaultAsync(p => p.UserId == userId);
 
-            Player player = await _dbContext.Players.FindAsync(userId);
+            // Player player = await _dbContext.Players.FindAsync(userId);
 
             if (player == null)
                 throw new InvalidOperationException("Player not found.");
