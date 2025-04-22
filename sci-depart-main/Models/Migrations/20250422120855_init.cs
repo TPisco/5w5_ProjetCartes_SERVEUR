@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Models.Migrations
 {
     /// <inheritdoc />
-    public partial class init : Migration
+    public partial class init23444 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -92,7 +92,8 @@ namespace Models.Migrations
                     Value = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Icon = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Icon = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    HasValue = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -245,7 +246,11 @@ namespace Models.Migrations
                 });
 
             migrationBuilder.CreateTable(
+<<<<<<<< HEAD:sci-depart-main/Models/Migrations/20250422120855_init.cs
+                name: "cardPowers",
+========
                 name: "CardPower",
+>>>>>>>> origin/dev2:sci-depart-main/Models/Migrations/20250417193904_init23444.cs
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -256,15 +261,25 @@ namespace Models.Migrations
                 },
                 constraints: table =>
                 {
+<<<<<<<< HEAD:sci-depart-main/Models/Migrations/20250422120855_init.cs
+                    table.PrimaryKey("PK_cardPowers", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_cardPowers_Cards_CardId",
+========
                     table.PrimaryKey("PK_CardPower", x => x.Id);
                     table.ForeignKey(
                         name: "FK_CardPower_Cards_CardId",
+>>>>>>>> origin/dev2:sci-depart-main/Models/Migrations/20250417193904_init23444.cs
                         column: x => x.CardId,
                         principalTable: "Cards",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
+<<<<<<<< HEAD:sci-depart-main/Models/Migrations/20250422120855_init.cs
+                        name: "FK_cardPowers_Power_PowerId",
+========
                         name: "FK_CardPower_Power_PowerId",
+>>>>>>>> origin/dev2:sci-depart-main/Models/Migrations/20250417193904_init23444.cs
                         column: x => x.PowerId,
                         principalTable: "Power",
                         principalColumn: "Id",
@@ -402,9 +417,15 @@ namespace Models.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "11111111-1111-1111-1111-111111111111", 0, "a6e11c11-5293-4f89-86e4-637be533d971", "admin@admin.com", true, true, null, "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAIAAYagAAAAEL97xq7I+3kmkGZ5ZRi4rUF1vzm8ggt1W7rXGmBh5X0Av+nSLUpZ0K61ssuiamx8CQ==", null, false, "e0147e76-b1f6-435a-b2b9-a9b5848afb4f", false, "admin@admin.com" },
-                    { "User1Id", 0, "a6bce0dd-ba15-4a6d-8102-c9fddc39dd17", null, false, false, null, null, null, null, null, false, "9922c63e-60ed-4971-9f9a-aadebe25351e", false, null },
-                    { "User2Id", 0, "2fed6698-c02b-4f1d-84fd-b9e0e33b8275", null, false, false, null, null, null, null, null, false, "4383eca9-40c8-4e0f-8f2a-cff37b92cee8", false, null }
+<<<<<<<< HEAD:sci-depart-main/Models/Migrations/20250422120855_init.cs
+                    { "11111111-1111-1111-1111-111111111111", 0, "fc2d375c-8b07-474d-93ab-840cc0d1d441", "admin@admin.com", true, true, null, "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAIAAYagAAAAEP+08AuGQH0hRlfhfmh4Lf1lX01kn7f6eapkY1MNIdOt2VhQ8qKJy92hpNZEffVtIw==", null, false, "09387314-2579-4d3b-a3d5-f0678f280a50", false, "admin@admin.com" },
+                    { "User1Id", 0, "b786bda1-bc9b-47dc-af63-38b21b0dbc77", null, false, false, null, null, null, null, null, false, "90558779-63a7-4253-8fd6-b550a7d21f2c", false, null },
+                    { "User2Id", 0, "16e87349-9566-4295-86ba-8bfee54b796b", null, false, false, null, null, null, null, null, false, "1a336d7c-658f-4803-b0c4-a6326ec70424", false, null }
+========
+                    { "11111111-1111-1111-1111-111111111111", 0, "06648461-200c-4476-b6b5-a0c312373b8b", "admin@admin.com", true, true, null, "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAIAAYagAAAAED/TXnHVUdBKVMXvKSuZj4CFRuC1YXzTgseg30bTC+UBK3nQEt7lJVXLY5ufOTF66A==", null, false, "3a33e399-2033-4e30-addd-70737a6bb1fb", false, "admin@admin.com" },
+                    { "User1Id", 0, "46c8965f-9d77-4fec-b8fc-0cb0eb79c218", null, false, false, null, null, null, null, null, false, "a4ad7acd-f020-4658-9f3a-05c55425188b", false, null },
+                    { "User2Id", 0, "a276b69b-0c2e-4202-8869-cbef625e2c72", null, false, false, null, null, null, null, null, false, "ebc1659c-cd6b-4ae3-bfd3-5edee452f21c", false, null }
+>>>>>>>> origin/dev2:sci-depart-main/Models/Migrations/20250417193904_init23444.cs
                 });
 
             migrationBuilder.InsertData(
@@ -428,6 +449,17 @@ namespace Models.Migrations
                 table: "GameConfigs",
                 columns: new[] { "id", "QtManaParTour", "nbCardsToDraw" },
                 values: new object[] { 1, 3, 4 });
+
+            migrationBuilder.InsertData(
+                table: "Power",
+                columns: new[] { "Id", "Description", "HasValue", "Icon", "Name", "Value" },
+                values: new object[,]
+                {
+                    { 1, "Permet à une carte d’attaquer en « premier » et de ne pas recevoir de dégât si elle tue la carte de l’adversaire.", false, "🥇", "First Strike", 0 },
+                    { 2, "Lorsqu’une carte défend, elle inflige X de dégâts AVANT de recevoir des dégâts. Si l’attaquant est tué par ces dégâts, l’attaque s’arrête et le défenseur ne reçoit pas de dégâts.", true, "🌹", "Thorns", 0 },
+                    { 3, "Soigne les cartes alliées de X incluant elle-même AVANT d’attaquer (mais les cartes ne peuvent pas avoir plus de health qu’au départ.)", true, "💖", "Heal", 0 },
+                    { 4, "Augmente la défense d'une carte de X", true, "🛡️", "Shield", 0 }
+                });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
@@ -457,6 +489,17 @@ namespace Models.Migrations
                     { 7, 5 },
                     { 8, 3 },
                     { 9, 10 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "cardPowers",
+                columns: new[] { "Id", "CardId", "PowerId", "Value" },
+                values: new object[,]
+                {
+                    { 1, 1, 1, 0 },
+                    { 2, 2, 2, 3 },
+                    { 3, 3, 3, 2 },
+                    { 4, 4, 4, 5 }
                 });
 
             migrationBuilder.CreateIndex(
@@ -499,6 +542,15 @@ namespace Models.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+<<<<<<<< HEAD:sci-depart-main/Models/Migrations/20250422120855_init.cs
+                name: "IX_cardPowers_CardId",
+                table: "cardPowers",
+                column: "CardId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_cardPowers_PowerId",
+                table: "cardPowers",
+========
                 name: "IX_CardPower_CardId",
                 table: "CardPower",
                 column: "CardId");
@@ -506,6 +558,7 @@ namespace Models.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_CardPower_PowerId",
                 table: "CardPower",
+>>>>>>>> origin/dev2:sci-depart-main/Models/Migrations/20250417193904_init23444.cs
                 column: "PowerId");
 
             migrationBuilder.CreateIndex(
@@ -588,7 +641,11 @@ namespace Models.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+<<<<<<<< HEAD:sci-depart-main/Models/Migrations/20250422120855_init.cs
+                name: "cardPowers");
+========
                 name: "CardPower");
+>>>>>>>> origin/dev2:sci-depart-main/Models/Migrations/20250417193904_init23444.cs
 
             migrationBuilder.DropTable(
                 name: "GameConfigs");

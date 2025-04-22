@@ -51,14 +51,9 @@ namespace WebApi.Controllers
           
 
 
-            var loginDTO = new LoginDTO
-            {
-                Username = register.Email,
-                Password = register.Password
-            };
-            Login(loginDTO);
+          
 
-            return Ok(new { Message = "Inscription réussie." });
+            return  Ok(new { Message = "Inscription réussie." });
         }
 
 
@@ -66,6 +61,7 @@ namespace WebApi.Controllers
         public async Task<ActionResult> Login(LoginDTO login)
         {
             IdentityUser? identityUser = await _userManager.FindByEmailAsync(login.Username);
+            Player player =  _playerService.GetPlayerFromUserId(identityUser.Id);
             if (identityUser == null)
             {
                 identityUser = await _userManager.FindByEmailAsync(login.Username);
@@ -79,6 +75,7 @@ namespace WebApi.Controllers
                 {
                     authClaims.Add(new Claim(ClaimTypes.Role, role));
                 }
+                authClaims.Add(new Claim("PlayerId", player.Id.ToString()));
                 authClaims.Add(new Claim(ClaimTypes.NameIdentifier, identityUser.Id));
                 SymmetricSecurityKey key = new SymmetricSecurityKey(Encoding.UTF8
                     .GetBytes("LooOOongue Phrase SiNoN Ça ne Marchera PaAaAAAaAas !"));
@@ -93,7 +90,9 @@ namespace WebApi.Controllers
                 {
                     token = new JwtSecurityTokenHandler().WriteToken(token),
                     validTo = token.ValidTo,
-                    username = identityUser.UserName // Ceci sert déjà à afficher / cacher certains boutons côté Angular
+                    playerId = identityUser.Id,
+                    username = identityUser.UserName, // Ceci sert déjà à afficher / cacher certains boutons côté Angular
+                    userIntID = player.Id
                 });
             }
             else
