@@ -43,6 +43,22 @@ namespace WebApi.Controllers
         }
 
 
+        [HttpGet]
+        [Authorize]
+        public async Task<ActionResult<IEnumerable<OwnedCards>>> GetRemainingCards(int deckId)
+        {
+            string? userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+
+
+            if (userId != null) return Ok(await _decksService.GetAvailableCardsForDeckAsync(deckId, userId));
+
+            return StatusCode(StatusCodes.Status500InternalServerError,
+                    new { Message = "La recherche de decks a échoué." });
+
+        }
+
+
         //[HttpGet]
         //[Authorize]
         //public async Task<ActionResult<IEnumerable<OwnedCards>>> GetCardsNotInDeck(int deckId)

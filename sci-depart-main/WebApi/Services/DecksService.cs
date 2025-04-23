@@ -96,25 +96,27 @@ namespace Super_Cartes_Infinies.Services
 
 
 
-        //public async Task<List<Card>> GetAvailableCardsForDeckAsync(int deckId, string userId)
-        //{
+        public async Task<IEnumerable<OwnedCards>> GetAvailableCardsForDeckAsync(int deckId, string userId)
+        {
 
-        //    Player player = await _dbContext.Players.FindAsync(userId);
+            Player player = await _dbContext.Players.FindAsync(userId);
 
-        //    var deckCards = await _dbContext.DeckCards
-        //        .Where(dc => dc.DeckId == deckId)
-        //        .Select(dc => dc.CardId)
-        //        .ToListAsync();
+            var deckCards = await _dbContext.DeckCards
+                .Where(dc => dc.DeckId == deckId)
+                .Select(dc => dc.OwnedCardId)
+                .ToListAsync();
 
-        //    var ownedCards = await _dbContext.OwnedCards
-        //        .Where(oc => oc.PlayerId == playerId)
-        //        .ToListAsync();
 
-        //    return ownedCards
-        //        .Where(oc => !deckCards.Contains(oc.CardId) || oc.Quantity > deckCards.Count(dc => dc == oc.CardId))
-        //        .Select(oc => oc.Card)
-        //        .ToList();
-        //}
+            var ownedCards = player.OwnedCards;
+
+
+
+
+            return ownedCards
+                .Where(oc => !deckCards.Contains(oc.id) )
+              
+                .ToList();
+        }
 
 
         //public async Task<List<OwnedCards>> GetAvailableCardsForDeckAsync(int deckId, int playerId)
