@@ -58,6 +58,8 @@ public class MatchHub : Hub
             }
 
             await Groups.AddToGroupAsync(connectionId,joiningMatchData.Match.Id.ToString());
+
+            if(joiningMatchData.OtherPlayerConnectionId!=null)
             await Groups.AddToGroupAsync(joiningMatchData.OtherPlayerConnectionId, joiningMatchData.Match.Id.ToString());
 
             //await Clients.Group(joiningMatchData.Match.Id.ToString()).SendAsync("JoiningMatchData", joiningMatchData);
@@ -114,7 +116,7 @@ public class MatchHub : Hub
     //playCard
     public async Task onPlayCardAsync(int matchId,int CardBeingPlayedId)
     {
-        string userId = Context.UserIdentifier;
+        string userId = Context.UserIdentifier!;
         var playCardEvent = _matchesService.PlayCard(userId, CardBeingPlayedId, matchId);
 
         await Clients.Group(matchId.ToString()).SendAsync("PlayCard", playCardEvent);
