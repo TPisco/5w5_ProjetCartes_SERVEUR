@@ -1,0 +1,103 @@
+-JoinMatch() : Hub
+-Classe Matchmaking
+
+
+
+ÉTAPES À COMPLÉTER:
+
+
+--Créer classe Satus
+{
+
+id
+
+name 
+
+
+value
+
+description
+
+icon
+
+
+List<CardStatus>
+
+
+
+} 
+
+
+classe CardStatus.cs {
+
+id
+
+cardId
+
+Card
+
+statusId
+
+Status
+
+value
+
+
+}
+
+
+
+
+classe Card.cs{
+
+//ajouter list<CardStatus>
+
+
+}
+
+
+
+Satus.cs(
+public const int POISON_ID = ;
+
+)
+
+
+
+
+
+
+
+
+
+classe PlayableCard.Cs(
+
+//Fonction HasStatus
+
+
+//Fonction GetStatusValue
+
+)
+
+
+
+
+CLIENT ----
+
+
+
+Match.service.ts[
+
+
+Ajouter l'event ( case "EFFECT_name"
+
+]
+
+
+la carte n'aura pas toujours un status
+Carte aura toujours un power à lui
+Status = qq chose de recu
+
+status uniquement appliquable  lors d'une partie, pas à la carte en elle-même
+
+
