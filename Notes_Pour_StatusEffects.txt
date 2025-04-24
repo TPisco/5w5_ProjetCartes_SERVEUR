@@ -50,7 +50,7 @@ value
 
 classe Card.cs{
 
-//ajouter list<CardStatus>
+//Ne PAS !!!! ajouter list<CardStatus>
 
 
 }

@@ -8,8 +8,16 @@ using System.Threading.Tasks;
 
 namespace Models.Models
 {
+
+
+
     public class Status
     {
+
+        //Id des Status
+        public const int POISONX_ID = 1;
+
+
         public int Id { get; set; }
 
         public int Value { get; set; }
