@@ -2,7 +2,6 @@
 using Super_Cartes_Infinies.Data;
 using Super_Cartes_Infinies.Models;
 using Super_Cartes_Infinies.Models.Dtos;
-using WebApi.Combat;
 
 namespace Super_Cartes_Infinies.Services
 {
@@ -155,7 +154,6 @@ namespace Super_Cartes_Infinies.Services
             }
 
             int nbManaPerTurn = _matchConfigurationService.GetNbManaPerTurn();
-            
             var playerEndTurnEvent = new PlayerEndTurnEvent(match, currentPlayerData, opposingPlayerData, nbManaPerTurn);
 
             await _dbContext.SaveChangesAsync();
@@ -195,45 +193,6 @@ namespace Super_Cartes_Infinies.Services
             await _dbContext.SaveChangesAsync();
 
             return surrenderEvent;
-        }
-
-
-        public async Task<PlayCardEvent> PlayCard(string userId,int cardId, int matchId)
-        {
-            Match? match = await _dbContext.Matches.FindAsync(matchId);
-
-            if (match == null)
-                throw new Exception("Impossible de trouver le match");
-
-            if (match.IsMatchCompleted)
-                throw new Exception("Le match est déjà terminé");
-
-            if (match.UserAId != userId && match.UserBId != userId)
-                throw new Exception("Le joueur n'est pas dans ce match");
-
-
-            MatchPlayerData currentPlayerData;
-            MatchPlayerData opposingPlayerData;
-
-
-            if (match.UserAId == userId)
-            {
-                currentPlayerData = match.PlayerDataA;
-                opposingPlayerData = match.PlayerDataB;
-            }
-            else
-            {
-                currentPlayerData = match.PlayerDataB;
-                opposingPlayerData = match.PlayerDataA;
-            }
-
-            var playCardEvent = new PlayCardEvent(match, currentPlayerData, cardId);
-
-            await _dbContext.SaveChangesAsync();
-
-            return playCardEvent;
-
-
         }
     }
 }

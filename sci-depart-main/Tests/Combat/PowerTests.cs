@@ -1,7 +1,6 @@
 ﻿using Models.Models;
 using Super_Cartes_Infinies.Combat;
 using Super_Cartes_Infinies.Models;
-using WebApi.Combat.PowerEvent;
 
 namespace Tests.Services
 {
@@ -254,44 +253,6 @@ namespace Tests.Services
             Assert.AreEqual(0, _currentPlayerData.Graveyard.Count);
             Assert.AreEqual(1, _opposingPlayerData.BattleField.Count);
             Assert.AreEqual(0, _opposingPlayerData.Graveyard.Count);
-        }
-
-
-        [TestMethod]
-        public void Shield()
-        {
-            // Creation du pouvoir
-            Power shieldPower = new Power
-            {
-                Id = Power.SHIELD_ID
-            };
-
-            CardPower cardPower = new CardPower
-            {
-                Power = shieldPower,
-                Card = _cardA,
-                Value = 5
-            };
-
-            _cardA.CardPowers = new List<CardPower> { cardPower };
-
-            var damagedCard = new PlayableCard(_cardA)
-            {
-                Id = 10,
-                Health = _cardA.Health - 2 // carte a pris des degat 3=>1
-            };
-
-            int initialHealth = damagedCard.Health;
-            int expectedHealth = initialHealth + cardPower.Value;
-
-            // Event a tester
-            var shieldEvent = new ShieldEvent(_currentPlayerData, damagedCard);
-
-            // Verification
-            Assert.AreEqual(_currentPlayerData.PlayerId, shieldEvent.PlayerId);
-            Assert.AreEqual(damagedCard.Id, shieldEvent.CardId);
-            Assert.AreEqual(cardPower.Value, shieldEvent.Shield);
-            Assert.AreEqual(expectedHealth, damagedCard.Health);
         }
 
         [TestMethod]

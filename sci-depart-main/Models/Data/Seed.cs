@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Drawing;
 using Microsoft.AspNetCore.Identity;
 using Models.Models;
