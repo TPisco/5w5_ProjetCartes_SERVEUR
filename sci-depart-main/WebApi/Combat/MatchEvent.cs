@@ -13,10 +13,8 @@ namespace Super_Cartes_Infinies.Combat
     {
         public abstract string EventType { get; }
 
-        public MatchEvent()
-        {
-        }
+        public MatchEvent(){}
 
-        public List<MatchEvent>? Events { get; set; }
+        public List<MatchEvent> Events { get; set; } = [];
     }
 }
