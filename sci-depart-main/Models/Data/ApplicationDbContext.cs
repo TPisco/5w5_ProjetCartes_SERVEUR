@@ -51,6 +51,17 @@ public class ApplicationDbContext : IdentityDbContext
 
         // Fin de Fluent API
 
+
+        //Ajout éventuel de la relation many-to-many pour DeckCards
+        //builder.Entity<DeckCards>()
+        //.HasOne(dc => dc.Deck)
+        //.WithMany(d => d.DeckCards)
+        //.HasForeignKey(dc => dc.Deck.Id);
+
+        //builder.Entity<DeckCards>()
+        //    .HasOne(dc => dc.OwnedCard)
+        //    .WithMany()
+        //    .HasForeignKey(dc => dc.OwnedCard.id);
     }
 
     public DbSet<Card> Cards { get; set; } = default!;
@@ -66,6 +77,11 @@ public class ApplicationDbContext : IdentityDbContext
     public DbSet<OwnedCards> OwnedCard { get; set; } = default!;
 
     public DbSet<GameConfig> GameConfigs { get; set; } = default!;
+
+    public DbSet<Deck> Decks { get; set; } = default;
+
+    //Ajout de la table DeckCards
+    public DbSet<DeckCards> DeckCards { get; set; } = default;
 
     public DbSet<Power> Power { get; set; } = default!;
 

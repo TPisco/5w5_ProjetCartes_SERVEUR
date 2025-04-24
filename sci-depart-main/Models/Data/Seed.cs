@@ -274,7 +274,6 @@ namespace Super_Cartes_Infinies.Data
         }
 
 
-
         public static GameConfig seedGameConfig()
         {
             return new GameConfig { id = 1, nbCardsToDraw = 4, QtManaParTour = 3 };

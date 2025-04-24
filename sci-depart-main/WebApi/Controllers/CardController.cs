@@ -23,7 +23,7 @@ namespace Super_Cartes_Infinies.Controllers
             _dbContext = dbContext;
             _cardsService = cardsService;
         }
-
+        [Authorize]
         [HttpGet]
         public ActionResult<IEnumerable<Card>> GetAllCards()
         {
