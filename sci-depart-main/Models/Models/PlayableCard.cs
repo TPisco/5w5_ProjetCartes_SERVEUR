@@ -57,37 +57,37 @@ namespace Super_Cartes_Infinies.Models
 
 
 
-        public bool HasStatus(int statusID)
-        {
-            // Retourne true si la carte possède ce pouvoir.
-            // On peut utiliser LINQ pour faire ça en une ligne
-            //Remplace la proppriété CardPowers par une méthode
-            // On pourrait aussi faire un Contains() sur la liste de pouvoirs
-            //CardPowers.Contains(powerId);
-            if (Card == null)
-            {
-                return false;
-            }
+        //public bool HasStatus(int statusID)
+        //{
+        //    // Retourne true si la carte possède ce pouvoir.
+        //    // On peut utiliser LINQ pour faire ça en une ligne
+        //    //Remplace la proppriété CardPowers par une méthode
+        //    // On pourrait aussi faire un Contains() sur la liste de pouvoirs
+        //    //CardPowers.Contains(powerId);
+        //    if (Card == null)
+        //    {
+        //        return false;
+        //    }
 
-            if (.Any(c => c))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        public int GetStatusValue(int statusID)
-        {
-            // Retourne les valeur du pouvoir pour cette carte.
-            // Simplement retourner 0 si la carte ne possède pas ce pouvoir.
+        //    if (.Any(c => c))
+        //    {
+        //        return true;
+        //    }
+        //    else
+        //    {
+        //        return false;
+        //    }
+        //}
+        //public int GetStatusValue(int statusID)
+        //{
+        //    // Retourne les valeur du pouvoir pour cette carte.
+        //    // Simplement retourner 0 si la carte ne possède pas ce pouvoir.
 
-            CardPower cardPower = Card.CardStatus.FirstOrDefault(p => p.Power.Id == powerId);
-            if (cardPower != null && cardPower.Power.Value == 0) return cardPower != null ? cardPower.Value : 0;
-            return cardPower != null ? cardPower.Power.Value : 0;
+        //    CardPower cardPower = Card.CardStatus.FirstOrDefault(p => p.Power.Id == powerId);
+        //    if (cardPower != null && cardPower.Power.Value == 0) return cardPower != null ? cardPower.Value : 0;
+        //    return cardPower != null ? cardPower.Power.Value : 0;
 
-        }
+        //}
 
 
 
