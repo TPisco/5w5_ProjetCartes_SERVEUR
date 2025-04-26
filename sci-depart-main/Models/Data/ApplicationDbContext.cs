@@ -88,5 +88,11 @@ public class ApplicationDbContext : IdentityDbContext
     public DbSet<CardPower> cardPowers { get; set; } = default!;
 
 
+// Context pour les Status, retirer si cause des erreurs
+    public DbSet<CardStatus> cardStatus { get; set; } = default!;
+
+    public DbSet<Status> Status { get; set; } = default!;
+
+
 }
 

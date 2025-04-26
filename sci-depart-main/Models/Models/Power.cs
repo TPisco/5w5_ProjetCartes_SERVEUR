@@ -15,6 +15,9 @@ namespace Models.Models
         public const int THORNS_ID = 2;
         public const int HEAL_ID = 3;
         public const int SHIELD_ID = 4;
+        public const int CHAOS_ID = 5;
+        public const int EARTHQUAKEX_ID = 6;
+        public const int RANDOMPAIN_ID = 7;
 
         public int Id { get; set; }
         

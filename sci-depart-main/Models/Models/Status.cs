@@ -16,6 +16,7 @@ namespace Models.Models
 
         //Id des Status
         public const int POISONX_ID = 1;
+        public const int STUNNEDX_ID = 2;
 
 
         public int Id { get; set; }
