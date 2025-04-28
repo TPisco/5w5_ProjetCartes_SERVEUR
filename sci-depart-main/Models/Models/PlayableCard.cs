@@ -21,6 +21,7 @@ namespace Super_Cartes_Infinies.Models
 		public int Health { get; set; }
         public int Attack { get; set; }
 
+        public List<CardStatus> CardStatus { get; set; }
 
         //Ajout des méthodes pour le premier livrable d'équipe
         public bool HasPower(int powerId)
@@ -57,37 +58,51 @@ namespace Super_Cartes_Infinies.Models
 
 
 
-        //public bool HasStatus(int statusID)
-        //{
-        //    // Retourne true si la carte possède ce pouvoir.
-        //    // On peut utiliser LINQ pour faire ça en une ligne
-        //    //Remplace la proppriété CardPowers par une méthode
-        //    // On pourrait aussi faire un Contains() sur la liste de pouvoirs
-        //    //CardPowers.Contains(powerId);
-        //    if (Card == null)
-        //    {
-        //        return false;
-        //    }
+        public bool HasStatus(int statusId)
+        {
+            // Retourne true si la carte possède ce pouvoir.
+            // On peut utiliser LINQ pour faire ça en une ligne
+            //Remplace la proppriété CardPowers par une méthode
+            // On pourrait aussi faire un Contains() sur la liste de pouvoirs
+            //CardPowers.Contains(powerId);
+            CardStatus cardStatus = CardStatus.FirstOrDefault(s => s.StatusId == statusId);
+            if(CardStatus.Any(s => s.StatusId == statusId))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+            //if (CardStatus == null)
+            //{
+            //    return false;
+            //}
 
-        //    if (.Any(c => c))
-        //    {
-        //        return true;
-        //    }
-        //    else
-        //    {
-        //        return false;
-        //    }
-        //}
-        //public int GetStatusValue(int statusID)
-        //{
-        //    // Retourne les valeur du pouvoir pour cette carte.
-        //    // Simplement retourner 0 si la carte ne possède pas ce pouvoir.
+            ////Aller chercher le Status dans le DbContext?
+            ////Aller chercher le cardStatus dans le dbContext avec le statusId et playableCardId?
+            ////Vérifier si le cardStatus n'est pas null?
 
-        //    CardPower cardPower = Card.CardStatus.FirstOrDefault(p => p.Power.Id == powerId);
-        //    if (cardPower != null && cardPower.Power.Value == 0) return cardPower != null ? cardPower.Value : 0;
-        //    return cardPower != null ? cardPower.Power.Value : 0;
 
-        //}
+            //if (.Any(c => c))
+            //{
+            //    return true;
+            //}
+            //else
+            //{
+            //    return false;
+            //}
+        }
+        public int? GetStatusValue(int statusId)
+        {
+            // Retourne les valeur du pouvoir pour cette carte.
+            // Simplement retourner 0 si la carte ne possède pas ce pouvoir.
+
+            CardStatus cardStatus = CardStatus.FirstOrDefault(s => s.StatusId == statusId);
+            if (cardStatus != null && cardStatus.Status.Value == 0) return cardStatus != null ? cardStatus.Value : 0;
+            return cardStatus != null ? cardStatus.Status.Value : 0;
+
+        }
 
 
 

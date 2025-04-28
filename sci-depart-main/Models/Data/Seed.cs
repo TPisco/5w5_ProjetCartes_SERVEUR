@@ -235,9 +235,35 @@ namespace Super_Cartes_Infinies.Data
                 {
                     Id = 4, Name = "Shield", Description = "Augmente la défense d'une carte de X", Icon = "🛡️", HasValue = true
                 },
+                 new Power
+                {
+                    Id = 5, Name = "Chaos", Description = "Inverse l'attaque et la défense de toutes les cartes en jeu", Icon = "🛡️", HasValue = true
+                }
 
             };
         }
+
+        //À décommenter plus tard
+
+        public static Status[] SeedStatus()
+        {
+            return new Status[]
+            {
+                new Status
+                {
+                    Id = 1, Name = "PoisonX", Description= "Inflige la quantité X de dégâts à la carte affectée à la fin de son activation.Si une carte a déjà une valeur de poison et qu’elle est à nouveau attaquée, la valeur de poison est augmentée. (Stacks)", Icon= "☣️"
+                },
+                new Status
+                {
+                    Id = 2, Name = "StunnedX" , Description= "Empêche une carte d’agir pendant son activation durant X tours.Recoit quand-même les dégâts de poison et des autres cartes.", Icon = "☠"
+                }
+
+            };
+
+        }
+
+        //Il n'y aura pas de SeedCardStatus(), car aucune carte n'a un status qui lui est infligé par défaut.
+
 
         public static CardPower[] SeedCardPowers()
         {
