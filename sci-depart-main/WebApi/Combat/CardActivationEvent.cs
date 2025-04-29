@@ -82,7 +82,7 @@ namespace WebApi.Combat
 
                         //Ajout d'un ApplyPoisonEvent (quand il sera créé) prend attacker, atkCard et Value du poison en paramètres
 
-                        Events.Add(new ApplyPoisonEvent(atkCard, defCard));
+                        Events.Add(new ApplyPoisonEvent(atkCard, defCard, defender));
                     }
 
 
