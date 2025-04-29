@@ -7,21 +7,23 @@ namespace WebApi.Combat
     public class PlayCardEvent : MatchEvent
     {
         public override string EventType => "PlayCard";
-        public int PlayerId { get; set; }
-        public int CardId { get; set; }
+        public int playerId { get; set; }
+        public int cardId { get; set; }
 
-        public PlayCardEvent(Match match, MatchPlayerData currentPlayerData, int cardId)
+        public PlayCardEvent(Match match, MatchPlayerData currentPlayerData, int CardId)
         {
             Events = new List<MatchEvent>();
 
             var card = currentPlayerData.Hand.FirstOrDefault(c => c.Id == cardId);
             if (card == null || currentPlayerData.Mana < card.Card.Cost) return;
 
-            PlayerId = currentPlayerData.PlayerId;
-            CardId = cardId;
+            cardId = CardId;
+
+            playerId = currentPlayerData.PlayerId;
 
             currentPlayerData.Hand.Remove(card);
             currentPlayerData.BattleField.Add(card);
+
             currentPlayerData.Mana -= card.Card.Cost;
 
 

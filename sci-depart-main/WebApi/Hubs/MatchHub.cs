@@ -117,7 +117,7 @@ public class MatchHub : Hub
     public async Task onPlayCardAsync(int matchId,int CardBeingPlayedId)
     {
         string userId = Context.UserIdentifier!;
-        var playCardEvent = _matchesService.PlayCard(userId, CardBeingPlayedId, matchId);
+        var playCardEvent = await _matchesService.PlayCard(userId, CardBeingPlayedId, matchId);
 
         await Clients.Group(matchId.ToString()).SendAsync("PlayCard", playCardEvent);
     }
