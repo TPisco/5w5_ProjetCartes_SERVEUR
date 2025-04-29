@@ -44,7 +44,7 @@ namespace WebApi.Combat.PowerEvent
                     PlayableCard = defendingCard,
                     Value = poisonDmgToAdd,
                     StatusId = Status.POISONX_ID,
-                   // Status = Status
+                  // Status =
                 };
                 defendingCard.CardStatus.Add(cardStatus);
               
