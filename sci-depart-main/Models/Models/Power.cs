@@ -18,6 +18,16 @@ namespace Models.Models
         public const int CHAOS_ID = 5;
         public const int EARTHQUAKEX_ID = 6;
         public const int RANDOMPAIN_ID = 7;
+        //Ajout des pouvoir de status
+        public const int POISON_ATTACK_ID = 8;
+        public const int STUN_ATTACK_ID = 9;
+        //Ajout de mon propre Status : DamageDown
+        public const int DAMAGE_DOWN_ATTACK_ID = 10;
+
+        //Ajouter ces deux nouveaux pouvoir dans le seed, ce pouvoir permet aux cartes d'appliquer du Status à une carte. Ex: 2 de poison attack
+        //Rappel: Un status baisse de 1 stack à chaque round
+
+        //Ajout des spells + Dans le seed
 
         public int Id { get; set; }
         
@@ -30,6 +40,8 @@ namespace Models.Models
         [JsonIgnore]
         public virtual List<CardPower> cardPowers { get; set; }
 
+        //Booléen pour vérifier si une carte est un Spell
+        public bool IsSpell { get; set; } = false;
 
         //Pas supposé être là 
         public bool HasValue { get; set; }

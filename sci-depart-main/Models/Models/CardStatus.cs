@@ -12,10 +12,10 @@ namespace Models.Models
     {
 
         public int Id { get; set; }
-        public int CardId { get; set; }
+        public int PlayableCardId { get; set; }
 
         [JsonIgnore]
-        public virtual Card Card { get; set; }
+        public virtual PlayableCard PlayableCard { get; set; }
         public int StatusId { get; set; }
         public virtual Status Status { get; set; }
         public int Value { get; set; }

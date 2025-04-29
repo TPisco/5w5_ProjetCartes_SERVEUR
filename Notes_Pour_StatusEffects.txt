@@ -101,3 +101,12 @@ Status = qq chose de recu
 status uniquement appliquable  lors d'une partie, pas à la carte en elle-même
 
 
+QUESTIONS:
+-Est-ce que les Spells sont une nouvelle classe? Comment fait-on pour les reconnaître? ( Identifier par son SpellId??)
+-À quel endroit Event est-ce que je fais les Status?
+-Est-ce que une carte doit avoir un moyen d'appliquer le status? Pouvoir de poison par défaut?
+
+
+-Poison perd 1 stack à chaque round
+
+

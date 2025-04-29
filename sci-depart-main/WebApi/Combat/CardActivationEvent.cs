@@ -15,14 +15,37 @@ namespace WebApi.Combat
             PlayerId = attacker.PlayerId;
             Events = new List<MatchEvent>();
 
+            //Les pouvoirs d'affliger un status et les spells devraient être fait pour les cartes qui attaquent, le poison dmg doit être géré pour les cartes du defender ( la cible) 
             for (int i = attacker.BattleField.Count - 1; i >= 0; i--)
             {
-                var atkCard = attacker.BattleField[i];
 
-                
+                var atkCard = attacker.BattleField[i];
+                //Ici qu'on gère si les cartes on un status qu'ils peuvent infliger
+                //Gère aussi les dmg d'un status avant que la carte attaque
+                //Event pour affliger du poison
+                //Event pour prendre du dmg du poison
+
+
+                //Dmg du poison : Regarde si une carte a du poison d'affligé, Va chercher la Value dans CardStatus,
+                //utilise cette propriété et le donne à PoisonDamageEvent, le PoisonDamageEvent appelle un CardCamageEvent avec Value comme paramètre pour le dmg
+                //RAPPEL : Poison perd 1 stack à chaque round
+
+
+                //
+
                 //Modifier apres avec SHIELD_ID
                 if (atkCard.HasPower(Power.SHIELD_ID))
                     Events.Add(new ShieldEvent(attacker, atkCard));
+
+
+                if (atkCard.HasPower(Power.POISON_ATTACK_ID))
+                {
+                    //Aller chercher le poison de la carte victime? Jsp si c'est nécessaire
+
+                    //Aller chercher la Value du PoisonAttack
+                    //Ajout d'un ApplyPoisonEvent (quand il sera créé) prend attacker, atkCard et Value du poison en paramètres
+                }
+
 
                 if (i < defender.BattleField.Count)
                 {

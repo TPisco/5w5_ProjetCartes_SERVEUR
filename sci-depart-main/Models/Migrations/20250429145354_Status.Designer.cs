@@ -12,15 +12,15 @@ using Super_Cartes_Infinies.Data;
 namespace Models.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250422125016_init")]
-    partial class init
+    [Migration("20250429145354_Status")]
+    partial class Status
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.10")
+                .HasAnnotation("ProductVersion", "8.0.11")
                 .HasAnnotation("Proxies:ChangeTracking", false)
                 .HasAnnotation("Proxies:CheckEquality", false)
                 .HasAnnotation("Proxies:LazyLoading", true)
@@ -157,15 +157,15 @@ namespace Models.Migrations
                         {
                             Id = "11111111-1111-1111-1111-111111111111",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e338cc93-6743-4180-af96-aa22c4d62719",
+                            ConcurrencyStamp = "3fca310b-011e-474b-8acf-486c4455a910",
                             Email = "admin@admin.com",
                             EmailConfirmed = true,
                             LockoutEnabled = true,
                             NormalizedEmail = "ADMIN@ADMIN.COM",
                             NormalizedUserName = "ADMIN@ADMIN.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEG8y0X01Q9QiGfgDdKEmlrxDE3DbXSsWPkRrMnlSs5wkWTL0UNhTDAnKLRzmDXNh8A==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEMCQ7S7ZdIRgnknzvXfjNUWCtZPh+sgH9x6RBE2vS+WUVUZOyLDnfGCPoyzRRUsbew==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "1785739a-a1f9-4db1-b461-4fed0fb6ae7d",
+                            SecurityStamp = "3c2cc0ca-af78-42d3-99fe-b79956a23504",
                             TwoFactorEnabled = false,
                             UserName = "admin@admin.com"
                         },
@@ -173,22 +173,22 @@ namespace Models.Migrations
                         {
                             Id = "User1Id",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "20ff6eb6-41f1-4c20-aef2-f2ec954ffb5d",
+                            ConcurrencyStamp = "d97d494b-62dd-4349-8d71-d540b5f6562b",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "c85efa15-e06f-4a38-bf8f-0c16412aab79",
+                            SecurityStamp = "5e5509dc-a382-428c-8471-bb717b89fb2c",
                             TwoFactorEnabled = false
                         },
                         new
                         {
                             Id = "User2Id",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "68c3eaef-698e-48fd-b84d-731cef30407c",
+                            ConcurrencyStamp = "e832f3c8-dc5b-467e-9c0a-c12380956121",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "fe2372a9-0ea1-4fc7-b688-f2ba6c519fc1",
+                            SecurityStamp = "94aacf20-7a44-4e24-955c-ece9fd7d5cb0",
                             TwoFactorEnabled = false
                         });
                 });
@@ -221,10 +221,12 @@ namespace Models.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("ProviderKey")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
@@ -268,10 +270,12 @@ namespace Models.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
@@ -335,6 +339,32 @@ namespace Models.Migrations
                             PowerId = 4,
                             Value = 5
                         });
+                });
+
+            modelBuilder.Entity("Models.Models.CardStatus", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("PlayableCardId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StatusId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Value")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PlayableCardId");
+
+                    b.HasIndex("StatusId");
+
+                    b.ToTable("cardStatus");
                 });
 
             modelBuilder.Entity("Models.Models.Deck", b =>
@@ -454,6 +484,9 @@ namespace Models.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsSpell")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -472,6 +505,7 @@ namespace Models.Migrations
                             Description = "Permet à une carte d’attaquer en « premier » et de ne pas recevoir de dégât si elle tue la carte de l’adversaire.",
                             HasValue = false,
                             Icon = "🥇",
+                            IsSpell = false,
                             Name = "First Strike",
                             Value = 0
                         },
@@ -481,7 +515,18 @@ namespace Models.Migrations
                             Description = "Lorsqu’une carte défend, elle inflige X de dégâts AVANT de recevoir des dégâts. Si l’attaquant est tué par ces dégâts, l’attaque s’arrête et le défenseur ne reçoit pas de dégâts.",
                             HasValue = true,
                             Icon = "🌹",
+                            IsSpell = false,
                             Name = "Thorns",
+                            Value = 0
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Description = "Inverse l'attaque et la défense de toutes les cartes en jeu",
+                            HasValue = true,
+                            Icon = "❂",
+                            IsSpell = false,
+                            Name = "Chaos",
                             Value = 0
                         },
                         new
@@ -490,6 +535,7 @@ namespace Models.Migrations
                             Description = "Soigne les cartes alliées de X incluant elle-même AVANT d’attaquer (mais les cartes ne peuvent pas avoir plus de health qu’au départ.)",
                             HasValue = true,
                             Icon = "💖",
+                            IsSpell = false,
                             Name = "Heal",
                             Value = 0
                         },
@@ -499,7 +545,58 @@ namespace Models.Migrations
                             Description = "Augmente la défense d'une carte de X",
                             HasValue = true,
                             Icon = "🛡️",
+                            IsSpell = false,
                             Name = "Shield",
+                            Value = 0
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Description = " Fait X dégâts à TOUTES les cartes en jeu (même les nôtres!)",
+                            HasValue = true,
+                            Icon = "",
+                            IsSpell = true,
+                            Name = "EarthQuakeX",
+                            Value = 0
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Description = "Une carte de sort qui inflige des dégâts aléatoires entre 1 et 6 à une carte ennemie.",
+                            HasValue = true,
+                            Icon = "❓",
+                            IsSpell = true,
+                            Name = "RandomPain",
+                            Value = 0
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Description = "Inflige du poison à une carte ennemie.",
+                            HasValue = true,
+                            Icon = "☠",
+                            IsSpell = false,
+                            Name = "PoisonAttack",
+                            Value = 0
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Description = "Inflige l'effet Stunned à une carte.",
+                            HasValue = true,
+                            Icon = "💫",
+                            IsSpell = false,
+                            Name = "StunnedX",
+                            Value = 0
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Description = "Inflige une quantité X de l'effet DamageDown à une carte.",
+                            HasValue = true,
+                            Icon = "⬇",
+                            IsSpell = false,
+                            Name = "DamageDownAttack",
                             Value = 0
                         });
                 });
@@ -567,6 +664,31 @@ namespace Models.Migrations
                             Id = 9,
                             CardID = 10
                         });
+                });
+
+            modelBuilder.Entity("Models.Models.Status", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Icon")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Status");
                 });
 
             modelBuilder.Entity("Super_Cartes_Infinies.Models.Card", b =>
@@ -906,6 +1028,25 @@ namespace Models.Migrations
                     b.Navigation("Power");
                 });
 
+            modelBuilder.Entity("Models.Models.CardStatus", b =>
+                {
+                    b.HasOne("Super_Cartes_Infinies.Models.PlayableCard", "PlayableCard")
+                        .WithMany("CardStatus")
+                        .HasForeignKey("PlayableCardId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Models.Models.Status", "Status")
+                        .WithMany("cardStatus")
+                        .HasForeignKey("StatusId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("PlayableCard");
+
+                    b.Navigation("Status");
+                });
+
             modelBuilder.Entity("Models.Models.Deck", b =>
                 {
                     b.HasOne("Super_Cartes_Infinies.Models.Player", null)
@@ -1040,6 +1181,11 @@ namespace Models.Migrations
                     b.Navigation("cardPowers");
                 });
 
+            modelBuilder.Entity("Models.Models.Status", b =>
+                {
+                    b.Navigation("cardStatus");
+                });
+
             modelBuilder.Entity("Super_Cartes_Infinies.Models.Card", b =>
                 {
                     b.Navigation("CardPowers");
@@ -1054,6 +1200,11 @@ namespace Models.Migrations
                     b.Navigation("Graveyard");
 
                     b.Navigation("Hand");
+                });
+
+            modelBuilder.Entity("Super_Cartes_Infinies.Models.PlayableCard", b =>
+                {
+                    b.Navigation("CardStatus");
                 });
 
             modelBuilder.Entity("Super_Cartes_Infinies.Models.Player", b =>

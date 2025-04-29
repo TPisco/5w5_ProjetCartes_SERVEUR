@@ -21,7 +21,7 @@ namespace Super_Cartes_Infinies.Models
 		public int Health { get; set; }
         public int Attack { get; set; }
 
-        public List<CardStatus> CardStatus { get; set; }
+        public virtual List<CardStatus> CardStatus { get; set; }
 
         //Ajout des méthodes pour le premier livrable d'équipe
         public bool HasPower(int powerId)
@@ -99,8 +99,8 @@ namespace Super_Cartes_Infinies.Models
             // Simplement retourner 0 si la carte ne possède pas ce pouvoir.
 
             CardStatus cardStatus = CardStatus.FirstOrDefault(s => s.StatusId == statusId);
-            if (cardStatus != null && cardStatus.Status.Value == 0) return cardStatus != null ? cardStatus.Value : 0;
-            return cardStatus != null ? cardStatus.Status.Value : 0;
+            if (cardStatus != null && cardStatus.Value == 0) return cardStatus != null ? cardStatus.Value : 0;
+            return cardStatus != null ? cardStatus.Value : 0;
 
         }
 

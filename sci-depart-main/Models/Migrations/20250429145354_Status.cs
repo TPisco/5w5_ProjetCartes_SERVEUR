@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Models.Migrations
 {
     /// <inheritdoc />
-    public partial class init : Migration
+    public partial class Status : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -93,11 +93,27 @@ namespace Models.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Icon = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsSpell = table.Column<bool>(type: "bit", nullable: false),
                     HasValue = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Power", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Status",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Icon = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Status", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -146,8 +162,8 @@ namespace Models.Migrations
                 name: "AspNetUserLogins",
                 columns: table => new
                 {
-                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ProviderKey = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    LoginProvider = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    ProviderKey = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
                     ProviderDisplayName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
@@ -191,8 +207,8 @@ namespace Models.Migrations
                 columns: table => new
                 {
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    LoginProvider = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
                     Value = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -439,6 +455,33 @@ namespace Models.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "cardStatus",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PlayableCardId = table.Column<int>(type: "int", nullable: false),
+                    StatusId = table.Column<int>(type: "int", nullable: false),
+                    Value = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_cardStatus", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_cardStatus_PlayableCard_PlayableCardId",
+                        column: x => x.PlayableCardId,
+                        principalTable: "PlayableCard",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_cardStatus_Status_StatusId",
+                        column: x => x.StatusId,
+                        principalTable: "Status",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
@@ -449,9 +492,9 @@ namespace Models.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "11111111-1111-1111-1111-111111111111", 0, "e338cc93-6743-4180-af96-aa22c4d62719", "admin@admin.com", true, true, null, "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAIAAYagAAAAEG8y0X01Q9QiGfgDdKEmlrxDE3DbXSsWPkRrMnlSs5wkWTL0UNhTDAnKLRzmDXNh8A==", null, false, "1785739a-a1f9-4db1-b461-4fed0fb6ae7d", false, "admin@admin.com" },
-                    { "User1Id", 0, "20ff6eb6-41f1-4c20-aef2-f2ec954ffb5d", null, false, false, null, null, null, null, null, false, "c85efa15-e06f-4a38-bf8f-0c16412aab79", false, null },
-                    { "User2Id", 0, "68c3eaef-698e-48fd-b84d-731cef30407c", null, false, false, null, null, null, null, null, false, "fe2372a9-0ea1-4fc7-b688-f2ba6c519fc1", false, null }
+                    { "11111111-1111-1111-1111-111111111111", 0, "3fca310b-011e-474b-8acf-486c4455a910", "admin@admin.com", true, true, null, "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAIAAYagAAAAEMCQ7S7ZdIRgnknzvXfjNUWCtZPh+sgH9x6RBE2vS+WUVUZOyLDnfGCPoyzRRUsbew==", null, false, "3c2cc0ca-af78-42d3-99fe-b79956a23504", false, "admin@admin.com" },
+                    { "User1Id", 0, "d97d494b-62dd-4349-8d71-d540b5f6562b", null, false, false, null, null, null, null, null, false, "5e5509dc-a382-428c-8471-bb717b89fb2c", false, null },
+                    { "User2Id", 0, "e832f3c8-dc5b-467e-9c0a-c12380956121", null, false, false, null, null, null, null, null, false, "94aacf20-7a44-4e24-955c-ece9fd7d5cb0", false, null }
                 });
 
             migrationBuilder.InsertData(
@@ -478,13 +521,19 @@ namespace Models.Migrations
 
             migrationBuilder.InsertData(
                 table: "Power",
-                columns: new[] { "Id", "Description", "HasValue", "Icon", "Name", "Value" },
+                columns: new[] { "Id", "Description", "HasValue", "Icon", "IsSpell", "Name", "Value" },
                 values: new object[,]
                 {
-                    { 1, "Permet à une carte d’attaquer en « premier » et de ne pas recevoir de dégât si elle tue la carte de l’adversaire.", false, "🥇", "First Strike", 0 },
-                    { 2, "Lorsqu’une carte défend, elle inflige X de dégâts AVANT de recevoir des dégâts. Si l’attaquant est tué par ces dégâts, l’attaque s’arrête et le défenseur ne reçoit pas de dégâts.", true, "🌹", "Thorns", 0 },
-                    { 3, "Soigne les cartes alliées de X incluant elle-même AVANT d’attaquer (mais les cartes ne peuvent pas avoir plus de health qu’au départ.)", true, "💖", "Heal", 0 },
-                    { 4, "Augmente la défense d'une carte de X", true, "🛡️", "Shield", 0 }
+                    { 1, "Permet à une carte d’attaquer en « premier » et de ne pas recevoir de dégât si elle tue la carte de l’adversaire.", false, "🥇", false, "First Strike", 0 },
+                    { 2, "Lorsqu’une carte défend, elle inflige X de dégâts AVANT de recevoir des dégâts. Si l’attaquant est tué par ces dégâts, l’attaque s’arrête et le défenseur ne reçoit pas de dégâts.", true, "🌹", false, "Thorns", 0 },
+                    { 3, "Soigne les cartes alliées de X incluant elle-même AVANT d’attaquer (mais les cartes ne peuvent pas avoir plus de health qu’au départ.)", true, "💖", false, "Heal", 0 },
+                    { 4, "Augmente la défense d'une carte de X", true, "🛡️", false, "Shield", 0 },
+                    { 5, "Inverse l'attaque et la défense de toutes les cartes en jeu", true, "❂", false, "Chaos", 0 },
+                    { 6, " Fait X dégâts à TOUTES les cartes en jeu (même les nôtres!)", true, "", true, "EarthQuakeX", 0 },
+                    { 7, "Une carte de sort qui inflige des dégâts aléatoires entre 1 et 6 à une carte ennemie.", true, "❓", true, "RandomPain", 0 },
+                    { 8, "Inflige du poison à une carte ennemie.", true, "☠", false, "PoisonAttack", 0 },
+                    { 9, "Inflige l'effet Stunned à une carte.", true, "💫", false, "StunnedX", 0 },
+                    { 10, "Inflige une quantité X de l'effet DamageDown à une carte.", true, "⬇", false, "DamageDownAttack", 0 }
                 });
 
             migrationBuilder.InsertData(
@@ -576,6 +625,16 @@ namespace Models.Migrations
                 name: "IX_cardPowers_PowerId",
                 table: "cardPowers",
                 column: "PowerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_cardStatus_PlayableCardId",
+                table: "cardStatus",
+                column: "PlayableCardId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_cardStatus_StatusId",
+                table: "cardStatus",
+                column: "StatusId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_DeckCards_DeckId",
@@ -675,6 +734,9 @@ namespace Models.Migrations
                 name: "cardPowers");
 
             migrationBuilder.DropTable(
+                name: "cardStatus");
+
+            migrationBuilder.DropTable(
                 name: "DeckCards");
 
             migrationBuilder.DropTable(
@@ -684,9 +746,6 @@ namespace Models.Migrations
                 name: "Matches");
 
             migrationBuilder.DropTable(
-                name: "PlayableCard");
-
-            migrationBuilder.DropTable(
                 name: "StartingCards");
 
             migrationBuilder.DropTable(
@@ -694,6 +753,12 @@ namespace Models.Migrations
 
             migrationBuilder.DropTable(
                 name: "Power");
+
+            migrationBuilder.DropTable(
+                name: "PlayableCard");
+
+            migrationBuilder.DropTable(
+                name: "Status");
 
             migrationBuilder.DropTable(
                 name: "Decks");

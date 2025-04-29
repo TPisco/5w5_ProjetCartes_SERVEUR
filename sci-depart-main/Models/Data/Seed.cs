@@ -227,6 +227,10 @@ namespace Super_Cartes_Infinies.Data
                 {
                     Id = 2, Name = "Thorns", Description = "Lorsqu’une carte défend, elle inflige X de dégâts AVANT de recevoir des dégâts. Si l’attaquant est tué par ces dégâts, l’attaque s’arrête et le défenseur ne reçoit pas de dégâts.", Icon = "🌹", HasValue = true
                 },
+                 new Power
+                {
+                    Id = 5, Name = "Chaos", Description = "Inverse l'attaque et la défense de toutes les cartes en jeu", Icon = "❂", HasValue = true
+                },
                 new Power
                 {
                     Id = 3, Name = "Heal", Description = "Soigne les cartes alliées de X incluant elle-même AVANT d’attaquer (mais les cartes ne peuvent pas avoir plus de health qu’au départ.)", Icon = "💖", HasValue = true
@@ -236,8 +240,24 @@ namespace Super_Cartes_Infinies.Data
                     Id = 4, Name = "Shield", Description = "Augmente la défense d'une carte de X", Icon = "🛡️", HasValue = true
                 },
                  new Power
+                 {
+                        Id = 6, Name = "EarthQuakeX", Description = " Fait X dégâts à TOUTES les cartes en jeu (même les nôtres!)", Icon = "", HasValue = true, IsSpell = true
+                 },
+                new Power
                 {
-                    Id = 5, Name = "Chaos", Description = "Inverse l'attaque et la défense de toutes les cartes en jeu", Icon = "🛡️", HasValue = true
+                    Id = 7 , Name = "RandomPain" , Description = "Une carte de sort qui inflige des dégâts aléatoires entre 1 et 6 à une carte ennemie.", Icon = "❓", HasValue = true, IsSpell = true
+                },
+                new Power
+                {
+                    Id= 8 , Name = "PoisonAttack", Description = "Inflige du poison à une carte ennemie." , Icon = "☠", HasValue = true
+                },
+                 new Power
+                {
+                    Id = 9 , Name = "StunnedX" , Description = "Inflige l'effet Stunned à une carte.", Icon = "💫", HasValue = true
+                },
+                 new Power
+                {
+                    Id = 10 , Name = "DamageDownAttack" , Description = "Inflige une quantité X de l'effet DamageDown à une carte.", Icon = "⬇", HasValue = true
                 }
 
             };
@@ -251,11 +271,15 @@ namespace Super_Cartes_Infinies.Data
             {
                 new Status
                 {
-                    Id = 1, Name = "PoisonX", Description= "Inflige la quantité X de dégâts à la carte affectée à la fin de son activation.Si une carte a déjà une valeur de poison et qu’elle est à nouveau attaquée, la valeur de poison est augmentée. (Stacks)", Icon= "☣️"
+                    Id = 1, Name = "PoisonX", Description= "Inflige la quantité X de dégâts à la carte affectée à la fin de son activation.Si une carte a déjà une valeur de poison et qu’elle est à nouveau attaquée, la valeur de poison est augmentée. (Stacks)", Icon= "☠"
                 },
                 new Status
                 {
-                    Id = 2, Name = "StunnedX" , Description= "Empêche une carte d’agir pendant son activation durant X tours.Recoit quand-même les dégâts de poison et des autres cartes.", Icon = "☠"
+                    Id = 2, Name = "StunnedX" , Description= "Empêche une carte d’agir pendant son activation durant X tours.Recoit quand-même les dégâts de poison et des autres cartes.", Icon = "💫"
+                },
+                new Status
+                {
+                    Id = 3, Name = "DamageDownX", Description = "Un effet qui réduit les dégâts totaux d'une carte par X.", Icon = "⬇"
                 }
 
             };
