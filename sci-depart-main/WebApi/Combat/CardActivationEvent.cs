@@ -2,6 +2,7 @@
 using Super_Cartes_Infinies.Combat;
 using Super_Cartes_Infinies.Models;
 using WebApi.Combat.PowerEvent;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace WebApi.Combat
 {
@@ -29,6 +30,7 @@ namespace WebApi.Combat
                 //Dmg du poison : Regarde si une carte a du poison d'affligé, Va chercher la Value dans CardStatus,
                 //utilise cette propriété et le donne à PoisonDamageEvent, le PoisonDamageEvent appelle un CardCamageEvent avec Value comme paramètre pour le dmg
                 //RAPPEL : Poison perd 1 stack à chaque round
+                //C'est dans les attackers qu'on regarde le PoisonDamage
 
 
                 //
@@ -37,15 +39,9 @@ namespace WebApi.Combat
                 if (atkCard.HasPower(Power.SHIELD_ID))
                     Events.Add(new ShieldEvent(attacker, atkCard));
 
+                //Ajouter le PoisonDamage Ici
 
-                if (atkCard.HasPower(Power.POISON_ATTACK_ID))
-                {
-                    //Aller chercher le poison de la carte victime? Jsp si c'est nécessaire
-
-                    //Aller chercher la Value du PoisonAttack
-                    //Ajout d'un ApplyPoisonEvent (quand il sera créé) prend attacker, atkCard et Value du poison en paramètres
-                }
-
+               
 
                 if (i < defender.BattleField.Count)
                 {
@@ -71,9 +67,28 @@ namespace WebApi.Combat
                     if (atkCard.HasPower(Power.HEAL_ID))
                         Events.Add(new HealEvent(attacker, atkCard));
 
+
+                    if (atkCard.HasPower(Power.POISON_ATTACK_ID))
+                    {
+                        //Aller chercher le poison de la carte victime? Jsp si c'est nécessaire
+
+
+                        //Requête LINQ pour chercher dans la liste de CardStatus de la carte le poison qu'il a déjà sur lui
+                        //PRendre la Value du poisonAttack : getPowerValue
+                        //Faire ci-dessus dans ApplyPoisonEvent ^^^^^^
+
+                        //Ajout d'un ApplyPoisonEvent (quand il sera créé) prend attacker, atkCard et Value du poison en paramètres
+
+                        Events.Add(new ApplyPoisonEvent(atkCard, defCard));
+                    }
+
+
                     Events.Add(new CardDamageEvent(defCard.Attack, atkCard, attacker));
 
                    
+
+
+
 
 
                 }

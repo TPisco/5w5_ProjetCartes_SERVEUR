@@ -93,6 +93,8 @@ namespace Super_Cartes_Infinies.Models
             //    return false;
             //}
         }
+
+        //Cherche la valeur d'un status que la 
         public int? GetStatusValue(int statusId)
         {
             // Retourne les valeur du pouvoir pour cette carte.
