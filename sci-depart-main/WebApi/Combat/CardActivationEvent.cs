@@ -40,6 +40,11 @@ namespace WebApi.Combat
                     Events.Add(new ShieldEvent(attacker, atkCard));
 
                 //Ajouter le PoisonDamage Ici
+                if (atkCard.HasStatus(Status.POISONX_ID))
+                {
+                    //Events.Add(new PoisonDamageEvent())
+
+                }
 
                
 
@@ -70,9 +75,7 @@ namespace WebApi.Combat
 
                     if (atkCard.HasPower(Power.POISON_ATTACK_ID))
                     {
-                        //Aller chercher le poison de la carte victime? Jsp si c'est nécessaire
-
-
+                 
                         //Requête LINQ pour chercher dans la liste de CardStatus de la carte le poison qu'il a déjà sur lui
                         //PRendre la Value du poisonAttack : getPowerValue
                         //Faire ci-dessus dans ApplyPoisonEvent ^^^^^^

@@ -18,19 +18,36 @@ namespace WebApi.Combat.PowerEvent
         {
             //Créer un nouveau CardStatus
 
+            //Requête LINQ pour chercher dans la liste de CardStatus de la carte le poison qu'il a déjà sur lui
+            //PRendre la Value du poisonAttack : getPowerValue
+            //Faire ci-dessus dans ApplyPoisonEvent ^^^^^^
 
-            //CardId = card.Id;
-            //PlayerId = player.PlayerId;
-            //Heal = card.GetPowerValue(Power.HEAL_ID);
-            //for (int i = player.BattleField.Count - 1; i >= 0; i--)
-            //{
-            //    if (player.BattleField[i].Health + Heal > player.BattleField[i].Card.Health)
-            //    {
-            //        player.BattleField[i].Health = player.BattleField[i].Card.Health;
-            //    }
-            //    else { player.BattleField[i].Health += Heal; }
+            TargetCardId = defendingCard.Id;
+            var poisonDmgToAdd = attackingCard.GetPowerValue(Power.POISON_ATTACK_ID);
+            //SI la carte a déjà du poison, l'ajouter au stack
+            if (defendingCard.HasStatus(Status.POISONX_ID))
+            {
+                //Aller chercher le status de la carte victime (utiliser un first???)
+                CardStatus status = defendingCard.CardStatus.Where(c => c.StatusId == Status.POISONX_ID).First();
+                status.Value += poisonDmgToAdd;
 
-            //}
+            }
+            else
+            {
+                //Sinon, créer un nouveau CardStatus pour la carte victime
+                //TODO : AJOUTER LE STATUS MANQUANT
+                CardStatus cardStatus = new CardStatus
+                {
+                    PlayableCardId = defendingCard.Id,
+                    PlayableCard = defendingCard,
+                    Value = poisonDmgToAdd,
+                    StatusId = Status.POISONX_ID,
+                   // Status = 
+                };
+                defendingCard.CardStatus.Add(cardStatus);
+              
+
+            }
 
         }
     }
