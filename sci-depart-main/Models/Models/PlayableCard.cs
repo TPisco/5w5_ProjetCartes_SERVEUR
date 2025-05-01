@@ -55,7 +55,7 @@ namespace Super_Cartes_Infinies.Models
             return cardPower != null ? cardPower.Power.Value : 0;
             
         }
-
+        //public void ApplySatus()
 
 
         public bool HasStatus(int statusId)

@@ -229,7 +229,7 @@ namespace Super_Cartes_Infinies.Data
                 },
                  new Power
                 {
-                    Id = 5, Name = "Chaos", Description = "Inverse l'attaque et la défense de toutes les cartes en jeu", Icon = "❂", HasValue = true
+                    Id = 5, Name = "Chaos", Description = "Inverse l'attaque et la défense de toutes les cartes en jeu", Icon = "❂", HasValue = false
                 },
                 new Power
                 {

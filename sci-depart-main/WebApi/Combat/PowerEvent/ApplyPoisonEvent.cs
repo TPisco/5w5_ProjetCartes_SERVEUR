@@ -41,7 +41,7 @@ namespace WebApi.Combat.PowerEvent
                 CardStatus cardStatus = new CardStatus
                 {
                     PlayableCardId = defendingCard.Id,
-                    PlayableCard = defendingCard,
+                   // PlayableCard = defendingCard,
                     Value = poisonDmgToAdd,
                     StatusId = Status.POISONX_ID,
                   // Status =
