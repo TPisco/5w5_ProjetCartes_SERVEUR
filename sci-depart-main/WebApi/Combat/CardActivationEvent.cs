@@ -46,7 +46,13 @@ namespace WebApi.Combat
 
                 }
 
-               
+                //Ajouter le Chaos
+
+
+                //Vérifier qu'une carte n'est pas stunned, sinon elle ne fait rien
+            //    //If(card.HasStatus(Status.STUNNEX_ID)){
+            //    return;
+            //}
 
                 if (i < defender.BattleField.Count)
                 {
@@ -85,6 +91,9 @@ namespace WebApi.Combat
                         Events.Add(new ApplyPoisonEvent(atkCard, defCard, defender));
                     }
 
+                    //Ajouter le ChaosEvent
+
+                    //TODO :Ajouter le ApplyStunEvent
 
                     Events.Add(new CardDamageEvent(defCard.Attack, atkCard, attacker));
 

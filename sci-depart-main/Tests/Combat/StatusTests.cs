@@ -46,6 +46,7 @@ namespace Tests.Combat
             CardPower cardPower = new CardPower
             {
                 Power = poisonAttackPower,
+                CardId= _cardA.Id,
                 Card = _cardA,
                 Value =3
 
@@ -65,6 +66,7 @@ namespace Tests.Combat
                 int id = _playableCardB.CardStatus.Where(s => s.StatusId == Status.POISONX_ID).First().StatusId;
                 Assert.AreEqual(Status.POISONX_ID, id);
                 //TODO: Vérifier que la valeur du poison est bonne
+                Assert.AreEqual(3, _playableCardB.GetStatusValue(Status.POISONX_ID));
             }
 
 
@@ -87,16 +89,24 @@ namespace Tests.Combat
             CardPower cardPower = new CardPower
             {
                 Power = poisonAttackPower,
+                CardId = _cardA.Id,
                 Card = _cardA,
                 Value = 3
             };
             _cardA.CardPowers = new List<CardPower> { cardPower };
 
             //Création du Status 
+            Status Poison = new Status
+            {
+                Id = Status.POISONX_ID
+            };
 
 
             //Création du CardStatus + ajout à la carte B
+            CardStatus poisonStatus = new CardStatus
+            {
 
+            };
 
             
 
@@ -114,8 +124,8 @@ namespace Tests.Combat
 
             //Modifier la vérfication
             Assert.AreEqual(_currentPlayerData.PlayerId, playerTurnEvent.PlayerId);
-           //TODO:  Ajouter vérification que le poison a stack
-
+            //TODO:  Ajouter vérification que le poison a stack
+            Assert.AreEqual(5, _playableCardB.GetStatusValue(Status.POISONX_ID));
 
 
 
@@ -127,21 +137,22 @@ namespace Tests.Combat
         {
          
             //Création du status Stun
-            Status stunned = new Status
+            Status poison = new Status
             {
-                Id = Status.STUNNEDX_ID
+                Id = Status.POISONX_ID
 
             };
 
             //Création du CardStatus
-            CardStatus cardStatusStunned = new CardStatus
+            CardStatus poisonStatus = new CardStatus
             {
                 PlayableCardId = _playableCardA.Id,
                 PlayableCard = _playableCardB,
-                StatusId = Status.STUNNEDX_ID,
-                Status = stunned
+                StatusId = Status.POISONX_ID,
+                Status = poison,
+                Value = 2
             };
-            _playableCardA.CardStatus = new List<CardStatus> { cardStatusStunned };
+            _playableCardA.CardStatus = new List<CardStatus> { poisonStatus };
 
             //Stocker les Hp de la carte B
             var CardBHp = _playableCardB.Health;
@@ -165,7 +176,54 @@ namespace Tests.Combat
         }
 
         //test pour vérifier que le stack de poison a été réduit de 1 après la fin d'un round
+        [TestMethod]
+        public void PoisonStackReduced()
+        {
 
+            //Création du status Stun
+            Status poison = new Status
+            {
+                Id = Status.POISONX_ID
+
+            };
+
+            //Création du CardStatus
+            CardStatus cardStatusStunned = new CardStatus
+            {
+                PlayableCardId = _playableCardA.Id,
+                PlayableCard = _playableCardB,
+                StatusId = Status.POISONX_ID,
+                Status = poison,
+                Value = 4
+            };
+            _playableCardA.CardStatus = new List<CardStatus> { cardStatusStunned };
+
+            //Stocker les Hp de la carte B
+            var CardBHp = _playableCardB.Health;
+
+            _currentPlayerData.BattleField.Add(_playableCardA);
+            _opposingPlayerData.BattleField.Add(_playableCardB);
+            var playerTurnEvent = new PlayerEndTurnEvent(_match, _currentPlayerData, _opposingPlayerData, NB_MANA_PER_TURN);
+
+            Assert.AreEqual(4, _playableCardB.GetStatusValue(Status.POISONX_ID));
+            //round de l'autre joueur
+            var playerTurnEvent2 = new PlayerEndTurnEvent(_match,  _opposingPlayerData, _currentPlayerData, NB_MANA_PER_TURN);
+
+
+
+            if (_playableCardB.CardStatus != null)
+            {
+                //TODO : Vérifier que la carte défense n'a pas recu aucun dégâts
+                //Aussi vrifier que la carte n'a pas été activée
+
+                Assert.AreEqual(3, _playableCardB.GetStatusValue(Status.POISONX_ID));
+              
+            }
+
+
+
+
+        }
 
         //test pour vérifier la mort d'un PoisonDamageEvent
 
@@ -186,6 +244,7 @@ namespace Tests.Combat
             CardPower cardPower = new CardPower
             {
                 Power = ChaosPower,
+                CardId = _cardA.Id,
                 Card = _cardA
             };
             _cardA.CardPowers = new List<CardPower> { cardPower };
@@ -220,6 +279,7 @@ namespace Tests.Combat
             CardPower cardPower = new CardPower
             {
                 Power = ChaosPower,
+                CardId = _cardA.Id,
                 Card = _cardA
               
             };
@@ -275,6 +335,7 @@ namespace Tests.Combat
             CardPower cardPower = new CardPower
             {
                 Power = stunAttackPower,
+                CardId = _cardA.Id,
                 Card = _cardA,
                 Value = 2
 
@@ -315,6 +376,7 @@ namespace Tests.Combat
             CardPower cardPower = new CardPower
             {
                 Power = stunAttackPower,
+                CardId = _cardA.Id,
                 Card = _cardA,
                 Value = 2
 
@@ -351,6 +413,8 @@ namespace Tests.Combat
             if (_playableCardB.CardStatus != null)
             {
                 //TODO : Vérifier que la carte défense n'a pas recu aucun dégâts
+                    //Aller chercher la liste de CardActivationEvent et vérifier qu'aucune d'entre elle ne provient de la carte stunned (cardId)
+
                 //Aussi vrifier que la carte n'a pas été activée
                 Assert.AreEqual(CardBHp, _playableCardB.Health);
             }
@@ -363,7 +427,69 @@ namespace Tests.Combat
 
         //test pour vérifier que le stack de Stun a été réduit de 1 après la fin d'un round
 
+        [TestMethod]
+        public void StunnedCardStackReduced()
+        {
+            //Création du Poison_Attack
+            Power stunAttackPower = new Power
+            {
+                Id = Power.STUN_ATTACK_ID
+            };
 
+            //Création du CardPower pour la carte attaquante
+            CardPower cardPower = new CardPower
+            {
+                Power = stunAttackPower,
+                CardId = _cardA.Id,
+                Card = _cardA,
+                Value = 2
+
+            };
+            _cardA.CardPowers = new List<CardPower> { cardPower };
+
+
+            //Création du status Stun
+            Status stunned = new Status
+            {
+                Id = Status.STUNNEDX_ID
+
+            };
+
+            //Création du CardStatus
+            CardStatus cardStatusStunned = new CardStatus
+            {
+                PlayableCardId = _playableCardA.Id,
+                PlayableCard = _playableCardB,
+                StatusId = Status.STUNNEDX_ID,
+                Status = stunned
+            };
+            _playableCardA.CardStatus = new List<CardStatus> { cardStatusStunned };
+
+            //Stocker les Hp de la carte B
+            var CardBHp = _playableCardB.Health;
+
+            _currentPlayerData.BattleField.Add(_playableCardA);
+            _opposingPlayerData.BattleField.Add(_playableCardB);
+            var playerTurnEvent = new PlayerEndTurnEvent(_match, _currentPlayerData, _opposingPlayerData, NB_MANA_PER_TURN);
+
+            Assert.AreEqual(2, _playableCardB.GetStatusValue(Status.POISONX_ID));
+            var playerTurnEvent2 = new PlayerEndTurnEvent(_match, _opposingPlayerData, _currentPlayerData, NB_MANA_PER_TURN);
+
+
+            if (_playableCardB.CardStatus != null)
+            {
+                //TODO : Vérifier que la carte défense n'a pas recu aucun dégâts
+                //Aussi vrifier que la carte n'a pas été activée
+                Assert.AreEqual(1, _playableCardB.GetStatusValue(Status.STUNNEDX_ID));
+            }
+
+
+
+
+        }
+
+
+        //TODO: Ajouter des tests pour le DamageDown
 
 
     }
