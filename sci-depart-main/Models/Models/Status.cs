@@ -22,9 +22,6 @@ namespace Models.Models
 
         public int Id { get; set; }
 
-        //La value n'est pas dans le status lui-même
-        //public int? Value { get; set; }
-
         public string Name { get; set; }
         public string Description { get; set; }
         public string Icon { get; set; }
