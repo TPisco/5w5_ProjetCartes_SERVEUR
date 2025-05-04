@@ -12,7 +12,7 @@ using Super_Cartes_Infinies.Data;
 namespace Models.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250422125016_init")]
+    [Migration("20250504182924_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -20,7 +20,7 @@ namespace Models.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.10")
+                .HasAnnotation("ProductVersion", "8.0.11")
                 .HasAnnotation("Proxies:ChangeTracking", false)
                 .HasAnnotation("Proxies:CheckEquality", false)
                 .HasAnnotation("Proxies:LazyLoading", true)
@@ -157,15 +157,15 @@ namespace Models.Migrations
                         {
                             Id = "11111111-1111-1111-1111-111111111111",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e338cc93-6743-4180-af96-aa22c4d62719",
+                            ConcurrencyStamp = "04673a72-26e5-4f32-abac-238792dd60cc",
                             Email = "admin@admin.com",
                             EmailConfirmed = true,
                             LockoutEnabled = true,
                             NormalizedEmail = "ADMIN@ADMIN.COM",
                             NormalizedUserName = "ADMIN@ADMIN.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEG8y0X01Q9QiGfgDdKEmlrxDE3DbXSsWPkRrMnlSs5wkWTL0UNhTDAnKLRzmDXNh8A==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEHFKT6qny7U9tWz8r+87z5IpLYx8aaZHWsZGsbvkHQ2iHQ8nT2yF22R7cM0S2EwYrw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "1785739a-a1f9-4db1-b461-4fed0fb6ae7d",
+                            SecurityStamp = "00821fb0-7c4f-4a7f-ad94-b1c968938736",
                             TwoFactorEnabled = false,
                             UserName = "admin@admin.com"
                         },
@@ -173,22 +173,22 @@ namespace Models.Migrations
                         {
                             Id = "User1Id",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "20ff6eb6-41f1-4c20-aef2-f2ec954ffb5d",
+                            ConcurrencyStamp = "81903c0c-4f7b-4511-973d-75a36002c8c6",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "c85efa15-e06f-4a38-bf8f-0c16412aab79",
+                            SecurityStamp = "d4c20aa2-04aa-410b-9011-45f092b2c412",
                             TwoFactorEnabled = false
                         },
                         new
                         {
                             Id = "User2Id",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "68c3eaef-698e-48fd-b84d-731cef30407c",
+                            ConcurrencyStamp = "e610b8e4-b0ae-4cb6-9c91-4ce2d0729012",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "fe2372a9-0ea1-4fc7-b688-f2ba6c519fc1",
+                            SecurityStamp = "42da8ddb-e30b-4847-b50f-b76f8db777c6",
                             TwoFactorEnabled = false
                         });
                 });
@@ -221,10 +221,12 @@ namespace Models.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("ProviderKey")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
@@ -268,10 +270,12 @@ namespace Models.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");

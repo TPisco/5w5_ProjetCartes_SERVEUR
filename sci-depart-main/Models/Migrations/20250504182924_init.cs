@@ -146,8 +146,8 @@ namespace Models.Migrations
                 name: "AspNetUserLogins",
                 columns: table => new
                 {
-                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ProviderKey = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    LoginProvider = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    ProviderKey = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
                     ProviderDisplayName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
@@ -191,8 +191,8 @@ namespace Models.Migrations
                 columns: table => new
                 {
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    LoginProvider = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
                     Value = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -449,9 +449,9 @@ namespace Models.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "11111111-1111-1111-1111-111111111111", 0, "e338cc93-6743-4180-af96-aa22c4d62719", "admin@admin.com", true, true, null, "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAIAAYagAAAAEG8y0X01Q9QiGfgDdKEmlrxDE3DbXSsWPkRrMnlSs5wkWTL0UNhTDAnKLRzmDXNh8A==", null, false, "1785739a-a1f9-4db1-b461-4fed0fb6ae7d", false, "admin@admin.com" },
-                    { "User1Id", 0, "20ff6eb6-41f1-4c20-aef2-f2ec954ffb5d", null, false, false, null, null, null, null, null, false, "c85efa15-e06f-4a38-bf8f-0c16412aab79", false, null },
-                    { "User2Id", 0, "68c3eaef-698e-48fd-b84d-731cef30407c", null, false, false, null, null, null, null, null, false, "fe2372a9-0ea1-4fc7-b688-f2ba6c519fc1", false, null }
+                    { "11111111-1111-1111-1111-111111111111", 0, "04673a72-26e5-4f32-abac-238792dd60cc", "admin@admin.com", true, true, null, "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAIAAYagAAAAEHFKT6qny7U9tWz8r+87z5IpLYx8aaZHWsZGsbvkHQ2iHQ8nT2yF22R7cM0S2EwYrw==", null, false, "00821fb0-7c4f-4a7f-ad94-b1c968938736", false, "admin@admin.com" },
+                    { "User1Id", 0, "81903c0c-4f7b-4511-973d-75a36002c8c6", null, false, false, null, null, null, null, null, false, "d4c20aa2-04aa-410b-9011-45f092b2c412", false, null },
+                    { "User2Id", 0, "e610b8e4-b0ae-4cb6-9c91-4ce2d0729012", null, false, false, null, null, null, null, null, false, "42da8ddb-e30b-4847-b50f-b76f8db777c6", false, null }
                 });
 
             migrationBuilder.InsertData(
