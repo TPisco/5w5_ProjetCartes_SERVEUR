@@ -861,6 +861,128 @@ namespace Tests.Combat
         }
 
 
+        //TODO 5 : Ajouter des tests pour les deux Spells
+
+        //test pour le RandomPain
+        [TestMethod]
+        public void RandomPain()
+        {
+            //Création du pouvoir Chaos
+            Power randomPain = new Power
+            {
+                Id = Power.RANDOMPAIN_ID,
+                IsSpell = true
+            };
+
+            //Création du CardPower pour la carte attaquante
+            CardPower cardPower = new CardPower
+            {
+                Power = randomPain,
+                CardId = _cardA.Id,
+                Card = _cardA
+              
+
+            };
+
+
+            //Création d'un nouvelle carte avec 0 de dmg
+            Card spellCard = new Card
+            {
+                Name = "RandomOuch",
+                Attack = 0,
+                Health = 1,
+                Cost = 4,
+                ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/006_f2.png",
+                
+
+            };
+            //Création d'un nouvelle PlayableCard avec la Card
+            PlayableCard newCard = new PlayableCard(spellCard);
+
+
+
+            _cardA.CardPowers = new List<CardPower> { cardPower };
+
+            //on stocke les valeurs inversées prévues de la carte pour la vérification
+            //  var newHealth = _playableCardB.Attack;
+            //  var newAttack = _playableCardB.Health;
+
+            //Ajout des cartes sur le terrain 
+            _currentPlayerData.BattleField.Add(newCard);
+            //Ajout de la carte avec 0 dmg à la liste du joueur B 
+            var oldHp = _playableCardB.Health;
+            _opposingPlayerData.BattleField.Add(_playableCardB);
+
+            var playerTurnEvent = new PlayerEndTurnEvent(_match, _currentPlayerData, _opposingPlayerData, NB_MANA_PER_TURN);
+
+
+            //  Assert.AreEqual(newHealth, _playableCardB.Health);
+            //  Assert.AreEqual(newAttack, _playableCardB.Attack);
+            AssertCurrentPlayerCardDied();
+            Assert.AreNotEqual(oldHp, _playableCardB.Health);
+        }
+
+
+        //test pour le earthquake
+
+        [TestMethod]
+        public void EarthQuake_X()
+        {
+            //Création du pouvoir Chaos
+            Power randomPain = new Power
+            {
+                Id = Power.EARTHQUAKEX_ID,
+                IsSpell = true
+            };
+
+            //Création du CardPower pour la carte attaquante
+            CardPower cardPower = new CardPower
+            {
+                Power = randomPain,
+                CardId = _cardA.Id,
+                Card = _cardA,
+                Value =4
+
+
+            };
+
+
+            //Création d'un nouvelle carte avec 0 de dmg
+            Card spellCard = new Card
+            {
+                Name = "EarthQuake",
+                Attack = 0,
+                Health = 1,
+                Cost = 4,
+                ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/006_f2.png",
+
+
+            };
+            //Création d'un nouvelle PlayableCard avec la Card
+            PlayableCard newCard = new PlayableCard(spellCard);
+
+
+
+            _cardA.CardPowers = new List<CardPower> { cardPower };
+
+            //on stocke les valeurs inversées prévues de la carte pour la vérification
+            var newHealthCardA = _playableCardB.Health - 4;
+            var newHealthcardB = _playableCardB.Health - 4;
+
+            //Ajout des cartes sur le terrain 
+            _currentPlayerData.BattleField.Add(newCard);
+            //Ajout de la carte avec 0 dmg à la liste du joueur B 
+            var oldHp = _playableCardB.Health;
+            _opposingPlayerData.BattleField.Add(_playableCardB);
+
+            var playerTurnEvent = new PlayerEndTurnEvent(_match, _currentPlayerData, _opposingPlayerData, NB_MANA_PER_TURN);
+
+
+            Assert.AreEqual(newHealthCardA, _playableCardA.Health);
+            Assert.AreEqual(newHealthcardB, _playableCardB.Health);
+
+        }
+
 
     }
 }
