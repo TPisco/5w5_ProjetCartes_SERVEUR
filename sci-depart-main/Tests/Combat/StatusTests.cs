@@ -207,7 +207,7 @@ namespace Tests.Combat
 
             Assert.AreEqual(4, _playableCardB.GetStatusValue(Status.POISONX_ID));
             //round de l'autre joueur
-            var playerTurnEvent2 = new PlayerEndTurnEvent(_match,  _opposingPlayerData, _currentPlayerData, NB_MANA_PER_TURN);
+           // var playerTurnEvent2 = new PlayerEndTurnEvent(_match,  _opposingPlayerData, _currentPlayerData, NB_MANA_PER_TURN);
 
 
 
@@ -257,7 +257,7 @@ namespace Tests.Combat
 
             //Assert.AreEqual(4, _playableCardB.GetStatusValue(Status.POISONX_ID));
             //round de l'autre joueur
-            var playerTurnEvent2 = new PlayerEndTurnEvent(_match, _opposingPlayerData, _currentPlayerData, NB_MANA_PER_TURN);
+           // var playerTurnEvent2 = new PlayerEndTurnEvent(_match, _opposingPlayerData, _currentPlayerData, NB_MANA_PER_TURN);
 
 
 
@@ -294,7 +294,7 @@ namespace Tests.Combat
                 PlayableCard = _playableCardB,
                 StatusId = Status.POISONX_ID,
                 Status = poison,
-                Value = 3
+                Value = 30
             };
             _playableCardA.CardStatus = new List<CardStatus> { cardStatusStunned };
 
@@ -307,7 +307,7 @@ namespace Tests.Combat
 
             //Assert.AreEqual(4, _playableCardB.GetStatusValue(Status.POISONX_ID));
             //round de l'autre joueur
-            var playerTurnEvent2 = new PlayerEndTurnEvent(_match, _opposingPlayerData, _currentPlayerData, NB_MANA_PER_TURN);
+            //var playerTurnEvent2 = new PlayerEndTurnEvent(_match, _opposingPlayerData, _currentPlayerData, NB_MANA_PER_TURN);
 
 
 
@@ -357,7 +357,7 @@ namespace Tests.Combat
 
             //Assert.AreEqual(4, _playableCardB.GetStatusValue(Status.POISONX_ID));
             //round de l'autre joueur
-            var playerTurnEvent2 = new PlayerEndTurnEvent(_match, _opposingPlayerData, _currentPlayerData, NB_MANA_PER_TURN);
+           // var playerTurnEvent2 = new PlayerEndTurnEvent(_match, _opposingPlayerData, _currentPlayerData, NB_MANA_PER_TURN);
 
 
                 AssertCurrentPlayerCardDied();
@@ -613,7 +613,7 @@ namespace Tests.Combat
             var playerTurnEvent = new PlayerEndTurnEvent(_match, _currentPlayerData, _opposingPlayerData, NB_MANA_PER_TURN);
 
             Assert.AreEqual(2, _playableCardB.GetStatusValue(Status.POISONX_ID));
-            var playerTurnEvent2 = new PlayerEndTurnEvent(_match, _opposingPlayerData, _currentPlayerData, NB_MANA_PER_TURN);
+          //  var playerTurnEvent2 = new PlayerEndTurnEvent(_match, _opposingPlayerData, _currentPlayerData, NB_MANA_PER_TURN);
 
 
             if (_playableCardB.CardStatus != null)

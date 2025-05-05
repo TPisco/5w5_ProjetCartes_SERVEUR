@@ -39,15 +39,6 @@ namespace WebApi.Combat
                 if (atkCard.HasPower(Power.SHIELD_ID))
                     Events.Add(new ShieldEvent(attacker, atkCard));
 
-                //Ajouter le PoisonDamage Ici
-                if (atkCard.HasStatus(Status.POISONX_ID))
-                {
-                    //Events.Add(new PoisonDamageEvent())
-
-                }
-
-                //Ajouter le Chaos
-
 
                 //Vérifier qu'une carte n'est pas stunned, sinon elle ne fait rien
             //    //If(card.HasStatus(Status.STUNNEX_ID)){
@@ -97,7 +88,21 @@ namespace WebApi.Combat
 
                     Events.Add(new CardDamageEvent(defCard.Attack, atkCard, attacker));
 
-                   
+                    if (atkCard.HasStatus(Status.POISONX_ID))
+                    {
+                        //Events.Add(new PoisonDamageEvent())
+
+                    }
+
+
+                    //Ajouter le PoisonDamage Ici
+                    //if (atkCard.HasStatus(Status.POISONX_ID))
+                    //{
+                    //    //Events.Add(new PoisonDamageEvent())
+
+                    //}
+
+                    //Ajouter le Chaos
 
 
 
