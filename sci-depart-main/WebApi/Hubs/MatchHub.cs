@@ -1,16 +1,23 @@
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.SignalR;
+using Microsoft.EntityFrameworkCore;
 using Super_Cartes_Infinies.Data;
 using Super_Cartes_Infinies.Models;
 using Super_Cartes_Infinies.Models.Dtos;
 using Super_Cartes_Infinies.Services;
 using System.Text.RegularExpressions;
+using System.Threading.Channels;
 
 namespace Super_Cartes_Infinies.Hubs;
 
 public static class UserHandler
 {
     public static HashSet<string> ConnectedIds = new HashSet<string>();
+    
+    // Ajout d.un dictionnaire
+    public static Dictionary<string, string> UserConnections { get; set; } = new Dictionary<string, string>();
+
 }
 
 
@@ -109,6 +116,56 @@ public class MatchHub : Hub
         var SurrenderEvent = await _matchesService.Surrender(userId, matchId);
 
         await Clients.Group(matchId.ToString()).SendAsync("Surrender", SurrenderEvent);
+    }
+    //
+    //
+    //
+    //
+    // Va chercher le user qui est connecter
+    public IdentityUser CurrentUser
+    {
+        get
+        {
+            string userId = Context.UserIdentifier;
+            var user = _context.Users.Single(u => u.Id == userId);
+            return user;
+        }
+    }
+
+    // Déconnexion
+    public async override Task OnDisconnectedAsync(Exception? exception)
+    {
+        KeyValuePair<string, string> entrie = UserHandler.UserConnections.SingleOrDefault(uc => uc.Value == Context.UserIdentifier);
+        UserHandler.UserConnections.Remove(entrie.Key);
+        await UserList();
+    }
+
+    public async Task UserList()
+    {
+        await Clients.All.SendAsync("UsersList", UserHandler.UserConnections.ToList());
+    }
+
+    private async Task JoinChat()
+    {
+        UserHandler.UserConnections.Add(CurrentUser.Email!, Context.UserIdentifier);
+        await UserList();
+        await Clients.Caller.SendAsync("ChannelsList", _context.Channel.ToListAsync());
+    }
+
+    public async Task SendMessage(string message, int channelId, string userId)
+    {
+
+        if (channelId != 0)
+        {
+            string groupName = CreateChannelGroupName(channelId);
+            //Channel channel = _context.Channel.Find(channelId);
+            await Clients.Group(groupName).SendAsync("NewMessage", "[" + CurrentUser.Email + "] " + message);
+        }
+    }
+
+    private static string CreateChannelGroupName(int channelId)
+    {
+        return "Channel" + channelId;
     }
 
 }
