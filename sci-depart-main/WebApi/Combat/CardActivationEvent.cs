@@ -88,12 +88,11 @@ namespace WebApi.Combat
 
                     Events.Add(new CardDamageEvent(defCard.Attack, atkCard, attacker));
 
-                    if (atkCard.HasStatus(Status.POISONX_ID))
+                    if (defCard.HasStatus(Status.POISONX_ID))
                     {
-                        //Events.Add(new PoisonDamageEvent())
+                        Events.Add(new PoisonDamageEvent(defCard, defender));
 
                     }
-
 
                     //Ajouter le PoisonDamage Ici
                     //if (atkCard.HasStatus(Status.POISONX_ID))
@@ -112,6 +111,12 @@ namespace WebApi.Combat
                 else
                 {
                     Events.Add(new PlayerDamageEvent(atkCard.Attack, defender, match, attacker));
+                }
+
+                if (atkCard.HasStatus(Status.POISONX_ID))
+                {
+                    Events.Add(new PoisonDamageEvent(atkCard, defender));
+
                 }
             }
         }

@@ -95,7 +95,7 @@ namespace Super_Cartes_Infinies.Models
         }
 
         //Cherche la valeur d'un status que la 
-        public int? GetStatusValue(int statusId)
+        public int GetStatusValue(int statusId)
         {
             // Retourne les valeur du pouvoir pour cette carte.
             // Simplement retourner 0 si la carte ne possède pas ce pouvoir.
