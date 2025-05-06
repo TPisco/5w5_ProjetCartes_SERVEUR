@@ -105,10 +105,14 @@ namespace Tests.Combat
             //Création du CardStatus + ajout à la carte B
             CardStatus poisonStatus = new CardStatus
             {
-
+                StatusId = Status.POISONX_ID,
+                Status = Poison,
+               PlayableCard = _playableCardB, 
+               
+                Value = 3
             };
 
-            
+            _playableCardB.CardStatus = new List<CardStatus> { poisonStatus };
 
            // _playableCardB.Health = _playableCardA.Attack;
 
