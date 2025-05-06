@@ -156,7 +156,7 @@ namespace Tests.Combat
                 Status = poison,
                 Value = 2
             };
-            _playableCardA.CardStatus = new List<CardStatus> { poisonStatus };
+            _playableCardB.CardStatus = new List<CardStatus> { poisonStatus };
 
             //Stocker les Hp de la carte B
             var CardBHp = _playableCardB.Health;
@@ -200,7 +200,7 @@ namespace Tests.Combat
                 Status = poison,
                 Value = 4
             };
-            _playableCardA.CardStatus = new List<CardStatus> { cardStatusStunned };
+            _playableCardB.CardStatus = new List<CardStatus> { cardStatusStunned };
 
             //Stocker les Hp de la carte B
             var CardBHp = _playableCardB.Health;
@@ -222,6 +222,9 @@ namespace Tests.Combat
 
                 Assert.AreEqual(3, _playableCardB.GetStatusValue(Status.POISONX_ID));
               
+            } else
+            {
+                Assert.Fail();
             }
 
 
