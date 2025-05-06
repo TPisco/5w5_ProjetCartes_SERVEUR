@@ -110,6 +110,7 @@ public class MatchHub : Hub
         var SurrenderEvent = await _matchesService.Surrender(userId, matchId);
 
         await Clients.Group(matchId.ToString()).SendAsync("Surrender", SurrenderEvent);
+
     }
 
 
