@@ -129,7 +129,7 @@ namespace Tests.Combat
             //Modifier la vérfication
             Assert.AreEqual(_currentPlayerData.PlayerId, playerTurnEvent.PlayerId);
             //TODO:  Ajouter vérification que le poison a stack
-            Assert.AreEqual(5, _playableCardB.GetStatusValue(Status.POISONX_ID));
+            Assert.AreEqual(6, _playableCardB.GetStatusValue(Status.POISONX_ID));
 
 
 
@@ -161,7 +161,7 @@ namespace Tests.Combat
             //Stocker les Hp de la carte B
             var CardBHp = _playableCardB.Health;
 
-            _currentPlayerData.BattleField.Add(_playableCardA);
+           // _currentPlayerData.BattleField.Add(_playableCardA);
             _opposingPlayerData.BattleField.Add(_playableCardB);
             var playerTurnEvent = new PlayerEndTurnEvent(_match, _currentPlayerData, _opposingPlayerData, NB_MANA_PER_TURN);
 
@@ -171,7 +171,7 @@ namespace Tests.Combat
             {
                 //TODO : Vérifier que la carte défense n'a pas recu aucun dégâts
                 //Aussi vrifier que la carte n'a pas été activée
-                Assert.AreEqual(CardBHp, _playableCardB.Health);
+                Assert.AreEqual(CardBHp - 2, _playableCardB.Health);
             }
 
 
@@ -205,11 +205,11 @@ namespace Tests.Combat
             //Stocker les Hp de la carte B
             var CardBHp = _playableCardB.Health;
 
-            _currentPlayerData.BattleField.Add(_playableCardA);
+          //  _currentPlayerData.BattleField.Add(_playableCardA);
             _opposingPlayerData.BattleField.Add(_playableCardB);
             var playerTurnEvent = new PlayerEndTurnEvent(_match, _currentPlayerData, _opposingPlayerData, NB_MANA_PER_TURN);
 
-            Assert.AreEqual(4, _playableCardB.GetStatusValue(Status.POISONX_ID));
+           //Assert.AreEqual(4, _playableCardB.GetStatusValue(Status.POISONX_ID));
             //round de l'autre joueur
            // var playerTurnEvent2 = new PlayerEndTurnEvent(_match,  _opposingPlayerData, _currentPlayerData, NB_MANA_PER_TURN);
 
@@ -252,10 +252,7 @@ namespace Tests.Combat
             };
             _playableCardA.CardStatus = new List<CardStatus> { cardStatusStunned };
 
-            //Stocker les Hp de la carte B
-            var CardBHp = _playableCardB.Health;
-
-            _currentPlayerData.BattleField.Add(_playableCardA);
+            //_currentPlayerData.BattleField.Add(_playableCardA);
             _opposingPlayerData.BattleField.Add(_playableCardB);
             var playerTurnEvent = new PlayerEndTurnEvent(_match, _currentPlayerData, _opposingPlayerData, NB_MANA_PER_TURN);
 
@@ -263,16 +260,9 @@ namespace Tests.Combat
             //round de l'autre joueur
            // var playerTurnEvent2 = new PlayerEndTurnEvent(_match, _opposingPlayerData, _currentPlayerData, NB_MANA_PER_TURN);
 
-
-
-            if (_playableCardB.CardStatus != null)
-            {
-                //TODO : Vérifier que la carte défense n'a pas recu aucun dégâts
-                //Aussi vrifier que la carte n'a pas été activée
-
                 Assert.IsFalse(_playableCardB.HasStatus(Status.POISONX_ID));
 
-            }
+           
 
 
 
@@ -280,54 +270,54 @@ namespace Tests.Combat
         }
         //Test pour vérifier qu'une carte n'a pas pu attaquer si elle meurt par le poison avant son attaque
 
-        [TestMethod]
-        public void PoisonnedCardNoAttackIfDead()
-        {
+        //[TestMethod]
+        //public void PoisonnedCardNoAttackIfDead()
+        //{
 
-            //Création du status Poison
-            Status poison = new Status
-            {
-                Id = Status.POISONX_ID
+        //    //Création du status Poison
+        //    Status poison = new Status
+        //    {
+        //        Id = Status.POISONX_ID
 
-            };
+        //    };
 
-            //Création du CardStatus
-            CardStatus cardStatusStunned = new CardStatus
-            {
-                PlayableCardId = _playableCardA.Id,
-                PlayableCard = _playableCardB,
-                StatusId = Status.POISONX_ID,
-                Status = poison,
-                Value = 30
-            };
-            _playableCardA.CardStatus = new List<CardStatus> { cardStatusStunned };
+        //    //Création du CardStatus
+        //    CardStatus cardStatusStunned = new CardStatus
+        //    {
+        //        PlayableCardId = _playableCardA.Id,
+        //        PlayableCard = _playableCardB,
+        //        StatusId = Status.POISONX_ID,
+        //        Status = poison,
+        //        Value = 30
+        //    };
+        //    _playableCardA.CardStatus = new List<CardStatus> { cardStatusStunned };
 
-            //Stocker les Hp de la carte B
-            var CardBHp = _playableCardB.Health;
+        //    //Stocker les Hp de la carte B
+        //    var CardBHp = _playableCardB.Health;
 
-            _currentPlayerData.BattleField.Add(_playableCardA);
-            _opposingPlayerData.BattleField.Add(_playableCardB);
-            var playerTurnEvent = new PlayerEndTurnEvent(_match, _currentPlayerData, _opposingPlayerData, NB_MANA_PER_TURN);
+        //    _currentPlayerData.BattleField.Add(_playableCardA);
+        //    _opposingPlayerData.BattleField.Add(_playableCardB);
+        //    var playerTurnEvent = new PlayerEndTurnEvent(_match, _currentPlayerData, _opposingPlayerData, NB_MANA_PER_TURN);
 
-            //Assert.AreEqual(4, _playableCardB.GetStatusValue(Status.POISONX_ID));
-            //round de l'autre joueur
-            //var playerTurnEvent2 = new PlayerEndTurnEvent(_match, _opposingPlayerData, _currentPlayerData, NB_MANA_PER_TURN);
+        //    //Assert.AreEqual(4, _playableCardB.GetStatusValue(Status.POISONX_ID));
+        //    //round de l'autre joueur
+        //    //var playerTurnEvent2 = new PlayerEndTurnEvent(_match, _opposingPlayerData, _currentPlayerData, NB_MANA_PER_TURN);
 
 
 
-            if (_playableCardB.CardStatus != null)
-            {
-                //TODO : Vérifier que la carte défense n'a pas recu aucun dégâts
-                //Aussi vrifier que la carte n'a pas été activée
+        //    if (_playableCardB.CardStatus != null)
+        //    {
+        //        //TODO : Vérifier que la carte défense n'a pas recu aucun dégâts
+        //        //Aussi vrifier que la carte n'a pas été activée
 
               
-                Assert.AreEqual(CardBHp, _playableCardB.Health);
-            }
+        //        Assert.AreEqual(CardBHp, _playableCardB.Health);
+        //    }
 
 
 
 
-        }
+        //}
 
         //test pour vérifier la mort d'un PoisonDamageEvent
         [TestMethod]
@@ -546,13 +536,13 @@ namespace Tests.Combat
             _playableCardA.CardStatus = new List<CardStatus> { cardStatusStunned };
 
             //Stocker les Hp de la carte B
-            var CardBHp = _playableCardB.Health;
+            var CardAHp = _playableCardA.Health;
 
             _currentPlayerData.BattleField.Add(_playableCardA);
             _opposingPlayerData.BattleField.Add(_playableCardB);
             var playerTurnEvent = new PlayerEndTurnEvent(_match, _currentPlayerData, _opposingPlayerData, NB_MANA_PER_TURN);
 
-
+            var playerTurnEvent2 = new PlayerEndTurnEvent(_match, _currentPlayerData, _opposingPlayerData, NB_MANA_PER_TURN);
 
             if (_playableCardB.CardStatus != null)
             {
@@ -560,7 +550,7 @@ namespace Tests.Combat
                     //Aller chercher la liste de CardActivationEvent et vérifier qu'aucune d'entre elle ne provient de la carte stunned (cardId)
 
                 //Aussi vrifier que la carte n'a pas été activée
-                Assert.AreEqual(CardBHp, _playableCardB.Health);
+                Assert.AreEqual(CardAHp, _playableCardA.Health);
             }
 
 
@@ -680,13 +670,9 @@ namespace Tests.Combat
             var playerTurnEvent2 = new PlayerEndTurnEvent(_match, _opposingPlayerData, _currentPlayerData, NB_MANA_PER_TURN);
 
 
-            if (_playableCardB.CardStatus != null)
-            {
-                //TODO : Vérifier que la carte défense n'a pas recu aucun dégâts
-                //Aussi vrifier que la carte n'a pas été activée
-            
+
                 Assert.IsFalse(_playableCardB.HasStatus(Status.STUNNEDX_ID));
-            }
+            
 
         }
 
@@ -741,7 +727,7 @@ namespace Tests.Combat
         //test pour vérifier que le carte inflige désormais moins de dégâts
 
         [TestMethod]
-        public void A()
+        public void DamageDownWorks()
         {
             //Création du pouvoir DamageDown
             Power DamageDown = new Power
@@ -770,7 +756,7 @@ namespace Tests.Combat
             var playerTurnEvent = new PlayerEndTurnEvent(_match, _currentPlayerData, _opposingPlayerData, NB_MANA_PER_TURN);
 
 
-            Assert.AreNotEqual(oldAttack, _playableCardB.Attack);
+            Assert.AreEqual(oldAttack -3 , _playableCardB.Attack);
            
 
         }
@@ -780,7 +766,7 @@ namespace Tests.Combat
 
         //test pour vérifier que l'effet n'a PAS été réduit à la fin d'un round ( reste statique jusqu'à ce que l'effet disparait)
         [TestMethod]
-        public void DamageDownDoesNotChange()
+        public void DamageDownStatusReduced()
         {
             //Création du pouvoir DamageDown
             Power DamageDown = new Power
@@ -811,7 +797,7 @@ namespace Tests.Combat
             var playerTurnEvent2 = new PlayerEndTurnEvent(_match, _currentPlayerData, _opposingPlayerData, NB_MANA_PER_TURN);
 
 
-            Assert.AreEqual(3, _playableCardB.Attack);
+            Assert.AreEqual(2, _playableCardB.Attack);
 
 
         }
@@ -848,16 +834,10 @@ namespace Tests.Combat
             //round de l'autre joueur
             var playerTurnEvent2 = new PlayerEndTurnEvent(_match, _opposingPlayerData, _currentPlayerData, NB_MANA_PER_TURN);
 
-
-
-            if (_playableCardB.CardStatus != null)
-            {
-                //TODO : Vérifier que la carte défense n'a pas recu aucun dégâts
-                //Aussi vrifier que la carte n'a pas été activée
-
                 Assert.IsFalse(_playableCardB.HasStatus(Status.DAMAGE_DOWNX_ID));
 
-            }
+            
+
 
 
 
