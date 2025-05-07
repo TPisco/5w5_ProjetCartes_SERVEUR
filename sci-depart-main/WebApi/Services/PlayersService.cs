@@ -81,6 +81,8 @@ namespace Super_Cartes_Infinies.Services
         {
             return _dbContext.Players.Single(p => p.User!.UserName == userName);
         }
+
+       
     }
 }
 

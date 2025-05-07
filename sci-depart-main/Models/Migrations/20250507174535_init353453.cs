@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Models.Migrations
 {
     /// <inheritdoc />
-    public partial class init : Migration
+    public partial class init353453 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -213,7 +213,8 @@ namespace Models.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ELO = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -449,9 +450,9 @@ namespace Models.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "11111111-1111-1111-1111-111111111111", 0, "e338cc93-6743-4180-af96-aa22c4d62719", "admin@admin.com", true, true, null, "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAIAAYagAAAAEG8y0X01Q9QiGfgDdKEmlrxDE3DbXSsWPkRrMnlSs5wkWTL0UNhTDAnKLRzmDXNh8A==", null, false, "1785739a-a1f9-4db1-b461-4fed0fb6ae7d", false, "admin@admin.com" },
-                    { "User1Id", 0, "20ff6eb6-41f1-4c20-aef2-f2ec954ffb5d", null, false, false, null, null, null, null, null, false, "c85efa15-e06f-4a38-bf8f-0c16412aab79", false, null },
-                    { "User2Id", 0, "68c3eaef-698e-48fd-b84d-731cef30407c", null, false, false, null, null, null, null, null, false, "fe2372a9-0ea1-4fc7-b688-f2ba6c519fc1", false, null }
+                    { "11111111-1111-1111-1111-111111111111", 0, "6a7d034c-f994-4aa5-b8b1-274f9fce9839", "admin@admin.com", true, true, null, "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAIAAYagAAAAEIQX5UDuaT5xal7DbymKHDGNuLM8OsEdy5BNEun2J6zH+TolBE0Bc8+cxVhhGVrSig==", null, false, "ff7bbc37-bbc9-4ae5-85e0-b214147015c5", false, "admin@admin.com" },
+                    { "User1Id", 0, "c7d43e83-0357-4541-8bbb-2ad57300e389", null, false, false, null, null, null, null, null, false, "4b076b5d-45fb-4879-93c5-5cd290e83c7b", false, null },
+                    { "User2Id", 0, "b2a1777a-46a7-433d-bf86-14480431c1e6", null, false, false, null, null, null, null, null, false, "c8a73747-30ab-45cf-9f86-dd04efc0c268", false, null }
                 });
 
             migrationBuilder.InsertData(
@@ -494,11 +495,11 @@ namespace Models.Migrations
 
             migrationBuilder.InsertData(
                 table: "Players",
-                columns: new[] { "Id", "Name", "UserId" },
+                columns: new[] { "Id", "ELO", "Name", "UserId" },
                 values: new object[,]
                 {
-                    { 1, "Test player 1", "User1Id" },
-                    { 2, "Test player 2", "User2Id" }
+                    { 1, 1000, "Test player 1", "User1Id" },
+                    { 2, 1000, "Test player 2", "User2Id" }
                 });
 
             migrationBuilder.InsertData(

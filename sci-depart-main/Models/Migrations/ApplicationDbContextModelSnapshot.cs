@@ -154,15 +154,15 @@ namespace Models.Migrations
                         {
                             Id = "11111111-1111-1111-1111-111111111111",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e338cc93-6743-4180-af96-aa22c4d62719",
+                            ConcurrencyStamp = "6a7d034c-f994-4aa5-b8b1-274f9fce9839",
                             Email = "admin@admin.com",
                             EmailConfirmed = true,
                             LockoutEnabled = true,
                             NormalizedEmail = "ADMIN@ADMIN.COM",
                             NormalizedUserName = "ADMIN@ADMIN.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEG8y0X01Q9QiGfgDdKEmlrxDE3DbXSsWPkRrMnlSs5wkWTL0UNhTDAnKLRzmDXNh8A==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEIQX5UDuaT5xal7DbymKHDGNuLM8OsEdy5BNEun2J6zH+TolBE0Bc8+cxVhhGVrSig==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "1785739a-a1f9-4db1-b461-4fed0fb6ae7d",
+                            SecurityStamp = "ff7bbc37-bbc9-4ae5-85e0-b214147015c5",
                             TwoFactorEnabled = false,
                             UserName = "admin@admin.com"
                         },
@@ -170,22 +170,22 @@ namespace Models.Migrations
                         {
                             Id = "User1Id",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "20ff6eb6-41f1-4c20-aef2-f2ec954ffb5d",
+                            ConcurrencyStamp = "c7d43e83-0357-4541-8bbb-2ad57300e389",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "c85efa15-e06f-4a38-bf8f-0c16412aab79",
+                            SecurityStamp = "4b076b5d-45fb-4879-93c5-5cd290e83c7b",
                             TwoFactorEnabled = false
                         },
                         new
                         {
                             Id = "User2Id",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "68c3eaef-698e-48fd-b84d-731cef30407c",
+                            ConcurrencyStamp = "b2a1777a-46a7-433d-bf86-14480431c1e6",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "fe2372a9-0ea1-4fc7-b688-f2ba6c519fc1",
+                            SecurityStamp = "c8a73747-30ab-45cf-9f86-dd04efc0c268",
                             TwoFactorEnabled = false
                         });
                 });
@@ -804,6 +804,9 @@ namespace Models.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("ELO")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -822,12 +825,14 @@ namespace Models.Migrations
                         new
                         {
                             Id = 1,
+                            ELO = 1000,
                             Name = "Test player 1",
                             UserId = "User1Id"
                         },
                         new
                         {
                             Id = 2,
+                            ELO = 1000,
                             Name = "Test player 2",
                             UserId = "User2Id"
                         });

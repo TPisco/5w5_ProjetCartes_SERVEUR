@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
+using Models.Models;
 using Super_Cartes_Infinies.Data;
 using Super_Cartes_Infinies.Models;
 using Super_Cartes_Infinies.Models.Dtos;
@@ -21,12 +22,16 @@ public class MatchHub : Hub
 
     ApplicationDbContext _context;
     MatchesService _matchesService;
+    PlayersService _playersService;
+    WaitingUserService _waitingUserService;
 
   
-    public MatchHub(ApplicationDbContext context, MatchesService matchesService) 
+    public MatchHub(ApplicationDbContext context, MatchesService matchesService, PlayersService playersService, WaitingUserService waitingUserService) 
     {
         _context = context;
         _matchesService = matchesService;
+        _playersService = playersService;
+        _waitingUserService = waitingUserService;
     }
    
 
@@ -45,42 +50,52 @@ public class MatchHub : Hub
         string? connectionId = Context.ConnectionId;
         string userId = Context.UserIdentifier;
 
-        JoiningMatchData? joiningMatchData = await _matchesService.JoinMatch(userId, connectionId, specificMatchId);
+        var playerInfo = new PlayerInfo
+        {
+            ConnectionId = connectionId,
+            UserId = userId,
+            ELO =  _playersService.GetPlayerFromUserId(userId).ELO, //A voir si sa fonctionne :(
+            WaitTimeSeconds = 0
+        };
+
+        _waitingUserService.AddPlayer(playerInfo);
+
+        //JoiningMatchData? joiningMatchData = await _matchesService.JoinMatch(userId, connectionId, specificMatchId);
 
         
 
-        if (joiningMatchData != null)
-        {
-            await Clients.Client(connectionId).SendAsync("JoiningMatchData", joiningMatchData);
-            if (joiningMatchData.OtherPlayerConnectionId != null)
-            {
-                await Clients.Client(joiningMatchData.OtherPlayerConnectionId).SendAsync("JoiningMatchData", joiningMatchData);
-            }
+        //if (joiningMatchData != null)
+        //{
+        //    await Clients.Client(connectionId).SendAsync("JoiningMatchData", joiningMatchData);
+        //    if (joiningMatchData.OtherPlayerConnectionId != null)
+        //    {
+        //        await Clients.Client(joiningMatchData.OtherPlayerConnectionId).SendAsync("JoiningMatchData", joiningMatchData);
+        //    }
 
-            await Groups.AddToGroupAsync(connectionId,joiningMatchData.Match.Id.ToString());
+        //    await Groups.AddToGroupAsync(connectionId,joiningMatchData.Match.Id.ToString());
 
-            if(joiningMatchData.OtherPlayerConnectionId!=null)
-            await Groups.AddToGroupAsync(joiningMatchData.OtherPlayerConnectionId, joiningMatchData.Match.Id.ToString());
+        //    if(joiningMatchData.OtherPlayerConnectionId!=null)
+        //    await Groups.AddToGroupAsync(joiningMatchData.OtherPlayerConnectionId, joiningMatchData.Match.Id.ToString());
 
-            //await Clients.Group(joiningMatchData.Match.Id.ToString()).SendAsync("JoiningMatchData", joiningMatchData);
-
-
-
-            if (!joiningMatchData.IsStarted)
-            {
-                var startMatchEvent = await _matchesService.StartMatch(userId, joiningMatchData.Match);
+        //    //await Clients.Group(joiningMatchData.Match.Id.ToString()).SendAsync("JoiningMatchData", joiningMatchData);
 
 
-                //await Clients.Client(joiningMatchData.OtherPlayerConnectionId).SendAsync("StartMatch", startMatchEvent);
-                //await Clients.Client(connectionId).SendAsync("StartMatch", startMatchEvent);
 
-               await Clients.Group(joiningMatchData.Match.Id.ToString()).SendAsync("StartMatch", startMatchEvent);
-            }
-        }
-        else
-        {
-            await Clients.Client(connectionId).SendAsync("LookingForOtherPlayer", "Waiting on another player for match.");
-        }
+        //    if (!joiningMatchData.IsStarted)
+        //    {
+        //        var startMatchEvent = await _matchesService.StartMatch(userId, joiningMatchData.Match);
+
+
+        //        //await Clients.Client(joiningMatchData.OtherPlayerConnectionId).SendAsync("StartMatch", startMatchEvent);
+        //        //await Clients.Client(connectionId).SendAsync("StartMatch", startMatchEvent);
+
+        //       await Clients.Group(joiningMatchData.Match.Id.ToString()).SendAsync("StartMatch", startMatchEvent);
+        //    }
+        //}
+        //else
+        //{
+        //    await Clients.Client(connectionId).SendAsync("LookingForOtherPlayer", "Waiting on another player for match.");
+        //}
     }
 
  
