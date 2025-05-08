@@ -461,6 +461,7 @@ namespace Tests.Combat
         public void ApplyStunNewStatus()
         {
             //Création du Poison_Attack
+            //Création du Stun_Attack
             Power stunAttackPower = new Power
             {
                 Id = Power.STUN_ATTACK_ID
@@ -472,7 +473,7 @@ namespace Tests.Combat
                 Power = stunAttackPower,
                 CardId = _cardA.Id,
                 Card = _cardA,
-                Value = 2
+                Value = 3
 
             };
             _cardA.CardPowers = new List<CardPower> { cardPower };
@@ -490,7 +491,9 @@ namespace Tests.Combat
                 int id = _playableCardB.CardStatus.Where(s => s.StatusId == Status.STUNNEDX_ID).First().StatusId;
                 Assert.AreEqual(Status.STUNNEDX_ID, id);
                 //TODO: Vérifier que la valeur du stun est bonne
+                Assert.AreEqual(2, _playableCardB.GetStatusValue(Status.STUNNEDX_ID));
             }
+
 
 
 
