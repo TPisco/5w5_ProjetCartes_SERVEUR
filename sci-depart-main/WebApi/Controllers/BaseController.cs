@@ -40,6 +40,8 @@ namespace Super_Cartes_Infinies.Controllers
                 return User.FindFirstValue(ClaimTypes.NameIdentifier)!; ;
             }
         }
+
+
     }
 }
 

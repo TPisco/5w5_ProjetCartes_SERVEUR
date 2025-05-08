@@ -41,5 +41,12 @@ namespace Super_Cartes_Infinies.Controllers
             return Ok(await _cardsService.GetPlayersCards(userId));
         }
 
+        [HttpGet]
+        public IActionResult ApplyMigrations()
+        {
+            _dbContext.Database.Migrate();
+            return Ok("La BD est maintenant à jour!");
+        }
+
     } 
 }

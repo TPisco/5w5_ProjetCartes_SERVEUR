@@ -6,6 +6,7 @@ using Super_Cartes_Infinies.Models;
 using System.Collections;
 using System.Security.Claims;
 using Models.Models;
+using Microsoft.EntityFrameworkCore;
 
 
 namespace WebApi.Controllers
@@ -130,6 +131,14 @@ namespace WebApi.Controllers
         public ActionResult Delete(int id)
         {
             return Ok();
+        }
+
+
+        [HttpGet]
+        public IActionResult ApplyMigrations()
+        {
+            _dbContext.Database.Migrate();
+            return Ok("La BD est maintenant à jour!");
         }
 
         // POST: DeckController/Delete/5
