@@ -66,7 +66,7 @@ namespace Tests.Combat
                 int id = _playableCardB.CardStatus.Where(s => s.StatusId == Status.POISONX_ID).First().StatusId;
                 Assert.AreEqual(Status.POISONX_ID, id);
                 //TODO: Vérifier que la valeur du poison est bonne
-                Assert.AreEqual(3, _playableCardB.GetStatusValue(Status.POISONX_ID));
+                Assert.AreEqual(2, _playableCardB.GetStatusValue(Status.POISONX_ID));
             }
 
 
@@ -128,8 +128,8 @@ namespace Tests.Combat
 
             //Modifier la vérfication
             Assert.AreEqual(_currentPlayerData.PlayerId, playerTurnEvent.PlayerId);
-            //TODO:  Ajouter vérification que le poison a stack
-            Assert.AreEqual(6, _playableCardB.GetStatusValue(Status.POISONX_ID));
+            //TODO:  Ajouter vérification que le poison a stack (doit être 5 au lieu de 6, puisque la valeur du poison aura baissé à la fin du round
+            Assert.AreEqual(5, _playableCardB.GetStatusValue(Status.POISONX_ID));
 
 
 

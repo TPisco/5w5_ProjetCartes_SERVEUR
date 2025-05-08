@@ -21,7 +21,7 @@ namespace Super_Cartes_Infinies.Models
 		public int Health { get; set; }
         public int Attack { get; set; }
 
-        public virtual List<CardStatus> CardStatus { get; set; }
+        public virtual List<CardStatus> CardStatus { get; set; } = [];
 
         //Ajout des méthodes pour le premier livrable d'équipe
         public bool HasPower(int powerId)
