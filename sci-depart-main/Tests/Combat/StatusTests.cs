@@ -491,7 +491,7 @@ namespace Tests.Combat
                 int id = _playableCardB.CardStatus.Where(s => s.StatusId == Status.STUNNEDX_ID).First().StatusId;
                 Assert.AreEqual(Status.STUNNEDX_ID, id);
                 //TODO: Vérifier que la valeur du stun est bonne
-                Assert.AreEqual(2, _playableCardB.GetStatusValue(Status.STUNNEDX_ID));
+                Assert.AreEqual(3, _playableCardB.GetStatusValue(Status.STUNNEDX_ID));
             }
 
 

@@ -82,6 +82,13 @@ namespace WebApi.Combat
                         Events.Add(new ApplyPoisonEvent(atkCard, defCard, defender));
                     }
 
+                    if (atkCard.HasPower(Power.STUN_ATTACK_ID))
+                    {
+
+
+                        Events.Add(new ApplyStunEvent(atkCard, defCard, defender));
+                    }
+
                     //Ajouter le ChaosEvent
 
                     //TODO :Ajouter le ApplyStunEvent
