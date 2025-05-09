@@ -50,15 +50,32 @@ public class MatchHub : Hub
         string? connectionId = Context.ConnectionId;
         string userId = Context.UserIdentifier;
 
-        var playerInfo = new PlayerInfo
-        {
-            ConnectionId = connectionId,
-            UserId = userId,
-            ELO =  _playersService.GetPlayerFromUserId(userId).ELO, //A voir si sa fonctionne :(
-            WaitTimeSeconds = 0
-        };
 
-        _waitingUserService.AddPlayer(playerInfo);
+
+
+        // Check for ongoing match
+        if (specificMatchId != null)
+        {
+            var joiningMatchData = await _matchesService.JoinMatch(userId, connectionId, specificMatchId);
+
+            if (joiningMatchData != null)
+            {
+                await Clients.Client(connectionId).SendAsync("JoiningMatchData", joiningMatchData);
+
+            }
+        }
+        else
+        {
+            var playerInfo = new PlayerInfo
+            {
+                ConnectionId = connectionId,
+                UserId = userId,
+                ELO = _playersService.GetPlayerFromUserId(userId).ELO, //A voir si sa fonctionne :(
+                WaitTimeSeconds = 0
+            };
+
+            _waitingUserService.AddPlayer(playerInfo);
+        }
 
         //JoiningMatchData? joiningMatchData = await _matchesService.JoinMatch(userId, connectionId, specificMatchId);
 
