@@ -500,6 +500,65 @@ namespace Tests.Combat
 
         }
 
+        [TestMethod]
+        public void AplyStunStackStatus()
+        {
+            //Création du Stun Attack
+            Power stun = new Power
+            {
+                Id = Power.STUN_ATTACK_ID
+            };
+
+            //Création du CardPower pour la carte attaquante
+            CardPower cardPower = new CardPower
+            {
+                Power = stun,
+                CardId = _cardA.Id,
+                Card = _cardA,
+                Value = 3
+            };
+            _cardA.CardPowers = new List<CardPower> { cardPower };
+
+            //Création du Status 
+            Status stunned = new Status
+            {
+                Id = Status.STUNNEDX_ID
+            };
+
+
+            //Création du CardStatus + ajout à la carte B
+            CardStatus poisonStatus = new CardStatus
+            {
+                StatusId = Status.STUNNEDX_ID,
+                Status = stunned,
+                PlayableCard = _playableCardB,
+
+                Value = 3
+            };
+
+            _playableCardB.CardStatus = new List<CardStatus> { poisonStatus };
+
+            // _playableCardB.Health = _playableCardA.Attack;
+
+
+
+            _currentPlayerData.BattleField.Add(_playableCardA);
+            _opposingPlayerData.BattleField.Add(_playableCardB);
+            var playerTurnEvent = new PlayerEndTurnEvent(_match, _currentPlayerData, _opposingPlayerData, NB_MANA_PER_TURN);
+
+
+
+
+
+            //Modifier la vérfication
+            Assert.AreEqual(_currentPlayerData.PlayerId, playerTurnEvent.PlayerId);
+            //TODO:  Ajouter vérification que le poison a stack (doit être 5 au lieu de 6, puisque la valeur du poison aura baissé à la fin du round
+            Assert.AreEqual(6, _playableCardB.GetStatusValue(Status.STUNNEDX_ID));
+
+
+
+        }
+
         //Test pour vérifier que la carte stunned n'a pas été activée
         [TestMethod]
         public void StunnedCardDidNotAttack()
@@ -763,6 +822,64 @@ namespace Tests.Combat
         }
 
 
+        [TestMethod]
+        public void ApplyDamageDownStackStatus()
+        {
+            //Création du DamageDownAttack
+            Power dmgdown = new Power
+            {
+                Id = Power.DAMAGE_DOWN_ATTACK_ID
+            };
+
+            //Création du CardPower pour la carte attaquante
+            CardPower cardPower = new CardPower
+            {
+                Power = dmgdown,
+                CardId = _cardA.Id,
+                Card = _cardA,
+                Value = 3
+            };
+            _cardA.CardPowers = new List<CardPower> { cardPower };
+
+            //Création du Status 
+            Status dmgStatus = new Status
+            {
+                Id = Status.DAMAGE_DOWNX_ID
+            };
+
+
+            //Création du CardStatus + ajout à la carte B
+            CardStatus DamageDownStatus = new CardStatus
+            {
+                StatusId = Status.DAMAGE_DOWNX_ID,
+                Status = dmgStatus,
+                PlayableCard = _playableCardB,
+
+                Value = 3
+            };
+
+            _playableCardB.CardStatus = new List<CardStatus> { DamageDownStatus };
+
+            // _playableCardB.Health = _playableCardA.Attack;
+
+
+
+            _currentPlayerData.BattleField.Add(_playableCardA);
+            _opposingPlayerData.BattleField.Add(_playableCardB);
+            var playerTurnEvent = new PlayerEndTurnEvent(_match, _currentPlayerData, _opposingPlayerData, NB_MANA_PER_TURN);
+
+
+
+
+
+            //Modifier la vérfication
+            Assert.AreEqual(_currentPlayerData.PlayerId, playerTurnEvent.PlayerId);
+            //TODO:  Ajouter vérification que le poison a stack (doit être 5 au lieu de 6, puisque la valeur du poison aura baissé à la fin du round
+            Assert.AreEqual(6, _playableCardB.GetStatusValue(Status.DAMAGE_DOWNX_ID));
+
+
+
+        }
 
 
         //test pour vérifier que l'effet n'a PAS été réduit à la fin d'un round ( reste statique jusqu'à ce que l'effet disparait)

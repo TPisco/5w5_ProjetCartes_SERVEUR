@@ -20,11 +20,11 @@ namespace WebApi.Combat.PowerEvent
             PlayerId = defender.PlayerId;
             TargetCardId = defendingCard.Id;
             Value = defendingCard.GetStatusValue(Status.STUNNEDX_ID);
-            //Valeur de l'effet de poison
+            //Valeur de l'effet de Stun
             CardStatus status = defendingCard.CardStatus.Where(c => c.StatusId == Status.STUNNEDX_ID).First();
-      
-            //Réduire la valeur du poison. Si le poison est = à 0, retirer le status de la carte
-            if(status.Value - 1 <= 0)
+
+            //Réduire la valeur du Stun. Si le Stun est = à 0, retirer le status de la carte
+            if (status.Value - 1 <= 0)
             {
                 defendingCard.CardStatus.Remove(status);
             }
