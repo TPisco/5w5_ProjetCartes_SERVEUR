@@ -7,9 +7,13 @@ namespace Super_Cartes_Infinies.Combat
     {
         public override string EventType { get { return "EndMatch"; } }
         public int WinningPlayerId { get; set; }
+        public string WinningStringId { get; set; }
 
         public int ELOWinner { get; set; }
         public int ELOLoser { get; set; }
+
+        public int EloGagne { get; set; }
+        public int EloPerdu { get; set; }
 
         public EndMatchEvent(Match match, MatchPlayerData winningPlayerData, MatchPlayerData losingPlayerData)
         {
@@ -29,17 +33,23 @@ namespace Super_Cartes_Infinies.Combat
                 userId = match.UserBId;
 
             match.WinnerUserId = userId;
+            
 
             int WinnerElo = winningPlayerData.Player.ELO;
             int LoserElo = losingPlayerData.Player.ELO;
 
             CalculateELO(ref WinnerElo, ref LoserElo, 1);
 
+            EloGagne = WinnerElo - winningPlayerData.Player.ELO ;
+            EloPerdu = losingPlayerData.Player.ELO - LoserElo;
+
             winningPlayerData.Player.ELO = WinnerElo;
             losingPlayerData.Player.ELO = LoserElo;
 
             ELOLoser = LoserElo;
             ELOWinner = WinnerElo;
+
+            WinningStringId = winningPlayerData.Player.UserId;
 
 
         }
