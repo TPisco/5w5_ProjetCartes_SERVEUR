@@ -19,7 +19,7 @@ namespace WebApi.Combat
             //Les pouvoirs d'affliger un status et les spells devraient être fait pour les cartes qui attaquent, le poison dmg doit être géré pour les cartes du defender ( la cible) 
             for (int i = attacker.BattleField.Count - 1; i >= 0; i--)
             {
-
+                
                 var atkCard = attacker.BattleField[i];
                 //Ici qu'on gère si les cartes on un status qu'ils peuvent infliger
                 //Gère aussi les dmg d'un status avant que la carte attaque
@@ -41,67 +41,127 @@ namespace WebApi.Combat
 
 
                 //Vérifier qu'une carte n'est pas stunned, sinon elle ne fait rien
-            //    //If(card.HasStatus(Status.STUNNEX_ID)){
-            //    return;
-            //}
-
+                //    //If(card.HasStatus(Status.STUNNEX_ID)){
+                //    return;
+                //}
+               
                 if (i < defender.BattleField.Count)
                 {
                     var defCard = defender.BattleField[i];
 
-                    if (atkCard.HasPower(Power.FIRST_STRIKE_ID))
+                    if (!atkCard.HasStatus(Status.STUNNEDX_ID))
                     {
-                        if ( defCard.Health- atkCard.Attack <= 0)
+                        if (atkCard.HasPower(Power.FIRST_STRIKE_ID))
                         {
-                            Events.Add(new FirstStrikeEvent(match, attacker, defender, i));
-                            continue;
+                            if (defCard.Health - atkCard.Attack <= 0)
+                            {
+                                Events.Add(new FirstStrikeEvent(match, attacker, defender, i));
+                                continue;
+                            }
                         }
+
+                        if (defCard.HasPower(Power.THORNS_ID))
+                        {
+                            Events.Add(new ThornsEvent(defCard, atkCard, attacker));
+                            if (atkCard.Health - defCard.GetPowerValue(Power.THORNS_ID) <= 0) continue;
+                        }
+
+                        Events.Add(new CardDamageEvent(atkCard.Attack, defCard, defender));
+
+                        if (atkCard.HasPower(Power.HEAL_ID))
+                            Events.Add(new HealEvent(attacker, atkCard));
+
+                        //On vérifie si la carte attaquante possède le pouvoir PoisonAttack. Si oui, on applique l'effet à la carte adverse
+                        if (atkCard.HasPower(Power.POISON_ATTACK_ID))
+                        {
+
+                            //Requête LINQ pour chercher dans la liste de CardStatus de la carte le poison qu'il a déjà sur lui
+                            //PRendre la Value du poisonAttack : getPowerValue
+                            //Faire ci-dessus dans ApplyPoisonEvent ^^^^^^
+
+                            //Ajout d'un ApplyPoisonEvent (quand il sera créé) prend attacker, atkCard et Value du poison en paramètres
+
+                            Events.Add(new ApplyPoisonEvent(atkCard, defCard, defender));
+                        }
+                        //On vérifie si la carte attaquante possède le pouvoir StunAttack. Si oui, on applique l'effet à la carte adverse
+                        if (atkCard.HasPower(Power.STUN_ATTACK_ID))
+                        {
+
+
+                            Events.Add(new ApplyStunEvent(atkCard, defCard, defender));
+                        }
+
+                        //On vérifie si la carte attaquante possède le pouvoir DamageDown. Si oui, on applique l'effet à la carte adverse
+                        if (atkCard.HasPower(Power.DAMAGE_DOWN_ATTACK_ID))
+                        {
+
+
+                            Events.Add(new ApplyDamageDownEvent(atkCard, defCard, defender));
+                        }
+
+                        //Ajouter le ChaosEvent
+
+                        //TODO :Ajouter le ApplyStunEvent
+
+                        Events.Add(new CardDamageEvent(defCard.Attack, atkCard, attacker));
                     }
-
-                    if (defCard.HasPower(Power.THORNS_ID))
+                    else
                     {
-                        Events.Add(new ThornsEvent(defCard, atkCard, attacker));
-                        if (atkCard.Health - defCard.GetPowerValue(Power.THORNS_ID) <= 0) continue;
+                        Events.Add(new StunEvent(atkCard,attacker));
                     }
+                    //if (atkCard.HasPower(Power.FIRST_STRIKE_ID))
+                    //{
+                    //    if (defCard.Health - atkCard.Attack <= 0)
+                    //    {
+                    //        Events.Add(new FirstStrikeEvent(match, attacker, defender, i));
+                    //        continue;
+                    //    }
+                    //}
 
-                    Events.Add(new CardDamageEvent(atkCard.Attack, defCard, defender));
+                    //if (defCard.HasPower(Power.THORNS_ID))
+                    //{
+                    //    Events.Add(new ThornsEvent(defCard, atkCard, attacker));
+                    //    if (atkCard.Health - defCard.GetPowerValue(Power.THORNS_ID) <= 0) continue;
+                    //}
 
-                    if (atkCard.HasPower(Power.HEAL_ID))
-                        Events.Add(new HealEvent(attacker, atkCard));
+                    //Events.Add(new CardDamageEvent(atkCard.Attack, defCard, defender));
 
+                    //if (atkCard.HasPower(Power.HEAL_ID))
+                    //    Events.Add(new HealEvent(attacker, atkCard));
 
-                    if (atkCard.HasPower(Power.POISON_ATTACK_ID))
-                    {
+                    ////On vérifie si la carte attaquante possède le pouvoir PoisonAttack. Si oui, on applique l'effet à la carte adverse
+                    //if (atkCard.HasPower(Power.POISON_ATTACK_ID))
+                    //{
                  
-                        //Requête LINQ pour chercher dans la liste de CardStatus de la carte le poison qu'il a déjà sur lui
-                        //PRendre la Value du poisonAttack : getPowerValue
-                        //Faire ci-dessus dans ApplyPoisonEvent ^^^^^^
+                    //    //Requête LINQ pour chercher dans la liste de CardStatus de la carte le poison qu'il a déjà sur lui
+                    //    //PRendre la Value du poisonAttack : getPowerValue
+                    //    //Faire ci-dessus dans ApplyPoisonEvent ^^^^^^
 
-                        //Ajout d'un ApplyPoisonEvent (quand il sera créé) prend attacker, atkCard et Value du poison en paramètres
+                    //    //Ajout d'un ApplyPoisonEvent (quand il sera créé) prend attacker, atkCard et Value du poison en paramètres
 
-                        Events.Add(new ApplyPoisonEvent(atkCard, defCard, defender));
-                    }
-
-                    if (atkCard.HasPower(Power.STUN_ATTACK_ID))
-                    {
-
-
-                        Events.Add(new ApplyStunEvent(atkCard, defCard, defender));
-                    }
+                    //    Events.Add(new ApplyPoisonEvent(atkCard, defCard, defender));
+                    //}
+                    ////On vérifie si la carte attaquante possède le pouvoir StunAttack. Si oui, on applique l'effet à la carte adverse
+                    //if (atkCard.HasPower(Power.STUN_ATTACK_ID))
+                    //{
 
 
-                    if (atkCard.HasPower(Power.DAMAGE_DOWN_ATTACK_ID))
-                    {
+                    //    Events.Add(new ApplyStunEvent(atkCard, defCard, defender));
+                    //}
+
+                    ////On vérifie si la carte attaquante possède le pouvoir DamageDown. Si oui, on applique l'effet à la carte adverse
+                    //if (atkCard.HasPower(Power.DAMAGE_DOWN_ATTACK_ID))
+                    //{
 
 
-                        Events.Add(new ApplyDamageDownEvent(atkCard, defCard, defender));
-                    }
+                    //    Events.Add(new ApplyDamageDownEvent(atkCard, defCard, defender));
+                    //}
 
-                    //Ajouter le ChaosEvent
+                    ////Ajouter le ChaosEvent
 
-                    //TODO :Ajouter le ApplyStunEvent
+                    ////TODO :Ajouter le ApplyStunEvent
 
-                    Events.Add(new CardDamageEvent(defCard.Attack, atkCard, attacker));
+                    //Events.Add(new CardDamageEvent(defCard.Attack, atkCard, attacker));
 
                     if (defCard.HasStatus(Status.POISONX_ID))
                     {
@@ -109,13 +169,7 @@ namespace WebApi.Combat
 
                     }
 
-                    //Ajouter le PoisonDamage Ici
-                    //if (atkCard.HasStatus(Status.POISONX_ID))
-                    //{
-                    //    //Events.Add(new PoisonDamageEvent())
-
-                    //}
-
+                 
                     //Ajouter le Chaos
 
 
@@ -128,9 +182,11 @@ namespace WebApi.Combat
                     Events.Add(new PlayerDamageEvent(atkCard.Attack, defender, match, attacker));
                 }
 
+             
+
                 if (atkCard.HasStatus(Status.POISONX_ID))
                 {
-                    Events.Add(new PoisonDamageEvent(atkCard, defender));
+                    Events.Add(new PoisonDamageEvent(atkCard, attacker));
 
                 }
             }

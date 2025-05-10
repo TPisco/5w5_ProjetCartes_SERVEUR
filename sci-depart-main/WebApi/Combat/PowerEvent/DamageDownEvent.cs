@@ -40,4 +40,4 @@ namespace WebApi.Combat.PowerEvent
 
     }
 }
-}
+
