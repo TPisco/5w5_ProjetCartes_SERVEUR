@@ -346,16 +346,16 @@ namespace Tests.Combat
             _playableCardB.CardStatus = new List<CardStatus> { poisonStatus };
 
           
-          //  _currentPlayerData.BattleField.Add(_playableCardA);
-            _currentPlayerData.BattleField.Add(_playableCardB);
+            _currentPlayerData.BattleField.Add(_playableCardA);
+            _opposingPlayerData.BattleField.Add(_playableCardB);
             var playerTurnEvent = new PlayerEndTurnEvent(_match, _currentPlayerData, _opposingPlayerData, NB_MANA_PER_TURN);
-
+         //   var playerTurnEvent2 = new PlayerEndTurnEvent(_match, _currentPlayerData, _opposingPlayerData, NB_MANA_PER_TURN);
             //Assert.AreEqual(4, _playableCardB.GetStatusValue(Status.POISONX_ID));
             //round de l'autre joueur
-           // var playerTurnEvent2 = new PlayerEndTurnEvent(_match, _opposingPlayerData, _currentPlayerData, NB_MANA_PER_TURN);
+            // var playerTurnEvent2 = new PlayerEndTurnEvent(_match, _opposingPlayerData, _currentPlayerData, NB_MANA_PER_TURN);
 
 
-                AssertOpposingPlayerCardDied();
+            AssertOpposingPlayerCardDied();
             
 
 
@@ -575,37 +575,37 @@ namespace Tests.Combat
                 Power = stunAttackPower,
                 CardId = _cardA.Id,
                 Card = _cardA,
-                Value = 2
+                Value = 4
 
             };
             _cardA.CardPowers = new List<CardPower> { cardPower };
 
 
-            //Création du status Stun
-            Status stunned = new Status
-            {
-                Id = Status.STUNNEDX_ID
+            ////Création du status Stun
+            //Status stunned = new Status
+            //{
+            //    Id = Status.STUNNEDX_ID
 
-            };
+            //};
 
-            //Création du CardStatus
-            CardStatus cardStatusStunned = new CardStatus
-            {
-                PlayableCardId = _playableCardA.Id,
-                PlayableCard = _playableCardB,
-                StatusId = Status.STUNNEDX_ID,
-                Status = stunned
-            };
-            _playableCardA.CardStatus = new List<CardStatus> { cardStatusStunned };
+            ////Création du CardStatus
+            //CardStatus cardStatusStunned = new CardStatus
+            //{
+            //    PlayableCardId = _playableCardA.Id,
+            //    PlayableCard = _playableCardB,
+            //    StatusId = Status.STUNNEDX_ID,
+            //    Status = stunned
+            //};
+            //_playableCardA.CardStatus = new List<CardStatus> { cardStatusStunned };
 
             //Stocker les Hp de la carte B
-            var CardAHp = _playableCardA.Health;
+            //var CardAHp = _playableCardA.Health;
 
             _currentPlayerData.BattleField.Add(_playableCardA);
             _opposingPlayerData.BattleField.Add(_playableCardB);
             var playerTurnEvent = new PlayerEndTurnEvent(_match, _currentPlayerData, _opposingPlayerData, NB_MANA_PER_TURN);
-
-            var playerTurnEvent2 = new PlayerEndTurnEvent(_match, _currentPlayerData, _opposingPlayerData, NB_MANA_PER_TURN);
+            var CardAHp = _playableCardA.Health;
+            var playerTurnEvent2 = new PlayerEndTurnEvent(_match, _opposingPlayerData, _currentPlayerData, NB_MANA_PER_TURN);
 
             if (_playableCardB.CardStatus != null)
             {
@@ -666,8 +666,9 @@ namespace Tests.Combat
             _opposingPlayerData.BattleField.Add(_playableCardB);
             var playerTurnEvent = new PlayerEndTurnEvent(_match, _currentPlayerData, _opposingPlayerData, NB_MANA_PER_TURN);
 
-          //  Assert.AreEqual(2, _playableCardB.GetStatusValue(Status.STUNNEDX_ID));
-          //  var playerTurnEvent2 = new PlayerEndTurnEvent(_match, _opposingPlayerData, _currentPlayerData, NB_MANA_PER_TURN);
+            var playerTurnEvent2 = new PlayerEndTurnEvent(_match, _opposingPlayerData, _currentPlayerData, NB_MANA_PER_TURN);
+            //  Assert.AreEqual(2, _playableCardB.GetStatusValue(Status.STUNNEDX_ID));
+            //  var playerTurnEvent2 = new PlayerEndTurnEvent(_match, _opposingPlayerData, _currentPlayerData, NB_MANA_PER_TURN);
 
 
             if (_playableCardB.CardStatus != null)
