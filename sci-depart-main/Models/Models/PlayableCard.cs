@@ -21,6 +21,8 @@ namespace Super_Cartes_Infinies.Models
 		public int Health { get; set; }
         public int Attack { get; set; }
 
+        // Nouvelle propriété pour suivre la réduction cumulative de l'attaque
+       // public int TotalDamageDown { get; set; } = 0;
 
         //Ajouter cette propriété si nécessaire pour le ChaosEvent
         public bool HasTriggeredChaos { get; set; } = false;

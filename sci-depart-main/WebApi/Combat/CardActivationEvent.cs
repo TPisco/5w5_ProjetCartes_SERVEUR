@@ -38,17 +38,21 @@ namespace WebApi.Combat
                 //Modifier apres avec SHIELD_ID
                 if (atkCard.HasPower(Power.SHIELD_ID))
                     Events.Add(new ShieldEvent(attacker, atkCard));
+
+
+                //Ajouter le ChaosEvent
                 if (atkCard.HasPower(Power.CHAOS_ID) && atkCard.HasTriggeredChaos == false)
                 {
-                 //   Events.Add(new ChaosEvent(atkCard, attacker.BattleField, defender.BattleField));
-                }
+                    Events.Add(new ChaosEvent(atkCard, attacker.BattleField, defender.BattleField));
 
+
+                }
 
                 //Vérifier qu'une carte n'est pas stunned, sinon elle ne fait rien
                 //    //If(card.HasStatus(Status.STUNNEX_ID)){
                 //    return;
                 //}
-               
+
                 if (i < defender.BattleField.Count)
                 {
                     var defCard = defender.BattleField[i];
@@ -101,13 +105,10 @@ namespace WebApi.Combat
 
 
                             Events.Add(new ApplyDamageDownEvent(atkCard, defCard, defender));
+                            Events.Add(new DamageDownEvent(defCard, defender));
                         }
 
-                        //Ajouter le ChaosEvent
-                        if (atkCard.HasPower(Power.CHAOS_ID))
-                        {
-                        //    Events.Add(new ChaosEvent());
-                        }
+                     
 
                         //TODO :Ajouter le ApplyStunEvent
 

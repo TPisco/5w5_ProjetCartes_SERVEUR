@@ -1,4 +1,5 @@
-﻿using Models.Migrations;
+﻿using Microsoft.AspNetCore.Routing;
+using Models.Migrations;
 using Models.Models;
 using Super_Cartes_Infinies.Combat;
 using Super_Cartes_Infinies.Models;
@@ -9,6 +10,7 @@ using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 using Tests.Services;
+using WebApi.Combat.PowerEvent;
 using Status = Models.Models.Status;
 
 namespace Tests.Combat
@@ -1087,6 +1089,47 @@ namespace Tests.Combat
         }
 
         // test pour vérifier que toutes les cartes ont été affectées par le ChaosEvent
+        [TestMethod]
+        public void ChaosEvent_Should_Affect_Attacker_And_Defender_Cards()
+        {
+            var chaosCard = new PlayableCard { Attack = 5, Health = 10, HasTriggeredChaos = false };
+            var attacker = new MatchPlayerData
+            {
+                BattleField = new List<PlayableCard>
+        {
+            new PlayableCard { Attack = 3, Health = 6 },
+            new PlayableCard { Attack = 4, Health = 8 }
+        }
+            };
+            var defender = new MatchPlayerData
+            {
+                BattleField = new List<PlayableCard>
+        {
+            new PlayableCard { Attack = 7, Health = 2 },
+            new PlayableCard { Attack = 9, Health = 1 }
+        }
+            };
+            
+            // Appliquez le ChaosEvent
+            var chaosEvent = new ChaosEvent(chaosCard, attacker.BattleField, defender.BattleField);
+
+            // Vérifiez que les cartes de l'attaquant ont été affectées
+            Assert.AreEqual(6, attacker.BattleField[0].Attack);
+            Assert.AreEqual(3, attacker.BattleField[0].Health);
+            Assert.AreEqual(8, attacker.BattleField[1].Attack);
+            Assert.AreEqual(4, attacker.BattleField[1].Health);
+
+            // Vérifiez que les cartes du défenseur ont été affectées
+            Assert.AreEqual(2, defender.BattleField[0].Attack);
+            Assert.AreEqual(7, defender.BattleField[0].Health);
+            Assert.AreEqual(1, defender.BattleField[1].Attack);
+            Assert.AreEqual(9, defender.BattleField[1].Health);
+
+            // Vérifiez que le ChaosEvent ne peut pas être appliqué une deuxième fois
+            var secondChaosEvent = new ChaosEvent(chaosCard, attacker.BattleField, defender.BattleField);
+            Assert.AreEqual(6, attacker.BattleField[0].Attack); // Pas de changement
+            Assert.AreEqual(3, attacker.BattleField[0].Health); // Pas de changement
+        }
 
 
         // test pour vérifier que le ChaosEvent n'a été appliqué qu'une seule fois 
