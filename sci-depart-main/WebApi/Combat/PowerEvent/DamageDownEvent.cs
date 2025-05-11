@@ -15,19 +15,19 @@ namespace WebApi.Combat.PowerEvent
 
         public int Value { get; set; }
 
-
+        //A MODIFIER
         public DamageDownEvent(PlayableCard defendingCard, MatchPlayerData defender)
         {
             PlayerId = defender.PlayerId;
             TargetCardId = defendingCard.Id;
-            Value = defendingCard.GetStatusValue(Status.POISONX_ID);
-           // var reducedDmgValue = 
+            Value = defendingCard.GetStatusValue(Status.DAMAGE_DOWNX_ID);
+          
             var oldDmg = defendingCard.Attack;
-            //Valeur de l'effet de poison
-            CardStatus status = defendingCard.CardStatus.Where(c => c.StatusId == Status.POISONX_ID).First();
-            //TODO : Vérifier la logique du CardDamageEvent
+          
+            CardStatus status = defendingCard.CardStatus.Where(c => c.StatusId == Status.DAMAGE_DOWNX_ID).First();
+     
             defendingCard.Attack = oldDmg - Value;
-            //Réduire la valeur du poison. Si le poison est = à 0, retirer le status de la carte
+            //Réduire la valeur du DamageDown. Si le poison est = à 0, retirer le status de la carte
             if (status.Value - 1 <= 0)
             {
                 defendingCard.CardStatus.Remove(status);

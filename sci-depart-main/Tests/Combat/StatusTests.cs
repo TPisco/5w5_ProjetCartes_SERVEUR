@@ -1086,6 +1086,11 @@ namespace Tests.Combat
 
         }
 
+        // test pour vérifier que toutes les cartes ont été affectées par le ChaosEvent
+
+
+        // test pour vérifier que le ChaosEvent n'a été appliqué qu'une seule fois 
+
 
     }
 }

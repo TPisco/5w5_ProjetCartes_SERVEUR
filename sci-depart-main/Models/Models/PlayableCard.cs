@@ -21,6 +21,10 @@ namespace Super_Cartes_Infinies.Models
 		public int Health { get; set; }
         public int Attack { get; set; }
 
+
+        //Ajouter cette propriété si nécessaire pour le ChaosEvent
+        public bool HasTriggeredChaos { get; set; } = false;
+
         public virtual List<CardStatus> CardStatus { get; set; } = [];
 
         //Ajout des méthodes pour le premier livrable d'équipe
