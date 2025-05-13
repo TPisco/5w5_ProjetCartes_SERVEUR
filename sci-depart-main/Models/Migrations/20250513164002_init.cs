@@ -75,7 +75,8 @@ namespace Models.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    MatchId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -415,9 +416,9 @@ namespace Models.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "11111111-1111-1111-1111-111111111111", 0, "e169d1fb-236a-4f10-9266-7162d1d9b2ec", "admin@admin.com", true, true, null, "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAIAAYagAAAAEJ3CI8wuON/sLGWkvo25BVEm1H73fTExJw4ymEyzva1VC54FlBEPENX4FM6ml+alLA==", null, false, "0fee92ed-7621-41ec-abec-206f9ba80c65", false, "admin@admin.com" },
-                    { "User1Id", 0, "0011c3d7-6891-4801-a615-57c741a8b7f2", null, false, false, null, null, null, null, null, false, "f7fd592a-25f0-4922-ac86-4649aeb49f53", false, null },
-                    { "User2Id", 0, "1ba0afc8-9113-4d47-9e0a-1ccf95b7dc3b", null, false, false, null, null, null, null, null, false, "463b4d1f-6faf-44d9-89f6-30136d1b2068", false, null }
+                    { "11111111-1111-1111-1111-111111111111", 0, "366e9d4e-6577-486a-8aea-81b443fa1f8c", "admin@admin.com", true, true, null, "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAIAAYagAAAAEI0dXxfoG0C5/B5FKPl+lJ6e0u9xK3cAMFmySLpl1jaIafDL8Jz61fI2Ko1hH1nFgQ==", null, false, "2a911f03-f45b-4b5f-be69-10862c32dee2", false, "admin@admin.com" },
+                    { "User1Id", 0, "0ce923f9-7a44-4359-ba2a-5d85a9d07c50", null, false, false, null, null, null, null, null, false, "c1389929-f0a7-4281-9704-ff20362b250c", false, null },
+                    { "User2Id", 0, "f85c4e42-41f2-4828-bc11-f7c8ca2177a5", null, false, false, null, null, null, null, null, false, "b0150c08-5698-4253-95dd-e0e1dc7ec1f6", false, null }
                 });
 
             migrationBuilder.InsertData(

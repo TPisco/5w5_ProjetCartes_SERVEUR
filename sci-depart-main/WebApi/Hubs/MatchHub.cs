@@ -2,12 +2,12 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
+using Models.Models;
 using Super_Cartes_Infinies.Data;
 using Super_Cartes_Infinies.Models;
 using Super_Cartes_Infinies.Models.Dtos;
 using Super_Cartes_Infinies.Services;
 using System.Text.RegularExpressions;
-using System.Threading.Channels;
 
 namespace Super_Cartes_Infinies.Hubs;
 
@@ -28,6 +28,7 @@ public class MatchHub : Hub
 
     ApplicationDbContext _context;
     MatchesService _matchesService;
+
 
   
     public MatchHub(ApplicationDbContext context, MatchesService matchesService) 
@@ -54,6 +55,7 @@ public class MatchHub : Hub
 
         JoiningMatchData? joiningMatchData = await _matchesService.JoinMatch(userId, connectionId, specificMatchId);
 
+
         
 
         if (joiningMatchData != null)
@@ -69,7 +71,12 @@ public class MatchHub : Hub
 
             //await Clients.Group(joiningMatchData.Match.Id.ToString()).SendAsync("JoiningMatchData", joiningMatchData);
 
+            if (specificMatchId != null)
+            {
+                CreateChannel(specificMatchId.Value);
+            }
 
+            // Vérifier si c'est un visiteur ou player
 
             if (!joiningMatchData.IsStarted)
             {
@@ -81,6 +88,7 @@ public class MatchHub : Hub
 
                await Clients.Group(joiningMatchData.Match.Id.ToString()).SendAsync("StartMatch", startMatchEvent);
             }
+
         }
         else
         {
@@ -145,6 +153,8 @@ public class MatchHub : Hub
         await Clients.All.SendAsync("UsersList", UserHandler.UserConnections.ToList());
     }
 
+
+    // Signal R CHAT
     private async Task JoinChat()
     {
         UserHandler.UserConnections.Add(CurrentUser.Email!, Context.UserIdentifier);
@@ -158,14 +168,54 @@ public class MatchHub : Hub
         if (channelId != 0)
         {
             string groupName = CreateChannelGroupName(channelId);
-            //Channel channel = _context.Channel.Find(channelId);
-            await Clients.Group(groupName).SendAsync("NewMessage", "[" + CurrentUser.Email + "] " + message);
+            Channel channel = _context.Channel.Find(channelId);
+            await Clients.Group(groupName).SendAsync("NewMessage", "[" + CurrentUser.UserName + "] " + message);
         }
     }
 
     private static string CreateChannelGroupName(int channelId)
     {
         return "Channel" + channelId;
+    }
+
+    public async Task CreateChannel(int matchId)
+    {
+        // Pas besoin de créer un modèle Channel, car on ne veut pas sauvegarder les messages 
+
+         var channel = new Channel { Name = matchId.ToString(), MatchId = matchId };
+        string groupName = CreateChannelGroupName(matchId);
+        await Groups.AddToGroupAsync(Context.ConnectionId, groupName);
+        
+
+         _context.Channel.Add(channel);
+
+         await _context.SaveChangesAsync();
+
+         await Clients.Caller.SendAsync("Channel", channel);
+    }
+
+    public async Task JoinChannel(int oldChannelId, int newChannelId)
+    {
+        string userTag = "[" + CurrentUser.UserName! + "]";
+
+        if (oldChannelId > 0)
+        {
+            string oldGroupName = CreateChannelGroupName(oldChannelId);
+            Channel channel = _context.Channel.Find(oldChannelId);
+            string message = userTag + " quitte: " + channel.Name;
+            await Clients.Group(oldGroupName).SendAsync("NewMessage", message);
+            await Groups.RemoveFromGroupAsync(Context.ConnectionId, oldGroupName);
+        }
+
+        if (newChannelId > 0)
+        {
+            string newGroupName = CreateChannelGroupName(newChannelId);
+            await Groups.AddToGroupAsync(Context.ConnectionId, newGroupName);
+
+            Channel channel = _context.Channel.Find(newChannelId);
+            string message = userTag + " a rejoint : " + channel.Name;
+            await Clients.Group(newGroupName).SendAsync("NewMessage", message);
+        }
     }
 
 }
