@@ -387,18 +387,30 @@ namespace Tests.Combat
             _cardA.CardPowers = new List<CardPower> { cardPower };
 
             //on stocke les valeurs inversées prévues de la carte pour la vérification
-            var newHealth = _playableCardB.Attack;
-            var newAttack = _playableCardB.Health;
+            var newHealthB = _playableCardB.Attack;
+            var newAttackB = _playableCardB.Health;
+
+
+            var newHealthA = _playableCardA.Attack;
+            var newAttackA = _playableCardA.Health;
 
             //Ajout des cartes sur le terrain 
             _currentPlayerData.BattleField.Add(_playableCardA);
             _opposingPlayerData.BattleField.Add(_playableCardB);
 
-            var playerTurnEvent = new PlayerEndTurnEvent(_match, _currentPlayerData, _opposingPlayerData, NB_MANA_PER_TURN);
 
+            var chaosTest = new ChaosEvent(_playableCardA, _currentPlayerData.BattleField, _opposingPlayerData.BattleField);
+           // var playerTurnEvent = new PlayerEndTurnEvent(_match, _currentPlayerData, _opposingPlayerData, NB_MANA_PER_TURN);
 
-            Assert.AreEqual(newHealth, _playableCardB.Health);
-            Assert.AreEqual(newAttack, _playableCardB.Attack);
+            //Vérification de la carte B
+            Assert.AreEqual(newHealthB, _playableCardB.Health);
+            Assert.AreEqual(newAttackB, _playableCardB.Attack);
+
+            //Vérification de la carte A
+            Assert.AreEqual(newHealthA, _playableCardA.Health);
+            Assert.AreEqual(newAttackA, _playableCardA.Attack);
+
+            Assert.IsTrue(_playableCardA.HasTriggeredChaos);
 
         }
 
