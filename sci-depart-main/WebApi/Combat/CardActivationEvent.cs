@@ -76,6 +76,8 @@ namespace WebApi.Combat
                             if (atkCard.Health - defCard.GetPowerValue(Power.THORNS_ID) <= 0) continue;
                         }
 
+
+                     
                         if (atkCard.HasStatus(Status.DAMAGE_DOWNX_ID))
                         {
                             Events.Add(new DamageDownEvent(atkCard, defCard, defender));
@@ -124,11 +126,12 @@ namespace WebApi.Combat
 
                        
                         if (defCard.HasStatus(Status.DAMAGE_DOWNX_ID)) {
-                            Events.Add(new CardDamageEvent(defCard.Attack, atkCard, attacker));
+                            Events.Add(new DamageDownEvent(defCard, atkCard, attacker));
+                            
                         }
                         else
                         {
-                            Events.Add(new DamageDownEvent(defCard, atkCard, attacker));
+                            Events.Add(new CardDamageEvent(defCard.Attack, atkCard, attacker));
                         }
                             
                     }

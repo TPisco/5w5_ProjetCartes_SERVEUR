@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Models.Migrations
 {
     /// <inheritdoc />
-    public partial class Status : Migration
+    public partial class initAgain : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -393,6 +393,7 @@ namespace Models.Migrations
                     CardId = table.Column<int>(type: "int", nullable: false),
                     Health = table.Column<int>(type: "int", nullable: false),
                     Attack = table.Column<int>(type: "int", nullable: false),
+                    HasTriggeredChaos = table.Column<bool>(type: "bit", nullable: false),
                     MatchPlayerDataId = table.Column<int>(type: "int", nullable: true),
                     MatchPlayerDataId1 = table.Column<int>(type: "int", nullable: true),
                     MatchPlayerDataId2 = table.Column<int>(type: "int", nullable: true),
@@ -492,9 +493,9 @@ namespace Models.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "11111111-1111-1111-1111-111111111111", 0, "3fca310b-011e-474b-8acf-486c4455a910", "admin@admin.com", true, true, null, "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAIAAYagAAAAEMCQ7S7ZdIRgnknzvXfjNUWCtZPh+sgH9x6RBE2vS+WUVUZOyLDnfGCPoyzRRUsbew==", null, false, "3c2cc0ca-af78-42d3-99fe-b79956a23504", false, "admin@admin.com" },
-                    { "User1Id", 0, "d97d494b-62dd-4349-8d71-d540b5f6562b", null, false, false, null, null, null, null, null, false, "5e5509dc-a382-428c-8471-bb717b89fb2c", false, null },
-                    { "User2Id", 0, "e832f3c8-dc5b-467e-9c0a-c12380956121", null, false, false, null, null, null, null, null, false, "94aacf20-7a44-4e24-955c-ece9fd7d5cb0", false, null }
+                    { "11111111-1111-1111-1111-111111111111", 0, "d328eba5-a6c8-44e5-80ad-fabb806473a5", "admin@admin.com", true, true, null, "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAIAAYagAAAAEKHNvsAwckzTese1t7cf8IBFX/QG17h8IkAe+WJaDOE+OI/31SznWVOXsSWXb1KmIw==", null, false, "d0ad4290-e084-4a5d-92a3-d80e271d6bc0", false, "admin@admin.com" },
+                    { "User1Id", 0, "29825948-1f50-4d42-b61f-54efa8327fd9", null, false, false, null, null, null, null, null, false, "b4745b12-7331-4f3b-b254-41c521efd6f9", false, null },
+                    { "User2Id", 0, "91e895cd-9324-4085-bb5c-2e3e255d523a", null, false, false, null, null, null, null, null, false, "79a26a6f-2977-4f5d-a623-280fa9aca423", false, null }
                 });
 
             migrationBuilder.InsertData(
@@ -528,7 +529,7 @@ namespace Models.Migrations
                     { 2, "Lorsqu’une carte défend, elle inflige X de dégâts AVANT de recevoir des dégâts. Si l’attaquant est tué par ces dégâts, l’attaque s’arrête et le défenseur ne reçoit pas de dégâts.", true, "🌹", false, "Thorns", 0 },
                     { 3, "Soigne les cartes alliées de X incluant elle-même AVANT d’attaquer (mais les cartes ne peuvent pas avoir plus de health qu’au départ.)", true, "💖", false, "Heal", 0 },
                     { 4, "Augmente la défense d'une carte de X", true, "🛡️", false, "Shield", 0 },
-                    { 5, "Inverse l'attaque et la défense de toutes les cartes en jeu", true, "❂", false, "Chaos", 0 },
+                    { 5, "Inverse l'attaque et la défense de toutes les cartes en jeu", false, "❂", false, "Chaos", 0 },
                     { 6, " Fait X dégâts à TOUTES les cartes en jeu (même les nôtres!)", true, "", true, "EarthQuakeX", 0 },
                     { 7, "Une carte de sort qui inflige des dégâts aléatoires entre 1 et 6 à une carte ennemie.", true, "❓", true, "RandomPain", 0 },
                     { 8, "Inflige du poison à une carte ennemie.", true, "☠", false, "PoisonAttack", 0 },

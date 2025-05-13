@@ -31,11 +31,11 @@ namespace WebApi.Combat.PowerEvent
             //Appeler un CardDamageEvent avec nouveau dmg temporaire
             Events.Add(new CardDamageEvent(Damage, defendingCard, defender));
 
-            CardStatus status = defendingCard.CardStatus.Where(c => c.StatusId == Status.DAMAGE_DOWNX_ID).First();
+            CardStatus status = attackingCard.CardStatus.Where(c => c.StatusId == Status.DAMAGE_DOWNX_ID).First();
      
             if (status.Value - 1 <= 0)
             {
-                defendingCard.CardStatus.Remove(status);
+                attackingCard.CardStatus.Remove(status);
             }
             else
             {
