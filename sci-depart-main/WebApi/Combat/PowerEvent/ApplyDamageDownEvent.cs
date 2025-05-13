@@ -13,15 +13,15 @@ namespace WebApi.Combat.PowerEvent
 
         public int Value { get; set; }
 
-
+        //Attack = PlayableCard.Attack - Value des stacks du status au total
         public ApplyDamageDownEvent(PlayableCard attackingCard, PlayableCard defendingCard, MatchPlayerData defender)
         {
-            //À COMPLÉTER
+            
 
             PlayerId = defender.Id;
             TargetCardId = defendingCard.Id;
             var dmgDownValueToAdd = attackingCard.GetPowerValue(Power.DAMAGE_DOWN_ATTACK_ID);
-            //SI la carte a déjà du Stun, l'ajouter au stack
+            //SI la carte a déjà du DamageDown, l'ajouter au stack
             if (defendingCard.HasStatus(Status.DAMAGE_DOWNX_ID))
             {
                 //Aller chercher le status de la carte victime (utiliser un first???)

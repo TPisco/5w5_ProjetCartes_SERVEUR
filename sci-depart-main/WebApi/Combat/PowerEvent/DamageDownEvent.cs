@@ -2,6 +2,7 @@
 using Models.Models;
 using Super_Cartes_Infinies.Combat;
 using Super_Cartes_Infinies.Models;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace WebApi.Combat.PowerEvent
 {
@@ -13,34 +14,25 @@ namespace WebApi.Combat.PowerEvent
         public int TargetCardId { get; set; }
         public int PlayerId { get; set; }
 
-        public int Value { get; set; }
+        public int Damage { get; set; }
 
         //A MODIFIER
-        public DamageDownEvent(PlayableCard defendingCard, MatchPlayerData defender)
+
+        //Uniquement réduire valeur ici à chaque round
+        public DamageDownEvent(PlayableCard attackingCard,PlayableCard defendingCard, MatchPlayerData defender)
         {
             PlayerId = defender.PlayerId;
             TargetCardId = defendingCard.Id;
-            Value = defendingCard.GetStatusValue(Status.DAMAGE_DOWNX_ID);
+            // Value = defendingCard.GetStatusValue(Status.DAMAGE_DOWNX_ID);
 
-            //  var oldDmg = defendingCard.Attack;
-
-
-            //CODE À AJOUTER PLUS TARD:
-            // Vérifiez la réduction déjà appliquée
-            // int newReduction = Value - defendingCard.TotalDamageDown;
-
-            // Appliquez uniquement la nouvelle réduction
-            //if (newReduction > 0)
-            //{
-            //    defendingCard.Attack -= newReduction;
-            //    defendingCard.TotalDamageDown += newReduction;
-            //}
-
+            //Faire nouveau dmg temporaire  : currentdmg -DmgDown
+            var reducedDmg = attackingCard.Attack - attackingCard.GetStatusValue(Status.DAMAGE_DOWNX_ID);
+            Damage = reducedDmg;
+            //Appeler un CardDamageEvent avec nouveau dmg temporaire
+            Events.Add(new CardDamageEvent(Damage, defendingCard, defender));
 
             CardStatus status = defendingCard.CardStatus.Where(c => c.StatusId == Status.DAMAGE_DOWNX_ID).First();
      
-          //  defendingCard.Attack = oldDmg - Value;
-            //Réduire la valeur du DamageDown. Si le DamageDown est = à 0, retirer le status de la carte
             if (status.Value - 1 <= 0)
             {
                 defendingCard.CardStatus.Remove(status);

@@ -34,6 +34,8 @@ namespace WebApi.Combat
 
 
                 //
+              
+
 
                 //Modifier apres avec SHIELD_ID
                 if (atkCard.HasPower(Power.SHIELD_ID))
@@ -74,7 +76,15 @@ namespace WebApi.Combat
                             if (atkCard.Health - defCard.GetPowerValue(Power.THORNS_ID) <= 0) continue;
                         }
 
-                        Events.Add(new CardDamageEvent(atkCard.Attack, defCard, defender));
+                        if (atkCard.HasStatus(Status.DAMAGE_DOWNX_ID))
+                        {
+                            Events.Add(new DamageDownEvent(atkCard, defCard, defender));
+                        }
+                        else
+                        {
+                            Events.Add(new CardDamageEvent(atkCard.Attack, defCard, defender));
+
+                        }
 
                         if (atkCard.HasPower(Power.HEAL_ID))
                             Events.Add(new HealEvent(attacker, atkCard));
@@ -105,14 +115,22 @@ namespace WebApi.Combat
 
 
                             Events.Add(new ApplyDamageDownEvent(atkCard, defCard, defender));
-                            Events.Add(new DamageDownEvent(defCard, defender));
+                          //  Events.Add(new DamageDownEvent(defCard, defender));
                         }
 
-                     
 
-                        //TODO :Ajouter le ApplyStunEvent
 
-                        Events.Add(new CardDamageEvent(defCard.Attack, atkCard, attacker));
+
+
+                       
+                        if (defCard.HasStatus(Status.DAMAGE_DOWNX_ID)) {
+                            Events.Add(new CardDamageEvent(defCard.Attack, atkCard, attacker));
+                        }
+                        else
+                        {
+                            Events.Add(new DamageDownEvent(defCard, atkCard, attacker));
+                        }
+                            
                     }
                     else
                     {
