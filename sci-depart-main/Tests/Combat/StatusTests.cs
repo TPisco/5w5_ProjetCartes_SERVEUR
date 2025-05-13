@@ -897,20 +897,20 @@ namespace Tests.Combat
         public void DamageDownStatusReduced()
         {
             //Création du pouvoir DamageDown
-            Power DamageDown = new Power
+            Status DamageDown = new Status
             {
-                Id = Power.DAMAGE_DOWN_ATTACK_ID
+                Id = Status.DAMAGE_DOWNX_ID
             };
 
             //Création du CardPower pour la carte attaquante
-            CardPower cardPower = new CardPower
+            CardStatus cardStatus = new CardStatus
             {
-                Power = DamageDown,
-                CardId = _cardA.Id,
-                Card = _cardA,
+                StatusId = Status.DAMAGE_DOWNX_ID,
+                Status = DamageDown,
+                PlayableCard = _playableCardA,
                 Value = 3
             };
-            _cardA.CardPowers = new List<CardPower> { cardPower };
+            _playableCardA.CardStatus = new List<CardStatus> { cardStatus };
 
 
             var oldAttack = _playableCardB.Attack;
@@ -922,10 +922,10 @@ namespace Tests.Combat
 
             var playerTurnEvent = new PlayerEndTurnEvent(_match, _currentPlayerData, _opposingPlayerData, NB_MANA_PER_TURN);
 
-            var playerTurnEvent2 = new PlayerEndTurnEvent(_match, _currentPlayerData, _opposingPlayerData, NB_MANA_PER_TURN);
+           // var playerTurnEvent2 = new PlayerEndTurnEvent(_match, _currentPlayerData, _opposingPlayerData, NB_MANA_PER_TURN);
 
 
-            Assert.AreEqual(2, _playableCardB.Attack);
+            Assert.AreEqual(2, _playableCardA.GetStatusValue(Status.DAMAGE_DOWNX_ID));
 
 
         }
