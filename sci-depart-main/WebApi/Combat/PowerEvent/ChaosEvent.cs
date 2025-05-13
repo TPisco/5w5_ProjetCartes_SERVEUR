@@ -1,6 +1,7 @@
 ﻿using Models.Models;
 using Super_Cartes_Infinies.Combat;
 using Super_Cartes_Infinies.Models;
+using System.Collections.Generic;
 
 namespace WebApi.Combat.PowerEvent
 {
@@ -19,7 +20,7 @@ namespace WebApi.Combat.PowerEvent
 
         //PlayableCard attackingCard, PlayableCard defendingCard, MatchPlayerData defender
         //Est-ce que le ChaosEvent doit recevoir deux listes entières en paramètres? À DEMANDER AU PROF.
-        public ChaosEvent(PlayableCard chaosCard, List<PlayableCard> attackerCards, List<PlayableCard> defenderCards)
+        public ChaosEvent(PlayableCard chaosCard, List<PlayableCard> attackerCards, List<PlayableCard> defenderCards, MatchPlayerData attacker, MatchPlayerData defender)
         {
             //PlayerId = defender.PlayerId;
             //TargetCardId = defendingCard.Id;
@@ -66,22 +67,40 @@ namespace WebApi.Combat.PowerEvent
             chaosCard.HasTriggeredChaos = true;
 
             // Appliquez l'effet Chaos aux cartes de l'attaquant
-            ApplyChaosEffect(attackerCards);
+            ApplyChaosEffect(attackerCards, attacker);
 
             // Appliquez l'effet Chaos aux cartes du défenseur
-            ApplyChaosEffect(defenderCards);
+            ApplyChaosEffect(defenderCards ,defender);
         }
 
         // Méthode pour appliquer l'effet Chaos à une liste de cartes
-        private void ApplyChaosEffect(List<PlayableCard> cards)
+        private void ApplyChaosEffect( List<PlayableCard> cards ,MatchPlayerData player)
         {
+
+            List<PlayableCard> deadCards = new List<PlayableCard>();
+
             foreach (var card in cards)
             {
                 // Inversez les valeurs Attack et Health
                 int originalAttack = card.Attack;
                 card.Attack = card.Health;
                 card.Health = originalAttack;
+                if (card.Health == 0)
+                {
+                    deadCards.Add( card);
+                }
+
             }
+
+          
+
+            foreach (var dead in deadCards)
+            {
+
+                Events.Add(new CardDeathEvent(player, dead));
+            }
+
+
         }
 
     }

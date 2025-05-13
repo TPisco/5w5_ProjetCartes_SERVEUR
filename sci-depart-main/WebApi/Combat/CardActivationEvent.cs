@@ -45,7 +45,7 @@ namespace WebApi.Combat
                 //Ajouter le ChaosEvent
                 if (atkCard.HasPower(Power.CHAOS_ID) && atkCard.HasTriggeredChaos == false)
                 {
-                    Events.Add(new ChaosEvent(atkCard, attacker.BattleField, defender.BattleField));
+                    Events.Add(new ChaosEvent(atkCard, attacker.BattleField, defender.BattleField, attacker,defender));
 
 
                 }
