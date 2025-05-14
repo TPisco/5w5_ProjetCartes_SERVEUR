@@ -800,33 +800,37 @@ namespace Tests.Combat
         public void DamageDownWorks()
         {
             //Création du pouvoir DamageDown
-            Power DamageDown = new Power
+            Status DamageDownStatus = new Status
             {
-                Id = Power.DAMAGE_DOWN_ATTACK_ID
+                Id = Status.DAMAGE_DOWNX_ID
             };
 
             //Création du CardPower pour la carte attaquante
-            CardPower cardPower = new CardPower
+            CardStatus cardStatus = new CardStatus
             {
-                Power = DamageDown,
-                CardId = _cardA.Id,
-                Card = _cardA,
-                  Value = 3
+                StatusId = Status.DAMAGE_DOWNX_ID,
+                Status = DamageDownStatus,
+                PlayableCard = _playableCardA,
+
+                Value = 3
             };
-            _cardA.CardPowers = new List<CardPower> { cardPower };
+            _playableCardA.CardStatus = new List<CardStatus> { cardStatus };
 
            
             var oldAttack = _playableCardB.Attack;
-          
+            //Stockage de
+            var bCardHealth = _playableCardB.Health;
+            var reducedDmg = _playableCardA.Attack - 3;
 
             //Ajout des cartes sur le terrain 
             _currentPlayerData.BattleField.Add(_playableCardA);
             _opposingPlayerData.BattleField.Add(_playableCardB);
 
-            var playerTurnEvent = new PlayerEndTurnEvent(_match, _currentPlayerData, _opposingPlayerData, NB_MANA_PER_TURN);
+            var reducedDmgEvent = new DamageDownEvent(_playableCardA, _playableCardB, _opposingPlayerData);
+        //    var playerTurnEvent = new PlayerEndTurnEvent(_match, _currentPlayerData, _opposingPlayerData, NB_MANA_PER_TURN);
 
 
-            Assert.AreEqual(oldAttack -3 , _playableCardB.Attack);
+            Assert.AreEqual(bCardHealth - reducedDmg , _playableCardB.Health);
            
 
         }
