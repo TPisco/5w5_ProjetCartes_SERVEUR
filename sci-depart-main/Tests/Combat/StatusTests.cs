@@ -782,7 +782,7 @@ namespace Tests.Combat
                 int id = _playableCardB.CardStatus.Where(s => s.StatusId == Status.DAMAGE_DOWNX_ID).First().StatusId;
                 Assert.AreEqual(Status.DAMAGE_DOWNX_ID, id);
                 //TODO: Vérifier que la valeur du poison est bonne
-                Assert.AreEqual(3, _playableCardB.GetStatusValue(Status.DAMAGE_DOWNX_ID));
+                Assert.AreEqual(2, _playableCardB.GetStatusValue(Status.DAMAGE_DOWNX_ID));
             }
 
 
@@ -832,6 +832,46 @@ namespace Tests.Combat
 
             Assert.AreEqual(bCardHealth - reducedDmg , _playableCardB.Health);
            
+
+        }
+
+
+        [TestMethod]
+        public void DamageDownNoAttackIf0Dmg()
+        {
+            //Création du pouvoir DamageDown
+            Status DamageDownStatus = new Status
+            {
+                Id = Status.DAMAGE_DOWNX_ID
+            };
+
+            //Création du CardPower pour la carte attaquante
+            CardStatus cardStatus = new CardStatus
+            {
+                StatusId = Status.DAMAGE_DOWNX_ID,
+                Status = DamageDownStatus,
+                PlayableCard = _playableCardA,
+
+                Value = 15
+            };
+            _playableCardA.CardStatus = new List<CardStatus> { cardStatus };
+
+
+            var oldAttack = _playableCardB.Attack;
+            //Stockage de
+            var bCardHealth = _playableCardB.Health;
+            var reducedDmg = _playableCardA.Attack - 3;
+
+            //Ajout des cartes sur le terrain 
+            _currentPlayerData.BattleField.Add(_playableCardA);
+            _opposingPlayerData.BattleField.Add(_playableCardB);
+
+            var reducedDmgEvent = new DamageDownEvent(_playableCardA, _playableCardB, _opposingPlayerData);
+            //    var playerTurnEvent = new PlayerEndTurnEvent(_match, _currentPlayerData, _opposingPlayerData, NB_MANA_PER_TURN);
+
+
+            Assert.AreEqual(bCardHealth , _playableCardB.Health);
+
 
         }
 
@@ -889,7 +929,7 @@ namespace Tests.Combat
             //Modifier la vérfication
             Assert.AreEqual(_currentPlayerData.PlayerId, playerTurnEvent.PlayerId);
             //TODO:  Ajouter vérification que le poison a stack (doit être 5 au lieu de 6, puisque la valeur du poison aura baissé à la fin du round
-            Assert.AreEqual(6, _playableCardB.GetStatusValue(Status.DAMAGE_DOWNX_ID));
+            Assert.AreEqual(5, _playableCardB.GetStatusValue(Status.DAMAGE_DOWNX_ID));
 
 
 

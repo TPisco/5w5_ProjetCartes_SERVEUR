@@ -28,8 +28,13 @@ namespace WebApi.Combat.PowerEvent
             //Faire nouveau dmg temporaire  : currentdmg -DmgDown
             var reducedDmg = attackingCard.Attack - attackingCard.GetStatusValue(Status.DAMAGE_DOWNX_ID);
             Damage = reducedDmg;
+
             //Appeler un CardDamageEvent avec nouveau dmg temporaire
-            Events.Add(new CardDamageEvent(Damage, defendingCard, defender));
+            if(reducedDmg > 0)
+            {
+                Events.Add(new CardDamageEvent(Damage, defendingCard, defender));
+            }
+           
 
             CardStatus status = attackingCard.CardStatus.Where(c => c.StatusId == Status.DAMAGE_DOWNX_ID).First();
      

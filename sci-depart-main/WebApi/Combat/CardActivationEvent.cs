@@ -95,12 +95,7 @@ namespace WebApi.Combat
                         if (atkCard.HasPower(Power.POISON_ATTACK_ID))
                         {
 
-                            //Requête LINQ pour chercher dans la liste de CardStatus de la carte le poison qu'il a déjà sur lui
-                            //PRendre la Value du poisonAttack : getPowerValue
-                            //Faire ci-dessus dans ApplyPoisonEvent ^^^^^^
-
-                            //Ajout d'un ApplyPoisonEvent (quand il sera créé) prend attacker, atkCard et Value du poison en paramètres
-
+                          
                             Events.Add(new ApplyPoisonEvent(atkCard, defCard, defender));
                         }
                         //On vérifie si la carte attaquante possède le pouvoir StunAttack. Si oui, on applique l'effet à la carte adverse
@@ -117,7 +112,7 @@ namespace WebApi.Combat
 
 
                             Events.Add(new ApplyDamageDownEvent(atkCard, defCard, defender));
-                          //  Events.Add(new DamageDownEvent(defCard, defender));
+                         
                         }
 
 
