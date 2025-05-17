@@ -34,7 +34,10 @@ namespace WebApi.Combat
 
 
                 //
-              
+                if (atkCard.HasPower(Power.EARTHQUAKEX_ID))
+                {
+                    Events.Add(new EarthquakeEvent(atkCard, attacker.BattleField, defender.BattleField, attacker,defender));
+                }
 
 
                 //Modifier apres avec SHIELD_ID

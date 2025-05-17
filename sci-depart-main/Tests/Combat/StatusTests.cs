@@ -1085,7 +1085,7 @@ namespace Tests.Combat
         public void EarthQuake_X()
         {
             //Création du pouvoir Chaos
-            Power randomPain = new Power
+            Power earthquake = new Power
             {
                 Id = Power.EARTHQUAKEX_ID,
                 IsSpell = true
@@ -1094,7 +1094,7 @@ namespace Tests.Combat
             //Création du CardPower pour la carte attaquante
             CardPower cardPower = new CardPower
             {
-                Power = randomPain,
+                Power = earthquake,
                 CardId = _cardA.Id,
                 Card = _cardA,
                 Value =4
