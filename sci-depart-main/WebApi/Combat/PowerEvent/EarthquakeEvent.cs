@@ -73,4 +73,3 @@ namespace WebApi.Combat.PowerEvent
 }
 
 
-}
