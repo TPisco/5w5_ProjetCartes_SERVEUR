@@ -155,6 +155,12 @@ public class MatchHub : Hub
 
 
     // Signal R CHAT
+    private async Task SeeOngoingGame()
+    {
+        var ongoingMatches = await _context.Matches.SingleOrDefaultAsync(m => m.IsMatchCompleted == false);
+        await Clients.All.SendAsync("SeeOngoingGame", ongoingMatches);
+    }
+
     private async Task JoinChat()
     {
         UserHandler.UserConnections.Add(CurrentUser.Email!, Context.UserIdentifier);
