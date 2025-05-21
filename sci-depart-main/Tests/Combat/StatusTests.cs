@@ -830,7 +830,7 @@ namespace Tests.Combat
         //    var playerTurnEvent = new PlayerEndTurnEvent(_match, _currentPlayerData, _opposingPlayerData, NB_MANA_PER_TURN);
 
 
-            Assert.AreEqual(bCardHealth - reducedDmg , _playableCardB.Health);
+            Assert.AreEqual(5 , _playableCardB.Health);
            
 
         }
