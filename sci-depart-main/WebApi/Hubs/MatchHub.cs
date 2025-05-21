@@ -28,13 +28,17 @@ public class MatchHub : Hub
 
     ApplicationDbContext _context;
     MatchesService _matchesService;
+    PlayersService _playersService;
+    WaitingUserService _waitingUserService;
 
 
   
-    public MatchHub(ApplicationDbContext context, MatchesService matchesService) 
+    public MatchHub(ApplicationDbContext context, MatchesService matchesService, PlayersService playersService, WaitingUserService waitingUserService) 
     {
         _context = context;
         _matchesService = matchesService;
+        _playersService = playersService;
+        _waitingUserService = waitingUserService;
     }
    
 
@@ -53,38 +57,50 @@ public class MatchHub : Hub
         string? connectionId = Context.ConnectionId;
         string userId = Context.UserIdentifier;
 
-        JoiningMatchData? joiningMatchData = await _matchesService.JoinMatch(userId, connectionId, specificMatchId);
 
 
         
 
-        if (joiningMatchData != null)
+
+        // Check for ongoing match
+        if (specificMatchId != null)
         {
-            await Clients.Client(connectionId).SendAsync("JoiningMatchData", joiningMatchData);
-            if (joiningMatchData.OtherPlayerConnectionId != null)
+            var joiningMatchData = await _matchesService.JoinMatch(userId, connectionId, specificMatchId);
+
+            if (joiningMatchData != null)
             {
-                await Clients.Client(joiningMatchData.OtherPlayerConnectionId).SendAsync("JoiningMatchData", joiningMatchData);
+                await Clients.Client(connectionId).SendAsync("JoiningMatchData", joiningMatchData);
+
             }
+        }
+        else
+        {
+            var playerInfo = new PlayerInfo
+            {
+                ConnectionId = connectionId,
+                UserId = userId,
+                ELO = _playersService.GetPlayerFromUserId(userId).ELO, //A voir si sa fonctionne :(
+                WaitTimeSeconds = 0
+            };
 
-            await Groups.AddToGroupAsync(connectionId,joiningMatchData.Match.Id.ToString());
-            await Groups.AddToGroupAsync(joiningMatchData.OtherPlayerConnectionId, joiningMatchData.Match.Id.ToString());
+            _waitingUserService.AddPlayer(playerInfo);
+        }
 
-            //await Clients.Group(joiningMatchData.Match.Id.ToString()).SendAsync("JoiningMatchData", joiningMatchData);
+        //JoiningMatchData? joiningMatchData = await _matchesService.JoinMatch(userId, connectionId, specificMatchId);
 
             if (specificMatchId != null)
             {
                 CreateChannel(specificMatchId.Value);
             }
 
-            // Vérifier si c'est un visiteur ou player
+            // Vï¿½rifier si c'est un visiteur ou player
 
-            if (!joiningMatchData.IsStarted)
-            {
-                var startMatchEvent = await _matchesService.StartMatch(userId, joiningMatchData.Match);
+        //    await Groups.AddToGroupAsync(connectionId,joiningMatchData.Match.Id.ToString());
 
+        //    if(joiningMatchData.OtherPlayerConnectionId!=null)
+        //    await Groups.AddToGroupAsync(joiningMatchData.OtherPlayerConnectionId, joiningMatchData.Match.Id.ToString());
 
-                //await Clients.Client(joiningMatchData.OtherPlayerConnectionId).SendAsync("StartMatch", startMatchEvent);
-                //await Clients.Client(connectionId).SendAsync("StartMatch", startMatchEvent);
+        //    //await Clients.Group(joiningMatchData.Match.Id.ToString()).SendAsync("JoiningMatchData", joiningMatchData);
 
                await Clients.Group(joiningMatchData.Match.Id.ToString()).SendAsync("StartMatch", startMatchEvent);
             }
@@ -118,12 +134,12 @@ public class MatchHub : Hub
 
     //Surrender
     public async Task onSurrenderAsync(int matchId)
-       
     {
         string userId = Context.UserIdentifier;
         var SurrenderEvent = await _matchesService.Surrender(userId, matchId);
 
         await Clients.Group(matchId.ToString()).SendAsync("Surrender", SurrenderEvent);
+
     }
     //
     //
@@ -140,7 +156,7 @@ public class MatchHub : Hub
         }
     }
 
-    // Déconnexion
+    // Dï¿½connexion
     public async override Task OnDisconnectedAsync(Exception? exception)
     {
         KeyValuePair<string, string> entrie = UserHandler.UserConnections.SingleOrDefault(uc => uc.Value == Context.UserIdentifier);
@@ -186,7 +202,7 @@ public class MatchHub : Hub
 
     public async Task CreateChannel(int matchId)
     {
-        // Pas besoin de créer un modèle Channel, car on ne veut pas sauvegarder les messages 
+        // Pas besoin de crï¿½er un modï¿½le Channel, car on ne veut pas sauvegarder les messages 
 
          var channel = new Channel { Name = matchId.ToString(), MatchId = matchId };
         string groupName = CreateChannelGroupName(matchId);
@@ -222,6 +238,16 @@ public class MatchHub : Hub
             string message = userTag + " a rejoint : " + channel.Name;
             await Clients.Group(newGroupName).SendAsync("NewMessage", message);
         }
+    }
+
+
+    //playCard
+    public async Task onPlayCardAsync(int matchId,int CardBeingPlayedId)
+    {
+        string userId = Context.UserIdentifier!;
+        var playCardEvent = await _matchesService.PlayCard(userId, CardBeingPlayedId, matchId);
+
+        await Clients.Group(matchId.ToString()).SendAsync("PlayCard", playCardEvent);
     }
 
 }

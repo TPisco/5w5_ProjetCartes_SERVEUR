@@ -9,6 +9,7 @@ namespace Super_Cartes_Infinies.Models
     {
 		public Player()
 		{
+			ELO = 1000;
 		}
 
 		public int Id { get; set; }
@@ -18,6 +19,12 @@ namespace Super_Cartes_Infinies.Models
 		public virtual IdentityUser User { get; set; }
 
         public virtual List<OwnedCards> OwnedCards { get; set; }
+
+		//Ajout d'une liste de decks , à supprimer si cause des problèmes
+		[JsonIgnore]
+		public virtual List<Deck> Decks { get; set; }
+
+		public int ELO { get; set; }
     }
 }
 

@@ -9,6 +9,7 @@ using Super_Cartes_Infinies.Services;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using Models.Models;
 
 namespace WebApi.Controllers
 {
@@ -47,6 +48,8 @@ namespace WebApi.Controllers
             }
 
             Player player = _playerService.CreatePlayer(identityUser);
+          
+
 
           
 
@@ -104,6 +107,14 @@ namespace WebApi.Controllers
         public ActionResult<string[]> PrivateData()
         {
             return new string[] { "figue", "banane", "noix" };
+        }
+
+        [Authorize]
+        [HttpGet("{userId}")]
+        public async Task< ActionResult<int>> GetElo(string userId)
+        {
+            int Elo = _playerService.GetPlayerFromUserId(userId).ELO;
+            return Elo;
         }
     }
     }

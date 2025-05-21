@@ -1,7 +1,9 @@
-﻿using System;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Models.Models
@@ -9,9 +11,14 @@ namespace Models.Models
     public class Power
     {
 
+
         public const int FIRST_STRIKE_ID = 1;
         public const int THORNS_ID = 2;
         public const int HEAL_ID = 3;
+        public const int SHIELD_ID = 4;
+        public const int CHAOS_ID = 5;
+        public const int POISON_ID = 6;
+        public const int STUNNED_ID = 7;
 
         public int Id { get; set; }
         
@@ -19,5 +26,22 @@ namespace Models.Models
         public string Name { get; set; }
         public string Description { get; set; }
         public string Icon { get; set; }
+
+        [ValidateNever]
+        [JsonIgnore]
+        public virtual List<CardPower> cardPowers { get; set; }
+
+        public bool HasValue { get; set; }
+
+        public int GetStatusValue(int powerId)
+        {
+            //TODO
+            return 0;
+        }
+        public int HasStatus(int powerId)
+        {
+            //TODO
+            return 0;
+        }
     }
 }

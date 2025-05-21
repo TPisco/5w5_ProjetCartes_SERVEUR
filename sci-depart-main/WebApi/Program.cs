@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.OpenApi.Models;
+using WebApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -89,8 +90,12 @@ builder.Services.AddScoped<PlayersService>();
 builder.Services.AddScoped<CardsService>();
 builder.Services.AddSingleton<WaitingUserService>();
 builder.Services.AddScoped<MatchesService>();
+builder.Services.AddScoped<DecksService>();
 builder.Services.AddScoped<StartingCardsService>();
 builder.Services.AddScoped<MatchConfigurationService>();
+
+builder.Services.AddSingleton<MatchMakingBackGroundService>();
+builder.Services.AddHostedService<MatchMakingBackGroundService>(p => p.GetService<MatchMakingBackGroundService>());
 
 builder.Services.AddSignalR();
 
