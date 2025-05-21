@@ -10,6 +10,7 @@ namespace WebApi.Combat.PowerEvent
         public int TargetCardId { get; set; }
         public int PlayerId { get; set; }
 
+        public int Value { get; set; }
         public ApplyStunEvent(PlayableCard attackingCard, PlayableCard defendingCard, MatchPlayerData defender)
         {
             //À COMPLÉTER
@@ -17,6 +18,7 @@ namespace WebApi.Combat.PowerEvent
             PlayerId = defender.Id;
             TargetCardId = defendingCard.Id;
             var stunValueToAdd = attackingCard.GetPowerValue(Power.STUN_ATTACK_ID);
+            Value = stunValueToAdd;
             //SI la carte a déjà du Stun, l'ajouter au stack
             if (defendingCard.HasStatus(Status.STUNNEDX_ID))
             {
