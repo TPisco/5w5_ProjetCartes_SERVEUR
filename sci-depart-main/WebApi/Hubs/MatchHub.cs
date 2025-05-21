@@ -88,22 +88,22 @@ public class MatchHub : Hub
 
         //JoiningMatchData? joiningMatchData = await _matchesService.JoinMatch(userId, connectionId, specificMatchId);
 
-            if (specificMatchId != null)
-            {
-                CreateChannel(specificMatchId.Value);
-            }
+        if (specificMatchId != null)
+        {
+            CreateChannel(specificMatchId.Value);
+        
 
             // V�rifier si c'est un visiteur ou player
 
-        //    await Groups.AddToGroupAsync(connectionId,joiningMatchData.Match.Id.ToString());
+            //    await Groups.AddToGroupAsync(connectionId,joiningMatchData.Match.Id.ToString());
 
-        //    if(joiningMatchData.OtherPlayerConnectionId!=null)
-        //    await Groups.AddToGroupAsync(joiningMatchData.OtherPlayerConnectionId, joiningMatchData.Match.Id.ToString());
+            //    if(joiningMatchData.OtherPlayerConnectionId!=null)
+            //    await Groups.AddToGroupAsync(joiningMatchData.OtherPlayerConnectionId, joiningMatchData.Match.Id.ToString());
 
-        //    //await Clients.Group(joiningMatchData.Match.Id.ToString()).SendAsync("JoiningMatchData", joiningMatchData);
+            //    //await Clients.Group(joiningMatchData.Match.Id.ToString()).SendAsync("JoiningMatchData", joiningMatchData);
 
-               await Clients.Group(joiningMatchData.Match.Id.ToString()).SendAsync("StartMatch", startMatchEvent);
-            }
+            // await Clients.Group(joiningMatchData.Match.Id.ToString()).SendAsync("StartMatch", startMatchEvent);
+            
 
         }
         else
