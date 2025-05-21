@@ -7,6 +7,13 @@ namespace Super_Cartes_Infinies.Combat
     {
         public override string EventType { get { return "EndMatch"; } }
         public int WinningPlayerId { get; set; }
+        public string WinningStringId { get; set; }
+
+        public int ELOWinner { get; set; }
+        public int ELOLoser { get; set; }
+
+        public int EloGagne { get; set; }
+        public int EloPerdu { get; set; }
 
         public EndMatchEvent(Match match, MatchPlayerData winningPlayerData, MatchPlayerData losingPlayerData)
         {
@@ -26,6 +33,41 @@ namespace Super_Cartes_Infinies.Combat
                 userId = match.UserBId;
 
             match.WinnerUserId = userId;
+            
+
+            int WinnerElo = winningPlayerData.Player.ELO;
+            int LoserElo = losingPlayerData.Player.ELO;
+
+            CalculateELO(ref WinnerElo, ref LoserElo, 1);
+
+            EloGagne = WinnerElo - winningPlayerData.Player.ELO ;
+            EloPerdu = losingPlayerData.Player.ELO - LoserElo;
+
+            winningPlayerData.Player.ELO = WinnerElo;
+            losingPlayerData.Player.ELO = LoserElo;
+
+            ELOLoser = LoserElo;
+            ELOWinner = WinnerElo;
+
+            WinningStringId = winningPlayerData.Player.UserId;
+
+
+        }
+
+        public static void CalculateELO(ref int p1Rating, ref int p2Rating, int p1Outcome)
+        {
+            int eloK = 32;
+
+            double expectation = ExpectationToWin(p1Rating, p2Rating);
+            int delta = (int)(eloK * (p1Outcome - expectation));
+
+            p1Rating += delta;
+            p2Rating -= delta;
+        }
+
+        private static double ExpectationToWin(int p1Rating, int p2Rating)
+        {
+            return 1 / (1 + Math.Pow(10, (p2Rating - p1Rating) / 400.0));
         }
     }
 }
