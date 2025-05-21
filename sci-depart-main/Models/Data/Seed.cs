@@ -319,6 +319,35 @@ namespace Super_Cartes_Infinies.Data
             CardId = 4, // Mewtwo
             PowerId = 4, // Shield
             Value = 5 
+        },
+        //AJOUT DES NOUVEAUX POWERS
+        new CardPower
+        {
+            Id= 5,
+            CardId =5, //Gardevoir
+            PowerId = 8, //Poison Attack
+            Value = 2
+        },
+        new CardPower
+        {
+            Id = 6,
+            CardId = 8, //Ronflex
+            PowerId = 9, //Stun Attack
+            Value = 3
+        },
+        new CardPower
+        {
+            Id= 7,
+            CardId =6, //Alakazam
+            PowerId = 5 //Chaos
+            ,Value = 0
+        },
+        new CardPower
+        {
+            Id = 8,
+            CardId= 7, //Onix
+            PowerId= 10, //DamageDown
+            Value = 1
         }
     };
         }
