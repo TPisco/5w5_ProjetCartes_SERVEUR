@@ -15,7 +15,7 @@ namespace WebApi.Combat
         {
 
             Damage = damage;
-            PlayerId = playerData.Id;
+            PlayerId = playerData.PlayerId;
             CardId = card.Id;
 
             if (card.Health - damage < 0)

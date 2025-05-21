@@ -17,11 +17,13 @@ namespace WebApi.Combat
             var card = currentPlayerData.Hand.FirstOrDefault(c => c.Id == cardId);
             if (card == null || currentPlayerData.Mana < card.Card.Cost) return;
 
-            PlayerId = currentPlayerData.PlayerId;
             CardId = cardId;
+
+            PlayerId = currentPlayerData.PlayerId;
 
             currentPlayerData.Hand.Remove(card);
             currentPlayerData.BattleField.Add(card);
+
             currentPlayerData.Mana -= card.Card.Cost;
 
 

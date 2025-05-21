@@ -1,4 +1,6 @@
-﻿namespace Super_Cartes_Infinies.Services
+﻿using Models.Models;
+
+namespace Super_Cartes_Infinies.Services
 {
     public class UsersReadyForAMatch
     {
@@ -19,6 +21,10 @@
         private string? _userAId = null;
         private string? _userAConnectionId = null;
         private SemaphoreSlim _semaphore;
+
+
+        private readonly List<PlayerInfo> _waitingPlayers = new();
+        private readonly object _lock = new();
 
         public string UserAId { get { return _userAId; } }
 
@@ -69,7 +75,36 @@
             }
         }
 
-        
+
+        public void AddPlayer(PlayerInfo player)
+        {
+            lock (_lock)
+            {
+                _waitingPlayers.Add(player);
+            }
+        }
+
+        public void RemovePlayer(string userId)
+        {
+            lock (_lock)
+            {
+                _waitingPlayers.RemoveAll(p => p.UserId == userId);
+            }
+        }
+
+        public List<PlayerInfo> GetWaitingPlayersSnapshot()
+        {
+            lock (_lock)
+            {
+                return new List<PlayerInfo>(_waitingPlayers);
+            }
+        }
+
+
+
+
     }
+
+
 }
 

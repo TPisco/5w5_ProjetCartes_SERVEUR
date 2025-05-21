@@ -108,6 +108,14 @@ namespace WebApi.Controllers
         {
             return new string[] { "figue", "banane", "noix" };
         }
+
+        [Authorize]
+        [HttpGet("{userId}")]
+        public async Task< ActionResult<int>> GetElo(string userId)
+        {
+            int Elo = _playerService.GetPlayerFromUserId(userId).ELO;
+            return Elo;
+        }
     }
     }
 

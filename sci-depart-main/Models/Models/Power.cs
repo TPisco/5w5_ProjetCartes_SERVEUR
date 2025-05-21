@@ -11,6 +11,7 @@ namespace Models.Models
     public class Power
     {
 
+
         public const int FIRST_STRIKE_ID = 1;
         public const int THORNS_ID = 2;
         public const int HEAL_ID = 3;
@@ -24,8 +25,8 @@ namespace Models.Models
         //Ajout de mon propre Status : DamageDown
         public const int DAMAGE_DOWN_ATTACK_ID = 10;
 
-        //Ajouter ces deux nouveaux pouvoir dans le seed, ce pouvoir permet aux cartes d'appliquer du Status à une carte. Ex: 2 de poison attack
-        //Rappel: Un status baisse de 1 stack à chaque round
+        //Ajouter ces deux nouveaux pouvoir dans le seed, ce pouvoir permet aux cartes d'appliquer du Status ï¿½ une carte. Ex: 2 de poison attack
+        //Rappel: Un status baisse de 1 stack ï¿½ chaque round
 
         //Ajout des spells + Dans le seed
 
@@ -40,10 +41,21 @@ namespace Models.Models
         [JsonIgnore]
         public virtual List<CardPower> cardPowers { get; set; }
 
-        //Booléen pour vérifier si une carte est un Spell
+        //Boolï¿½en pour vï¿½rifier si une carte est un Spell
         public bool IsSpell { get; set; } = false;
 
-        //Pas supposé être là 
+        //Pas supposï¿½ ï¿½tre lï¿½ 
         public bool HasValue { get; set; }
+
+        public int GetStatusValue(int powerId)
+        {
+            //TODO
+            return 0;
+        }
+        public int HasStatus(int powerId)
+        {
+            //TODO
+            return 0;
+        }
     }
 }
