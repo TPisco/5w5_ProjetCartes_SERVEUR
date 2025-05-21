@@ -110,3 +110,18 @@ QUESTIONS:
 -Poison perd 1 stack à chaque round
 
 
+
+
+--TODO POUR LA COMPLÉTION DU TP3:
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+SERVEUR:
+-Ajouter powers à certaines cartes dans le Seed
+-Modifier et corriger les Spells
+
+CLIENT:
+-Afficher les nouveaux pouvoirs sur les cartes ( dans ownedCards, Magasin et dans un Match)
+-Afficher les nouveaux status sur une carte dans un Match
+-Modifier le model.ts pour lui ajouter les nouvelles classes
+-Ajouter la gestion des évènements dans match.component.ts
+-Ajouter la logique des évènements côté client dans matchService
+
