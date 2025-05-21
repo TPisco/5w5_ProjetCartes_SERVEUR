@@ -23,8 +23,9 @@ namespace Super_Cartes_Infinies.Services
             // L'implémentation réelle devra utiliser un service et retourner les cartes qu'un joueur possède
             // L'implémentation est la responsabilité de la personne en charge de la partie [Enregistrement et connexion]
             // IdentityUser user = await _dbContext.Users.FindAsync(userId);
+            List<Card> lst = _dbContext.OwnedCard.Where(u => u.player.UserId == userId).Select(c => c.Card).ToList();
 
-            return _dbContext.OwnedCard.Where(u => u.player.UserId == userId).Select(c => c.Card).ToList();
+            return lst;
         }
 
         public IEnumerable<Card> GetAllCards()

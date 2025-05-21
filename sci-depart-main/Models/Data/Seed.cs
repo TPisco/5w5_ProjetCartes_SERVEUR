@@ -12,90 +12,88 @@ namespace Super_Cartes_Infinies.Data
 
         public static Card[] SeedCards()
         {
-            return new Card[] {
-                new Card
-                {
-                    Id = 1,
-                    Name = "Dracolosse",
-                    Attack = 5,
-                    Health = 8,
-                    Cost = 5,
-                    ImageUrl = "https://pm1.aminoapps.com/6906/f456d54f84291a3e3a9532251214cda80cbef906r1-335-431v2_hq.jpg"
-                }, new Card
-                {
-                    Id = 2,
-                    Name = "Rayquaza",
-                    Attack = 10,
-                    Health = 5,
-                    Cost = 9,
-                    ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/384.png"
-                }, new Card
-                {
-                    Id = 3,
-                    Name = "Rondoudou",
-                    Attack = 2,
-                    Health = 1,
-                    Cost = 1,
-                    ImageUrl = "https://upload.wikimedia.org/wikipedia/en/2/22/Pok%C3%A9mon_Jigglypuff_art.png"
-                }, new Card
-                {
-                    Id = 4,
-                    Name = "Mewtwo",
-                    Attack = 8,
-                    Health = 4,
-                    Cost = 6,
-                    ImageUrl = "https://e7.pngegg.com/pngimages/993/391/png-clipart-pokemon-character-illustration-pokemon-x-and-y-pokemon-go-pokemon-black-white-mewtwo-pokemon-go-purple-mammal.png"
-                }, new Card
-                {
-                    Id = 5,
-                    Name = "Gardevoir",
-                    Attack = 7,
-                    Health = 7,
-                    Cost = 5,
-                    ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/282.png"
-                }, new Card
-                {
-                    Id = 6,
-                    Name = "Alakazam",
-                    Attack = 4,
-                    Health = 2,
-                    Cost = 2,
-                    ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/065.png"
-                }, new Card
-                {
-                    Id = 7,
-                    Name = "Onix",
-                    Attack = 6,
-                    Health = 3,
-                    Cost = 4,
-                    ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/095.png"
-                }, new Card
-                {
-                    Id = 8,
-                    Name = "Ronflex",
-                    Attack = 1,
-                    Health = 9,
-                    Cost = 2,
-                    ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/143.png"
-                }, new Card
-                {
-                    Id = 9,
-                    Name = "Mew",
-                    Attack = 5,
-                    Health = 1,
-                    Cost = 2,
-                    ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/151.png"
-                }, new Card
-                {
-                    Id = 10,
-                    Name = "Dracofeu",
-                    Attack = 6,
-                    Health = 1,
-                    Cost = 2,
-                    ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/006_f2.png"
-                }
+            var cards = new List<Card>();
+            string baseUrl = "https://assets.pokemon.com/assets/cms2/img/pokedex/full/";
+
+            // Première Génération – liste partielle (complète jusqu'au 151)
+            string[] gen1 = new string[]
+            {
+        "Bulbizarre", "Herbizarre", "Florizarre", "Salamèche", "Reptincel", "Dracaufeu",
+        "Carapuce", "Carabaffe", "Tortank", "Chenipan", "Chrysacier", "Papilusion",
+        "Aspicot", "Coconfort", "Dardargnan","Roucool", "Roucoups", "Roucarnage", 
+                "Rattata", "Rattatac", "Piafabec", "Rapasdepic", "Abo", "Arbok", 
+                "Pikachu", "Raichu", "Sabelette", "Sablaireau", "Nidoran♀", "Nidorina", 
+                "Nidoqueen", "Nidoran♂", "Nidorino", "Nidoking", "Mélofée", "Mélodelfe",
+                "Goupix", "Feunard", "Rondoudou", "Grodoudou", "Nosferapti", "Nosferalto",
+                "Mystherbe", "Ortide", "Rafflesia", "Paras", "Parasect", "Mimitoss", "Aéromite",
+                "Taupiqueur", "Triopikeur", "Miaouss", "Persian", "Psykokwak", "Akwakwak", "Férosinge",
+                "Colossinge", "Caninos", "Arcanin", "Ptitard", "Têtarte", "Tartard", "Abra", "Kadabra",
+                "Alakazam", "Machoc", "Machopeur", "Mackogneur", "Chétiflor", "Boustiflor", "Empiflor", 
+                "Tentacool", "Tentacruel", "Racaillou", "Gravalanch", "Grolem", "Ponyta", "Galopa", "Ramoloss",
+                "Flagadoss", "Magnéti", "Magnéton", "Canarticho", "Doduo", "Dodrio", "Otaria", "Lamantine", "Tadmorv",
+                "Grotadmorv", "Kokiyas", "Crustabri", "Fantominus", "Spectrum", "Ectoplasma", "Onix", "Soporifik", "Hypnomade",
+                "Krabby", "Krabboss", "Voltorbe", "Électrode", "Noeunoeuf", "Noadkoko", "Osselait", "Ossatueur", "Kicklee", "Tygnon", 
+                "Excelangue", "Smogo", "Smogogo", "Rhinocorne", "Rhinoféros", "Leveinard", "Saquedeneu", "Kangourex", "Hypotrempe",
+                "Hypocéan", "Poissirène", "Poissoroy", "Stari", "Staross", "M. Mime", "Insécateur", "Lippoutou", "Élektek", "Magmar",
+                "Scarabrute", "Tauros", "Magicarpe", "Léviator", "Lokhlass", "Métamorph", "Évoli", "Aquali", "Voltali", "Pyroli", "Porygon",
+                "Amonita", "Amonistar", "Kabuto", "Kabutops", "Ptéra", "Ronflex", "Artikodin", "Électhor", "Sulfura", "Minidraco", "Draco",
+                "Dracolosse", "Mewtwo", "Mew"
+
+                // ... ajoute ici les noms restants jusqu'au 151ème Pokémon
             };
+
+            int id = 1;
+            foreach (var name in gen1)
+            {
+                // Pour cet exemple, on se base sur de formules simples afin de générer des statistiques.
+                // Tu pourras ajuster (ou remplacer par une lecture depuis un fichier/config) selon l’équilibrage désiré.
+                int attack = 3 + (id % 5);    // formule d'exemple pour l'attaque
+                int health = 4 + (id % 7);    // formule d'exemple pour la vie
+                int cost = 2 + (id % 4);      // formule d'exemple pour le coût
+
+                cards.Add(new Card
+                {
+                    Id = id,
+                    Name = name,
+                    Attack = attack,
+                    Health = health,
+                    Cost = cost,
+                    ImageUrl = baseUrl + id.ToString("D3") + ".png"
+                });
+                id++;
+            }
+
+            // Deuxième Génération – liste partielle (complète jusqu'à 100 noms)
+            string[] gen2 = new string[]
+            {
+        "Germignon", "Macronium", "Méganium",
+        "Héricendre", "Feurisson", "Typhlosion",
+        "Kaiminus", "Crocrodil", "Aligatueur",
+                // ... ajoute ici les noms restants pour atteindre 100 Pokémon de la génération 2
+            };
+
+            foreach (var name in gen2)
+            {
+                int attack = 3 + (id % 5);
+                int health = 4 + (id % 7);
+                int cost = 2 + (id % 4);
+
+                cards.Add(new Card
+                {
+                    Id = id,
+                    Name = name,
+                    Attack = attack,
+                    Health = health,
+                    Cost = cost,
+                    ImageUrl = baseUrl + id.ToString("D3") + ".png"
+                });
+                id++;
+            }
+
+            return cards.ToArray();
         }
+    
+
 
         public static IdentityUser[] SeedUsers()
         {
