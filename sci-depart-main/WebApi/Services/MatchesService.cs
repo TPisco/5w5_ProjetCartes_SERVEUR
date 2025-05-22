@@ -1,4 +1,5 @@
-﻿using Super_Cartes_Infinies.Combat;
+﻿using Microsoft.EntityFrameworkCore;
+using Super_Cartes_Infinies.Combat;
 using Super_Cartes_Infinies.Data;
 using Super_Cartes_Infinies.Models;
 using Super_Cartes_Infinies.Models.Dtos;
@@ -234,6 +235,23 @@ namespace Super_Cartes_Infinies.Services
             return playCardEvent;
 
 
+        }
+
+        public async Task<JoiningMatchData> JoinMatchAsSpectator(string userId, int specificMatchId)
+        {
+            Match? match = await _dbContext.Matches.FirstOrDefaultAsync(m => m.Id == specificMatchId);
+
+            if (match != null)
+            {
+                return new JoiningMatchData
+                {
+                    Match = match,
+                    PlayerA = match.PlayerDataA.Player,
+                    PlayerB = match.PlayerDataB.Player,
+                    IsStarted = true
+                };
+            }
+            return null;
         }
     }
 }

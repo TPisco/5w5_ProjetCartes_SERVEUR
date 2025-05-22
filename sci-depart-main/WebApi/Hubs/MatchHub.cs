@@ -50,17 +50,41 @@ public class MatchHub : Hub
         await base.OnConnectedAsync();
     }
 
-  
+    public string MatchGroup(int id)
+    {
+        return "match_" + id;
+    }
+
+    private string userId { get { return Context.UserIdentifier; } }
+    private string connectionId { get { return Context.ConnectionId; } }
+
+
+
     //Join Match
     public async Task onJoinMatchAsync(int? specificMatchId)
     {
         string? connectionId = Context.ConnectionId;
         string userId = Context.UserIdentifier;
 
+        // Check if the user is a spectator
+        if (specificMatchId.HasValue)
+        {
+            var match = await _context.Matches.Include(a => a.PlayerDataA).Include(b => b.PlayerDataB).SingleOrDefaultAsync(x => x.Id == specificMatchId.Value);
 
+            if (match != null)
+            {
+                var Player1Id = match.PlayerDataA.Id.ToString();
+                var Player2Id = match.PlayerDataB.Id.ToString();
 
-        
+                // Vérifier si il est spectateur
+                if (userId != Player1Id && userId != Player2Id)
+                {
+                    await JoinMatchAsSpectator(specificMatchId.Value);
+                    return;
+                }
 
+            }
+        }
 
         // Check for ongoing match
         if (specificMatchId != null)
@@ -69,7 +93,16 @@ public class MatchHub : Hub
 
             if (joiningMatchData != null)
             {
-                await Clients.Client(connectionId).SendAsync("JoiningMatchData", joiningMatchData);
+                string groupName = MatchGroup(joiningMatchData.Match.Id);
+
+                await Groups.AddToGroupAsync(connectionId, groupName);
+
+                if (joiningMatchData.OtherPlayerConnectionId != null)
+                {
+                    await Groups.AddToGroupAsync(joiningMatchData.OtherPlayerConnectionId, groupName);
+                }
+
+                await Clients.Group(groupName).SendAsync("JoiningMatchAsSpectator", joiningMatchData);
 
             }
         }
@@ -90,7 +123,7 @@ public class MatchHub : Hub
 
         if (specificMatchId != null)
         {
-            CreateChannel(specificMatchId.Value);
+            //CreateChannel(specificMatchId.Value);
         
 
             // V�rifier si c'est un visiteur ou player
@@ -111,8 +144,34 @@ public class MatchHub : Hub
             await Clients.Client(connectionId).SendAsync("LookingForOtherPlayer", "Waiting on another player for match.");
         }
     }
+    // Signal R CHAT
+    // Permet d'afficher la liste des matches qui sont joué en ce moment
+    public async Task SeeOngoingGame()
+    {
+        var ongoingMatches = _context.Matches.Where(m => m.IsMatchCompleted == false).Include(p => p.PlayerDataA).Include(p => p.PlayerDataB).ToList();
+        await Clients.Caller.SendAsync("SeeOngoingGame", ongoingMatches);
+    }
 
- 
+    // Permet de rejoindre un match en tant que spectateur
+    private async Task JoinMatchAsSpectator(int specificMatchId)
+    {
+        var DataSpectator = await _matchesService.JoinMatchAsSpectator(userId, specificMatchId);
+        string groupName = MatchGroup(specificMatchId);
+        await Groups.AddToGroupAsync(connectionId, groupName);
+        await Clients.Client(connectionId).SendAsync("WatchAnOngoingMatch", DataSpectator);
+
+        await Clients.Group(groupName).SendAsync("newSpectatorJoinedMessage", DataSpectator);
+    }
+
+
+    public async Task WatchAnOngoingMatch(int specificMatchId)
+    {
+        JoiningMatchData joiningMatchData = await _matchesService.JoinMatchAsSpectator(userId, specificMatchId);
+        string groupName = MatchGroup(specificMatchId);
+        await Groups.AddToGroupAsync(connectionId, groupName);
+        await Clients.Client(connectionId).SendAsync("WatchAnOngoingMatch", joiningMatchData);
+    }
+
 
     //End Turn
     public async Task onEndTurnAsync( int matchId)
@@ -141,105 +200,40 @@ public class MatchHub : Hub
         await Clients.Group(matchId.ToString()).SendAsync("Surrender", SurrenderEvent);
 
     }
-    //
-    //
-    //
-    //
-    // Va chercher le user qui est connecter
-    public IdentityUser CurrentUser
-    {
-        get
-        {
-            string userId = Context.UserIdentifier;
-            var user = _context.Users.Single(u => u.Id == userId);
-            return user;
-        }
-    }
+    ////
+    ////
+    ////
+    ////
+    //// Va chercher le user qui est connecter
+    //public IdentityUser CurrentUser
+    //{
+    //    get
+    //    {
+    //        string userId = Context.UserIdentifier;
+    //        var user = _context.Users.Single(u => u.Id == userId);
+    //        return user;
+    //    }
+    //}
 
-    // D�connexion
-    public async override Task OnDisconnectedAsync(Exception? exception)
-    {
-        KeyValuePair<string, string> entrie = UserHandler.UserConnections.SingleOrDefault(uc => uc.Value == Context.UserIdentifier);
-        UserHandler.UserConnections.Remove(entrie.Key);
-        await UserList();
-    }
+    //// D�connexion
+    //public async override Task OnDisconnectedAsync(Exception? exception)
+    //{
+    //    KeyValuePair<string, string> entrie = UserHandler.UserConnections.SingleOrDefault(uc => uc.Value == Context.UserIdentifier);
+    //    UserHandler.UserConnections.Remove(entrie.Key);
+    //    await UserList();
+    //}
 
-    public async Task UserList()
-    {
-        await Clients.All.SendAsync("UsersList", UserHandler.UserConnections.ToList());
-    }
+    //public async Task UserList()
+    //{
+    //    await Clients.All.SendAsync("UsersList", UserHandler.UserConnections.ToList());
+    //}
 
-
-    // Signal R CHAT
-    public async Task SeeOngoingGame()
-    {
-        var ongoingMatches = _context.Matches.Where(m => m.IsMatchCompleted == false).Include(p => p.PlayerDataA).Include(p => p.PlayerDataB).ToList();
-        await Clients.Caller.SendAsync("SeeOngoingGame", ongoingMatches);
-    }
-
-    public async Task JoinChat()
-    {
-        UserHandler.UserConnections.Add(CurrentUser.Email!, Context.UserIdentifier);
-        await UserList();
-        await Clients.Caller.SendAsync("ChannelsList", _context.Channel.ToListAsync());
-    }
-
-    public async Task SendMessage(string message, int channelId, string userId)
-    {
-
-        if (channelId != 0)
-        {
-            string groupName = CreateChannelGroupName(channelId);
-            Channel channel = _context.Channel.Find(channelId);
-            await Clients.Group(groupName).SendAsync("NewMessage", "[" + CurrentUser.UserName + "] " + message);
-        }
-    }
-
-    private static string CreateChannelGroupName(int channelId)
-    {
-        return "Channel" + channelId;
-    }
-
-    public async Task CreateChannel(int matchId)
-    {
-        // Pas besoin de cr�er un mod�le Channel, car on ne veut pas sauvegarder les messages 
-
-         var channel = new Channel { Name = matchId.ToString(), MatchId = matchId };
-        string groupName = CreateChannelGroupName(matchId);
-        await Groups.AddToGroupAsync(Context.ConnectionId, groupName);
-        
-
-         _context.Channel.Add(channel);
-
-         await _context.SaveChangesAsync();
-
-         await Clients.Caller.SendAsync("Channel", channel);
-    }
-
-    public async Task JoinChannel(int oldChannelId, int newChannelId)
-    {
-        string userTag = "[" + CurrentUser.UserName! + "]";
-
-        if (oldChannelId > 0)
-        {
-            string oldGroupName = CreateChannelGroupName(oldChannelId);
-            Channel channel = _context.Channel.Find(oldChannelId);
-            string message = userTag + " quitte: " + channel.Name;
-            await Clients.Group(oldGroupName).SendAsync("NewMessage", message);
-            await Groups.RemoveFromGroupAsync(Context.ConnectionId, oldGroupName);
-        }
-
-        if (newChannelId > 0)
-        {
-            string newGroupName = CreateChannelGroupName(newChannelId);
-            await Groups.AddToGroupAsync(Context.ConnectionId, newGroupName);
-
-            Channel channel = _context.Channel.Find(newChannelId);
-            string message = userTag + " a rejoint : " + channel.Name;
-            await Clients.Group(newGroupName).SendAsync("NewMessage", message);
-        }
-    }
-
+    //public async Task JoinChat()
+    //{
+    //    UserHandler.UserConnections.Add(CurrentUser.Email!, Context.UserIdentifier);
+    //    await UserList();
+    //    await Clients.Caller.SendAsync("ChannelsList", _context.Channel.ToListAsync());
+    //}
 
     //playCard
     public async Task onPlayCardAsync(int matchId,int CardBeingPlayedId)
