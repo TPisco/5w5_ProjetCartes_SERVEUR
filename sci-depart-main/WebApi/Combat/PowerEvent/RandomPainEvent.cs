@@ -18,10 +18,12 @@ namespace WebApi.Combat.PowerEvent
 
         public RandomPainEvent(PlayableCard spellCard, PlayableCard defendingCard, MatchPlayerData defender)
         {
-
-            //  int randomDamage = Random.Next(1, 7);
-
-           // Events.Add(new CardDamageEvent(randomDamage, defendingCard, defender));
+            Random r = new Random();
+            
+            int randomDamage = r.Next(1, 6);
+            Damage = randomDamage;
+            SpellCardId = spellCard.Id;
+            Events.Add(new CardDamageEvent(randomDamage, defendingCard, defender));
 
         }
 

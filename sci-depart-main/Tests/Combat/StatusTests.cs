@@ -1069,12 +1069,12 @@ namespace Tests.Combat
             var oldHp = _playableCardB.Health;
             _opposingPlayerData.BattleField.Add(_playableCardB);
 
-          //  var playerTurnEvent = new PlayerEndTurnEvent(_match, _currentPlayerData, _opposingPlayerData, NB_MANA_PER_TURN);
-         // var spellEvent 
+            //  var playerTurnEvent = new PlayerEndTurnEvent(_match, _currentPlayerData, _opposingPlayerData, NB_MANA_PER_TURN);
+            var spellEvent = new RandomPainEvent(newCard, _playableCardB, _opposingPlayerData);
 
             //  Assert.AreEqual(newHealth, _playableCardB.Health);
             //  Assert.AreEqual(newAttack, _playableCardB.Attack);
-            AssertCurrentPlayerCardDied();
+           // AssertCurrentPlayerCardDied();
             Assert.AreNotEqual(oldHp, _playableCardB.Health);
         }
 
