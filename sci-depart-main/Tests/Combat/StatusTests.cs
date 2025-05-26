@@ -1054,7 +1054,7 @@ namespace Tests.Combat
             };
             //Création d'un nouvelle PlayableCard avec la Card
             PlayableCard newCard = new PlayableCard(spellCard);
-
+            _playableCardA = newCard;
 
 
             _cardA.CardPowers = new List<CardPower> { cardPower };
@@ -1064,17 +1064,17 @@ namespace Tests.Combat
             //  var newAttack = _playableCardB.Health;
 
             //Ajout des cartes sur le terrain 
-            _currentPlayerData.BattleField.Add(newCard);
+            _currentPlayerData.BattleField.Add(_playableCardA);
             //Ajout de la carte avec 0 dmg à la liste du joueur B 
             var oldHp = _playableCardB.Health;
             _opposingPlayerData.BattleField.Add(_playableCardB);
 
             //  var playerTurnEvent = new PlayerEndTurnEvent(_match, _currentPlayerData, _opposingPlayerData, NB_MANA_PER_TURN);
-            var spellEvent = new RandomPainEvent(newCard, _playableCardB, _opposingPlayerData);
+            var spellEvent = new RandomPainEvent(_playableCardA,_currentPlayerData, _playableCardB, _opposingPlayerData);
 
             //  Assert.AreEqual(newHealth, _playableCardB.Health);
             //  Assert.AreEqual(newAttack, _playableCardB.Attack);
-           // AssertCurrentPlayerCardDied();
+             AssertCurrentPlayerCardDied();
             Assert.AreNotEqual(oldHp, _playableCardB.Health);
         }
 

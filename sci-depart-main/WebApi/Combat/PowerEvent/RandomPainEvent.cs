@@ -16,7 +16,7 @@ namespace WebApi.Combat.PowerEvent
 
         //Logique : la carte qui contient le pouvoir RandomPain meurt instantanément après son utilisation
 
-        public RandomPainEvent(PlayableCard spellCard, PlayableCard defendingCard, MatchPlayerData defender)
+        public RandomPainEvent(PlayableCard spellCard, MatchPlayerData attacker ,PlayableCard defendingCard, MatchPlayerData defender)
         {
             Random r = new Random();
             
@@ -25,6 +25,8 @@ namespace WebApi.Combat.PowerEvent
             SpellCardId = spellCard.Id;
             Events.Add(new CardDamageEvent(randomDamage, defendingCard, defender));
 
+
+            Events.Add(new CardDeathEvent(attacker,spellCard));
         }
 
     }
