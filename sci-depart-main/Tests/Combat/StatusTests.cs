@@ -1095,9 +1095,10 @@ namespace Tests.Combat
             CardPower cardPower = new CardPower
             {
                 Power = earthquake,
+                PowerId = earthquake.Id,
                 CardId = _cardA.Id,
                 Card = _cardA,
-                Value =4
+                Value = 4
 
 
             };
