@@ -32,6 +32,10 @@ namespace WebApi.Combat.PowerEvent
 
             // Appliquez l'effet Chaos aux cartes du défenseur
             ApplyEarthquakeDamage(defenderCards, defender, Damage);
+
+
+            //On tue la carte Spell
+            Events.Add(new CardDeathEvent(attacker, earthquakeCard) ) ;
         }
 
         // Méthode pour appliquer l'effet Chaos à une liste de cartes

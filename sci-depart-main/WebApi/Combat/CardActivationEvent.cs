@@ -33,6 +33,12 @@ namespace WebApi.Combat
                 //C'est dans les attackers qu'on regarde le PoisonDamage
 
 
+                if (atkCard.HasPower(Power.RANDOMPAIN_ID))
+                {
+                   // Events.Add(new RandomPainEvent());
+
+                }
+
                 //
                 if (atkCard.HasPower(Power.EARTHQUAKEX_ID))
                 {

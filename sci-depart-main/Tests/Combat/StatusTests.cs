@@ -1069,8 +1069,8 @@ namespace Tests.Combat
             var oldHp = _playableCardB.Health;
             _opposingPlayerData.BattleField.Add(_playableCardB);
 
-            var playerTurnEvent = new PlayerEndTurnEvent(_match, _currentPlayerData, _opposingPlayerData, NB_MANA_PER_TURN);
-
+          //  var playerTurnEvent = new PlayerEndTurnEvent(_match, _currentPlayerData, _opposingPlayerData, NB_MANA_PER_TURN);
+         // var spellEvent 
 
             //  Assert.AreEqual(newHealth, _playableCardB.Health);
             //  Assert.AreEqual(newAttack, _playableCardB.Attack);
