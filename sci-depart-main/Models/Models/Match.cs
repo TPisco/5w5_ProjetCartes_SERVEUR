@@ -36,6 +36,10 @@ namespace Super_Cartes_Infinies.Models
         public string UserBId { get; set; }
         public virtual MatchPlayerData PlayerDataA { get; set; }
         public virtual MatchPlayerData PlayerDataB { get; set; }
+
+        public List<string> SpectatorIds { get; set; } = new List<string>();
+
+        public List<string> BannedSpectatorIds { get; set; } = new List<string>();
     }
 }
 
