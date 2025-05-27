@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Models.Migrations
 {
     /// <inheritdoc />
-    public partial class SignalRBugfix : Migration
+    public partial class _89 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -67,6 +67,20 @@ namespace Models.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Cards", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Channel",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    MatchId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Channel", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -368,7 +382,9 @@ namespace Models.Migrations
                     UserAId = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UserBId = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PlayerDataAId = table.Column<int>(type: "int", nullable: false),
-                    PlayerDataBId = table.Column<int>(type: "int", nullable: false)
+                    PlayerDataBId = table.Column<int>(type: "int", nullable: false),
+                    SpectatorIds = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    BannedSpectatorIds = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -494,9 +510,9 @@ namespace Models.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "11111111-1111-1111-1111-111111111111", 0, "4b1a2336-a071-4857-b849-310c4cc68a65", "admin@admin.com", true, true, null, "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAIAAYagAAAAEI9h00/6wiNaBYAsLYc4n6ELjCVLa5ff7kD/HBSNnGmn2CcvpUvyBXN4X60Wv0fWcA==", null, false, "d973923f-a552-4700-b2ec-1b52c41efdc7", false, "admin@admin.com" },
-                    { "User1Id", 0, "5a4e6942-ee06-447e-a1e2-9780052b02ca", null, false, false, null, null, null, null, null, false, "e525da7d-5d0a-45d9-8f7d-0eb7a7862021", false, null },
-                    { "User2Id", 0, "824b07b3-4edf-4a5a-84f8-0f2172babee1", null, false, false, null, null, null, null, null, false, "3d74f262-ae73-4f07-a2f3-cf5a3e9bb954", false, null }
+                    { "11111111-1111-1111-1111-111111111111", 0, "6d23784d-df87-40f8-9831-819a331101a4", "admin@admin.com", true, true, null, "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAIAAYagAAAAEAkGJ/WuQtD44yhMqUG+1J3yYTBuWDzuKCm/kd2IfEtWrYOtd//EqcMcvEl2py8Cug==", null, false, "23f6e7b1-43f0-413a-ae24-0be26700a123", false, "admin@admin.com" },
+                    { "User1Id", 0, "8f5acab7-486f-4cb7-b2b5-aa4f30f81969", null, false, false, null, null, null, null, null, false, "17e7e0cc-0109-4213-81e0-ce02fc8f4ede", false, null },
+                    { "User2Id", 0, "bc668372-5a2e-4301-a9e0-fa56c1307d17", null, false, false, null, null, null, null, null, false, "44caf92c-ad72-45e7-8abc-e2f6fdf41117", false, null }
                 });
 
             migrationBuilder.InsertData(
@@ -741,6 +757,9 @@ namespace Models.Migrations
 
             migrationBuilder.DropTable(
                 name: "cardStatus");
+
+            migrationBuilder.DropTable(
+                name: "Channel");
 
             migrationBuilder.DropTable(
                 name: "DeckCards");
