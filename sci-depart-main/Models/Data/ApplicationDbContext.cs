@@ -94,5 +94,7 @@ public class ApplicationDbContext : IdentityDbContext
     public DbSet<Status> Status { get; set; } = default!;
 
 
+    public DbSet<Channel> Channel { get; set; } = default;
+
 }
 

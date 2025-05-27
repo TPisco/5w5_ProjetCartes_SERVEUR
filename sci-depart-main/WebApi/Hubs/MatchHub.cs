@@ -1,6 +1,10 @@
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.SignalR;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileSystemGlobbing;
 using Models.Models;
+using Super_Cartes_Infinies.Combat;
 using Super_Cartes_Infinies.Data;
 using Super_Cartes_Infinies.Models;
 using Super_Cartes_Infinies.Models.Dtos;
@@ -12,6 +16,10 @@ namespace Super_Cartes_Infinies.Hubs;
 public static class UserHandler
 {
     public static HashSet<string> ConnectedIds = new HashSet<string>();
+    
+    // Ajout d.un dictionnaire
+    public static Dictionary<string, string> UserConnections { get; set; } = new Dictionary<string, string>();
+
 }
 
 
@@ -24,15 +32,19 @@ public class MatchHub : Hub
     MatchesService _matchesService;
     PlayersService _playersService;
     WaitingUserService _waitingUserService;
+    UserManager<IdentityUser> _userManager;
+
 
   
-    public MatchHub(ApplicationDbContext context, MatchesService matchesService, PlayersService playersService, WaitingUserService waitingUserService) 
+    public MatchHub(ApplicationDbContext context, MatchesService matchesService, PlayersService playersService, WaitingUserService waitingUserService, UserManager<IdentityUser> userManager) 
     {
         _context = context;
         _matchesService = matchesService;
         _playersService = playersService;
         _waitingUserService = waitingUserService;
+        _userManager = userManager;
     }
+
    
 
 
@@ -43,79 +55,225 @@ public class MatchHub : Hub
         await base.OnConnectedAsync();
     }
 
-  
+    public string MatchGroup(int id)
+    {
+        return "match_" + id;
+    }
+
+
+    public async Task<IdentityUser> GetCurrentUserAsync()
+    {
+        string userId = Context.UserIdentifier!;
+        var user = await _userManager.FindByIdAsync(userId);
+
+        if (user == null)
+        {
+            throw new Exception("Utilisateur introuvable.");
+        }
+
+        return user;
+    }
+
     //Join Match
     public async Task onJoinMatchAsync(int? specificMatchId)
     {
         string? connectionId = Context.ConnectionId;
-        string userId = Context.UserIdentifier;
+        string userId = GetCurrentUserAsync().Result.Id;
 
-
-
-
-        // Check for ongoing match
+        // Check if the user is banned from the chat
         if (specificMatchId != null)
         {
-            var joiningMatchData = await _matchesService.JoinMatch(userId, connectionId, specificMatchId);
+            Super_Cartes_Infinies.Models.Match match = _context.Matches.FirstOrDefault(m => m.Id == specificMatchId);
 
-            if (joiningMatchData != null)
+            if (match == null)
             {
-                await Clients.Client(connectionId).SendAsync("JoiningMatchData", joiningMatchData);
+                await Clients.Caller.SendAsync("Error", $"Match avec l'ID {specificMatchId} introuvable.");
+                return;
+            }
 
+            if (match.BannedSpectatorIds != null && match.BannedSpectatorIds.Contains(GetCurrentUserAsync().Result.Email))
+            {
+                await Clients.Caller.SendAsync("BannedFromMatch", match.Id);
+                return;
             }
         }
         else
         {
-            var playerInfo = new PlayerInfo
-            {
-                ConnectionId = connectionId,
-                UserId = userId,
-                ELO = _playersService.GetPlayerFromUserId(userId).ELO, //A voir si sa fonctionne :(
-                WaitTimeSeconds = 0
-            };
-
-            _waitingUserService.AddPlayer(playerInfo);
+            await Clients.Client(connectionId).SendAsync("LookingForOtherPlayer", "Waiting on another player for match.");
         }
 
-        //JoiningMatchData? joiningMatchData = await _matchesService.JoinMatch(userId, connectionId, specificMatchId);
 
-        
+        try
+        {
+            var matchData = await  _matchesService.JoinMatch(userId, connectionId, specificMatchId);
 
-        //if (joiningMatchData != null)
-        //{
-        //    await Clients.Client(connectionId).SendAsync("JoiningMatchData", joiningMatchData);
-        //    if (joiningMatchData.OtherPlayerConnectionId != null)
-        //    {
-        //        await Clients.Client(joiningMatchData.OtherPlayerConnectionId).SendAsync("JoiningMatchData", joiningMatchData);
-        //    }
+            var user = _context.Users.FirstOrDefault(u => u.Id == userId);
 
-        //    await Groups.AddToGroupAsync(connectionId,joiningMatchData.Match.Id.ToString());
+            if (matchData != null)
+            {
+                string groupName = $"match_{matchData.Match.Id}";
+                await Groups.AddToGroupAsync(connectionId, groupName);
 
-        //    if(joiningMatchData.OtherPlayerConnectionId!=null)
-        //    await Groups.AddToGroupAsync(joiningMatchData.OtherPlayerConnectionId, joiningMatchData.Match.Id.ToString());
-
-        //    //await Clients.Group(joiningMatchData.Match.Id.ToString()).SendAsync("JoiningMatchData", joiningMatchData);
+                bool isSpectator =
+                    (matchData.PlayerA == null || matchData.PlayerA.UserId != userId) &&
+                    (matchData.PlayerB == null || matchData.PlayerB.UserId != userId);
 
 
+                if (isSpectator)
+                {
+                    if (!matchData.Match.SpectatorIds.Contains(userId))
+                    {
+                        matchData.Match.SpectatorIds.Add(userId);
+                        _context.Matches.Update(matchData.Match);
+                        await _context.SaveChangesAsync();
+                    }
 
-        //    if (!joiningMatchData.IsStarted)
-        //    {
-        //        var startMatchEvent = await _matchesService.StartMatch(userId, joiningMatchData.Match);
+                    // Broadcast that user joined
+                    await Clients.Group(groupName).SendAsync("PlayerJoined", user.Email);
 
+                    var updatedMatch = await _context.Matches
+                        .Include(m => m.PlayerDataA)
+                            .ThenInclude(pda => pda.Player)
+                        .Include(m => m.PlayerDataB)
+                            .ThenInclude(pdb => pdb.Player)
+                        .FirstOrDefaultAsync(m => m.Id == matchData.Match.Id);
 
-        //        //await Clients.Client(joiningMatchData.OtherPlayerConnectionId).SendAsync("StartMatch", startMatchEvent);
-        //        //await Clients.Client(connectionId).SendAsync("StartMatch", startMatchEvent);
+                    await Clients.Client(connectionId).SendAsync("JoiningMatchData", new JoiningMatchData
+                    {
+                        Match = updatedMatch!,
+                        PlayerA = updatedMatch.PlayerDataA.Player,
+                        PlayerB = updatedMatch.PlayerDataB.Player
+                    });
+                }
+                else
+                {
+                    if (!matchData.IsStarted)
+                    {
+                        await Groups.AddToGroupAsync(matchData.OtherPlayerConnectionId, groupName);
+                    }
 
-        //       await Clients.Group(joiningMatchData.Match.Id.ToString()).SendAsync("StartMatch", startMatchEvent);
-        //    }
-        //}
-        //else
-        //{
-        //    await Clients.Client(connectionId).SendAsync("LookingForOtherPlayer", "Waiting on another player for match.");
-        //}
+                    await Clients.Group(groupName).SendAsync("JoiningMatchData", matchData);
+                    await Clients.Group(groupName).SendAsync("PlayerJoined", user.Email);
+
+                    if (!matchData.IsStarted)
+                    {
+                        StartMatchEvent startedMatch = await _matchesService.StartMatch(userId, matchData.Match);
+                        await Clients.Group(groupName).SendAsync("PlayEvent", startedMatch);
+                    }
+                }
+            }
+            else if (specificMatchId != null)
+            {
+                var leMatch = await _context.Matches
+                    .Include(m => m.PlayerDataA)
+                        .ThenInclude(pdA => pdA.Player)
+                    .Include(m => m.PlayerDataB)
+                        .ThenInclude(pdB => pdB.Player)
+                    .FirstOrDefaultAsync(m => m.Id == specificMatchId);
+
+                if (leMatch != null && leMatch.UserAId != userId && leMatch.UserBId != userId)
+                {
+                    if (!leMatch.SpectatorIds.Contains(user.Email))
+                    {
+                        leMatch.SpectatorIds.Add(user.Email);
+                        _context.Matches.Update(leMatch);
+                        await _context.SaveChangesAsync();
+                        JoinMatchGroup(leMatch.Id);
+
+                        string groupName = $"match_{leMatch.Id}";
+                        await Clients.Group(groupName).SendAsync("PlayerJoined", user.Email);
+                    }
+
+                    await Clients.Client(connectionId).SendAsync("JoiningMatchData", new JoiningMatchData
+                    {
+                        Match = leMatch,
+                        PlayerA = leMatch.PlayerDataA.Player,
+                        PlayerB = leMatch.PlayerDataB.Player
+                    });
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            await Clients.Client(connectionId).SendAsync("Error", $"Erreur arrive quand joindre match: {ex.Message}");
+        }
+    }
+    // Signal R CHAT
+    // Permet d'afficher la liste des matches qui sont joué en ce moment
+    public async Task SeeOngoingGame()
+    {
+        var ongoingMatches = _context.Matches.Where(m => m.IsMatchCompleted == false).Include(p => p.PlayerDataA).Include(p => p.PlayerDataB).ToList();
+        await Clients.Caller.SendAsync("SeeOngoingGame", ongoingMatches);
     }
 
- 
+    // Bannir les spectateurs
+    public async Task BanUser(int matchId, string userEmail)
+    {
+        Super_Cartes_Infinies.Models.Match match = _context.Matches.FirstOrDefault(m => m.Id == matchId);
+        var user = _context.Users.FirstOrDefault(u => u.Email == userEmail);
+
+        if (match == null)
+        {
+            return;
+        }
+        else
+        {
+            if (!match.BannedSpectatorIds.Contains(userEmail))
+            {
+                match.BannedSpectatorIds.Add(userEmail);
+                _context.Matches.Update(match);
+                await _context.SaveChangesAsync();
+                await Clients.All.SendAsync("BannedFromMatchWithId", match.Id, userEmail);
+
+            }
+            if (match.SpectatorIds.Contains(userEmail))
+            {
+                match.SpectatorIds.Remove(userEmail);
+            }
+        }
+
+    }
+
+    public async Task LeaveMatch(int matchId, string userEmail)
+    {
+        Super_Cartes_Infinies.Models.Match match = _context.Matches.FirstOrDefault(m => m.Id == matchId);
+        var user = _context.Users.FirstOrDefault(u => u.Email == userEmail);
+        if (match == null)
+        {
+            return;
+        }
+        else
+        {
+            if (match.SpectatorIds.Contains(userEmail))
+            {
+
+                if (match.SpectatorIds.Contains(userEmail))
+                {
+                    match.SpectatorIds.Remove(userEmail);
+                    _context.Matches.Update(match);
+                    await _context.SaveChangesAsync();
+                    await Clients.Group($"match_{match.Id}").SendAsync("PlayerLeft");
+                }
+
+            }
+        }
+
+    }
+
+    public async Task JoinMatchGroup(int matchId)
+    {
+        string groupName = $"match_{matchId}";
+        await Groups.AddToGroupAsync(Context.ConnectionId, groupName);
+    }
+
+    public async Task SendMessage(int matchId, string sender, string message, string role)
+    {
+        string groupName = $"match_{matchId}";
+        await Clients.Group(groupName).SendAsync("ReceiveChatMessage", sender, message, role);
+    }
+
+
+
 
     //End Turn
     public async Task onEndTurnAsync( int matchId)
@@ -144,9 +302,6 @@ public class MatchHub : Hub
         await Clients.Group(matchId.ToString()).SendAsync("Surrender", SurrenderEvent);
 
     }
-
-
-    //playCard
     public async Task onPlayCardAsync(int matchId,int CardBeingPlayedId)
     {
         string userId = Context.UserIdentifier!;
