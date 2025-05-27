@@ -1036,7 +1036,8 @@ namespace Tests.Combat
                 Power = randomPain,
                 CardId = _cardA.Id,
                 Card = _cardA
-              
+              ,
+                Value = 0
 
             };
 

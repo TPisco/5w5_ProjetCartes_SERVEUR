@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Hosting;
 using Models.Models;
 using Super_Cartes_Infinies.Models;
 
@@ -94,6 +95,25 @@ namespace Super_Cartes_Infinies.Data
                     Cost = 2,
                     ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/006_f2.png"
                 }
+                //,new Card
+                // {
+                //    Id = 11,
+                //    Name = "Avalanche",
+                //    Attack = 0,
+                //    Health = 1,
+                //    Cost = 3,
+                //    ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/006_f2.png"
+                //}
+                //,new Card
+                // {
+                //    Id = 12,
+                //    Name = "Douleur Random",
+                //    Attack = 0,
+                //    Health = 1,
+                //    Cost = 2,
+                //    ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/006_f2.png"
+                //}
+
             };
         }
 
@@ -212,6 +232,16 @@ namespace Super_Cartes_Infinies.Data
                 {
                     Id=9, CardID = SeedCards()[9].Id
                 }
+                //,Ajout des cartes Spell dans le Seed
+                //new StartingCards
+                //{
+                //    Id=10, CardID = SeedCards()[11].Id
+                //},
+                //   new StartingCards
+                //{
+                //    Id=10, CardID = SeedCards()[12].Id
+                //}
+
             };
 
         }
@@ -348,7 +378,21 @@ namespace Super_Cartes_Infinies.Data
             CardId= 7, //Onix
             PowerId= 10, //DamageDown
             Value = 1
-        }
+        },
+        // new CardPower
+        //{
+        //    Id = 9,
+        //    CardId= 11, //Avalanche
+        //    PowerId= 6, //Earthquake
+        //    Value = 0
+        //},
+        //  new CardPower
+        //{
+        //    Id = 10,
+        //    CardId= 12, //Douleur Random
+        //    PowerId= 7, //RandomPain
+        //    Value = 0
+        //}
     };
         }
 
