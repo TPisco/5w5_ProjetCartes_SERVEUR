@@ -1,4 +1,4 @@
-﻿using Azure.Identity;
+using Azure.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -116,6 +116,8 @@ namespace WebApi.Controllers
             int Elo = _playerService.GetPlayerFromUserId(userId).ELO;
             return Elo;
         }
+
+
     }
     }
 
