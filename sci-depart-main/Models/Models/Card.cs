@@ -21,6 +21,10 @@ namespace Super_Cartes_Infinies.Models
         public virtual List<CardPower> CardPowers { get; set; }
 
 
+		//Pas de status ici
+		//List CardStatus
+
+
     }
 }
 

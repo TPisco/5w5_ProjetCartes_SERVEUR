@@ -1,4 +1,4 @@
-﻿using Azure.Identity;
+using Azure.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -107,6 +107,14 @@ namespace WebApi.Controllers
         public ActionResult<string[]> PrivateData()
         {
             return new string[] { "figue", "banane", "noix" };
+        }
+
+        [Authorize]
+        [HttpGet("{userId}")]
+        public async Task< ActionResult<int>> GetElo(string userId)
+        {
+            int Elo = _playerService.GetPlayerFromUserId(userId).ELO;
+            return Elo;
         }
 
 
