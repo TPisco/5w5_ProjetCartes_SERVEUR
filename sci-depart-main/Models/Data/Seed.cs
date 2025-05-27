@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Hosting;
 using Models.Models;
 using Super_Cartes_Infinies.Models;
 
@@ -94,6 +95,25 @@ namespace Super_Cartes_Infinies.Data
                     Cost = 2,
                     ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/006_f2.png"
                 }
+                //,new Card
+                // {
+                //    Id = 11,
+                //    Name = "Avalanche",
+                //    Attack = 0,
+                //    Health = 1,
+                //    Cost = 3,
+                //    ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/006_f2.png"
+                //}
+                //,new Card
+                // {
+                //    Id = 12,
+                //    Name = "Douleur Random",
+                //    Attack = 0,
+                //    Health = 1,
+                //    Cost = 2,
+                //    ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/006_f2.png"
+                //}
+
             };
         }
 
@@ -212,6 +232,16 @@ namespace Super_Cartes_Infinies.Data
                 {
                     Id=9, CardID = SeedCards()[9].Id
                 }
+                //,Ajout des cartes Spell dans le Seed
+                //new StartingCards
+                //{
+                //    Id=10, CardID = SeedCards()[11].Id
+                //},
+                //   new StartingCards
+                //{
+                //    Id=10, CardID = SeedCards()[12].Id
+                //}
+
             };
 
         }
@@ -227,6 +257,10 @@ namespace Super_Cartes_Infinies.Data
                 {
                     Id = 2, Name = "Thorns", Description = "Lorsqu’une carte défend, elle inflige X de dégâts AVANT de recevoir des dégâts. Si l’attaquant est tué par ces dégâts, l’attaque s’arrête et le défenseur ne reçoit pas de dégâts.", Icon = "🌹", HasValue = true
                 },
+                 new Power
+                {
+                    Id = 5, Name = "Chaos", Description = "Inverse l'attaque et la défense de toutes les cartes en jeu", Icon = "❂", HasValue = false
+                },
                 new Power
                 {
                     Id = 3, Name = "Heal", Description = "Soigne les cartes alliées de X incluant elle-même AVANT d’attaquer (mais les cartes ne peuvent pas avoir plus de health qu’au départ.)", Icon = "💖", HasValue = true
@@ -235,9 +269,55 @@ namespace Super_Cartes_Infinies.Data
                 {
                     Id = 4, Name = "Shield", Description = "Augmente la défense d'une carte de X", Icon = "🛡️", HasValue = true
                 },
+                 new Power
+                 {
+                        Id = 6, Name = "EarthQuakeX", Description = " Fait X dégâts à TOUTES les cartes en jeu (même les nôtres!)", Icon = "", HasValue = true, IsSpell = true
+                 },
+                new Power
+                {
+                    Id = 7 , Name = "RandomPain" , Description = "Une carte de sort qui inflige des dégâts aléatoires entre 1 et 6 à une carte ennemie.", Icon = "❓", HasValue = true, IsSpell = true
+                },
+                new Power
+                {
+                    Id= 8 , Name = "PoisonAttack", Description = "Inflige du poison à une carte ennemie." , Icon = "☠", HasValue = true
+                },
+                 new Power
+                {
+                    Id = 9 , Name = "StunnedX" , Description = "Inflige l'effet Stunned à une carte.", Icon = "💫", HasValue = true
+                },
+                 new Power
+                {
+                    Id = 10 , Name = "DamageDownAttack" , Description = "Inflige une quantité X de l'effet DamageDown à une carte.", Icon = "⬇", HasValue = true
+                }
 
             };
         }
+
+        //À décommenter plus tard
+
+        public static Status[] SeedStatus()
+        {
+            return new Status[]
+            {
+                new Status
+                {
+                    Id = 1, Name = "PoisonX", Description= "Inflige la quantité X de dégâts à la carte affectée à la fin de son activation.Si une carte a déjà une valeur de poison et qu’elle est à nouveau attaquée, la valeur de poison est augmentée. (Stacks)", Icon= "☠"
+                },
+                new Status
+                {
+                    Id = 2, Name = "StunnedX" , Description= "Empêche une carte d’agir pendant son activation durant X tours.Recoit quand-même les dégâts de poison et des autres cartes.", Icon = "💫"
+                },
+                new Status
+                {
+                    Id = 3, Name = "DamageDownX", Description = "Un effet qui réduit les dégâts totaux d'une carte par X.", Icon = "⬇"
+                }
+
+            };
+
+        }
+
+        //Il n'y aura pas de SeedCardStatus(), car aucune carte n'a un status qui lui est infligé par défaut.
+
 
         public static CardPower[] SeedCardPowers()
         {
@@ -269,7 +349,50 @@ namespace Super_Cartes_Infinies.Data
             CardId = 4, // Mewtwo
             PowerId = 4, // Shield
             Value = 5 
-        }
+        },
+        //AJOUT DES NOUVEAUX POWERS
+        new CardPower
+        {
+            Id= 5,
+            CardId =5, //Gardevoir
+            PowerId = 8, //Poison Attack
+            Value = 2
+        },
+        new CardPower
+        {
+            Id = 6,
+            CardId = 8, //Ronflex
+            PowerId = 9, //Stun Attack
+            Value = 3
+        },
+        new CardPower
+        {
+            Id= 7,
+            CardId =6, //Alakazam
+            PowerId = 5 //Chaos
+            ,Value = 0
+        },
+        new CardPower
+        {
+            Id = 8,
+            CardId= 7, //Onix
+            PowerId= 10, //DamageDown
+            Value = 1
+        },
+        // new CardPower
+        //{
+        //    Id = 9,
+        //    CardId= 11, //Avalanche
+        //    PowerId= 6, //Earthquake
+        //    Value = 0
+        //},
+        //  new CardPower
+        //{
+        //    Id = 10,
+        //    CardId= 12, //Douleur Random
+        //    PowerId= 7, //RandomPain
+        //    Value = 0
+        //}
     };
         }
 

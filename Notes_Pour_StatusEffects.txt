@@ -1,0 +1,127 @@
+-JoinMatch() : Hub
+-Classe Matchmaking
+
+
+
+ÉTAPES À COMPLÉTER:
+
+
+--Créer classe Satus
+{
+
+id
+
+name 
+
+
+value
+
+description
+
+icon
+
+
+List<CardStatus>
+
+
+
+} 
+
+
+classe CardStatus.cs {
+
+id
+
+cardId
+
+Card
+
+statusId
+
+Status
+
+value
+
+
+}
+
+
+
+
+classe Card.cs{
+
+//Ne PAS !!!! ajouter list<CardStatus>
+
+
+}
+
+
+
+Satus.cs(
+public const int POISON_ID = ;
+
+)
+
+
+
+
+
+
+
+
+
+classe PlayableCard.Cs(
+
+//Fonction HasStatus
+
+
+//Fonction GetStatusValue
+
+)
+
+
+
+
+CLIENT ----
+
+
+
+Match.service.ts[
+
+
+Ajouter l'event ( case "EFFECT_name"
+
+]
+
+
+la carte n'aura pas toujours un status
+Carte aura toujours un power à lui
+Status = qq chose de recu
+
+status uniquement appliquable  lors d'une partie, pas à la carte en elle-même
+
+
+QUESTIONS:
+-Est-ce que les Spells sont une nouvelle classe? Comment fait-on pour les reconnaître? ( Identifier par son SpellId??)
+-À quel endroit Event est-ce que je fais les Status?
+-Est-ce que une carte doit avoir un moyen d'appliquer le status? Pouvoir de poison par défaut?
+
+
+-Poison perd 1 stack à chaque round
+
+
+
+
+--TODO POUR LA COMPLÉTION DU TP3:
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+SERVEUR:
+-Ajouter powers à certaines cartes dans le Seed
+-Modifier et corriger les Spells
+
+CLIENT:
+-Afficher les nouveaux pouvoirs sur les cartes ( dans ownedCards, Magasin et dans un Match)
+-Afficher les nouveaux status sur une carte dans un Match
+-Modifier le model.ts pour lui ajouter les nouvelles classes
+-Ajouter la gestion des évènements dans match.component.ts
+-Ajouter la logique des évènements côté client dans matchService
+
