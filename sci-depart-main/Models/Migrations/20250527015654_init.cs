@@ -366,7 +366,9 @@ namespace Models.Migrations
                     UserAId = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UserBId = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PlayerDataAId = table.Column<int>(type: "int", nullable: false),
-                    PlayerDataBId = table.Column<int>(type: "int", nullable: false)
+                    PlayerDataBId = table.Column<int>(type: "int", nullable: false),
+                    SpectatorIds = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    BannedSpectatorIds = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -464,9 +466,9 @@ namespace Models.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "11111111-1111-1111-1111-111111111111", 0, "f2761494-7a90-4d99-811e-e513b9c3a5cb", "admin@admin.com", true, true, null, "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAIAAYagAAAAEL7mVQ6NOjhYQKwD8zliGvwVsCejMxz59WqwXLhDDjb1koGo+8MAeg20XiSd5NOj4Q==", null, false, "62dfb2fc-67ca-4143-a7a0-5b99e2dadf08", false, "admin@admin.com" },
-                    { "User1Id", 0, "bb3c9bac-760a-4ef3-9406-25fa2f23b880", null, false, false, null, null, null, null, null, false, "23a05248-ec30-4283-98ce-c7ac451c4a8f", false, null },
-                    { "User2Id", 0, "dd9877ea-b25b-4a46-802c-c47163135786", null, false, false, null, null, null, null, null, false, "6b8c5a84-a18f-46dc-b6bf-c2f0a20fe200", false, null }
+                    { "11111111-1111-1111-1111-111111111111", 0, "6fab8c36-5ca1-455e-a505-fdad7b2aa0d6", "admin@admin.com", true, true, null, "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAIAAYagAAAAEAb1ITBzPqcr2Qv+vYDY/nwxY9g4UYlBAitivE9/r+uXaBexu0+bLd5Dgl1xoneVzA==", null, false, "6ae091a6-c76a-461a-8daf-b12c9b035b4e", false, "admin@admin.com" },
+                    { "User1Id", 0, "7e5a01ec-c574-41ca-a2b0-dbd05f2ec906", null, false, false, null, null, null, null, null, false, "9fe67558-1837-4e65-9664-8eb05bce7837", false, null },
+                    { "User2Id", 0, "536dc5d1-6df2-42d1-b975-8fbe6f164ec3", null, false, false, null, null, null, null, null, false, "c78f49c7-34b2-416a-a938-ce3d5fba69c1", false, null }
                 });
 
             migrationBuilder.InsertData(

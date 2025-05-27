@@ -84,65 +84,18 @@ public class MatchHub : Hub
         if (specificMatchId != null)
         {
             Super_Cartes_Infinies.Models.Match match = _context.Matches.FirstOrDefault(m => m.Id == specificMatchId);
-            if (match.BannedSpectatorIds.Contains(GetCurrentUserAsync().Result.Email))
+
+            if (match == null)
+            {
+                await Clients.Caller.SendAsync("Error", $"Match avec l'ID {specificMatchId} introuvable.");
+                return;
+            }
+
+            if (match.BannedSpectatorIds != null && match.BannedSpectatorIds.Contains(GetCurrentUserAsync().Result.Email))
             {
                 await Clients.Caller.SendAsync("BannedFromMatch", match.Id);
                 return;
             }
-        }
-
-        // Check for ongoing match
-        //if (specificMatchId != null)
-        //{
-        //    var joiningMatchData = await _matchesService.JoinMatch(userId, connectionId, specificMatchId);
-
-        //    if (joiningMatchData != null)
-        //    {
-        //        string groupName = MatchGroup(joiningMatchData.Match.Id);
-
-        //        await Groups.AddToGroupAsync(connectionId, groupName);
-
-        //        if (joiningMatchData.OtherPlayerConnectionId != null)
-        //        {
-        //            await Groups.AddToGroupAsync(joiningMatchData.OtherPlayerConnectionId, groupName);
-        //        }
-
-        //        await Clients.Group(groupName).SendAsync("JoiningMatchAsSpectator", joiningMatchData);
-
-        //    }
-        //}
-        //else
-        //{
-        //    var playerInfo = new PlayerInfo
-        //    {
-        //        ConnectionId = connectionId,
-        //        UserId = userId,
-        //        ELO = _playersService.GetPlayerFromUserId(userId).ELO, //A voir si sa fonctionne :(
-        //        WaitTimeSeconds = 0
-        //    };
-
-        //    _waitingUserService.AddPlayer(playerInfo);
-        //}
-
-        //JoiningMatchData? joiningMatchData = await _matchesService.JoinMatch(userId, connectionId, specificMatchId);
-
-        if (specificMatchId != null)
-        {
-            //CreateChannel(specificMatchId.Value);
-        
-
-            // V�rifier si c'est un visiteur ou player
-
-            //    await Groups.AddToGroupAsync(connectionId,joiningMatchData.Match.Id.ToString());
-
-            //    if(joiningMatchData.OtherPlayerConnectionId!=null)
-            //    await Groups.AddToGroupAsync(joiningMatchData.OtherPlayerConnectionId, joiningMatchData.Match.Id.ToString());
-
-            //    //await Clients.Group(joiningMatchData.Match.Id.ToString()).SendAsync("JoiningMatchData", joiningMatchData);
-
-            // await Clients.Group(joiningMatchData.Match.Id.ToString()).SendAsync("StartMatch", startMatchEvent);
-            
-
         }
         else
         {
@@ -318,8 +271,6 @@ public class MatchHub : Hub
         string groupName = $"match_{matchId}";
         await Clients.Group(groupName).SendAsync("ReceiveChatMessage", sender, message, role);
     }
-
-
 
 
 

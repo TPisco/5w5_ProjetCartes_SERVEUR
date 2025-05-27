@@ -12,7 +12,7 @@ using Super_Cartes_Infinies.Data;
 namespace Models.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250521152129_init")]
+    [Migration("20250527015654_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -157,15 +157,15 @@ namespace Models.Migrations
                         {
                             Id = "11111111-1111-1111-1111-111111111111",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "f2761494-7a90-4d99-811e-e513b9c3a5cb",
+                            ConcurrencyStamp = "6fab8c36-5ca1-455e-a505-fdad7b2aa0d6",
                             Email = "admin@admin.com",
                             EmailConfirmed = true,
                             LockoutEnabled = true,
                             NormalizedEmail = "ADMIN@ADMIN.COM",
                             NormalizedUserName = "ADMIN@ADMIN.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEL7mVQ6NOjhYQKwD8zliGvwVsCejMxz59WqwXLhDDjb1koGo+8MAeg20XiSd5NOj4Q==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEAb1ITBzPqcr2Qv+vYDY/nwxY9g4UYlBAitivE9/r+uXaBexu0+bLd5Dgl1xoneVzA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "62dfb2fc-67ca-4143-a7a0-5b99e2dadf08",
+                            SecurityStamp = "6ae091a6-c76a-461a-8daf-b12c9b035b4e",
                             TwoFactorEnabled = false,
                             UserName = "admin@admin.com"
                         },
@@ -173,22 +173,22 @@ namespace Models.Migrations
                         {
                             Id = "User1Id",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "bb3c9bac-760a-4ef3-9406-25fa2f23b880",
+                            ConcurrencyStamp = "7e5a01ec-c574-41ca-a2b0-dbd05f2ec906",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "23a05248-ec30-4283-98ce-c7ac451c4a8f",
+                            SecurityStamp = "9fe67558-1837-4e65-9664-8eb05bce7837",
                             TwoFactorEnabled = false
                         },
                         new
                         {
                             Id = "User2Id",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "dd9877ea-b25b-4a46-802c-c47163135786",
+                            ConcurrencyStamp = "536dc5d1-6df2-42d1-b975-8fbe6f164ec3",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "6b8c5a84-a18f-46dc-b6bf-c2f0a20fe200",
+                            SecurityStamp = "c78f49c7-34b2-416a-a938-ce3d5fba69c1",
                             TwoFactorEnabled = false
                         });
                 });
@@ -719,6 +719,10 @@ namespace Models.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("BannedSpectatorIds")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("IsMatchCompleted")
                         .HasColumnType("bit");
 
@@ -730,6 +734,10 @@ namespace Models.Migrations
 
                     b.Property<int>("PlayerDataBId")
                         .HasColumnType("int");
+
+                    b.Property<string>("SpectatorIds")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserAId")
                         .IsRequired()
