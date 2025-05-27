@@ -28,10 +28,10 @@ namespace WebApi.Combat.PowerEvent
             Damage = earthquakeCard.GetPowerValue(Power.EARTHQUAKEX_ID);
 
             // Appliquez l'effet Chaos aux cartes de l'attaquant
-            ApplyEarthquakeDamage(attackerCards, attacker, Damage);
+            ApplyEarthquakeDamage(attackerCards, attacker, Damage,earthquakeCard);
 
             // Appliquez l'effet Chaos aux cartes du défenseur
-            ApplyEarthquakeDamage(defenderCards, defender, Damage);
+            ApplyEarthquakeDamage(defenderCards, defender, Damage,earthquakeCard);
 
 
             //On tue la carte Spell
@@ -39,7 +39,7 @@ namespace WebApi.Combat.PowerEvent
         }
 
         // Méthode pour appliquer l'effet Chaos à une liste de cartes
-        private void ApplyEarthquakeDamage(List<PlayableCard> cards, MatchPlayerData player, int damage)
+        private void ApplyEarthquakeDamage(List<PlayableCard> cards, MatchPlayerData player, int damage, PlayableCard spellCard)
         {
 
             List<PlayableCard> deadCards = new List<PlayableCard>();
@@ -47,16 +47,20 @@ namespace WebApi.Combat.PowerEvent
             foreach (var card in cards)
             {
                
-               
+               if(card != spellCard)
+                {
+                    if (card.Health - damage <= 0)
+                    {
+                        deadCards.Add(card);
+                    }
+                    else
+                    {
+                        Events.Add(new CardDamageEvent(damage, card, player));
+                    }
 
-                if (card.Health - damage <= 0)
-                {
-                    deadCards.Add(card);
                 }
-                else
-                {
-                    Events.Add(new CardDamageEvent(damage, card, player));
-                }
+
+           
 
             }
 

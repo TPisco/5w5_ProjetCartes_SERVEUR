@@ -35,7 +35,7 @@ namespace WebApi.Combat
 
                 if (atkCard.HasPower(Power.RANDOMPAIN_ID))
                 {
-                   // Events.Add(new RandomPainEvent());
+                    Events.Add(new RandomPainEvent(atkCard, attacker, defender.BattleField[i],defender));
 
                 }
 

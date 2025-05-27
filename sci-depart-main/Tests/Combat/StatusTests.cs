@@ -1085,7 +1085,7 @@ namespace Tests.Combat
         [TestMethod]
         public void EarthQuake_X()
         {
-            //Création du pouvoir Chaos
+            //Création du pouvoir earthquake
             Power earthquake = new Power
             {
                 Id = Power.EARTHQUAKEX_ID,
@@ -1106,39 +1106,41 @@ namespace Tests.Combat
 
 
             //Création d'un nouvelle carte avec 0 de dmg
-            Card spellCard = new Card
-            {
-                Name = "EarthQuake",
-                Attack = 0,
-                Health = 1,
-                Cost = 4,
-                ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/006_f2.png",
+            //Card spellCard = new Card
+            //{
+            //    Name = "EarthQuake",
+            //    Attack = 0,
+            //    Health = 1,
+            //    Cost = 4,
+            //    ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/006_f2.png",
 
 
-            };
+            //};
             //Création d'un nouvelle PlayableCard avec la Card
-            PlayableCard newCard = new PlayableCard(spellCard);
+           // PlayableCard newCard = new PlayableCard(spellCard);
 
 
 
             _cardA.CardPowers = new List<CardPower> { cardPower };
 
             //on stocke les valeurs inversées prévues de la carte pour la vérification
-            var newHealthCardA = _playableCardB.Health - 4;
+            var newHealthCardA = _playableCardA.Health - 4;
             var newHealthcardB = _playableCardB.Health - 4;
 
             //Ajout des cartes sur le terrain 
-            _currentPlayerData.BattleField.Add(newCard);
+            _currentPlayerData.BattleField.Add(_playableCardA);
             //Ajout de la carte avec 0 dmg à la liste du joueur B 
             var oldHp = _playableCardB.Health;
-            _currentPlayerData.BattleField.Add(_playableCardA);
+          //  _currentPlayerData.BattleField.Add(_playableCardA);
             _opposingPlayerData.BattleField.Add(_playableCardB);
 
             //   var playerTurnEvent = new PlayerEndTurnEvent(_match, _currentPlayerData, _opposingPlayerData, NB_MANA_PER_TURN);
-            var earthquakeEvent = new EarthquakeEvent(newCard, _currentPlayerData.BattleField, _opposingPlayerData.BattleField, _currentPlayerData, _opposingPlayerData);
+            var earthquakeEvent = new EarthquakeEvent(_playableCardA, _currentPlayerData.BattleField, _opposingPlayerData.BattleField, _currentPlayerData, _opposingPlayerData);
 
-           // Assert.AreEqual(newHealthCardA, _playableCardA.Health);
-            Assert.AreEqual(newHealthcardB, _playableCardB.Health);
+            // Assert.AreEqual(newHealthCardA, _playableCardA.Health);
+            Assert.AreEqual(1, _playableCardB.Health);
+            AssertCurrentPlayerCardDied();
+           
 
         }
 
