@@ -45,10 +45,17 @@ namespace WebApi.Controllers
         // GET: DeckController/Create
         [HttpPost]
         [Authorize]
-        public async Task<ActionResult<IEnumerable<Deck>>> SetCurrentDeck(int deckId)
+        public async Task<ActionResult<IEnumerable<Deck>>> SetCurrentDeck([FromBody] DeckIdDto dto)
         {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            return Ok(await _decksService.SetCurrentDeckAsync(deckId, userId!));
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier)!;
+            try
+            {
+                return Ok(await _decksService.SetCurrentDeckAsync(dto.DeckId, userId));
+            }
+            catch (InvalidOperationException ex)
+            {
+                return BadRequest(new { Message = ex.Message });
+            }
         }
 
         [HttpPost]
@@ -104,13 +111,17 @@ namespace WebApi.Controllers
 
         [HttpPost]
         [Authorize]
-        public async Task<ActionResult<IEnumerable<Deck>>> DeleteDeck( int deckId)
+        public async Task<ActionResult<IEnumerable<Deck>>> DeleteDeck([FromBody] DeckIdDto dto)
         {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-
-            return Ok(await _decksService.DeleteDeckAsync(deckId, userId));
-
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier)!;
+            try
+            {
+                return Ok(await _decksService.DeleteDeckAsync(dto.DeckId, userId));
+            }
+            catch (InvalidOperationException ex)
+            {
+                return BadRequest(new { Message = ex.Message });
+            }
         }
 
         [HttpGet]

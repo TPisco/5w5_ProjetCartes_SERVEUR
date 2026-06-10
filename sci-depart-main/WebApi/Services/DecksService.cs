@@ -84,19 +84,18 @@ namespace Super_Cartes_Infinies.Services
                 throw new InvalidOperationException("Deck not found or does not belong to the player.");
 
             if (deck.IsCurrent)
-                throw new InvalidOperationException("Cannot delete the current deck.");
+                throw new InvalidOperationException("Impossible de supprimer le deck courant.");
 
-            // Supprimer les cartes associées au deck
+            // Supprimer les cartes associées au deck (DeckCards uniquement, pas les OwnedCards)
             _dbContext.DeckCards.RemoveRange(deck.DeckCards);
 
             // Supprimer le deck
+            player.Decks.Remove(deck);
             _dbContext.Decks.Remove(deck);
 
-            // Sauvegarder les modifications
             await _dbContext.SaveChangesAsync();
 
-
-            return player.Decks;
+            return await GetPlayerDecks(userId);
         }
 
 
@@ -261,7 +260,7 @@ namespace Super_Cartes_Infinies.Services
                 d.IsCurrent = d.Id == deckId;
 
             await _dbContext.SaveChangesAsync();
-            return player.Decks;
+            return await GetPlayerDecks(userId);
         }
 
         public async Task<IEnumerable<Card>> GetMatchDeckCardsAsync(string userId)
