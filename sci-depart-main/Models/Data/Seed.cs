@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Drawing;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Hosting;
 using Models.Models;
 using Super_Cartes_Infinies.Models;
 
@@ -11,132 +9,21 @@ namespace Super_Cartes_Infinies.Data
     {
         public Seed() { }
 
-        public static Card[] SeedCards()
+        // National dex ids used by starting decks and special card powers.
+        private static class FeaturedPokemon
         {
-            return new Card[] {
-                new Card
-                {
-                    Id = 1,
-                    Name = "Dracolosse",
-                    Attack = 5,
-                    Health = 8,
-                    Cost = 5,
-                    Rarity = CardRarity.Epic,
-                    ImageUrl = "https://pm1.aminoapps.com/6906/f456d54f84291a3e3a9532251214cda80cbef906r1-335-431v2_hq.jpg"
-                }, new Card
-                {
-                    Id = 2,
-                    Name = "Rayquaza",
-                    Attack = 10,
-                    Health = 5,
-                    Cost = 9,
-                    Rarity = CardRarity.Legendary,
-                    ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/384.png"
-                }, new Card
-                {
-                    Id = 3,
-                    Name = "Rondoudou",
-                    Attack = 2,
-                    Health = 1,
-                    Cost = 1,
-                    Rarity = CardRarity.Common,
-                    ImageUrl = "https://upload.wikimedia.org/wikipedia/en/2/22/Pok%C3%A9mon_Jigglypuff_art.png"
-                }, new Card
-                {
-                    Id = 4,
-                    Name = "Mewtwo",
-                    Attack = 8,
-                    Health = 4,
-                    Cost = 6,
-                    Rarity = CardRarity.Epic,
-                    ImageUrl = "https://e7.pngegg.com/pngimages/993/391/png-clipart-pokemon-character-illustration-pokemon-x-and-y-pokemon-go-pokemon-black-white-mewtwo-pokemon-go-purple-mammal.png"
-                }, new Card
-                {
-                    Id = 5,
-                    Name = "Gardevoir",
-                    Attack = 7,
-                    Health = 7,
-                    Cost = 5,
-                    Rarity = CardRarity.Rare,
-                    ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/282.png"
-                }, new Card
-                {
-                    Id = 6,
-                    Name = "Alakazam",
-                    Attack = 4,
-                    Health = 2,
-                    Cost = 2,
-                    Rarity = CardRarity.Common,
-                    ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/065.png"
-                }, new Card
-                {
-                    Id = 7,
-                    Name = "Onix",
-                    Attack = 6,
-                    Health = 3,
-                    Cost = 4,
-                    Rarity = CardRarity.Rare,
-                    ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/095.png"
-                }, new Card
-                {
-                    Id = 8,
-                    Name = "Ronflex",
-                    Attack = 1,
-                    Health = 9,
-                    Cost = 2,
-                    Rarity = CardRarity.Common,
-                    ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/143.png"
-                }, new Card
-                {
-                    Id = 9,
-                    Name = "Mew",
-                    Attack = 5,
-                    Health = 1,
-                    Cost = 2,
-                    Rarity = CardRarity.Legendary,
-                    ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/151.png"
-                }, new Card
-                {
-                    Id = 10,
-                    Name = "Dracofeu",
-                    Attack = 6,
-                    Health = 1,
-                    Cost = 2,
-                    Rarity = CardRarity.Rare,
-                    ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/006_f2.png"
-                },
-                new Card { Id = 11, Name = "Pikachu", Attack = 3, Health = 2, Cost = 2, Rarity = CardRarity.Common, ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/025.png" },
-                new Card { Id = 12, Name = "Evoli", Attack = 2, Health = 3, Cost = 1, Rarity = CardRarity.Common, ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/133.png" },
-                new Card { Id = 13, Name = "Magicarpe", Attack = 1, Health = 4, Cost = 1, Rarity = CardRarity.Common, ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/129.png" },
-                new Card { Id = 14, Name = "Lucario", Attack = 5, Health = 4, Cost = 4, Rarity = CardRarity.Rare, ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/448.png" },
-                new Card { Id = 15, Name = "Givrali", Attack = 4, Health = 5, Cost = 3, Rarity = CardRarity.Rare, ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/471.png" },
-                new Card { Id = 16, Name = "Tortank", Attack = 6, Health = 6, Cost = 5, Rarity = CardRarity.Epic, ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/009.png" },
-                new Card { Id = 17, Name = "Florizarre", Attack = 5, Health = 7, Cost = 5, Rarity = CardRarity.Epic, ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/003.png" },
-                new Card { Id = 18, Name = "Amphinobi", Attack = 7, Health = 3, Cost = 4, Rarity = CardRarity.Epic, ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/658.png" },
-                new Card { Id = 19, Name = "Arceus", Attack = 9, Health = 9, Cost = 10, Rarity = CardRarity.Legendary, ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/493.png" },
-                new Card { Id = 20, Name = "Dialga", Attack = 8, Health = 8, Cost = 8, Rarity = CardRarity.Legendary, ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/483.png" }
-                //,new Card
-                // {
-                //    Id = 11,
-                //    Name = "Avalanche",
-                //    Attack = 0,
-                //    Health = 1,
-                //    Cost = 3,
-                //    ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/006_f2.png"
-                //}
-                //,new Card
-                // {
-                //    Id = 12,
-                //    Name = "Douleur Random",
-                //    Attack = 0,
-                //    Health = 1,
-                //    Cost = 2,
-                //    ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/006_f2.png"
-                //}
-
-            };
+            public const int Dracolosse = 149;
+            public const int Rayquaza = 384;
+            public const int Rondoudou = 39;
+            public const int Mewtwo = 150;
+            public const int Gardevoir = 282;
+            public const int Alakazam = 65;
+            public const int Onix = 95;
+            public const int Ronflex = 143;
+            public const int Dracofeu = 6;
         }
 
+        public static Card[] SeedCards() => CardSeedLoader.LoadCards();
         public static IdentityUser[] SeedUsers()
         {
             var hasher = new PasswordHasher<IdentityUser>();
@@ -214,56 +101,26 @@ namespace Super_Cartes_Infinies.Data
 
      public static StartingCards[] seedStartingCards()
         {
-            return new StartingCards[]
+            int[] startingCardIds =
             {
-                new StartingCards
-                {
-                   Id=1, CardID = SeedCards()[0].Id
-                },
-                new StartingCards
-                {
-                    Id=2, CardID = SeedCards()[3].Id
-                },
-                new StartingCards
-                {
-                    Id=3, CardID = SeedCards()[5].Id
-                },
-                new StartingCards
-                {
-                    Id=4, CardID = SeedCards()[4].Id
-                },
-                new StartingCards
-                {
-                    Id=5, CardID = SeedCards()[2].Id
-                },
-                new StartingCards
-                {
-                   Id=6, CardID = SeedCards()[9].Id
-                },
-                new StartingCards
-                {
-                    Id=7, CardID = SeedCards()[4].Id
-                },
-                new StartingCards
-                {
-                    Id=8, CardID = SeedCards()[2].Id
-                },
-                new StartingCards
-                {
-                    Id=9, CardID = SeedCards()[9].Id
-                }
-                //,Ajout des cartes Spell dans le Seed
-                //new StartingCards
-                //{
-                //    Id=10, CardID = SeedCards()[11].Id
-                //},
-                //   new StartingCards
-                //{
-                //    Id=10, CardID = SeedCards()[12].Id
-                //}
-
+                FeaturedPokemon.Dracolosse,
+                FeaturedPokemon.Mewtwo,
+                FeaturedPokemon.Alakazam,
+                FeaturedPokemon.Gardevoir,
+                FeaturedPokemon.Rondoudou,
+                FeaturedPokemon.Dracofeu,
+                FeaturedPokemon.Gardevoir,
+                FeaturedPokemon.Rondoudou,
+                FeaturedPokemon.Dracofeu
             };
 
+            return startingCardIds
+                .Select((cardId, index) => new StartingCards
+                {
+                    Id = index + 1,
+                    CardID = cardId
+                })
+                .ToArray();
         }
     public static Power[] SeedPower()
         {
@@ -342,78 +199,63 @@ namespace Super_Cartes_Infinies.Data
         public static CardPower[] SeedCardPowers()
         {
             return new CardPower[]
-    {
-        new CardPower
-        {
-            Id = 1,
-            CardId = 1, // Dracolosse
-            PowerId = 1 // First Strike
-        },
-        new CardPower
-        {
-            Id = 2,
-            CardId = 2, // Rayquaza
-            PowerId = 2, // Thorns
-            Value = 3 
-        },
-        new CardPower
-        {
-            Id = 3,
-            CardId = 3, // Rondoudou
-            PowerId = 3, // Heal
-            Value = 2 
-        },
-        new CardPower
-        {
-            Id = 4,
-            CardId = 4, // Mewtwo
-            PowerId = 4, // Shield
-            Value = 5 
-        },
-        //AJOUT DES NOUVEAUX POWERS
-        new CardPower
-        {
-            Id= 5,
-            CardId =5, //Gardevoir
-            PowerId = 8, //Poison Attack
-            Value = 2
-        },
-        new CardPower
-        {
-            Id = 6,
-            CardId = 8, //Ronflex
-            PowerId = 9, //Stun Attack
-            Value = 3
-        },
-        new CardPower
-        {
-            Id= 7,
-            CardId =6, //Alakazam
-            PowerId = 5 //Chaos
-            ,Value = 0
-        },
-        new CardPower
-        {
-            Id = 8,
-            CardId= 7, //Onix
-            PowerId= 10, //DamageDown
-            Value = 1
-        },
-        // new CardPower
-        //{
-        //    Id = 9,
-        //    CardId= 11, //Avalanche
-        //    PowerId= 6, //Earthquake
-        //    Value = 0
-        //},
-        //  new CardPower
-        //{
-        //    Id = 10,
-        //    CardId= 12, //Douleur Random
-        //    PowerId= 7, //RandomPain
-        //    Value = 0
-        //}
-    };
+            {
+                new CardPower
+                {
+                    Id = 1,
+                    CardId = FeaturedPokemon.Dracolosse,
+                    PowerId = 1
+                },
+                new CardPower
+                {
+                    Id = 2,
+                    CardId = FeaturedPokemon.Rayquaza,
+                    PowerId = 2,
+                    Value = 3
+                },
+                new CardPower
+                {
+                    Id = 3,
+                    CardId = FeaturedPokemon.Rondoudou,
+                    PowerId = 3,
+                    Value = 2
+                },
+                new CardPower
+                {
+                    Id = 4,
+                    CardId = FeaturedPokemon.Mewtwo,
+                    PowerId = 4,
+                    Value = 5
+                },
+                new CardPower
+                {
+                    Id = 5,
+                    CardId = FeaturedPokemon.Gardevoir,
+                    PowerId = 8,
+                    Value = 2
+                },
+                new CardPower
+                {
+                    Id = 6,
+                    CardId = FeaturedPokemon.Ronflex,
+                    PowerId = 9,
+                    Value = 3
+                },
+                new CardPower
+                {
+                    Id = 7,
+                    CardId = FeaturedPokemon.Alakazam,
+                    PowerId = 5,
+                    Value = 0
+                },
+                new CardPower
+                {
+                    Id = 8,
+                    CardId = FeaturedPokemon.Onix,
+                    PowerId = 10,
+                    Value = 1
+                }
+            };
         }
 
 

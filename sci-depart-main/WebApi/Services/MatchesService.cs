@@ -129,19 +129,10 @@ namespace Super_Cartes_Infinies.Services
 
         public async Task<PlayerEndTurnEvent> EndTurn(string userId, int matchId)
         {
-            Match? match = await _dbContext.Matches.FindAsync(matchId);
-
-            if (match == null)
-                throw new Exception("Impossible de trouver le match");
-
-            if (match.IsMatchCompleted)
-                throw new Exception("Le match est déjà terminé");
-
-            if (match.UserAId != userId && match.UserBId != userId)
-                throw new Exception("Le joueur n'est pas dans ce match");
+            var match = await GetMatchForGameplayAsync(matchId, userId);
 
             if ((match.UserAId == userId) != match.IsPlayerATurn)
-                throw new Exception("Ce n'est pas le tour de ce joueur");
+                throw new InvalidOperationException("Ce n'est pas le tour de ce joueur");
 
             MatchPlayerData currentPlayerData;
             MatchPlayerData opposingPlayerData;
@@ -168,16 +159,7 @@ namespace Super_Cartes_Infinies.Services
 
         public async Task<SurrenderEvent> Surrender(string userId, int matchId)
         {
-            Match? match = await _dbContext.Matches.FindAsync(matchId);
-
-            if (match == null)
-                throw new Exception("Impossible de trouver le match");
-
-            if (match.IsMatchCompleted)
-                throw new Exception("Le match est déjà terminé");
-
-            if (match.UserAId != userId && match.UserBId != userId)
-                throw new Exception("Le joueur n'est pas dans ce match");
+            var match = await GetMatchForGameplayAsync(matchId, userId);
 
             MatchPlayerData currentPlayerData;
             MatchPlayerData opposingPlayerData;
@@ -208,19 +190,10 @@ namespace Super_Cartes_Infinies.Services
 
         public async Task<PlayCardEvent> PlayCard(string userId,int cardId, int matchId)
         {
-            Match? match = await _dbContext.Matches.FindAsync(matchId);
-
-            if (match == null)
-                throw new Exception("Impossible de trouver le match");
-
-            if (match.IsMatchCompleted)
-                throw new Exception("Le match est déjà terminé");
-
-            if (match.UserAId != userId && match.UserBId != userId)
-                throw new Exception("Le joueur n'est pas dans ce match");
+            var match = await GetMatchForGameplayAsync(matchId, userId);
 
             if ((match.UserAId == userId) != match.IsPlayerATurn)
-                throw new Exception("Ce n'est pas le tour de ce joueur");
+                throw new InvalidOperationException("Ce n'est pas le tour de ce joueur");
 
             MatchPlayerData currentPlayerData;
             MatchPlayerData opposingPlayerData;
@@ -244,6 +217,31 @@ namespace Super_Cartes_Infinies.Services
             return playCardEvent;
 
 
+        }
+
+        private async Task<Match> GetMatchForGameplayAsync(int matchId, string userId)
+        {
+            var match = await _dbContext.Matches
+                .Include(m => m.PlayerDataA).ThenInclude(p => p.Player)
+                .Include(m => m.PlayerDataA).ThenInclude(p => p.BattleField).ThenInclude(c => c.Card)
+                .Include(m => m.PlayerDataA).ThenInclude(p => p.Hand).ThenInclude(c => c.Card)
+                .Include(m => m.PlayerDataA).ThenInclude(p => p.CardsPile).ThenInclude(c => c.Card)
+                .Include(m => m.PlayerDataB).ThenInclude(p => p.Player)
+                .Include(m => m.PlayerDataB).ThenInclude(p => p.BattleField).ThenInclude(c => c.Card)
+                .Include(m => m.PlayerDataB).ThenInclude(p => p.Hand).ThenInclude(c => c.Card)
+                .Include(m => m.PlayerDataB).ThenInclude(p => p.CardsPile).ThenInclude(c => c.Card)
+                .FirstOrDefaultAsync(m => m.Id == matchId);
+
+            if (match == null)
+                throw new InvalidOperationException("Impossible de trouver le match");
+
+            if (match.IsMatchCompleted)
+                throw new InvalidOperationException("Le match est déjà terminé");
+
+            if (match.UserAId != userId && match.UserBId != userId)
+                throw new InvalidOperationException("Le joueur n'est pas dans ce match");
+
+            return match;
         }
     }
 }

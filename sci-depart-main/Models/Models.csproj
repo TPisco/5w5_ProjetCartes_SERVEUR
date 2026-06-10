@@ -15,4 +15,10 @@
 	<PackageReference Include="Microsoft.Extensions.Identity.Core" Version="8.0.10" />
 	<PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="8.0.10" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Data\pokemon_cards.json" />
+    <None Update="Data\pokemon_cards.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>

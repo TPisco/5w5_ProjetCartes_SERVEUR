@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Super_Cartes_Infinies.Data;
 
@@ -11,9 +12,11 @@ using Super_Cartes_Infinies.Data;
 namespace Models.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260610013341_Seed400Pokemon")]
+    partial class Seed400Pokemon
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -154,15 +157,15 @@ namespace Models.Migrations
                         {
                             Id = "11111111-1111-1111-1111-111111111111",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "0d0c42ec-b843-4013-9adb-e037334c07ff",
+                            ConcurrencyStamp = "7c801bc6-3fd8-461f-a3ba-401343bcc248",
                             Email = "admin@admin.com",
                             EmailConfirmed = true,
                             LockoutEnabled = true,
                             NormalizedEmail = "ADMIN@ADMIN.COM",
                             NormalizedUserName = "ADMIN@ADMIN.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEJH6a4A9w/3pHeFZDpyYm56In8DvO/ksNvETv0VM2E6pSPEgLI3neWCKfRMukTPL8g==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEMWOBP0d8hhm0butT7H3twPKSJO0Beo19bJYbeBV8BhndSs34F8N6ShbFHZHXFv7VQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "839c5525-a315-4117-a167-3cb2acdc65b5",
+                            SecurityStamp = "8cccb016-5518-481c-83ad-4e377c436e81",
                             TwoFactorEnabled = false,
                             UserName = "admin@admin.com"
                         },
@@ -170,22 +173,22 @@ namespace Models.Migrations
                         {
                             Id = "User1Id",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "7899e088-2361-425f-973b-1b1c09a7bdf0",
+                            ConcurrencyStamp = "cd48ad54-149d-47a7-b982-1f1232b6a7b2",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "ac1a2392-4063-4bdb-8169-36828a7e6595",
+                            SecurityStamp = "fc54b3a7-37e3-4af0-b9d9-16cf28fa4d7b",
                             TwoFactorEnabled = false
                         },
                         new
                         {
                             Id = "User2Id",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "b4c9754b-c84a-4e19-8e9d-2e48fd817927",
+                            ConcurrencyStamp = "d9624350-cdca-457d-a89b-ae85eab191be",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "672aaf07-ccac-4bb1-bbdd-dcecf858b3b5",
+                            SecurityStamp = "89a767c0-33d5-4888-acaf-f4514c2cf755",
                             TwoFactorEnabled = false
                         });
                 });
@@ -936,10 +939,6 @@ namespace Models.Migrations
                     b.Property<int>("Rarity")
                         .HasColumnType("int");
 
-                    b.Property<string>("Type")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
 
                     b.ToTable("Cards");
@@ -953,8 +952,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/001.png",
                             Name = "Bulbizarre",
-                            Rarity = 0,
-                            Type = "grass"
+                            Rarity = 0
                         },
                         new
                         {
@@ -964,8 +962,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/002.png",
                             Name = "Herbizarre",
-                            Rarity = 0,
-                            Type = "grass"
+                            Rarity = 0
                         },
                         new
                         {
@@ -975,8 +972,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/003.png",
                             Name = "Florizarre",
-                            Rarity = 1,
-                            Type = "grass"
+                            Rarity = 1
                         },
                         new
                         {
@@ -986,8 +982,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/004.png",
                             Name = "Salamèche",
-                            Rarity = 0,
-                            Type = "fire"
+                            Rarity = 0
                         },
                         new
                         {
@@ -997,8 +992,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/005.png",
                             Name = "Reptincel",
-                            Rarity = 0,
-                            Type = "fire"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1008,8 +1002,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/006.png",
                             Name = "Dracaufeu",
-                            Rarity = 1,
-                            Type = "fire"
+                            Rarity = 1
                         },
                         new
                         {
@@ -1019,8 +1012,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/007.png",
                             Name = "Carapuce",
-                            Rarity = 0,
-                            Type = "water"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1030,8 +1022,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/008.png",
                             Name = "Carabaffe",
-                            Rarity = 0,
-                            Type = "water"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1041,8 +1032,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/009.png",
                             Name = "Tortank",
-                            Rarity = 1,
-                            Type = "water"
+                            Rarity = 1
                         },
                         new
                         {
@@ -1052,8 +1042,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/010.png",
                             Name = "Chenipan",
-                            Rarity = 0,
-                            Type = "bug"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1063,8 +1052,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/011.png",
                             Name = "Chrysacier",
-                            Rarity = 0,
-                            Type = "bug"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1074,8 +1062,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/012.png",
                             Name = "Papilusion",
-                            Rarity = 0,
-                            Type = "bug"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1085,8 +1072,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/013.png",
                             Name = "Aspicot",
-                            Rarity = 0,
-                            Type = "bug"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1096,8 +1082,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/014.png",
                             Name = "Coconfort",
-                            Rarity = 0,
-                            Type = "bug"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1107,8 +1092,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/015.png",
                             Name = "Dardargnan",
-                            Rarity = 0,
-                            Type = "bug"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1118,8 +1102,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/016.png",
                             Name = "Roucool",
-                            Rarity = 0,
-                            Type = "normal"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1129,8 +1112,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/017.png",
                             Name = "Roucoups",
-                            Rarity = 0,
-                            Type = "normal"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1140,8 +1122,7 @@ namespace Models.Migrations
                             Health = 6,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/018.png",
                             Name = "Roucarnage",
-                            Rarity = 0,
-                            Type = "normal"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1151,8 +1132,7 @@ namespace Models.Migrations
                             Health = 2,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/019.png",
                             Name = "Rattata",
-                            Rarity = 0,
-                            Type = "normal"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1162,8 +1142,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/020.png",
                             Name = "Rattatac",
-                            Rarity = 0,
-                            Type = "normal"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1173,8 +1152,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/021.png",
                             Name = "Piafabec",
-                            Rarity = 0,
-                            Type = "normal"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1184,8 +1162,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/022.png",
                             Name = "Rapasdepic",
-                            Rarity = 0,
-                            Type = "normal"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1195,8 +1172,7 @@ namespace Models.Migrations
                             Health = 2,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/023.png",
                             Name = "Abo",
-                            Rarity = 0,
-                            Type = "poison"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1206,8 +1182,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/024.png",
                             Name = "Arbok",
-                            Rarity = 0,
-                            Type = "poison"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1217,8 +1192,7 @@ namespace Models.Migrations
                             Health = 2,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/025.png",
                             Name = "Pikachu",
-                            Rarity = 0,
-                            Type = "electric"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1228,8 +1202,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/026.png",
                             Name = "Raichu",
-                            Rarity = 0,
-                            Type = "electric"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1239,8 +1212,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/027.png",
                             Name = "Sabelette",
-                            Rarity = 0,
-                            Type = "ground"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1250,8 +1222,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/028.png",
                             Name = "Sablaireau",
-                            Rarity = 0,
-                            Type = "ground"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1261,8 +1232,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/029.png",
                             Name = "Nidoran♀",
-                            Rarity = 0,
-                            Type = "poison"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1272,8 +1242,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/030.png",
                             Name = "Nidorina",
-                            Rarity = 0,
-                            Type = "poison"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1283,8 +1252,7 @@ namespace Models.Migrations
                             Health = 6,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/031.png",
                             Name = "Nidoqueen",
-                            Rarity = 1,
-                            Type = "poison"
+                            Rarity = 1
                         },
                         new
                         {
@@ -1294,8 +1262,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/032.png",
                             Name = "Nidoran♂",
-                            Rarity = 0,
-                            Type = "poison"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1305,8 +1272,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/033.png",
                             Name = "Nidorino",
-                            Rarity = 0,
-                            Type = "poison"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1316,8 +1282,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/034.png",
                             Name = "Nidoking",
-                            Rarity = 1,
-                            Type = "poison"
+                            Rarity = 1
                         },
                         new
                         {
@@ -1327,8 +1292,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/035.png",
                             Name = "Mélofée",
-                            Rarity = 0,
-                            Type = "fairy"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1338,8 +1302,7 @@ namespace Models.Migrations
                             Health = 6,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/036.png",
                             Name = "Mélodelfe",
-                            Rarity = 0,
-                            Type = "fairy"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1349,8 +1312,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/037.png",
                             Name = "Goupix",
-                            Rarity = 0,
-                            Type = "fire"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1360,8 +1322,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/038.png",
                             Name = "Feunard",
-                            Rarity = 1,
-                            Type = "fire"
+                            Rarity = 1
                         },
                         new
                         {
@@ -1371,8 +1332,7 @@ namespace Models.Migrations
                             Health = 8,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/039.png",
                             Name = "Rondoudou",
-                            Rarity = 0,
-                            Type = "normal"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1382,8 +1342,7 @@ namespace Models.Migrations
                             Health = 9,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/040.png",
                             Name = "Grodoudou",
-                            Rarity = 0,
-                            Type = "normal"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1393,8 +1352,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/041.png",
                             Name = "Nosferapti",
-                            Rarity = 0,
-                            Type = "poison"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1404,8 +1362,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/042.png",
                             Name = "Nosferalto",
-                            Rarity = 0,
-                            Type = "poison"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1415,8 +1372,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/043.png",
                             Name = "Mystherbe",
-                            Rarity = 0,
-                            Type = "grass"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1426,8 +1382,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/044.png",
                             Name = "Ortide",
-                            Rarity = 0,
-                            Type = "grass"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1437,8 +1392,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/045.png",
                             Name = "Rafflesia",
-                            Rarity = 0,
-                            Type = "grass"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1448,8 +1402,7 @@ namespace Models.Migrations
                             Health = 2,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/046.png",
                             Name = "Paras",
-                            Rarity = 0,
-                            Type = "bug"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1459,8 +1412,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/047.png",
                             Name = "Parasect",
-                            Rarity = 0,
-                            Type = "bug"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1470,8 +1422,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/048.png",
                             Name = "Mimitoss",
-                            Rarity = 0,
-                            Type = "bug"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1481,8 +1432,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/049.png",
                             Name = "Aéromite",
-                            Rarity = 0,
-                            Type = "bug"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1492,8 +1442,7 @@ namespace Models.Migrations
                             Health = 1,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/050.png",
                             Name = "Taupiqueur",
-                            Rarity = 0,
-                            Type = "ground"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1503,8 +1452,7 @@ namespace Models.Migrations
                             Health = 2,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/051.png",
                             Name = "Triopikeur",
-                            Rarity = 0,
-                            Type = "ground"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1514,8 +1462,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/052.png",
                             Name = "Miaouss",
-                            Rarity = 0,
-                            Type = "normal"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1525,8 +1472,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/053.png",
                             Name = "Persian",
-                            Rarity = 0,
-                            Type = "normal"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1536,8 +1482,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/054.png",
                             Name = "Psykokwak",
-                            Rarity = 0,
-                            Type = "water"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1547,8 +1492,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/055.png",
                             Name = "Akwakwak",
-                            Rarity = 1,
-                            Type = "water"
+                            Rarity = 1
                         },
                         new
                         {
@@ -1558,8 +1502,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/056.png",
                             Name = "Férosinge",
-                            Rarity = 0,
-                            Type = "fighting"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1569,8 +1512,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/057.png",
                             Name = "Colossinge",
-                            Rarity = 0,
-                            Type = "fighting"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1580,8 +1522,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/058.png",
                             Name = "Caninos",
-                            Rarity = 0,
-                            Type = "fire"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1591,8 +1532,7 @@ namespace Models.Migrations
                             Health = 6,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/059.png",
                             Name = "Arcanin",
-                            Rarity = 1,
-                            Type = "fire"
+                            Rarity = 1
                         },
                         new
                         {
@@ -1602,8 +1542,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/060.png",
                             Name = "Ptitard",
-                            Rarity = 0,
-                            Type = "water"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1613,8 +1552,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/061.png",
                             Name = "Têtarte",
-                            Rarity = 0,
-                            Type = "water"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1624,8 +1562,7 @@ namespace Models.Migrations
                             Health = 6,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/062.png",
                             Name = "Tartard",
-                            Rarity = 1,
-                            Type = "water"
+                            Rarity = 1
                         },
                         new
                         {
@@ -1635,8 +1572,7 @@ namespace Models.Migrations
                             Health = 2,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/063.png",
                             Name = "Abra",
-                            Rarity = 0,
-                            Type = "psychic"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1646,8 +1582,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/064.png",
                             Name = "Kadabra",
-                            Rarity = 0,
-                            Type = "psychic"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1657,8 +1592,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/065.png",
                             Name = "Alakazam",
-                            Rarity = 1,
-                            Type = "psychic"
+                            Rarity = 1
                         },
                         new
                         {
@@ -1668,8 +1602,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/066.png",
                             Name = "Machoc",
-                            Rarity = 0,
-                            Type = "fighting"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1679,8 +1612,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/067.png",
                             Name = "Machopeur",
-                            Rarity = 0,
-                            Type = "fighting"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1690,8 +1622,7 @@ namespace Models.Migrations
                             Health = 6,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/068.png",
                             Name = "Mackogneur",
-                            Rarity = 1,
-                            Type = "fighting"
+                            Rarity = 1
                         },
                         new
                         {
@@ -1701,8 +1632,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/069.png",
                             Name = "Chétiflor",
-                            Rarity = 0,
-                            Type = "grass"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1712,8 +1642,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/070.png",
                             Name = "Boustiflor",
-                            Rarity = 0,
-                            Type = "grass"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1723,8 +1652,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/071.png",
                             Name = "Empiflor",
-                            Rarity = 0,
-                            Type = "grass"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1734,8 +1662,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/072.png",
                             Name = "Tentacool",
-                            Rarity = 0,
-                            Type = "water"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1745,8 +1672,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/073.png",
                             Name = "Tentacruel",
-                            Rarity = 1,
-                            Type = "water"
+                            Rarity = 1
                         },
                         new
                         {
@@ -1756,8 +1682,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/074.png",
                             Name = "Racaillou",
-                            Rarity = 0,
-                            Type = "rock"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1767,8 +1692,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/075.png",
                             Name = "Gravalanch",
-                            Rarity = 0,
-                            Type = "rock"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1778,8 +1702,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/076.png",
                             Name = "Grolem",
-                            Rarity = 0,
-                            Type = "rock"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1789,8 +1712,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/077.png",
                             Name = "Ponyta",
-                            Rarity = 0,
-                            Type = "fire"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1800,8 +1722,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/078.png",
                             Name = "Galopa",
-                            Rarity = 1,
-                            Type = "fire"
+                            Rarity = 1
                         },
                         new
                         {
@@ -1811,8 +1732,7 @@ namespace Models.Migrations
                             Health = 6,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/079.png",
                             Name = "Ramoloss",
-                            Rarity = 0,
-                            Type = "water"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1822,8 +1742,7 @@ namespace Models.Migrations
                             Health = 6,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/080.png",
                             Name = "Flagadoss",
-                            Rarity = 0,
-                            Type = "water"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1833,8 +1752,7 @@ namespace Models.Migrations
                             Health = 2,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/081.png",
                             Name = "Magnéti",
-                            Rarity = 0,
-                            Type = "electric"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1844,8 +1762,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/082.png",
                             Name = "Magnéton",
-                            Rarity = 0,
-                            Type = "electric"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1855,8 +1772,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/083.png",
                             Name = "Canarticho",
-                            Rarity = 0,
-                            Type = "normal"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1866,8 +1782,7 @@ namespace Models.Migrations
                             Health = 2,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/084.png",
                             Name = "Doduo",
-                            Rarity = 0,
-                            Type = "normal"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1877,8 +1792,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/085.png",
                             Name = "Dodrio",
-                            Rarity = 0,
-                            Type = "normal"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1888,8 +1802,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/086.png",
                             Name = "Otaria",
-                            Rarity = 0,
-                            Type = "water"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1899,8 +1812,7 @@ namespace Models.Migrations
                             Health = 6,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/087.png",
                             Name = "Lamantine",
-                            Rarity = 0,
-                            Type = "water"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1910,8 +1822,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/088.png",
                             Name = "Tadmorv",
-                            Rarity = 0,
-                            Type = "poison"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1921,8 +1832,7 @@ namespace Models.Migrations
                             Health = 7,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/089.png",
                             Name = "Grotadmorv",
-                            Rarity = 1,
-                            Type = "poison"
+                            Rarity = 1
                         },
                         new
                         {
@@ -1932,8 +1842,7 @@ namespace Models.Migrations
                             Health = 2,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/090.png",
                             Name = "Kokiyas",
-                            Rarity = 0,
-                            Type = "water"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1943,8 +1852,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/091.png",
                             Name = "Crustabri",
-                            Rarity = 1,
-                            Type = "water"
+                            Rarity = 1
                         },
                         new
                         {
@@ -1954,8 +1862,7 @@ namespace Models.Migrations
                             Health = 2,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/092.png",
                             Name = "Fantominus",
-                            Rarity = 0,
-                            Type = "ghost"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1965,8 +1872,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/093.png",
                             Name = "Spectrum",
-                            Rarity = 0,
-                            Type = "ghost"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1976,8 +1882,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/094.png",
                             Name = "Ectoplasma",
-                            Rarity = 1,
-                            Type = "ghost"
+                            Rarity = 1
                         },
                         new
                         {
@@ -1987,8 +1892,7 @@ namespace Models.Migrations
                             Health = 2,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/095.png",
                             Name = "Onix",
-                            Rarity = 0,
-                            Type = "rock"
+                            Rarity = 0
                         },
                         new
                         {
@@ -1998,8 +1902,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/096.png",
                             Name = "Soporifik",
-                            Rarity = 0,
-                            Type = "psychic"
+                            Rarity = 0
                         },
                         new
                         {
@@ -2009,8 +1912,7 @@ namespace Models.Migrations
                             Health = 6,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/097.png",
                             Name = "Hypnomade",
-                            Rarity = 0,
-                            Type = "psychic"
+                            Rarity = 0
                         },
                         new
                         {
@@ -2020,8 +1922,7 @@ namespace Models.Migrations
                             Health = 2,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/098.png",
                             Name = "Krabby",
-                            Rarity = 0,
-                            Type = "water"
+                            Rarity = 0
                         },
                         new
                         {
@@ -2031,8 +1932,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/099.png",
                             Name = "Krabboss",
-                            Rarity = 0,
-                            Type = "water"
+                            Rarity = 0
                         },
                         new
                         {
@@ -2042,8 +1942,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/100.png",
                             Name = "Voltorbe",
-                            Rarity = 0,
-                            Type = "electric"
+                            Rarity = 0
                         },
                         new
                         {
@@ -2053,8 +1952,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/101.png",
                             Name = "Électrode",
-                            Rarity = 0,
-                            Type = "electric"
+                            Rarity = 0
                         },
                         new
                         {
@@ -2064,8 +1962,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/102.png",
                             Name = "Noeunoeuf",
-                            Rarity = 0,
-                            Type = "grass"
+                            Rarity = 0
                         },
                         new
                         {
@@ -2075,8 +1972,7 @@ namespace Models.Migrations
                             Health = 6,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/103.png",
                             Name = "Noadkoko",
-                            Rarity = 1,
-                            Type = "grass"
+                            Rarity = 1
                         },
                         new
                         {
@@ -2086,8 +1982,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/104.png",
                             Name = "Osselait",
-                            Rarity = 0,
-                            Type = "ground"
+                            Rarity = 0
                         },
                         new
                         {
@@ -2097,8 +1992,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/105.png",
                             Name = "Ossatueur",
-                            Rarity = 0,
-                            Type = "ground"
+                            Rarity = 0
                         },
                         new
                         {
@@ -2108,8 +2002,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/106.png",
                             Name = "Kicklee",
-                            Rarity = 0,
-                            Type = "fighting"
+                            Rarity = 0
                         },
                         new
                         {
@@ -2119,8 +2012,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/107.png",
                             Name = "Tygnon",
-                            Rarity = 0,
-                            Type = "fighting"
+                            Rarity = 0
                         },
                         new
                         {
@@ -2130,8 +2022,7 @@ namespace Models.Migrations
                             Health = 6,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/108.png",
                             Name = "Excelangue",
-                            Rarity = 0,
-                            Type = "normal"
+                            Rarity = 0
                         },
                         new
                         {
@@ -2141,8 +2032,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/109.png",
                             Name = "Smogo",
-                            Rarity = 0,
-                            Type = "poison"
+                            Rarity = 0
                         },
                         new
                         {
@@ -2152,8 +2042,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/110.png",
                             Name = "Smogogo",
-                            Rarity = 0,
-                            Type = "poison"
+                            Rarity = 0
                         },
                         new
                         {
@@ -2163,8 +2052,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/111.png",
                             Name = "Rhinocorne",
-                            Rarity = 0,
-                            Type = "ground"
+                            Rarity = 0
                         },
                         new
                         {
@@ -2174,8 +2062,7 @@ namespace Models.Migrations
                             Health = 7,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/112.png",
                             Name = "Rhinoféros",
-                            Rarity = 0,
-                            Type = "ground"
+                            Rarity = 0
                         },
                         new
                         {
@@ -2185,8 +2072,7 @@ namespace Models.Migrations
                             Health = 10,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/113.png",
                             Name = "Leveinard",
-                            Rarity = 0,
-                            Type = "normal"
+                            Rarity = 0
                         },
                         new
                         {
@@ -2196,8 +2082,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/114.png",
                             Name = "Saquedeneu",
-                            Rarity = 0,
-                            Type = "grass"
+                            Rarity = 0
                         },
                         new
                         {
@@ -2207,8 +2092,7 @@ namespace Models.Migrations
                             Health = 7,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/115.png",
                             Name = "Kangourex",
-                            Rarity = 0,
-                            Type = "normal"
+                            Rarity = 0
                         },
                         new
                         {
@@ -2218,8 +2102,7 @@ namespace Models.Migrations
                             Health = 2,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/116.png",
                             Name = "Hypotrempe",
-                            Rarity = 0,
-                            Type = "water"
+                            Rarity = 0
                         },
                         new
                         {
@@ -2229,8 +2112,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/117.png",
                             Name = "Hypocéan",
-                            Rarity = 0,
-                            Type = "water"
+                            Rarity = 0
                         },
                         new
                         {
@@ -2240,8 +2122,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/118.png",
                             Name = "Poissirène",
-                            Rarity = 0,
-                            Type = "water"
+                            Rarity = 0
                         },
                         new
                         {
@@ -2251,8 +2132,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/119.png",
                             Name = "Poissoroy",
-                            Rarity = 0,
-                            Type = "water"
+                            Rarity = 0
                         },
                         new
                         {
@@ -2262,8 +2142,7 @@ namespace Models.Migrations
                             Health = 2,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/120.png",
                             Name = "Stari",
-                            Rarity = 0,
-                            Type = "water"
+                            Rarity = 0
                         },
                         new
                         {
@@ -2273,8 +2152,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/121.png",
                             Name = "Staross",
-                            Rarity = 1,
-                            Type = "water"
+                            Rarity = 1
                         },
                         new
                         {
@@ -2284,8 +2162,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/122.png",
                             Name = "M. Mime",
-                            Rarity = 0,
-                            Type = "psychic"
+                            Rarity = 0
                         },
                         new
                         {
@@ -2295,8 +2172,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/123.png",
                             Name = "Insécateur",
-                            Rarity = 1,
-                            Type = "bug"
+                            Rarity = 1
                         },
                         new
                         {
@@ -2306,8 +2182,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/124.png",
                             Name = "Lippoutou",
-                            Rarity = 0,
-                            Type = "ice"
+                            Rarity = 0
                         },
                         new
                         {
@@ -2317,8 +2192,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/125.png",
                             Name = "Élektek",
-                            Rarity = 0,
-                            Type = "electric"
+                            Rarity = 0
                         },
                         new
                         {
@@ -2328,8 +2202,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/126.png",
                             Name = "Magmar",
-                            Rarity = 0,
-                            Type = "fire"
+                            Rarity = 0
                         },
                         new
                         {
@@ -2339,8 +2212,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/127.png",
                             Name = "Scarabrute",
-                            Rarity = 1,
-                            Type = "bug"
+                            Rarity = 1
                         },
                         new
                         {
@@ -2350,8 +2222,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/128.png",
                             Name = "Tauros",
-                            Rarity = 0,
-                            Type = "normal"
+                            Rarity = 0
                         },
                         new
                         {
@@ -2361,8 +2232,7 @@ namespace Models.Migrations
                             Health = 1,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/129.png",
                             Name = "Magicarpe",
-                            Rarity = 0,
-                            Type = "water"
+                            Rarity = 0
                         },
                         new
                         {
@@ -2372,8 +2242,7 @@ namespace Models.Migrations
                             Health = 6,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/130.png",
                             Name = "Léviator",
-                            Rarity = 1,
-                            Type = "water"
+                            Rarity = 1
                         },
                         new
                         {
@@ -2383,8 +2252,7 @@ namespace Models.Migrations
                             Health = 9,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/131.png",
                             Name = "Lokhlass",
-                            Rarity = 1,
-                            Type = "water"
+                            Rarity = 1
                         },
                         new
                         {
@@ -2394,8 +2262,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/132.png",
                             Name = "Métamorph",
-                            Rarity = 0,
-                            Type = "normal"
+                            Rarity = 0
                         },
                         new
                         {
@@ -2405,8 +2272,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/133.png",
                             Name = "Évoli",
-                            Rarity = 0,
-                            Type = "normal"
+                            Rarity = 0
                         },
                         new
                         {
@@ -2416,8 +2282,7 @@ namespace Models.Migrations
                             Health = 9,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/134.png",
                             Name = "Aquali",
-                            Rarity = 1,
-                            Type = "water"
+                            Rarity = 1
                         },
                         new
                         {
@@ -2427,8 +2292,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/135.png",
                             Name = "Voltali",
-                            Rarity = 1,
-                            Type = "electric"
+                            Rarity = 1
                         },
                         new
                         {
@@ -2438,8 +2302,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/136.png",
                             Name = "Pyroli",
-                            Rarity = 1,
-                            Type = "fire"
+                            Rarity = 1
                         },
                         new
                         {
@@ -2449,8 +2312,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/137.png",
                             Name = "Porygon",
-                            Rarity = 0,
-                            Type = "normal"
+                            Rarity = 0
                         },
                         new
                         {
@@ -2460,8 +2322,7 @@ namespace Models.Migrations
                             Health = 2,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/138.png",
                             Name = "Amonita",
-                            Rarity = 0,
-                            Type = "rock"
+                            Rarity = 0
                         },
                         new
                         {
@@ -2471,8 +2332,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/139.png",
                             Name = "Amonistar",
-                            Rarity = 0,
-                            Type = "rock"
+                            Rarity = 0
                         },
                         new
                         {
@@ -2482,8 +2342,7 @@ namespace Models.Migrations
                             Health = 2,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/140.png",
                             Name = "Kabuto",
-                            Rarity = 0,
-                            Type = "rock"
+                            Rarity = 0
                         },
                         new
                         {
@@ -2493,8 +2352,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/141.png",
                             Name = "Kabutops",
-                            Rarity = 0,
-                            Type = "rock"
+                            Rarity = 0
                         },
                         new
                         {
@@ -2504,8 +2362,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/142.png",
                             Name = "Ptéra",
-                            Rarity = 1,
-                            Type = "rock"
+                            Rarity = 1
                         },
                         new
                         {
@@ -2515,8 +2372,7 @@ namespace Models.Migrations
                             Health = 10,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/143.png",
                             Name = "Ronflex",
-                            Rarity = 1,
-                            Type = "normal"
+                            Rarity = 1
                         },
                         new
                         {
@@ -2526,8 +2382,7 @@ namespace Models.Migrations
                             Health = 6,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/144.png",
                             Name = "Artikodin",
-                            Rarity = 3,
-                            Type = "ice"
+                            Rarity = 3
                         },
                         new
                         {
@@ -2537,8 +2392,7 @@ namespace Models.Migrations
                             Health = 6,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/145.png",
                             Name = "Électhor",
-                            Rarity = 3,
-                            Type = "electric"
+                            Rarity = 3
                         },
                         new
                         {
@@ -2548,8 +2402,7 @@ namespace Models.Migrations
                             Health = 6,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/146.png",
                             Name = "Sulfura",
-                            Rarity = 3,
-                            Type = "fire"
+                            Rarity = 3
                         },
                         new
                         {
@@ -2559,8 +2412,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/147.png",
                             Name = "Minidraco",
-                            Rarity = 0,
-                            Type = "dragon"
+                            Rarity = 0
                         },
                         new
                         {
@@ -2570,8 +2422,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/148.png",
                             Name = "Draco",
-                            Rarity = 0,
-                            Type = "dragon"
+                            Rarity = 0
                         },
                         new
                         {
@@ -2581,8 +2432,7 @@ namespace Models.Migrations
                             Health = 6,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/149.png",
                             Name = "Dracolosse",
-                            Rarity = 2,
-                            Type = "dragon"
+                            Rarity = 2
                         },
                         new
                         {
@@ -2592,8 +2442,7 @@ namespace Models.Migrations
                             Health = 7,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/150.png",
                             Name = "Mewtwo",
-                            Rarity = 3,
-                            Type = "psychic"
+                            Rarity = 3
                         },
                         new
                         {
@@ -2603,8 +2452,7 @@ namespace Models.Migrations
                             Health = 7,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/151.png",
                             Name = "Mew",
-                            Rarity = 3,
-                            Type = "psychic"
+                            Rarity = 3
                         },
                         new
                         {
@@ -2614,8 +2462,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/152.png",
                             Name = "Germignon",
-                            Rarity = 0,
-                            Type = "grass"
+                            Rarity = 0
                         },
                         new
                         {
@@ -2625,8 +2472,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/153.png",
                             Name = "Macronium",
-                            Rarity = 0,
-                            Type = "grass"
+                            Rarity = 0
                         },
                         new
                         {
@@ -2636,8 +2482,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/154.png",
                             Name = "Méganium",
-                            Rarity = 1,
-                            Type = "grass"
+                            Rarity = 1
                         },
                         new
                         {
@@ -2647,8 +2492,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/155.png",
                             Name = "Héricendre",
-                            Rarity = 0,
-                            Type = "fire"
+                            Rarity = 0
                         },
                         new
                         {
@@ -2658,8 +2502,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/156.png",
                             Name = "Feurisson",
-                            Rarity = 0,
-                            Type = "fire"
+                            Rarity = 0
                         },
                         new
                         {
@@ -2669,8 +2512,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/157.png",
                             Name = "Typhlosion",
-                            Rarity = 1,
-                            Type = "fire"
+                            Rarity = 1
                         },
                         new
                         {
@@ -2680,8 +2522,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/158.png",
                             Name = "Kaiminus",
-                            Rarity = 0,
-                            Type = "water"
+                            Rarity = 0
                         },
                         new
                         {
@@ -2691,8 +2532,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/159.png",
                             Name = "Crocrodil",
-                            Rarity = 0,
-                            Type = "water"
+                            Rarity = 0
                         },
                         new
                         {
@@ -2702,8 +2542,7 @@ namespace Models.Migrations
                             Health = 6,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/160.png",
                             Name = "Aligatueur",
-                            Rarity = 1,
-                            Type = "water"
+                            Rarity = 1
                         },
                         new
                         {
@@ -2713,8 +2552,7 @@ namespace Models.Migrations
                             Health = 2,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/161.png",
                             Name = "Fouinette",
-                            Rarity = 0,
-                            Type = "normal"
+                            Rarity = 0
                         },
                         new
                         {
@@ -2724,8 +2562,7 @@ namespace Models.Migrations
                             Health = 6,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/162.png",
                             Name = "Fouinar",
-                            Rarity = 0,
-                            Type = "normal"
+                            Rarity = 0
                         },
                         new
                         {
@@ -2735,8 +2572,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/163.png",
                             Name = "Hoothoot",
-                            Rarity = 0,
-                            Type = "normal"
+                            Rarity = 0
                         },
                         new
                         {
@@ -2746,8 +2582,7 @@ namespace Models.Migrations
                             Health = 7,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/164.png",
                             Name = "Noarfang",
-                            Rarity = 0,
-                            Type = "normal"
+                            Rarity = 0
                         },
                         new
                         {
@@ -2757,8 +2592,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/165.png",
                             Name = "Coxy",
-                            Rarity = 0,
-                            Type = "bug"
+                            Rarity = 0
                         },
                         new
                         {
@@ -2768,8 +2602,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/166.png",
                             Name = "Coxyclaque",
-                            Rarity = 0,
-                            Type = "bug"
+                            Rarity = 0
                         },
                         new
                         {
@@ -2779,8 +2612,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/167.png",
                             Name = "Mimigal",
-                            Rarity = 0,
-                            Type = "bug"
+                            Rarity = 0
                         },
                         new
                         {
@@ -2790,8 +2622,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/168.png",
                             Name = "Migalos",
-                            Rarity = 0,
-                            Type = "bug"
+                            Rarity = 0
                         },
                         new
                         {
@@ -2801,8 +2632,7 @@ namespace Models.Migrations
                             Health = 6,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/169.png",
                             Name = "Nostenfer",
-                            Rarity = 1,
-                            Type = "poison"
+                            Rarity = 1
                         },
                         new
                         {
@@ -2812,8 +2642,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/170.png",
                             Name = "Loupio",
-                            Rarity = 0,
-                            Type = "water"
+                            Rarity = 0
                         },
                         new
                         {
@@ -2823,8 +2652,7 @@ namespace Models.Migrations
                             Health = 8,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/171.png",
                             Name = "Lanturn",
-                            Rarity = 0,
-                            Type = "water"
+                            Rarity = 0
                         },
                         new
                         {
@@ -2834,8 +2662,7 @@ namespace Models.Migrations
                             Health = 1,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/172.png",
                             Name = "Pichu",
-                            Rarity = 0,
-                            Type = "electric"
+                            Rarity = 0
                         },
                         new
                         {
@@ -2845,8 +2672,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/173.png",
                             Name = "Mélo",
-                            Rarity = 0,
-                            Type = "fairy"
+                            Rarity = 0
                         },
                         new
                         {
@@ -2856,8 +2682,7 @@ namespace Models.Migrations
                             Health = 6,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/174.png",
                             Name = "Toudoudou",
-                            Rarity = 0,
-                            Type = "normal"
+                            Rarity = 0
                         },
                         new
                         {
@@ -2867,8 +2692,7 @@ namespace Models.Migrations
                             Health = 2,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/175.png",
                             Name = "Togepi",
-                            Rarity = 0,
-                            Type = "fairy"
+                            Rarity = 0
                         },
                         new
                         {
@@ -2878,8 +2702,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/176.png",
                             Name = "Togetic",
-                            Rarity = 0,
-                            Type = "fairy"
+                            Rarity = 0
                         },
                         new
                         {
@@ -2889,8 +2712,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/177.png",
                             Name = "Natu",
-                            Rarity = 0,
-                            Type = "psychic"
+                            Rarity = 0
                         },
                         new
                         {
@@ -2900,8 +2722,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/178.png",
                             Name = "Xatu",
-                            Rarity = 0,
-                            Type = "psychic"
+                            Rarity = 0
                         },
                         new
                         {
@@ -2911,8 +2732,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/179.png",
                             Name = "Wattouat",
-                            Rarity = 0,
-                            Type = "electric"
+                            Rarity = 0
                         },
                         new
                         {
@@ -2922,8 +2742,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/180.png",
                             Name = "Lainergie",
-                            Rarity = 0,
-                            Type = "electric"
+                            Rarity = 0
                         },
                         new
                         {
@@ -2933,8 +2752,7 @@ namespace Models.Migrations
                             Health = 6,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/181.png",
                             Name = "Pharamp",
-                            Rarity = 1,
-                            Type = "electric"
+                            Rarity = 1
                         },
                         new
                         {
@@ -2944,8 +2762,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/182.png",
                             Name = "Joliflor",
-                            Rarity = 0,
-                            Type = "grass"
+                            Rarity = 0
                         },
                         new
                         {
@@ -2955,8 +2772,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/183.png",
                             Name = "Marill",
-                            Rarity = 0,
-                            Type = "water"
+                            Rarity = 0
                         },
                         new
                         {
@@ -2966,8 +2782,7 @@ namespace Models.Migrations
                             Health = 7,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/184.png",
                             Name = "Azumarill",
-                            Rarity = 0,
-                            Type = "water"
+                            Rarity = 0
                         },
                         new
                         {
@@ -2977,8 +2792,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/185.png",
                             Name = "Simularbre",
-                            Rarity = 0,
-                            Type = "rock"
+                            Rarity = 0
                         },
                         new
                         {
@@ -2988,8 +2802,7 @@ namespace Models.Migrations
                             Health = 6,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/186.png",
                             Name = "Tarpaud",
-                            Rarity = 1,
-                            Type = "water"
+                            Rarity = 1
                         },
                         new
                         {
@@ -2999,8 +2812,7 @@ namespace Models.Migrations
                             Health = 2,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/187.png",
                             Name = "Granivol",
-                            Rarity = 0,
-                            Type = "grass"
+                            Rarity = 0
                         },
                         new
                         {
@@ -3010,8 +2822,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/188.png",
                             Name = "Floravol",
-                            Rarity = 0,
-                            Type = "grass"
+                            Rarity = 0
                         },
                         new
                         {
@@ -3021,8 +2832,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/189.png",
                             Name = "Cotovol",
-                            Rarity = 0,
-                            Type = "grass"
+                            Rarity = 0
                         },
                         new
                         {
@@ -3032,8 +2842,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/190.png",
                             Name = "Capumain",
-                            Rarity = 0,
-                            Type = "normal"
+                            Rarity = 0
                         },
                         new
                         {
@@ -3043,8 +2852,7 @@ namespace Models.Migrations
                             Health = 2,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/191.png",
                             Name = "Tournegrin",
-                            Rarity = 0,
-                            Type = "grass"
+                            Rarity = 0
                         },
                         new
                         {
@@ -3054,8 +2862,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/192.png",
                             Name = "Héliatronc",
-                            Rarity = 0,
-                            Type = "grass"
+                            Rarity = 0
                         },
                         new
                         {
@@ -3065,8 +2872,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/193.png",
                             Name = "Yanma",
-                            Rarity = 0,
-                            Type = "bug"
+                            Rarity = 0
                         },
                         new
                         {
@@ -3076,8 +2882,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/194.png",
                             Name = "Axoloto",
-                            Rarity = 0,
-                            Type = "water"
+                            Rarity = 0
                         },
                         new
                         {
@@ -3087,8 +2892,7 @@ namespace Models.Migrations
                             Health = 6,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/195.png",
                             Name = "Maraiste",
-                            Rarity = 0,
-                            Type = "water"
+                            Rarity = 0
                         },
                         new
                         {
@@ -3098,8 +2902,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/196.png",
                             Name = "Mentali",
-                            Rarity = 1,
-                            Type = "psychic"
+                            Rarity = 1
                         },
                         new
                         {
@@ -3109,8 +2912,7 @@ namespace Models.Migrations
                             Health = 6,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/197.png",
                             Name = "Noctali",
-                            Rarity = 1,
-                            Type = "dark"
+                            Rarity = 1
                         },
                         new
                         {
@@ -3120,8 +2922,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/198.png",
                             Name = "Cornèbre",
-                            Rarity = 0,
-                            Type = "dark"
+                            Rarity = 0
                         },
                         new
                         {
@@ -3131,8 +2932,7 @@ namespace Models.Migrations
                             Health = 6,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/199.png",
                             Name = "Roigada",
-                            Rarity = 0,
-                            Type = "water"
+                            Rarity = 0
                         },
                         new
                         {
@@ -3142,8 +2942,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/200.png",
                             Name = "Feuforêve",
-                            Rarity = 0,
-                            Type = "ghost"
+                            Rarity = 0
                         },
                         new
                         {
@@ -3153,8 +2952,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/201.png",
                             Name = "Zarbi",
-                            Rarity = 0,
-                            Type = "psychic"
+                            Rarity = 0
                         },
                         new
                         {
@@ -3164,8 +2962,7 @@ namespace Models.Migrations
                             Health = 10,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/202.png",
                             Name = "Qulbutoké",
-                            Rarity = 0,
-                            Type = "psychic"
+                            Rarity = 0
                         },
                         new
                         {
@@ -3175,8 +2972,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/203.png",
                             Name = "Girafarig",
-                            Rarity = 0,
-                            Type = "normal"
+                            Rarity = 0
                         },
                         new
                         {
@@ -3186,8 +2982,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/204.png",
                             Name = "Pomdepik",
-                            Rarity = 0,
-                            Type = "bug"
+                            Rarity = 0
                         },
                         new
                         {
@@ -3197,8 +2992,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/205.png",
                             Name = "Foretress",
-                            Rarity = 0,
-                            Type = "bug"
+                            Rarity = 0
                         },
                         new
                         {
@@ -3208,8 +3002,7 @@ namespace Models.Migrations
                             Health = 7,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/206.png",
                             Name = "Insolourdo",
-                            Rarity = 0,
-                            Type = "normal"
+                            Rarity = 0
                         },
                         new
                         {
@@ -3219,8 +3012,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/207.png",
                             Name = "Scorplane",
-                            Rarity = 0,
-                            Type = "ground"
+                            Rarity = 0
                         },
                         new
                         {
@@ -3230,8 +3022,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/208.png",
                             Name = "Steelix",
-                            Rarity = 1,
-                            Type = "steel"
+                            Rarity = 1
                         },
                         new
                         {
@@ -3241,8 +3032,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/209.png",
                             Name = "Snubbull",
-                            Rarity = 0,
-                            Type = "fairy"
+                            Rarity = 0
                         },
                         new
                         {
@@ -3252,8 +3042,7 @@ namespace Models.Migrations
                             Health = 6,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/210.png",
                             Name = "Granbull",
-                            Rarity = 0,
-                            Type = "fairy"
+                            Rarity = 0
                         },
                         new
                         {
@@ -3263,8 +3052,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/211.png",
                             Name = "Qwilfish",
-                            Rarity = 0,
-                            Type = "water"
+                            Rarity = 0
                         },
                         new
                         {
@@ -3274,8 +3062,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/212.png",
                             Name = "Cizayox",
-                            Rarity = 1,
-                            Type = "bug"
+                            Rarity = 1
                         },
                         new
                         {
@@ -3285,8 +3072,7 @@ namespace Models.Migrations
                             Health = 1,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/213.png",
                             Name = "Caratroc",
-                            Rarity = 1,
-                            Type = "bug"
+                            Rarity = 1
                         },
                         new
                         {
@@ -3296,8 +3082,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/214.png",
                             Name = "Scarhino",
-                            Rarity = 1,
-                            Type = "bug"
+                            Rarity = 1
                         },
                         new
                         {
@@ -3307,8 +3092,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/215.png",
                             Name = "Farfuret",
-                            Rarity = 0,
-                            Type = "dark"
+                            Rarity = 0
                         },
                         new
                         {
@@ -3318,8 +3102,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/216.png",
                             Name = "Teddiursa",
-                            Rarity = 0,
-                            Type = "normal"
+                            Rarity = 0
                         },
                         new
                         {
@@ -3329,8 +3112,7 @@ namespace Models.Migrations
                             Health = 6,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/217.png",
                             Name = "Ursaring",
-                            Rarity = 1,
-                            Type = "normal"
+                            Rarity = 1
                         },
                         new
                         {
@@ -3340,8 +3122,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/218.png",
                             Name = "Limagma",
-                            Rarity = 0,
-                            Type = "fire"
+                            Rarity = 0
                         },
                         new
                         {
@@ -3351,8 +3132,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/219.png",
                             Name = "Volcaropod",
-                            Rarity = 0,
-                            Type = "fire"
+                            Rarity = 0
                         },
                         new
                         {
@@ -3362,8 +3142,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/220.png",
                             Name = "Marcacrin",
-                            Rarity = 0,
-                            Type = "ice"
+                            Rarity = 0
                         },
                         new
                         {
@@ -3373,8 +3152,7 @@ namespace Models.Migrations
                             Health = 7,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/221.png",
                             Name = "Cochignon",
-                            Rarity = 0,
-                            Type = "ice"
+                            Rarity = 0
                         },
                         new
                         {
@@ -3384,8 +3162,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/222.png",
                             Name = "Corayon",
-                            Rarity = 0,
-                            Type = "water"
+                            Rarity = 0
                         },
                         new
                         {
@@ -3395,8 +3172,7 @@ namespace Models.Migrations
                             Health = 2,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/223.png",
                             Name = "Rémoraid",
-                            Rarity = 0,
-                            Type = "water"
+                            Rarity = 0
                         },
                         new
                         {
@@ -3406,8 +3182,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/224.png",
                             Name = "Octillery",
-                            Rarity = 0,
-                            Type = "water"
+                            Rarity = 0
                         },
                         new
                         {
@@ -3417,8 +3192,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/225.png",
                             Name = "Cadoizo",
-                            Rarity = 0,
-                            Type = "ice"
+                            Rarity = 0
                         },
                         new
                         {
@@ -3428,8 +3202,7 @@ namespace Models.Migrations
                             Health = 6,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/226.png",
                             Name = "Démanta",
-                            Rarity = 0,
-                            Type = "water"
+                            Rarity = 0
                         },
                         new
                         {
@@ -3439,8 +3212,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/227.png",
                             Name = "Airmure",
-                            Rarity = 0,
-                            Type = "steel"
+                            Rarity = 0
                         },
                         new
                         {
@@ -3450,8 +3222,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/228.png",
                             Name = "Malosse",
-                            Rarity = 0,
-                            Type = "dark"
+                            Rarity = 0
                         },
                         new
                         {
@@ -3461,8 +3232,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/229.png",
                             Name = "Démolosse",
-                            Rarity = 1,
-                            Type = "dark"
+                            Rarity = 1
                         },
                         new
                         {
@@ -3472,8 +3242,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/230.png",
                             Name = "Hyporoi",
-                            Rarity = 1,
-                            Type = "water"
+                            Rarity = 1
                         },
                         new
                         {
@@ -3483,8 +3252,7 @@ namespace Models.Migrations
                             Health = 6,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/231.png",
                             Name = "Phanpy",
-                            Rarity = 0,
-                            Type = "ground"
+                            Rarity = 0
                         },
                         new
                         {
@@ -3494,8 +3262,7 @@ namespace Models.Migrations
                             Health = 6,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/232.png",
                             Name = "Donphan",
-                            Rarity = 1,
-                            Type = "ground"
+                            Rarity = 1
                         },
                         new
                         {
@@ -3505,8 +3272,7 @@ namespace Models.Migrations
                             Health = 6,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/233.png",
                             Name = "Porygon2",
-                            Rarity = 1,
-                            Type = "normal"
+                            Rarity = 1
                         },
                         new
                         {
@@ -3516,8 +3282,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/234.png",
                             Name = "Cerfrousse",
-                            Rarity = 0,
-                            Type = "normal"
+                            Rarity = 0
                         },
                         new
                         {
@@ -3527,8 +3292,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/235.png",
                             Name = "Queulorior",
-                            Rarity = 0,
-                            Type = "normal"
+                            Rarity = 0
                         },
                         new
                         {
@@ -3538,8 +3302,7 @@ namespace Models.Migrations
                             Health = 2,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/236.png",
                             Name = "Debugant",
-                            Rarity = 0,
-                            Type = "fighting"
+                            Rarity = 0
                         },
                         new
                         {
@@ -3549,8 +3312,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/237.png",
                             Name = "Kapoera",
-                            Rarity = 0,
-                            Type = "fighting"
+                            Rarity = 0
                         },
                         new
                         {
@@ -3560,8 +3322,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/238.png",
                             Name = "Lippouti",
-                            Rarity = 0,
-                            Type = "ice"
+                            Rarity = 0
                         },
                         new
                         {
@@ -3571,8 +3332,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/239.png",
                             Name = "Élekid",
-                            Rarity = 0,
-                            Type = "electric"
+                            Rarity = 0
                         },
                         new
                         {
@@ -3582,8 +3342,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/240.png",
                             Name = "Magby",
-                            Rarity = 0,
-                            Type = "fire"
+                            Rarity = 0
                         },
                         new
                         {
@@ -3593,8 +3352,7 @@ namespace Models.Migrations
                             Health = 6,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/241.png",
                             Name = "Écrémeuh",
-                            Rarity = 0,
-                            Type = "normal"
+                            Rarity = 0
                         },
                         new
                         {
@@ -3604,8 +3362,7 @@ namespace Models.Migrations
                             Health = 10,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/242.png",
                             Name = "Leuphorie",
-                            Rarity = 1,
-                            Type = "normal"
+                            Rarity = 1
                         },
                         new
                         {
@@ -3615,8 +3372,7 @@ namespace Models.Migrations
                             Health = 6,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/243.png",
                             Name = "Raikou",
-                            Rarity = 3,
-                            Type = "electric"
+                            Rarity = 3
                         },
                         new
                         {
@@ -3626,8 +3382,7 @@ namespace Models.Migrations
                             Health = 8,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/244.png",
                             Name = "Entei",
-                            Rarity = 3,
-                            Type = "fire"
+                            Rarity = 3
                         },
                         new
                         {
@@ -3637,8 +3392,7 @@ namespace Models.Migrations
                             Health = 7,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/245.png",
                             Name = "Suicune",
-                            Rarity = 3,
-                            Type = "water"
+                            Rarity = 3
                         },
                         new
                         {
@@ -3648,8 +3402,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/246.png",
                             Name = "Embrylex",
-                            Rarity = 0,
-                            Type = "rock"
+                            Rarity = 0
                         },
                         new
                         {
@@ -3659,8 +3412,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/247.png",
                             Name = "Ymphect",
-                            Rarity = 0,
-                            Type = "rock"
+                            Rarity = 0
                         },
                         new
                         {
@@ -3670,8 +3422,7 @@ namespace Models.Migrations
                             Health = 7,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/248.png",
                             Name = "Tyranocif",
-                            Rarity = 2,
-                            Type = "rock"
+                            Rarity = 2
                         },
                         new
                         {
@@ -3681,8 +3432,7 @@ namespace Models.Migrations
                             Health = 7,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/249.png",
                             Name = "Lugia",
-                            Rarity = 3,
-                            Type = "psychic"
+                            Rarity = 3
                         },
                         new
                         {
@@ -3692,8 +3442,7 @@ namespace Models.Migrations
                             Health = 7,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/250.png",
                             Name = "Ho-Oh",
-                            Rarity = 3,
-                            Type = "fire"
+                            Rarity = 3
                         },
                         new
                         {
@@ -3703,8 +3452,7 @@ namespace Models.Migrations
                             Health = 7,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/251.png",
                             Name = "Celebi",
-                            Rarity = 3,
-                            Type = "psychic"
+                            Rarity = 3
                         },
                         new
                         {
@@ -3714,8 +3462,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/252.png",
                             Name = "Arcko",
-                            Rarity = 0,
-                            Type = "grass"
+                            Rarity = 0
                         },
                         new
                         {
@@ -3725,8 +3472,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/253.png",
                             Name = "Massko",
-                            Rarity = 0,
-                            Type = "grass"
+                            Rarity = 0
                         },
                         new
                         {
@@ -3736,8 +3482,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/254.png",
                             Name = "Jungko",
-                            Rarity = 1,
-                            Type = "grass"
+                            Rarity = 1
                         },
                         new
                         {
@@ -3747,8 +3492,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/255.png",
                             Name = "Poussifeu",
-                            Rarity = 0,
-                            Type = "fire"
+                            Rarity = 0
                         },
                         new
                         {
@@ -3758,8 +3502,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/256.png",
                             Name = "Galifeu",
-                            Rarity = 0,
-                            Type = "fire"
+                            Rarity = 0
                         },
                         new
                         {
@@ -3769,8 +3512,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/257.png",
                             Name = "Braségali",
-                            Rarity = 1,
-                            Type = "fire"
+                            Rarity = 1
                         },
                         new
                         {
@@ -3780,8 +3522,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/258.png",
                             Name = "Gobou",
-                            Rarity = 0,
-                            Type = "water"
+                            Rarity = 0
                         },
                         new
                         {
@@ -3791,8 +3532,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/259.png",
                             Name = "Flobio",
-                            Rarity = 0,
-                            Type = "water"
+                            Rarity = 0
                         },
                         new
                         {
@@ -3802,8 +3542,7 @@ namespace Models.Migrations
                             Health = 7,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/260.png",
                             Name = "Laggron",
-                            Rarity = 1,
-                            Type = "water"
+                            Rarity = 1
                         },
                         new
                         {
@@ -3813,8 +3552,7 @@ namespace Models.Migrations
                             Health = 2,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/261.png",
                             Name = "Medhyèna",
-                            Rarity = 0,
-                            Type = "dark"
+                            Rarity = 0
                         },
                         new
                         {
@@ -3824,8 +3562,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/262.png",
                             Name = "Grahyèna",
-                            Rarity = 0,
-                            Type = "dark"
+                            Rarity = 0
                         },
                         new
                         {
@@ -3835,8 +3572,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/263.png",
                             Name = "Zigzaton",
-                            Rarity = 0,
-                            Type = "normal"
+                            Rarity = 0
                         },
                         new
                         {
@@ -3846,8 +3582,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/264.png",
                             Name = "Linéon",
-                            Rarity = 0,
-                            Type = "normal"
+                            Rarity = 0
                         },
                         new
                         {
@@ -3857,8 +3592,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/265.png",
                             Name = "Chenipotte",
-                            Rarity = 0,
-                            Type = "bug"
+                            Rarity = 0
                         },
                         new
                         {
@@ -3868,8 +3602,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/266.png",
                             Name = "Armulys",
-                            Rarity = 0,
-                            Type = "bug"
+                            Rarity = 0
                         },
                         new
                         {
@@ -3879,8 +3612,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/267.png",
                             Name = "Charmillon",
-                            Rarity = 0,
-                            Type = "bug"
+                            Rarity = 0
                         },
                         new
                         {
@@ -3890,8 +3622,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/268.png",
                             Name = "Blindalys",
-                            Rarity = 0,
-                            Type = "bug"
+                            Rarity = 0
                         },
                         new
                         {
@@ -3901,8 +3632,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/269.png",
                             Name = "Papinox",
-                            Rarity = 0,
-                            Type = "bug"
+                            Rarity = 0
                         },
                         new
                         {
@@ -3912,8 +3642,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/270.png",
                             Name = "Nénupiot",
-                            Rarity = 0,
-                            Type = "water"
+                            Rarity = 0
                         },
                         new
                         {
@@ -3923,8 +3652,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/271.png",
                             Name = "Lombre",
-                            Rarity = 0,
-                            Type = "water"
+                            Rarity = 0
                         },
                         new
                         {
@@ -3934,8 +3662,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/272.png",
                             Name = "Ludicolo",
-                            Rarity = 0,
-                            Type = "water"
+                            Rarity = 0
                         },
                         new
                         {
@@ -3945,8 +3672,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/273.png",
                             Name = "Grainipiot",
-                            Rarity = 0,
-                            Type = "grass"
+                            Rarity = 0
                         },
                         new
                         {
@@ -3956,8 +3682,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/274.png",
                             Name = "Pifeuil",
-                            Rarity = 0,
-                            Type = "grass"
+                            Rarity = 0
                         },
                         new
                         {
@@ -3967,8 +3692,7 @@ namespace Models.Migrations
                             Health = 6,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/275.png",
                             Name = "Tengalice",
-                            Rarity = 0,
-                            Type = "grass"
+                            Rarity = 0
                         },
                         new
                         {
@@ -3978,8 +3702,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/276.png",
                             Name = "Nirondelle",
-                            Rarity = 0,
-                            Type = "normal"
+                            Rarity = 0
                         },
                         new
                         {
@@ -3989,8 +3712,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/277.png",
                             Name = "Hélédelle",
-                            Rarity = 0,
-                            Type = "normal"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4000,8 +3722,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/278.png",
                             Name = "Goélise",
-                            Rarity = 0,
-                            Type = "water"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4011,8 +3732,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/279.png",
                             Name = "Bekipan",
-                            Rarity = 0,
-                            Type = "water"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4022,8 +3742,7 @@ namespace Models.Migrations
                             Health = 2,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/280.png",
                             Name = "Tarsal",
-                            Rarity = 0,
-                            Type = "psychic"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4033,8 +3752,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/281.png",
                             Name = "Kirlia",
-                            Rarity = 0,
-                            Type = "psychic"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4044,8 +3762,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/282.png",
                             Name = "Gardevoir",
-                            Rarity = 1,
-                            Type = "psychic"
+                            Rarity = 1
                         },
                         new
                         {
@@ -4055,8 +3772,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/283.png",
                             Name = "Arakdo",
-                            Rarity = 0,
-                            Type = "bug"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4066,8 +3782,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/284.png",
                             Name = "Maskadra",
-                            Rarity = 0,
-                            Type = "bug"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4077,8 +3792,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/285.png",
                             Name = "Balignon",
-                            Rarity = 0,
-                            Type = "grass"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4088,8 +3802,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/286.png",
                             Name = "Chapignon",
-                            Rarity = 0,
-                            Type = "grass"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4099,8 +3812,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/287.png",
                             Name = "Parecool",
-                            Rarity = 0,
-                            Type = "normal"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4110,8 +3822,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/288.png",
                             Name = "Vigoroth",
-                            Rarity = 0,
-                            Type = "normal"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4121,8 +3832,7 @@ namespace Models.Migrations
                             Health = 10,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/289.png",
                             Name = "Monaflèmit",
-                            Rarity = 2,
-                            Type = "normal"
+                            Rarity = 2
                         },
                         new
                         {
@@ -4132,8 +3842,7 @@ namespace Models.Migrations
                             Health = 2,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/290.png",
                             Name = "Ningale",
-                            Rarity = 0,
-                            Type = "bug"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4143,8 +3852,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/291.png",
                             Name = "Ninjask",
-                            Rarity = 0,
-                            Type = "bug"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4154,8 +3862,7 @@ namespace Models.Migrations
                             Health = 1,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/292.png",
                             Name = "Munja",
-                            Rarity = 0,
-                            Type = "bug"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4165,8 +3872,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/293.png",
                             Name = "Chuchmur",
-                            Rarity = 0,
-                            Type = "normal"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4176,8 +3882,7 @@ namespace Models.Migrations
                             Health = 6,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/294.png",
                             Name = "Ramboum",
-                            Rarity = 0,
-                            Type = "normal"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4187,8 +3892,7 @@ namespace Models.Migrations
                             Health = 7,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/295.png",
                             Name = "Brouhabam",
-                            Rarity = 0,
-                            Type = "normal"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4198,8 +3902,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/296.png",
                             Name = "Makuhita",
-                            Rarity = 0,
-                            Type = "fighting"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4209,8 +3912,7 @@ namespace Models.Migrations
                             Health = 10,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/297.png",
                             Name = "Hariyama",
-                            Rarity = 0,
-                            Type = "fighting"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4220,8 +3922,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/298.png",
                             Name = "Azurill",
-                            Rarity = 0,
-                            Type = "normal"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4231,8 +3932,7 @@ namespace Models.Migrations
                             Health = 2,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/299.png",
                             Name = "Tarinor",
-                            Rarity = 0,
-                            Type = "rock"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4242,8 +3942,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/300.png",
                             Name = "Skitty",
-                            Rarity = 0,
-                            Type = "normal"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4253,8 +3952,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/301.png",
                             Name = "Delcatty",
-                            Rarity = 0,
-                            Type = "normal"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4264,8 +3962,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/302.png",
                             Name = "Ténéfix",
-                            Rarity = 0,
-                            Type = "dark"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4275,8 +3972,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/303.png",
                             Name = "Mysdibule",
-                            Rarity = 0,
-                            Type = "steel"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4286,8 +3982,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/304.png",
                             Name = "Galekid",
-                            Rarity = 0,
-                            Type = "steel"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4297,8 +3992,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/305.png",
                             Name = "Galegon",
-                            Rarity = 0,
-                            Type = "steel"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4308,8 +4002,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/306.png",
                             Name = "Galeking",
-                            Rarity = 1,
-                            Type = "steel"
+                            Rarity = 1
                         },
                         new
                         {
@@ -4319,8 +4012,7 @@ namespace Models.Migrations
                             Health = 2,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/307.png",
                             Name = "Méditikka",
-                            Rarity = 0,
-                            Type = "fighting"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4330,8 +4022,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/308.png",
                             Name = "Charmina",
-                            Rarity = 0,
-                            Type = "fighting"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4341,8 +4032,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/309.png",
                             Name = "Dynavolt",
-                            Rarity = 0,
-                            Type = "electric"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4352,8 +4042,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/310.png",
                             Name = "Élecsprint",
-                            Rarity = 0,
-                            Type = "electric"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4363,8 +4052,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/311.png",
                             Name = "Posipi",
-                            Rarity = 0,
-                            Type = "electric"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4374,8 +4062,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/312.png",
                             Name = "Négapi",
-                            Rarity = 0,
-                            Type = "electric"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4385,8 +4072,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/313.png",
                             Name = "Muciole",
-                            Rarity = 0,
-                            Type = "bug"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4396,8 +4082,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/314.png",
                             Name = "Lumivole",
-                            Rarity = 0,
-                            Type = "bug"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4407,8 +4092,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/315.png",
                             Name = "Rosélia",
-                            Rarity = 0,
-                            Type = "grass"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4418,8 +4102,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/316.png",
                             Name = "Gloupti",
-                            Rarity = 0,
-                            Type = "poison"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4429,8 +4112,7 @@ namespace Models.Migrations
                             Health = 7,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/317.png",
                             Name = "Avaltout",
-                            Rarity = 0,
-                            Type = "poison"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4440,8 +4122,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/318.png",
                             Name = "Carvanha",
-                            Rarity = 0,
-                            Type = "water"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4451,8 +4132,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/319.png",
                             Name = "Sharpedo",
-                            Rarity = 0,
-                            Type = "water"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4462,8 +4142,7 @@ namespace Models.Migrations
                             Health = 9,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/320.png",
                             Name = "Wailmer",
-                            Rarity = 0,
-                            Type = "water"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4473,8 +4152,7 @@ namespace Models.Migrations
                             Health = 10,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/321.png",
                             Name = "Wailord",
-                            Rarity = 1,
-                            Type = "water"
+                            Rarity = 1
                         },
                         new
                         {
@@ -4484,8 +4162,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/322.png",
                             Name = "Chamallot",
-                            Rarity = 0,
-                            Type = "fire"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4495,8 +4172,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/323.png",
                             Name = "Camérupt",
-                            Rarity = 0,
-                            Type = "fire"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4506,8 +4182,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/324.png",
                             Name = "Chartor",
-                            Rarity = 0,
-                            Type = "fire"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4517,8 +4192,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/325.png",
                             Name = "Spoink",
-                            Rarity = 0,
-                            Type = "psychic"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4528,8 +4202,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/326.png",
                             Name = "Groret",
-                            Rarity = 0,
-                            Type = "psychic"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4539,8 +4212,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/327.png",
                             Name = "Spinda",
-                            Rarity = 0,
-                            Type = "normal"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4550,8 +4222,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/328.png",
                             Name = "Kraknoix",
-                            Rarity = 0,
-                            Type = "ground"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4561,8 +4232,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/329.png",
                             Name = "Vibraninf",
-                            Rarity = 0,
-                            Type = "ground"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4572,8 +4242,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/330.png",
                             Name = "Libégon",
-                            Rarity = 1,
-                            Type = "ground"
+                            Rarity = 1
                         },
                         new
                         {
@@ -4583,8 +4252,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/331.png",
                             Name = "Cacnea",
-                            Rarity = 0,
-                            Type = "grass"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4594,8 +4262,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/332.png",
                             Name = "Cacturne",
-                            Rarity = 0,
-                            Type = "grass"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4605,8 +4272,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/333.png",
                             Name = "Tylton",
-                            Rarity = 0,
-                            Type = "normal"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4616,8 +4282,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/334.png",
                             Name = "Altaria",
-                            Rarity = 0,
-                            Type = "dragon"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4627,8 +4292,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/335.png",
                             Name = "Mangriff",
-                            Rarity = 0,
-                            Type = "normal"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4638,8 +4302,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/336.png",
                             Name = "Séviper",
-                            Rarity = 0,
-                            Type = "poison"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4649,8 +4312,7 @@ namespace Models.Migrations
                             Health = 6,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/337.png",
                             Name = "Séléroc",
-                            Rarity = 0,
-                            Type = "rock"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4660,8 +4322,7 @@ namespace Models.Migrations
                             Health = 6,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/338.png",
                             Name = "Solaroc",
-                            Rarity = 0,
-                            Type = "rock"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4671,8 +4332,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/339.png",
                             Name = "Barloche",
-                            Rarity = 0,
-                            Type = "water"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4682,8 +4342,7 @@ namespace Models.Migrations
                             Health = 7,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/340.png",
                             Name = "Barbicha",
-                            Rarity = 0,
-                            Type = "water"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4693,8 +4352,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/341.png",
                             Name = "Écrapince",
-                            Rarity = 0,
-                            Type = "water"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4704,8 +4362,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/342.png",
                             Name = "Colhomard",
-                            Rarity = 0,
-                            Type = "water"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4715,8 +4372,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/343.png",
                             Name = "Balbuto",
-                            Rarity = 0,
-                            Type = "ground"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4726,8 +4382,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/344.png",
                             Name = "Kaorine",
-                            Rarity = 1,
-                            Type = "ground"
+                            Rarity = 1
                         },
                         new
                         {
@@ -4737,8 +4392,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/345.png",
                             Name = "Lilia",
-                            Rarity = 0,
-                            Type = "rock"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4748,8 +4402,7 @@ namespace Models.Migrations
                             Health = 6,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/346.png",
                             Name = "Vacilys",
-                            Rarity = 0,
-                            Type = "rock"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4759,8 +4412,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/347.png",
                             Name = "Anorith",
-                            Rarity = 0,
-                            Type = "rock"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4770,8 +4422,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/348.png",
                             Name = "Armaldo",
-                            Rarity = 0,
-                            Type = "rock"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4781,8 +4432,7 @@ namespace Models.Migrations
                             Health = 1,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/349.png",
                             Name = "Barpau",
-                            Rarity = 0,
-                            Type = "water"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4792,8 +4442,7 @@ namespace Models.Migrations
                             Health = 6,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/350.png",
                             Name = "Milobellus",
-                            Rarity = 1,
-                            Type = "water"
+                            Rarity = 1
                         },
                         new
                         {
@@ -4803,8 +4452,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/351.png",
                             Name = "Morphéo",
-                            Rarity = 0,
-                            Type = "normal"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4814,8 +4462,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/352.png",
                             Name = "Kecleon",
-                            Rarity = 0,
-                            Type = "normal"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4825,8 +4472,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/353.png",
                             Name = "Polichombr",
-                            Rarity = 0,
-                            Type = "ghost"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4836,8 +4482,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/354.png",
                             Name = "Branette",
-                            Rarity = 0,
-                            Type = "ghost"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4847,8 +4492,7 @@ namespace Models.Migrations
                             Health = 1,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/355.png",
                             Name = "Skelénox",
-                            Rarity = 0,
-                            Type = "ghost"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4858,8 +4502,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/356.png",
                             Name = "Téraclope",
-                            Rarity = 0,
-                            Type = "ghost"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4869,8 +4512,7 @@ namespace Models.Migrations
                             Health = 7,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/357.png",
                             Name = "Tropius",
-                            Rarity = 0,
-                            Type = "grass"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4880,8 +4522,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/358.png",
                             Name = "Éoko",
-                            Rarity = 0,
-                            Type = "psychic"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4891,8 +4532,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/359.png",
                             Name = "Absol",
-                            Rarity = 0,
-                            Type = "dark"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4902,8 +4542,7 @@ namespace Models.Migrations
                             Health = 6,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/360.png",
                             Name = "Okéoké",
-                            Rarity = 0,
-                            Type = "psychic"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4913,8 +4552,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/361.png",
                             Name = "Stalgamin",
-                            Rarity = 0,
-                            Type = "ice"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4924,8 +4562,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/362.png",
                             Name = "Oniglali",
-                            Rarity = 0,
-                            Type = "ice"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4935,8 +4572,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/363.png",
                             Name = "Obalie",
-                            Rarity = 0,
-                            Type = "ice"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4946,8 +4582,7 @@ namespace Models.Migrations
                             Health = 6,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/364.png",
                             Name = "Phogleur",
-                            Rarity = 0,
-                            Type = "ice"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4957,8 +4592,7 @@ namespace Models.Migrations
                             Health = 7,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/365.png",
                             Name = "Kaimorse",
-                            Rarity = 1,
-                            Type = "ice"
+                            Rarity = 1
                         },
                         new
                         {
@@ -4968,8 +4602,7 @@ namespace Models.Migrations
                             Health = 2,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/366.png",
                             Name = "Coquiperl",
-                            Rarity = 0,
-                            Type = "water"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4979,8 +4612,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/367.png",
                             Name = "Serpang",
-                            Rarity = 0,
-                            Type = "water"
+                            Rarity = 0
                         },
                         new
                         {
@@ -4990,8 +4622,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/368.png",
                             Name = "Rosabyss",
-                            Rarity = 0,
-                            Type = "water"
+                            Rarity = 0
                         },
                         new
                         {
@@ -5001,8 +4632,7 @@ namespace Models.Migrations
                             Health = 7,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/369.png",
                             Name = "Relicanth",
-                            Rarity = 0,
-                            Type = "water"
+                            Rarity = 0
                         },
                         new
                         {
@@ -5012,8 +4642,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/370.png",
                             Name = "Lovdisc",
-                            Rarity = 0,
-                            Type = "water"
+                            Rarity = 0
                         },
                         new
                         {
@@ -5023,8 +4652,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/371.png",
                             Name = "Draby",
-                            Rarity = 0,
-                            Type = "dragon"
+                            Rarity = 0
                         },
                         new
                         {
@@ -5034,8 +4662,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/372.png",
                             Name = "Drackhaus",
-                            Rarity = 0,
-                            Type = "dragon"
+                            Rarity = 0
                         },
                         new
                         {
@@ -5045,8 +4672,7 @@ namespace Models.Migrations
                             Health = 6,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/373.png",
                             Name = "Drattak",
-                            Rarity = 2,
-                            Type = "dragon"
+                            Rarity = 2
                         },
                         new
                         {
@@ -5056,8 +4682,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/374.png",
                             Name = "Terhal",
-                            Rarity = 0,
-                            Type = "steel"
+                            Rarity = 0
                         },
                         new
                         {
@@ -5067,8 +4692,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/375.png",
                             Name = "Métang",
-                            Rarity = 0,
-                            Type = "steel"
+                            Rarity = 0
                         },
                         new
                         {
@@ -5078,8 +4702,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/376.png",
                             Name = "Métalosse",
-                            Rarity = 2,
-                            Type = "steel"
+                            Rarity = 2
                         },
                         new
                         {
@@ -5089,8 +4712,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/377.png",
                             Name = "Regirock",
-                            Rarity = 3,
-                            Type = "rock"
+                            Rarity = 3
                         },
                         new
                         {
@@ -5100,8 +4722,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/378.png",
                             Name = "Regice",
-                            Rarity = 3,
-                            Type = "ice"
+                            Rarity = 3
                         },
                         new
                         {
@@ -5111,8 +4732,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/379.png",
                             Name = "Registeel",
-                            Rarity = 3,
-                            Type = "steel"
+                            Rarity = 3
                         },
                         new
                         {
@@ -5122,8 +4742,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/380.png",
                             Name = "Latias",
-                            Rarity = 3,
-                            Type = "dragon"
+                            Rarity = 3
                         },
                         new
                         {
@@ -5133,8 +4752,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/381.png",
                             Name = "Latios",
-                            Rarity = 3,
-                            Type = "dragon"
+                            Rarity = 3
                         },
                         new
                         {
@@ -5144,8 +4762,7 @@ namespace Models.Migrations
                             Health = 7,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/382.png",
                             Name = "Kyogre",
-                            Rarity = 3,
-                            Type = "water"
+                            Rarity = 3
                         },
                         new
                         {
@@ -5155,8 +4772,7 @@ namespace Models.Migrations
                             Health = 7,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/383.png",
                             Name = "Groudon",
-                            Rarity = 3,
-                            Type = "ground"
+                            Rarity = 3
                         },
                         new
                         {
@@ -5166,8 +4782,7 @@ namespace Models.Migrations
                             Health = 7,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/384.png",
                             Name = "Rayquaza",
-                            Rarity = 3,
-                            Type = "dragon"
+                            Rarity = 3
                         },
                         new
                         {
@@ -5177,8 +4792,7 @@ namespace Models.Migrations
                             Health = 7,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/385.png",
                             Name = "Jirachi",
-                            Rarity = 3,
-                            Type = "steel"
+                            Rarity = 3
                         },
                         new
                         {
@@ -5188,8 +4802,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/386.png",
                             Name = "Deoxys",
-                            Rarity = 3,
-                            Type = "psychic"
+                            Rarity = 3
                         },
                         new
                         {
@@ -5199,8 +4812,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/387.png",
                             Name = "Tortipouss",
-                            Rarity = 0,
-                            Type = "grass"
+                            Rarity = 0
                         },
                         new
                         {
@@ -5210,8 +4822,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/388.png",
                             Name = "Boskara",
-                            Rarity = 0,
-                            Type = "grass"
+                            Rarity = 0
                         },
                         new
                         {
@@ -5221,8 +4832,7 @@ namespace Models.Migrations
                             Health = 6,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/389.png",
                             Name = "Torterra",
-                            Rarity = 1,
-                            Type = "grass"
+                            Rarity = 1
                         },
                         new
                         {
@@ -5232,8 +4842,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/390.png",
                             Name = "Ouisticram",
-                            Rarity = 0,
-                            Type = "fire"
+                            Rarity = 0
                         },
                         new
                         {
@@ -5243,8 +4852,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/391.png",
                             Name = "Chimpenfeu",
-                            Rarity = 0,
-                            Type = "fire"
+                            Rarity = 0
                         },
                         new
                         {
@@ -5254,8 +4862,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/392.png",
                             Name = "Simiabraz",
-                            Rarity = 1,
-                            Type = "fire"
+                            Rarity = 1
                         },
                         new
                         {
@@ -5265,8 +4872,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/393.png",
                             Name = "Tiplouf",
-                            Rarity = 0,
-                            Type = "water"
+                            Rarity = 0
                         },
                         new
                         {
@@ -5276,8 +4882,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/394.png",
                             Name = "Prinplouf",
-                            Rarity = 0,
-                            Type = "water"
+                            Rarity = 0
                         },
                         new
                         {
@@ -5287,8 +4892,7 @@ namespace Models.Migrations
                             Health = 6,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/395.png",
                             Name = "Pingoléon",
-                            Rarity = 1,
-                            Type = "water"
+                            Rarity = 1
                         },
                         new
                         {
@@ -5298,8 +4902,7 @@ namespace Models.Migrations
                             Health = 3,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/396.png",
                             Name = "Étourmi",
-                            Rarity = 0,
-                            Type = "normal"
+                            Rarity = 0
                         },
                         new
                         {
@@ -5309,8 +4912,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/397.png",
                             Name = "Étourvol",
-                            Rarity = 0,
-                            Type = "normal"
+                            Rarity = 0
                         },
                         new
                         {
@@ -5320,8 +4922,7 @@ namespace Models.Migrations
                             Health = 6,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/398.png",
                             Name = "Étouraptor",
-                            Rarity = 0,
-                            Type = "normal"
+                            Rarity = 0
                         },
                         new
                         {
@@ -5331,8 +4932,7 @@ namespace Models.Migrations
                             Health = 4,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/399.png",
                             Name = "Keunotor",
-                            Rarity = 0,
-                            Type = "normal"
+                            Rarity = 0
                         },
                         new
                         {
@@ -5342,8 +4942,7 @@ namespace Models.Migrations
                             Health = 5,
                             ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/400.png",
                             Name = "Castorno",
-                            Rarity = 0,
-                            Type = "normal"
+                            Rarity = 0
                         });
                 });
 

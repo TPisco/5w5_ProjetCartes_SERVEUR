@@ -306,23 +306,17 @@ public class MatchHub : Hub
 
 
 
-    //End Turn
     [Authorize]
-    public async Task onEndTurnAsync( int matchId)
+    public async Task onEndTurnAsync(int matchId)
     {
-        string userId = Context.UserIdentifier;
-  
-        var EndTurnEvent = await _matchesService.EndTurn(userId, matchId);
+        string? userId = Context.UserIdentifier;
+        if (string.IsNullOrEmpty(userId))
+            throw new HubException("Utilisateur non authentifié.");
 
+        var endTurnEvent = await _matchesService.EndTurn(userId, matchId);
 
-        if (EndTurnEvent == null)
-        {
-            throw new InvalidOperationException("Failed to end the turn");
-        }
-
-        await Clients.Group(MatchGroup(matchId)).SendAsync("EndTurn", EndTurnEvent);
+        await Clients.Group(MatchGroup(matchId)).SendAsync("EndTurn", endTurnEvent);
         await TryApplyRewardsAsync(matchId);
-
     }
 
 
@@ -330,10 +324,13 @@ public class MatchHub : Hub
     [Authorize]
     public async Task onSurrenderAsync(int matchId)
     {
-        string userId = Context.UserIdentifier;
-        var SurrenderEvent = await _matchesService.Surrender(userId, matchId);
+        string? userId = Context.UserIdentifier;
+        if (string.IsNullOrEmpty(userId))
+            throw new HubException("Utilisateur non authentifié.");
 
-        await Clients.Group(MatchGroup(matchId)).SendAsync("Surrender", SurrenderEvent);
+        var surrenderEvent = await _matchesService.Surrender(userId, matchId);
+
+        await Clients.Group(MatchGroup(matchId)).SendAsync("Surrender", surrenderEvent);
         await TryApplyRewardsAsync(matchId);
     }
 

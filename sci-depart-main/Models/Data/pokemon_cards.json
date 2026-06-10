@@ -1,0 +1,4002 @@
+[
+    {
+        "id":  1,
+        "name":  "Bulbizarre",
+        "attack":  5,
+        "health":  3,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "grass",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/001.png"
+    },
+    {
+        "id":  2,
+        "name":  "Herbizarre",
+        "attack":  6,
+        "health":  4,
+        "cost":  5,
+        "rarity":  "Common",
+        "type":  "grass",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/002.png"
+    },
+    {
+        "id":  3,
+        "name":  "Florizarre",
+        "attack":  7,
+        "health":  5,
+        "cost":  6,
+        "rarity":  "Rare",
+        "type":  "grass",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/003.png"
+    },
+    {
+        "id":  4,
+        "name":  "Salamèche",
+        "attack":  4,
+        "health":  3,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "fire",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/004.png"
+    },
+    {
+        "id":  5,
+        "name":  "Reptincel",
+        "attack":  6,
+        "health":  4,
+        "cost":  5,
+        "rarity":  "Common",
+        "type":  "fire",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/005.png"
+    },
+    {
+        "id":  6,
+        "name":  "Dracaufeu",
+        "attack":  8,
+        "health":  5,
+        "cost":  6,
+        "rarity":  "Rare",
+        "type":  "fire",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/006.png"
+    },
+    {
+        "id":  7,
+        "name":  "Carapuce",
+        "attack":  4,
+        "health":  3,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "water",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/007.png"
+    },
+    {
+        "id":  8,
+        "name":  "Carabaffe",
+        "attack":  5,
+        "health":  4,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "water",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/008.png"
+    },
+    {
+        "id":  9,
+        "name":  "Tortank",
+        "attack":  7,
+        "health":  5,
+        "cost":  6,
+        "rarity":  "Rare",
+        "type":  "water",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/009.png"
+    },
+    {
+        "id":  10,
+        "name":  "Chenipan",
+        "attack":  2,
+        "health":  3,
+        "cost":  2,
+        "rarity":  "Common",
+        "type":  "bug",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/010.png"
+    },
+    {
+        "id":  11,
+        "name":  "Chrysacier",
+        "attack":  2,
+        "health":  3,
+        "cost":  2,
+        "rarity":  "Common",
+        "type":  "bug",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/011.png"
+    },
+    {
+        "id":  12,
+        "name":  "Papilusion",
+        "attack":  5,
+        "health":  4,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "bug",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/012.png"
+    },
+    {
+        "id":  13,
+        "name":  "Aspicot",
+        "attack":  2,
+        "health":  3,
+        "cost":  2,
+        "rarity":  "Common",
+        "type":  "bug",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/013.png"
+    },
+    {
+        "id":  14,
+        "name":  "Coconfort",
+        "attack":  2,
+        "health":  3,
+        "cost":  2,
+        "rarity":  "Common",
+        "type":  "bug",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/014.png"
+    },
+    {
+        "id":  15,
+        "name":  "Dardargnan",
+        "attack":  5,
+        "health":  4,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "bug",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/015.png"
+    },
+    {
+        "id":  16,
+        "name":  "Roucool",
+        "attack":  3,
+        "health":  3,
+        "cost":  3,
+        "rarity":  "Common",
+        "type":  "normal",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/016.png"
+    },
+    {
+        "id":  17,
+        "name":  "Roucoups",
+        "attack":  4,
+        "health":  4,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "normal",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/017.png"
+    },
+    {
+        "id":  18,
+        "name":  "Roucarnage",
+        "attack":  6,
+        "health":  6,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "normal",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/018.png"
+    },
+    {
+        "id":  19,
+        "name":  "Rattata",
+        "attack":  3,
+        "health":  2,
+        "cost":  2,
+        "rarity":  "Common",
+        "type":  "normal",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/019.png"
+    },
+    {
+        "id":  20,
+        "name":  "Rattatac",
+        "attack":  5,
+        "health":  4,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "normal",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/020.png"
+    },
+    {
+        "id":  21,
+        "name":  "Piafabec",
+        "attack":  4,
+        "health":  3,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "normal",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/021.png"
+    },
+    {
+        "id":  22,
+        "name":  "Rapasdepic",
+        "attack":  6,
+        "health":  4,
+        "cost":  5,
+        "rarity":  "Common",
+        "type":  "normal",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/022.png"
+    },
+    {
+        "id":  23,
+        "name":  "Abo",
+        "attack":  4,
+        "health":  2,
+        "cost":  3,
+        "rarity":  "Common",
+        "type":  "poison",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/023.png"
+    },
+    {
+        "id":  24,
+        "name":  "Arbok",
+        "attack":  6,
+        "health":  4,
+        "cost":  5,
+        "rarity":  "Common",
+        "type":  "poison",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/024.png"
+    },
+    {
+        "id":  25,
+        "name":  "Pikachu",
+        "attack":  4,
+        "health":  2,
+        "cost":  3,
+        "rarity":  "Common",
+        "type":  "electric",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/025.png"
+    },
+    {
+        "id":  26,
+        "name":  "Raichu",
+        "attack":  7,
+        "health":  4,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "electric",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/026.png"
+    },
+    {
+        "id":  27,
+        "name":  "Sabelette",
+        "attack":  4,
+        "health":  3,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "ground",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/027.png"
+    },
+    {
+        "id":  28,
+        "name":  "Sablaireau",
+        "attack":  6,
+        "health":  5,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "ground",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/028.png"
+    },
+    {
+        "id":  29,
+        "name":  "Nidoran♀",
+        "attack":  3,
+        "health":  4,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "poison",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/029.png"
+    },
+    {
+        "id":  30,
+        "name":  "Nidorina",
+        "attack":  5,
+        "health":  5,
+        "cost":  5,
+        "rarity":  "Common",
+        "type":  "poison",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/030.png"
+    },
+    {
+        "id":  31,
+        "name":  "Nidoqueen",
+        "attack":  7,
+        "health":  6,
+        "cost":  6,
+        "rarity":  "Rare",
+        "type":  "poison",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/031.png"
+    },
+    {
+        "id":  32,
+        "name":  "Nidoran♂",
+        "attack":  4,
+        "health":  3,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "poison",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/032.png"
+    },
+    {
+        "id":  33,
+        "name":  "Nidorino",
+        "attack":  5,
+        "health":  4,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "poison",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/033.png"
+    },
+    {
+        "id":  34,
+        "name":  "Nidoking",
+        "attack":  7,
+        "health":  5,
+        "cost":  6,
+        "rarity":  "Rare",
+        "type":  "poison",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/034.png"
+    },
+    {
+        "id":  35,
+        "name":  "Mélofée",
+        "attack":  4,
+        "health":  5,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "fairy",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/035.png"
+    },
+    {
+        "id":  36,
+        "name":  "Mélodelfe",
+        "attack":  7,
+        "health":  6,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "fairy",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/036.png"
+    },
+    {
+        "id":  37,
+        "name":  "Goupix",
+        "attack":  4,
+        "health":  3,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "fire",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/037.png"
+    },
+    {
+        "id":  38,
+        "name":  "Feunard",
+        "attack":  6,
+        "health":  5,
+        "cost":  6,
+        "rarity":  "Rare",
+        "type":  "fire",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/038.png"
+    },
+    {
+        "id":  39,
+        "name":  "Rondoudou",
+        "attack":  4,
+        "health":  8,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "normal",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/039.png"
+    },
+    {
+        "id":  40,
+        "name":  "Grodoudou",
+        "attack":  6,
+        "health":  9,
+        "cost":  8,
+        "rarity":  "Common",
+        "type":  "normal",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/040.png"
+    },
+    {
+        "id":  41,
+        "name":  "Nosferapti",
+        "attack":  3,
+        "health":  3,
+        "cost":  3,
+        "rarity":  "Common",
+        "type":  "poison",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/041.png"
+    },
+    {
+        "id":  42,
+        "name":  "Nosferalto",
+        "attack":  6,
+        "health":  5,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "poison",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/042.png"
+    },
+    {
+        "id":  43,
+        "name":  "Mystherbe",
+        "attack":  5,
+        "health":  3,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "grass",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/043.png"
+    },
+    {
+        "id":  44,
+        "name":  "Ortide",
+        "attack":  6,
+        "health":  4,
+        "cost":  5,
+        "rarity":  "Common",
+        "type":  "grass",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/044.png"
+    },
+    {
+        "id":  45,
+        "name":  "Rafflesia",
+        "attack":  8,
+        "health":  5,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "grass",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/045.png"
+    },
+    {
+        "id":  46,
+        "name":  "Paras",
+        "attack":  5,
+        "health":  2,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "bug",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/046.png"
+    },
+    {
+        "id":  47,
+        "name":  "Parasect",
+        "attack":  6,
+        "health":  4,
+        "cost":  5,
+        "rarity":  "Common",
+        "type":  "bug",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/047.png"
+    },
+    {
+        "id":  48,
+        "name":  "Mimitoss",
+        "attack":  4,
+        "health":  4,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "bug",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/048.png"
+    },
+    {
+        "id":  49,
+        "name":  "Aéromite",
+        "attack":  6,
+        "health":  5,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "bug",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/049.png"
+    },
+    {
+        "id":  50,
+        "name":  "Taupiqueur",
+        "attack":  4,
+        "health":  1,
+        "cost":  2,
+        "rarity":  "Common",
+        "type":  "ground",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/050.png"
+    },
+    {
+        "id":  51,
+        "name":  "Triopikeur",
+        "attack":  6,
+        "health":  2,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "ground",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/051.png"
+    },
+    {
+        "id":  52,
+        "name":  "Miaouss",
+        "attack":  3,
+        "health":  3,
+        "cost":  3,
+        "rarity":  "Common",
+        "type":  "normal",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/052.png"
+    },
+    {
+        "id":  53,
+        "name":  "Persian",
+        "attack":  5,
+        "health":  4,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "normal",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/053.png"
+    },
+    {
+        "id":  54,
+        "name":  "Psykokwak",
+        "attack":  5,
+        "health":  3,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "water",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/054.png"
+    },
+    {
+        "id":  55,
+        "name":  "Akwakwak",
+        "attack":  7,
+        "health":  5,
+        "cost":  6,
+        "rarity":  "Rare",
+        "type":  "water",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/055.png"
+    },
+    {
+        "id":  56,
+        "name":  "Férosinge",
+        "attack":  5,
+        "health":  3,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "fighting",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/056.png"
+    },
+    {
+        "id":  57,
+        "name":  "Colossinge",
+        "attack":  7,
+        "health":  4,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "fighting",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/057.png"
+    },
+    {
+        "id":  58,
+        "name":  "Caninos",
+        "attack":  6,
+        "health":  4,
+        "cost":  5,
+        "rarity":  "Common",
+        "type":  "fire",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/058.png"
+    },
+    {
+        "id":  59,
+        "name":  "Arcanin",
+        "attack":  8,
+        "health":  6,
+        "cost":  7,
+        "rarity":  "Rare",
+        "type":  "fire",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/059.png"
+    },
+    {
+        "id":  60,
+        "name":  "Ptitard",
+        "attack":  4,
+        "health":  3,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "water",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/060.png"
+    },
+    {
+        "id":  61,
+        "name":  "Têtarte",
+        "attack":  5,
+        "health":  4,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "water",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/061.png"
+    },
+    {
+        "id":  62,
+        "name":  "Tartard",
+        "attack":  7,
+        "health":  6,
+        "cost":  6,
+        "rarity":  "Rare",
+        "type":  "water",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/062.png"
+    },
+    {
+        "id":  63,
+        "name":  "Abra",
+        "attack":  5,
+        "health":  2,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "psychic",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/063.png"
+    },
+    {
+        "id":  64,
+        "name":  "Kadabra",
+        "attack":  6,
+        "health":  3,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "psychic",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/064.png"
+    },
+    {
+        "id":  65,
+        "name":  "Alakazam",
+        "attack":  7,
+        "health":  4,
+        "cost":  6,
+        "rarity":  "Rare",
+        "type":  "psychic",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/065.png"
+    },
+    {
+        "id":  66,
+        "name":  "Machoc",
+        "attack":  5,
+        "health":  5,
+        "cost":  5,
+        "rarity":  "Common",
+        "type":  "fighting",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/066.png"
+    },
+    {
+        "id":  67,
+        "name":  "Machopeur",
+        "attack":  6,
+        "health":  5,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "fighting",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/067.png"
+    },
+    {
+        "id":  68,
+        "name":  "Mackogneur",
+        "attack":  8,
+        "health":  6,
+        "cost":  7,
+        "rarity":  "Rare",
+        "type":  "fighting",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/068.png"
+    },
+    {
+        "id":  69,
+        "name":  "Chétiflor",
+        "attack":  6,
+        "health":  3,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "grass",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/069.png"
+    },
+    {
+        "id":  70,
+        "name":  "Boustiflor",
+        "attack":  7,
+        "health":  4,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "grass",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/070.png"
+    },
+    {
+        "id":  71,
+        "name":  "Empiflor",
+        "attack":  8,
+        "health":  5,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "grass",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/071.png"
+    },
+    {
+        "id":  72,
+        "name":  "Tentacool",
+        "attack":  4,
+        "health":  3,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "water",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/072.png"
+    },
+    {
+        "id":  73,
+        "name":  "Tentacruel",
+        "attack":  6,
+        "health":  5,
+        "cost":  6,
+        "rarity":  "Rare",
+        "type":  "water",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/073.png"
+    },
+    {
+        "id":  74,
+        "name":  "Racaillou",
+        "attack":  4,
+        "health":  3,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "rock",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/074.png"
+    },
+    {
+        "id":  75,
+        "name":  "Gravalanch",
+        "attack":  6,
+        "health":  4,
+        "cost":  5,
+        "rarity":  "Common",
+        "type":  "rock",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/075.png"
+    },
+    {
+        "id":  76,
+        "name":  "Grolem",
+        "attack":  7,
+        "health":  5,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "rock",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/076.png"
+    },
+    {
+        "id":  77,
+        "name":  "Ponyta",
+        "attack":  6,
+        "health":  3,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "fire",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/077.png"
+    },
+    {
+        "id":  78,
+        "name":  "Galopa",
+        "attack":  7,
+        "health":  4,
+        "cost":  6,
+        "rarity":  "Rare",
+        "type":  "fire",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/078.png"
+    },
+    {
+        "id":  79,
+        "name":  "Ramoloss",
+        "attack":  4,
+        "health":  6,
+        "cost":  5,
+        "rarity":  "Common",
+        "type":  "water",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/079.png"
+    },
+    {
+        "id":  80,
+        "name":  "Flagadoss",
+        "attack":  7,
+        "health":  6,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "water",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/080.png"
+    },
+    {
+        "id":  81,
+        "name":  "Magnéti",
+        "attack":  5,
+        "health":  2,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "electric",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/081.png"
+    },
+    {
+        "id":  82,
+        "name":  "Magnéton",
+        "attack":  7,
+        "health":  3,
+        "cost":  5,
+        "rarity":  "Common",
+        "type":  "electric",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/082.png"
+    },
+    {
+        "id":  83,
+        "name":  "Canarticho",
+        "attack":  6,
+        "health":  3,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "normal",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/083.png"
+    },
+    {
+        "id":  84,
+        "name":  "Doduo",
+        "attack":  5,
+        "health":  2,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "normal",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/084.png"
+    },
+    {
+        "id":  85,
+        "name":  "Dodrio",
+        "attack":  7,
+        "health":  4,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "normal",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/085.png"
+    },
+    {
+        "id":  86,
+        "name":  "Otaria",
+        "attack":  4,
+        "health":  4,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "water",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/086.png"
+    },
+    {
+        "id":  87,
+        "name":  "Lamantine",
+        "attack":  6,
+        "health":  6,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "water",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/087.png"
+    },
+    {
+        "id":  88,
+        "name":  "Tadmorv",
+        "attack":  5,
+        "health":  5,
+        "cost":  5,
+        "rarity":  "Common",
+        "type":  "poison",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/088.png"
+    },
+    {
+        "id":  89,
+        "name":  "Grotadmorv",
+        "attack":  7,
+        "health":  7,
+        "cost":  7,
+        "rarity":  "Rare",
+        "type":  "poison",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/089.png"
+    },
+    {
+        "id":  90,
+        "name":  "Kokiyas",
+        "attack":  4,
+        "health":  2,
+        "cost":  3,
+        "rarity":  "Common",
+        "type":  "water",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/090.png"
+    },
+    {
+        "id":  91,
+        "name":  "Crustabri",
+        "attack":  7,
+        "health":  3,
+        "cost":  5,
+        "rarity":  "Rare",
+        "type":  "water",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/091.png"
+    },
+    {
+        "id":  92,
+        "name":  "Fantominus",
+        "attack":  5,
+        "health":  2,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "ghost",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/092.png"
+    },
+    {
+        "id":  93,
+        "name":  "Spectrum",
+        "attack":  7,
+        "health":  3,
+        "cost":  5,
+        "rarity":  "Common",
+        "type":  "ghost",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/093.png"
+    },
+    {
+        "id":  94,
+        "name":  "Ectoplasma",
+        "attack":  8,
+        "health":  4,
+        "cost":  6,
+        "rarity":  "Rare",
+        "type":  "ghost",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/094.png"
+    },
+    {
+        "id":  95,
+        "name":  "Onix",
+        "attack":  3,
+        "health":  2,
+        "cost":  2,
+        "rarity":  "Common",
+        "type":  "rock",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/095.png"
+    },
+    {
+        "id":  96,
+        "name":  "Soporifik",
+        "attack":  4,
+        "health":  4,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "psychic",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/096.png"
+    },
+    {
+        "id":  97,
+        "name":  "Hypnomade",
+        "attack":  6,
+        "health":  6,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "psychic",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/097.png"
+    },
+    {
+        "id":  98,
+        "name":  "Krabby",
+        "attack":  5,
+        "health":  2,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "water",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/098.png"
+    },
+    {
+        "id":  99,
+        "name":  "Krabboss",
+        "attack":  7,
+        "health":  4,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "water",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/099.png"
+    },
+    {
+        "id":  100,
+        "name":  "Voltorbe",
+        "attack":  3,
+        "health":  3,
+        "cost":  3,
+        "rarity":  "Common",
+        "type":  "electric",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/100.png"
+    },
+    {
+        "id":  101,
+        "name":  "Électrode",
+        "attack":  5,
+        "health":  4,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "electric",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/101.png"
+    },
+    {
+        "id":  102,
+        "name":  "Noeunoeuf",
+        "attack":  4,
+        "health":  4,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "grass",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/102.png"
+    },
+    {
+        "id":  103,
+        "name":  "Noadkoko",
+        "attack":  9,
+        "health":  6,
+        "cost":  8,
+        "rarity":  "Rare",
+        "type":  "grass",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/103.png"
+    },
+    {
+        "id":  104,
+        "name":  "Osselait",
+        "attack":  4,
+        "health":  3,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "ground",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/104.png"
+    },
+    {
+        "id":  105,
+        "name":  "Ossatueur",
+        "attack":  5,
+        "health":  4,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "ground",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/105.png"
+    },
+    {
+        "id":  106,
+        "name":  "Kicklee",
+        "attack":  6,
+        "health":  3,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "fighting",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/106.png"
+    },
+    {
+        "id":  107,
+        "name":  "Tygnon",
+        "attack":  6,
+        "health":  3,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "fighting",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/107.png"
+    },
+    {
+        "id":  108,
+        "name":  "Excelangue",
+        "attack":  5,
+        "health":  6,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "normal",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/108.png"
+    },
+    {
+        "id":  109,
+        "name":  "Smogo",
+        "attack":  5,
+        "health":  3,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "poison",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/109.png"
+    },
+    {
+        "id":  110,
+        "name":  "Smogogo",
+        "attack":  7,
+        "health":  4,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "poison",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/110.png"
+    },
+    {
+        "id":  111,
+        "name":  "Rhinocorne",
+        "attack":  5,
+        "health":  5,
+        "cost":  5,
+        "rarity":  "Common",
+        "type":  "ground",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/111.png"
+    },
+    {
+        "id":  112,
+        "name":  "Rhinoféros",
+        "attack":  7,
+        "health":  7,
+        "cost":  7,
+        "rarity":  "Common",
+        "type":  "ground",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/112.png"
+    },
+    {
+        "id":  113,
+        "name":  "Leveinard",
+        "attack":  2,
+        "health":  10,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "normal",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/113.png"
+    },
+    {
+        "id":  114,
+        "name":  "Saquedeneu",
+        "attack":  6,
+        "health":  4,
+        "cost":  5,
+        "rarity":  "Common",
+        "type":  "grass",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/114.png"
+    },
+    {
+        "id":  115,
+        "name":  "Kangourex",
+        "attack":  5,
+        "health":  7,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "normal",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/115.png"
+    },
+    {
+        "id":  116,
+        "name":  "Hypotrempe",
+        "attack":  4,
+        "health":  2,
+        "cost":  3,
+        "rarity":  "Common",
+        "type":  "water",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/116.png"
+    },
+    {
+        "id":  117,
+        "name":  "Hypocéan",
+        "attack":  6,
+        "health":  4,
+        "cost":  5,
+        "rarity":  "Common",
+        "type":  "water",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/117.png"
+    },
+    {
+        "id":  118,
+        "name":  "Poissirène",
+        "attack":  4,
+        "health":  3,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "water",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/118.png"
+    },
+    {
+        "id":  119,
+        "name":  "Poissoroy",
+        "attack":  6,
+        "health":  5,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "water",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/119.png"
+    },
+    {
+        "id":  120,
+        "name":  "Stari",
+        "attack":  5,
+        "health":  2,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "water",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/120.png"
+    },
+    {
+        "id":  121,
+        "name":  "Staross",
+        "attack":  7,
+        "health":  4,
+        "cost":  6,
+        "rarity":  "Rare",
+        "type":  "water",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/121.png"
+    },
+    {
+        "id":  122,
+        "name":  "M. Mime",
+        "attack":  6,
+        "health":  3,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "psychic",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/122.png"
+    },
+    {
+        "id":  123,
+        "name":  "Insécateur",
+        "attack":  7,
+        "health":  5,
+        "cost":  6,
+        "rarity":  "Rare",
+        "type":  "bug",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/123.png"
+    },
+    {
+        "id":  124,
+        "name":  "Lippoutou",
+        "attack":  7,
+        "health":  4,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "ice",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/124.png"
+    },
+    {
+        "id":  125,
+        "name":  "Élektek",
+        "attack":  7,
+        "health":  4,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "electric",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/125.png"
+    },
+    {
+        "id":  126,
+        "name":  "Magmar",
+        "attack":  8,
+        "health":  4,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "fire",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/126.png"
+    },
+    {
+        "id":  127,
+        "name":  "Scarabrute",
+        "attack":  7,
+        "health":  4,
+        "cost":  6,
+        "rarity":  "Rare",
+        "type":  "bug",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/127.png"
+    },
+    {
+        "id":  128,
+        "name":  "Tauros",
+        "attack":  6,
+        "health":  5,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "normal",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/128.png"
+    },
+    {
+        "id":  129,
+        "name":  "Magicarpe",
+        "attack":  1,
+        "health":  1,
+        "cost":  1,
+        "rarity":  "Common",
+        "type":  "water",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/129.png"
+    },
+    {
+        "id":  130,
+        "name":  "Léviator",
+        "attack":  7,
+        "health":  6,
+        "cost":  6,
+        "rarity":  "Rare",
+        "type":  "water",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/130.png"
+    },
+    {
+        "id":  131,
+        "name":  "Lokhlass",
+        "attack":  7,
+        "health":  9,
+        "cost":  8,
+        "rarity":  "Rare",
+        "type":  "water",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/131.png"
+    },
+    {
+        "id":  132,
+        "name":  "Métamorph",
+        "attack":  4,
+        "health":  3,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "normal",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/132.png"
+    },
+    {
+        "id":  133,
+        "name":  "Évoli",
+        "attack":  4,
+        "health":  4,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "normal",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/133.png"
+    },
+    {
+        "id":  134,
+        "name":  "Aquali",
+        "attack":  7,
+        "health":  9,
+        "cost":  8,
+        "rarity":  "Rare",
+        "type":  "water",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/134.png"
+    },
+    {
+        "id":  135,
+        "name":  "Voltali",
+        "attack":  7,
+        "health":  4,
+        "cost":  6,
+        "rarity":  "Rare",
+        "type":  "electric",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/135.png"
+    },
+    {
+        "id":  136,
+        "name":  "Pyroli",
+        "attack":  9,
+        "health":  4,
+        "cost":  6,
+        "rarity":  "Rare",
+        "type":  "fire",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/136.png"
+    },
+    {
+        "id":  137,
+        "name":  "Porygon",
+        "attack":  6,
+        "health":  4,
+        "cost":  5,
+        "rarity":  "Common",
+        "type":  "normal",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/137.png"
+    },
+    {
+        "id":  138,
+        "name":  "Amonita",
+        "attack":  5,
+        "health":  2,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "rock",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/138.png"
+    },
+    {
+        "id":  139,
+        "name":  "Amonistar",
+        "attack":  7,
+        "health":  5,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "rock",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/139.png"
+    },
+    {
+        "id":  140,
+        "name":  "Kabuto",
+        "attack":  5,
+        "health":  2,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "rock",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/140.png"
+    },
+    {
+        "id":  141,
+        "name":  "Kabutops",
+        "attack":  7,
+        "health":  4,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "rock",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/141.png"
+    },
+    {
+        "id":  142,
+        "name":  "Ptéra",
+        "attack":  7,
+        "health":  5,
+        "cost":  6,
+        "rarity":  "Rare",
+        "type":  "rock",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/142.png"
+    },
+    {
+        "id":  143,
+        "name":  "Ronflex",
+        "attack":  7,
+        "health":  10,
+        "cost":  8,
+        "rarity":  "Rare",
+        "type":  "normal",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/143.png"
+    },
+    {
+        "id":  144,
+        "name":  "Artikodin",
+        "attack":  7,
+        "health":  6,
+        "cost":  6,
+        "rarity":  "Legendary",
+        "type":  "ice",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/144.png"
+    },
+    {
+        "id":  145,
+        "name":  "Électhor",
+        "attack":  9,
+        "health":  6,
+        "cost":  8,
+        "rarity":  "Legendary",
+        "type":  "electric",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/145.png"
+    },
+    {
+        "id":  146,
+        "name":  "Sulfura",
+        "attack":  9,
+        "health":  6,
+        "cost":  8,
+        "rarity":  "Legendary",
+        "type":  "fire",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/146.png"
+    },
+    {
+        "id":  147,
+        "name":  "Minidraco",
+        "attack":  5,
+        "health":  3,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "dragon",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/147.png"
+    },
+    {
+        "id":  148,
+        "name":  "Draco",
+        "attack":  6,
+        "health":  4,
+        "cost":  5,
+        "rarity":  "Common",
+        "type":  "dragon",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/148.png"
+    },
+    {
+        "id":  149,
+        "name":  "Dracolosse",
+        "attack":  9,
+        "health":  6,
+        "cost":  8,
+        "rarity":  "Epic",
+        "type":  "dragon",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/149.png"
+    },
+    {
+        "id":  150,
+        "name":  "Mewtwo",
+        "attack":  10,
+        "health":  7,
+        "cost":  8,
+        "rarity":  "Legendary",
+        "type":  "psychic",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/150.png"
+    },
+    {
+        "id":  151,
+        "name":  "Mew",
+        "attack":  8,
+        "health":  7,
+        "cost":  8,
+        "rarity":  "Legendary",
+        "type":  "psychic",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/151.png"
+    },
+    {
+        "id":  152,
+        "name":  "Germignon",
+        "attack":  4,
+        "health":  3,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "grass",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/152.png"
+    },
+    {
+        "id":  153,
+        "name":  "Macronium",
+        "attack":  5,
+        "health":  4,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "grass",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/153.png"
+    },
+    {
+        "id":  154,
+        "name":  "Méganium",
+        "attack":  7,
+        "health":  5,
+        "cost":  6,
+        "rarity":  "Rare",
+        "type":  "grass",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/154.png"
+    },
+    {
+        "id":  155,
+        "name":  "Héricendre",
+        "attack":  4,
+        "health":  3,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "fire",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/155.png"
+    },
+    {
+        "id":  156,
+        "name":  "Feurisson",
+        "attack":  6,
+        "health":  4,
+        "cost":  5,
+        "rarity":  "Common",
+        "type":  "fire",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/156.png"
+    },
+    {
+        "id":  157,
+        "name":  "Typhlosion",
+        "attack":  8,
+        "health":  5,
+        "cost":  6,
+        "rarity":  "Rare",
+        "type":  "fire",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/157.png"
+    },
+    {
+        "id":  158,
+        "name":  "Kaiminus",
+        "attack":  4,
+        "health":  3,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "water",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/158.png"
+    },
+    {
+        "id":  159,
+        "name":  "Crocrodil",
+        "attack":  6,
+        "health":  4,
+        "cost":  5,
+        "rarity":  "Common",
+        "type":  "water",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/159.png"
+    },
+    {
+        "id":  160,
+        "name":  "Aligatueur",
+        "attack":  7,
+        "health":  6,
+        "cost":  6,
+        "rarity":  "Rare",
+        "type":  "water",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/160.png"
+    },
+    {
+        "id":  161,
+        "name":  "Fouinette",
+        "attack":  3,
+        "health":  2,
+        "cost":  2,
+        "rarity":  "Common",
+        "type":  "normal",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/161.png"
+    },
+    {
+        "id":  162,
+        "name":  "Fouinar",
+        "attack":  5,
+        "health":  6,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "normal",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/162.png"
+    },
+    {
+        "id":  163,
+        "name":  "Hoothoot",
+        "attack":  3,
+        "health":  4,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "normal",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/163.png"
+    },
+    {
+        "id":  164,
+        "name":  "Noarfang",
+        "attack":  5,
+        "health":  7,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "normal",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/164.png"
+    },
+    {
+        "id":  165,
+        "name":  "Coxy",
+        "attack":  2,
+        "health":  3,
+        "cost":  2,
+        "rarity":  "Common",
+        "type":  "bug",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/165.png"
+    },
+    {
+        "id":  166,
+        "name":  "Coxyclaque",
+        "attack":  4,
+        "health":  4,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "bug",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/166.png"
+    },
+    {
+        "id":  167,
+        "name":  "Mimigal",
+        "attack":  4,
+        "health":  3,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "bug",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/167.png"
+    },
+    {
+        "id":  168,
+        "name":  "Migalos",
+        "attack":  6,
+        "health":  5,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "bug",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/168.png"
+    },
+    {
+        "id":  169,
+        "name":  "Nostenfer",
+        "attack":  6,
+        "health":  6,
+        "cost":  6,
+        "rarity":  "Rare",
+        "type":  "poison",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/169.png"
+    },
+    {
+        "id":  170,
+        "name":  "Loupio",
+        "attack":  4,
+        "health":  5,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "water",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/170.png"
+    },
+    {
+        "id":  171,
+        "name":  "Lanturn",
+        "attack":  5,
+        "health":  8,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "water",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/171.png"
+    },
+    {
+        "id":  172,
+        "name":  "Pichu",
+        "attack":  3,
+        "health":  1,
+        "cost":  2,
+        "rarity":  "Common",
+        "type":  "electric",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/172.png"
+    },
+    {
+        "id":  173,
+        "name":  "Mélo",
+        "attack":  3,
+        "health":  3,
+        "cost":  3,
+        "rarity":  "Common",
+        "type":  "fairy",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/173.png"
+    },
+    {
+        "id":  174,
+        "name":  "Toudoudou",
+        "attack":  3,
+        "health":  6,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "normal",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/174.png"
+    },
+    {
+        "id":  175,
+        "name":  "Togepi",
+        "attack":  2,
+        "health":  2,
+        "cost":  2,
+        "rarity":  "Common",
+        "type":  "fairy",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/175.png"
+    },
+    {
+        "id":  176,
+        "name":  "Togetic",
+        "attack":  5,
+        "health":  4,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "fairy",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/176.png"
+    },
+    {
+        "id":  177,
+        "name":  "Natu",
+        "attack":  5,
+        "health":  3,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "psychic",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/177.png"
+    },
+    {
+        "id":  178,
+        "name":  "Xatu",
+        "attack":  7,
+        "health":  4,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "psychic",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/178.png"
+    },
+    {
+        "id":  179,
+        "name":  "Wattouat",
+        "attack":  4,
+        "health":  4,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "electric",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/179.png"
+    },
+    {
+        "id":  180,
+        "name":  "Lainergie",
+        "attack":  5,
+        "health":  5,
+        "cost":  5,
+        "rarity":  "Common",
+        "type":  "electric",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/180.png"
+    },
+    {
+        "id":  181,
+        "name":  "Pharamp",
+        "attack":  8,
+        "health":  6,
+        "cost":  7,
+        "rarity":  "Rare",
+        "type":  "electric",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/181.png"
+    },
+    {
+        "id":  182,
+        "name":  "Joliflor",
+        "attack":  7,
+        "health":  5,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "grass",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/182.png"
+    },
+    {
+        "id":  183,
+        "name":  "Marill",
+        "attack":  2,
+        "health":  5,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "water",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/183.png"
+    },
+    {
+        "id":  184,
+        "name":  "Azumarill",
+        "attack":  4,
+        "health":  7,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "water",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/184.png"
+    },
+    {
+        "id":  185,
+        "name":  "Simularbre",
+        "attack":  5,
+        "health":  5,
+        "cost":  5,
+        "rarity":  "Common",
+        "type":  "rock",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/185.png"
+    },
+    {
+        "id":  186,
+        "name":  "Tarpaud",
+        "attack":  7,
+        "health":  6,
+        "cost":  6,
+        "rarity":  "Rare",
+        "type":  "water",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/186.png"
+    },
+    {
+        "id":  187,
+        "name":  "Granivol",
+        "attack":  3,
+        "health":  2,
+        "cost":  2,
+        "rarity":  "Common",
+        "type":  "grass",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/187.png"
+    },
+    {
+        "id":  188,
+        "name":  "Floravol",
+        "attack":  4,
+        "health":  4,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "grass",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/188.png"
+    },
+    {
+        "id":  189,
+        "name":  "Cotovol",
+        "attack":  4,
+        "health":  5,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "grass",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/189.png"
+    },
+    {
+        "id":  190,
+        "name":  "Capumain",
+        "attack":  4,
+        "health":  4,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "normal",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/190.png"
+    },
+    {
+        "id":  191,
+        "name":  "Tournegrin",
+        "attack":  2,
+        "health":  2,
+        "cost":  2,
+        "rarity":  "Common",
+        "type":  "grass",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/191.png"
+    },
+    {
+        "id":  192,
+        "name":  "Héliatronc",
+        "attack":  7,
+        "health":  5,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "grass",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/192.png"
+    },
+    {
+        "id":  193,
+        "name":  "Yanma",
+        "attack":  6,
+        "health":  4,
+        "cost":  5,
+        "rarity":  "Common",
+        "type":  "bug",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/193.png"
+    },
+    {
+        "id":  194,
+        "name":  "Axoloto",
+        "attack":  3,
+        "health":  4,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "water",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/194.png"
+    },
+    {
+        "id":  195,
+        "name":  "Maraiste",
+        "attack":  6,
+        "health":  6,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "water",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/195.png"
+    },
+    {
+        "id":  196,
+        "name":  "Mentali",
+        "attack":  8,
+        "health":  4,
+        "cost":  6,
+        "rarity":  "Rare",
+        "type":  "psychic",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/196.png"
+    },
+    {
+        "id":  197,
+        "name":  "Noctali",
+        "attack":  5,
+        "health":  6,
+        "cost":  6,
+        "rarity":  "Rare",
+        "type":  "dark",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/197.png"
+    },
+    {
+        "id":  198,
+        "name":  "Cornèbre",
+        "attack":  7,
+        "health":  4,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "dark",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/198.png"
+    },
+    {
+        "id":  199,
+        "name":  "Roigada",
+        "attack":  7,
+        "health":  6,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "water",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/199.png"
+    },
+    {
+        "id":  200,
+        "name":  "Feuforêve",
+        "attack":  6,
+        "health":  4,
+        "cost":  5,
+        "rarity":  "Common",
+        "type":  "ghost",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/200.png"
+    },
+    {
+        "id":  201,
+        "name":  "Zarbi",
+        "attack":  6,
+        "health":  3,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "psychic",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/201.png"
+    },
+    {
+        "id":  202,
+        "name":  "Qulbutoké",
+        "attack":  3,
+        "health":  10,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "psychic",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/202.png"
+    },
+    {
+        "id":  203,
+        "name":  "Girafarig",
+        "attack":  7,
+        "health":  5,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "normal",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/203.png"
+    },
+    {
+        "id":  204,
+        "name":  "Pomdepik",
+        "attack":  4,
+        "health":  3,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "bug",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/204.png"
+    },
+    {
+        "id":  205,
+        "name":  "Foretress",
+        "attack":  6,
+        "health":  5,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "bug",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/205.png"
+    },
+    {
+        "id":  206,
+        "name":  "Insolourdo",
+        "attack":  5,
+        "health":  7,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "normal",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/206.png"
+    },
+    {
+        "id":  207,
+        "name":  "Scorplane",
+        "attack":  4,
+        "health":  4,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "ground",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/207.png"
+    },
+    {
+        "id":  208,
+        "name":  "Steelix",
+        "attack":  6,
+        "health":  5,
+        "cost":  6,
+        "rarity":  "Rare",
+        "type":  "steel",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/208.png"
+    },
+    {
+        "id":  209,
+        "name":  "Snubbull",
+        "attack":  5,
+        "health":  4,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "fairy",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/209.png"
+    },
+    {
+        "id":  210,
+        "name":  "Granbull",
+        "attack":  7,
+        "health":  6,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "fairy",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/210.png"
+    },
+    {
+        "id":  211,
+        "name":  "Qwilfish",
+        "attack":  6,
+        "health":  4,
+        "cost":  5,
+        "rarity":  "Common",
+        "type":  "water",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/211.png"
+    },
+    {
+        "id":  212,
+        "name":  "Cizayox",
+        "attack":  7,
+        "health":  5,
+        "cost":  6,
+        "rarity":  "Rare",
+        "type":  "bug",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/212.png"
+    },
+    {
+        "id":  213,
+        "name":  "Caratroc",
+        "attack":  1,
+        "health":  1,
+        "cost":  1,
+        "rarity":  "Rare",
+        "type":  "bug",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/213.png"
+    },
+    {
+        "id":  214,
+        "name":  "Scarhino",
+        "attack":  7,
+        "health":  5,
+        "cost":  6,
+        "rarity":  "Rare",
+        "type":  "bug",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/214.png"
+    },
+    {
+        "id":  215,
+        "name":  "Farfuret",
+        "attack":  5,
+        "health":  4,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "dark",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/215.png"
+    },
+    {
+        "id":  216,
+        "name":  "Teddiursa",
+        "attack":  5,
+        "health":  4,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "normal",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/216.png"
+    },
+    {
+        "id":  217,
+        "name":  "Ursaring",
+        "attack":  8,
+        "health":  6,
+        "cost":  7,
+        "rarity":  "Rare",
+        "type":  "normal",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/217.png"
+    },
+    {
+        "id":  218,
+        "name":  "Limagma",
+        "attack":  4,
+        "health":  3,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "fire",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/218.png"
+    },
+    {
+        "id":  219,
+        "name":  "Volcaropod",
+        "attack":  6,
+        "health":  4,
+        "cost":  5,
+        "rarity":  "Common",
+        "type":  "fire",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/219.png"
+    },
+    {
+        "id":  220,
+        "name":  "Marcacrin",
+        "attack":  3,
+        "health":  3,
+        "cost":  3,
+        "rarity":  "Common",
+        "type":  "ice",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/220.png"
+    },
+    {
+        "id":  221,
+        "name":  "Cochignon",
+        "attack":  6,
+        "health":  7,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "ice",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/221.png"
+    },
+    {
+        "id":  222,
+        "name":  "Corayon",
+        "attack":  5,
+        "health":  4,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "water",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/222.png"
+    },
+    {
+        "id":  223,
+        "name":  "Rémoraid",
+        "attack":  5,
+        "health":  2,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "water",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/223.png"
+    },
+    {
+        "id":  224,
+        "name":  "Octillery",
+        "attack":  8,
+        "health":  5,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "water",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/224.png"
+    },
+    {
+        "id":  225,
+        "name":  "Cadoizo",
+        "attack":  5,
+        "health":  3,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "ice",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/225.png"
+    },
+    {
+        "id":  226,
+        "name":  "Démanta",
+        "attack":  5,
+        "health":  6,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "water",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/226.png"
+    },
+    {
+        "id":  227,
+        "name":  "Airmure",
+        "attack":  5,
+        "health":  4,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "steel",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/227.png"
+    },
+    {
+        "id":  228,
+        "name":  "Malosse",
+        "attack":  6,
+        "health":  3,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "dark",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/228.png"
+    },
+    {
+        "id":  229,
+        "name":  "Démolosse",
+        "attack":  8,
+        "health":  5,
+        "cost":  6,
+        "rarity":  "Rare",
+        "type":  "dark",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/229.png"
+    },
+    {
+        "id":  230,
+        "name":  "Hyporoi",
+        "attack":  8,
+        "health":  5,
+        "cost":  6,
+        "rarity":  "Rare",
+        "type":  "water",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/230.png"
+    },
+    {
+        "id":  231,
+        "name":  "Phanpy",
+        "attack":  4,
+        "health":  6,
+        "cost":  5,
+        "rarity":  "Common",
+        "type":  "ground",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/231.png"
+    },
+    {
+        "id":  232,
+        "name":  "Donphan",
+        "attack":  7,
+        "health":  6,
+        "cost":  6,
+        "rarity":  "Rare",
+        "type":  "ground",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/232.png"
+    },
+    {
+        "id":  233,
+        "name":  "Porygon2",
+        "attack":  7,
+        "health":  6,
+        "cost":  6,
+        "rarity":  "Rare",
+        "type":  "normal",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/233.png"
+    },
+    {
+        "id":  234,
+        "name":  "Cerfrousse",
+        "attack":  7,
+        "health":  5,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "normal",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/234.png"
+    },
+    {
+        "id":  235,
+        "name":  "Queulorior",
+        "attack":  2,
+        "health":  4,
+        "cost":  3,
+        "rarity":  "Common",
+        "type":  "normal",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/235.png"
+    },
+    {
+        "id":  236,
+        "name":  "Debugant",
+        "attack":  3,
+        "health":  2,
+        "cost":  2,
+        "rarity":  "Common",
+        "type":  "fighting",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/236.png"
+    },
+    {
+        "id":  237,
+        "name":  "Kapoera",
+        "attack":  5,
+        "health":  3,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "fighting",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/237.png"
+    },
+    {
+        "id":  238,
+        "name":  "Lippouti",
+        "attack":  5,
+        "health":  3,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "ice",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/238.png"
+    },
+    {
+        "id":  239,
+        "name":  "Élekid",
+        "attack":  5,
+        "health":  3,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "electric",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/239.png"
+    },
+    {
+        "id":  240,
+        "name":  "Magby",
+        "attack":  6,
+        "health":  3,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "fire",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/240.png"
+    },
+    {
+        "id":  241,
+        "name":  "Écrémeuh",
+        "attack":  5,
+        "health":  6,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "normal",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/241.png"
+    },
+    {
+        "id":  242,
+        "name":  "Leuphorie",
+        "attack":  3,
+        "health":  10,
+        "cost":  6,
+        "rarity":  "Rare",
+        "type":  "normal",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/242.png"
+    },
+    {
+        "id":  243,
+        "name":  "Raikou",
+        "attack":  8,
+        "health":  6,
+        "cost":  7,
+        "rarity":  "Legendary",
+        "type":  "electric",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/243.png"
+    },
+    {
+        "id":  244,
+        "name":  "Entei",
+        "attack":  8,
+        "health":  8,
+        "cost":  8,
+        "rarity":  "Legendary",
+        "type":  "fire",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/244.png"
+    },
+    {
+        "id":  245,
+        "name":  "Suicune",
+        "attack":  7,
+        "health":  7,
+        "cost":  7,
+        "rarity":  "Legendary",
+        "type":  "water",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/245.png"
+    },
+    {
+        "id":  246,
+        "name":  "Embrylex",
+        "attack":  4,
+        "health":  3,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "rock",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/246.png"
+    },
+    {
+        "id":  247,
+        "name":  "Ymphect",
+        "attack":  6,
+        "health":  5,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "rock",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/247.png"
+    },
+    {
+        "id":  248,
+        "name":  "Tyranocif",
+        "attack":  9,
+        "health":  7,
+        "cost":  8,
+        "rarity":  "Epic",
+        "type":  "rock",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/248.png"
+    },
+    {
+        "id":  249,
+        "name":  "Lugia",
+        "attack":  7,
+        "health":  7,
+        "cost":  7,
+        "rarity":  "Legendary",
+        "type":  "psychic",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/249.png"
+    },
+    {
+        "id":  250,
+        "name":  "Ho-Oh",
+        "attack":  10,
+        "health":  7,
+        "cost":  8,
+        "rarity":  "Legendary",
+        "type":  "fire",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/250.png"
+    },
+    {
+        "id":  251,
+        "name":  "Celebi",
+        "attack":  8,
+        "health":  7,
+        "cost":  8,
+        "rarity":  "Legendary",
+        "type":  "psychic",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/251.png"
+    },
+    {
+        "id":  252,
+        "name":  "Arcko",
+        "attack":  4,
+        "health":  3,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "grass",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/252.png"
+    },
+    {
+        "id":  253,
+        "name":  "Massko",
+        "attack":  6,
+        "health":  3,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "grass",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/253.png"
+    },
+    {
+        "id":  254,
+        "name":  "Jungko",
+        "attack":  8,
+        "health":  5,
+        "cost":  6,
+        "rarity":  "Rare",
+        "type":  "grass",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/254.png"
+    },
+    {
+        "id":  255,
+        "name":  "Poussifeu",
+        "attack":  5,
+        "health":  3,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "fire",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/255.png"
+    },
+    {
+        "id":  256,
+        "name":  "Galifeu",
+        "attack":  7,
+        "health":  4,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "fire",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/256.png"
+    },
+    {
+        "id":  257,
+        "name":  "Braségali",
+        "attack":  9,
+        "health":  5,
+        "cost":  7,
+        "rarity":  "Rare",
+        "type":  "fire",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/257.png"
+    },
+    {
+        "id":  258,
+        "name":  "Gobou",
+        "attack":  5,
+        "health":  3,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "water",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/258.png"
+    },
+    {
+        "id":  259,
+        "name":  "Flobio",
+        "attack":  6,
+        "health":  5,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "water",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/259.png"
+    },
+    {
+        "id":  260,
+        "name":  "Laggron",
+        "attack":  8,
+        "health":  7,
+        "cost":  8,
+        "rarity":  "Rare",
+        "type":  "water",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/260.png"
+    },
+    {
+        "id":  261,
+        "name":  "Medhyèna",
+        "attack":  3,
+        "health":  2,
+        "cost":  2,
+        "rarity":  "Common",
+        "type":  "dark",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/261.png"
+    },
+    {
+        "id":  262,
+        "name":  "Grahyèna",
+        "attack":  6,
+        "health":  5,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "dark",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/262.png"
+    },
+    {
+        "id":  263,
+        "name":  "Zigzaton",
+        "attack":  2,
+        "health":  3,
+        "cost":  2,
+        "rarity":  "Common",
+        "type":  "normal",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/263.png"
+    },
+    {
+        "id":  264,
+        "name":  "Linéon",
+        "attack":  5,
+        "health":  5,
+        "cost":  5,
+        "rarity":  "Common",
+        "type":  "normal",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/264.png"
+    },
+    {
+        "id":  265,
+        "name":  "Chenipotte",
+        "attack":  3,
+        "health":  3,
+        "cost":  3,
+        "rarity":  "Common",
+        "type":  "bug",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/265.png"
+    },
+    {
+        "id":  266,
+        "name":  "Armulys",
+        "attack":  2,
+        "health":  3,
+        "cost":  2,
+        "rarity":  "Common",
+        "type":  "bug",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/266.png"
+    },
+    {
+        "id":  267,
+        "name":  "Charmillon",
+        "attack":  7,
+        "health":  4,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "bug",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/267.png"
+    },
+    {
+        "id":  268,
+        "name":  "Blindalys",
+        "attack":  2,
+        "health":  3,
+        "cost":  2,
+        "rarity":  "Common",
+        "type":  "bug",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/268.png"
+    },
+    {
+        "id":  269,
+        "name":  "Papinox",
+        "attack":  4,
+        "health":  4,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "bug",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/269.png"
+    },
+    {
+        "id":  270,
+        "name":  "Nénupiot",
+        "attack":  3,
+        "health":  3,
+        "cost":  3,
+        "rarity":  "Common",
+        "type":  "water",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/270.png"
+    },
+    {
+        "id":  271,
+        "name":  "Lombre",
+        "attack":  4,
+        "health":  4,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "water",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/271.png"
+    },
+    {
+        "id":  272,
+        "name":  "Ludicolo",
+        "attack":  6,
+        "health":  5,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "water",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/272.png"
+    },
+    {
+        "id":  273,
+        "name":  "Grainipiot",
+        "attack":  3,
+        "health":  3,
+        "cost":  3,
+        "rarity":  "Common",
+        "type":  "grass",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/273.png"
+    },
+    {
+        "id":  274,
+        "name":  "Pifeuil",
+        "attack":  5,
+        "health":  5,
+        "cost":  5,
+        "rarity":  "Common",
+        "type":  "grass",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/274.png"
+    },
+    {
+        "id":  275,
+        "name":  "Tengalice",
+        "attack":  8,
+        "health":  6,
+        "cost":  7,
+        "rarity":  "Common",
+        "type":  "grass",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/275.png"
+    },
+    {
+        "id":  276,
+        "name":  "Nirondelle",
+        "attack":  3,
+        "health":  3,
+        "cost":  3,
+        "rarity":  "Common",
+        "type":  "normal",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/276.png"
+    },
+    {
+        "id":  277,
+        "name":  "Hélédelle",
+        "attack":  6,
+        "health":  4,
+        "cost":  5,
+        "rarity":  "Common",
+        "type":  "normal",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/277.png"
+    },
+    {
+        "id":  278,
+        "name":  "Goélise",
+        "attack":  3,
+        "health":  3,
+        "cost":  3,
+        "rarity":  "Common",
+        "type":  "water",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/278.png"
+    },
+    {
+        "id":  279,
+        "name":  "Bekipan",
+        "attack":  6,
+        "health":  4,
+        "cost":  5,
+        "rarity":  "Common",
+        "type":  "water",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/279.png"
+    },
+    {
+        "id":  280,
+        "name":  "Tarsal",
+        "attack":  3,
+        "health":  2,
+        "cost":  2,
+        "rarity":  "Common",
+        "type":  "psychic",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/280.png"
+    },
+    {
+        "id":  281,
+        "name":  "Kirlia",
+        "attack":  4,
+        "health":  3,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "psychic",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/281.png"
+    },
+    {
+        "id":  282,
+        "name":  "Gardevoir",
+        "attack":  8,
+        "health":  5,
+        "cost":  6,
+        "rarity":  "Rare",
+        "type":  "psychic",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/282.png"
+    },
+    {
+        "id":  283,
+        "name":  "Arakdo",
+        "attack":  3,
+        "health":  3,
+        "cost":  3,
+        "rarity":  "Common",
+        "type":  "bug",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/283.png"
+    },
+    {
+        "id":  284,
+        "name":  "Maskadra",
+        "attack":  6,
+        "health":  5,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "bug",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/284.png"
+    },
+    {
+        "id":  285,
+        "name":  "Balignon",
+        "attack":  3,
+        "health":  4,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "grass",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/285.png"
+    },
+    {
+        "id":  286,
+        "name":  "Chapignon",
+        "attack":  8,
+        "health":  4,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "grass",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/286.png"
+    },
+    {
+        "id":  287,
+        "name":  "Parecool",
+        "attack":  4,
+        "health":  4,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "normal",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/287.png"
+    },
+    {
+        "id":  288,
+        "name":  "Vigoroth",
+        "attack":  5,
+        "health":  5,
+        "cost":  5,
+        "rarity":  "Common",
+        "type":  "normal",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/288.png"
+    },
+    {
+        "id":  289,
+        "name":  "Monaflèmit",
+        "attack":  10,
+        "health":  10,
+        "cost":  10,
+        "rarity":  "Epic",
+        "type":  "normal",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/289.png"
+    },
+    {
+        "id":  290,
+        "name":  "Ningale",
+        "attack":  3,
+        "health":  2,
+        "cost":  2,
+        "rarity":  "Common",
+        "type":  "bug",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/290.png"
+    },
+    {
+        "id":  291,
+        "name":  "Ninjask",
+        "attack":  6,
+        "health":  4,
+        "cost":  5,
+        "rarity":  "Common",
+        "type":  "bug",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/291.png"
+    },
+    {
+        "id":  292,
+        "name":  "Munja",
+        "attack":  5,
+        "health":  1,
+        "cost":  3,
+        "rarity":  "Common",
+        "type":  "bug",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/292.png"
+    },
+    {
+        "id":  293,
+        "name":  "Chuchmur",
+        "attack":  4,
+        "health":  4,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "normal",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/293.png"
+    },
+    {
+        "id":  294,
+        "name":  "Ramboum",
+        "attack":  6,
+        "health":  6,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "normal",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/294.png"
+    },
+    {
+        "id":  295,
+        "name":  "Brouhabam",
+        "attack":  7,
+        "health":  7,
+        "cost":  7,
+        "rarity":  "Common",
+        "type":  "normal",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/295.png"
+    },
+    {
+        "id":  296,
+        "name":  "Makuhita",
+        "attack":  3,
+        "health":  5,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "fighting",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/296.png"
+    },
+    {
+        "id":  297,
+        "name":  "Hariyama",
+        "attack":  6,
+        "health":  10,
+        "cost":  8,
+        "rarity":  "Common",
+        "type":  "fighting",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/297.png"
+    },
+    {
+        "id":  298,
+        "name":  "Azurill",
+        "attack":  2,
+        "health":  3,
+        "cost":  2,
+        "rarity":  "Common",
+        "type":  "normal",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/298.png"
+    },
+    {
+        "id":  299,
+        "name":  "Tarinor",
+        "attack":  4,
+        "health":  2,
+        "cost":  3,
+        "rarity":  "Common",
+        "type":  "rock",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/299.png"
+    },
+    {
+        "id":  300,
+        "name":  "Skitty",
+        "attack":  3,
+        "health":  3,
+        "cost":  3,
+        "rarity":  "Common",
+        "type":  "normal",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/300.png"
+    },
+    {
+        "id":  301,
+        "name":  "Delcatty",
+        "attack":  5,
+        "health":  5,
+        "cost":  5,
+        "rarity":  "Common",
+        "type":  "normal",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/301.png"
+    },
+    {
+        "id":  302,
+        "name":  "Ténéfix",
+        "attack":  6,
+        "health":  3,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "dark",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/302.png"
+    },
+    {
+        "id":  303,
+        "name":  "Mysdibule",
+        "attack":  6,
+        "health":  3,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "steel",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/303.png"
+    },
+    {
+        "id":  304,
+        "name":  "Galekid",
+        "attack":  4,
+        "health":  3,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "steel",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/304.png"
+    },
+    {
+        "id":  305,
+        "name":  "Galegon",
+        "attack":  6,
+        "health":  4,
+        "cost":  5,
+        "rarity":  "Common",
+        "type":  "steel",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/305.png"
+    },
+    {
+        "id":  306,
+        "name":  "Galeking",
+        "attack":  7,
+        "health":  5,
+        "cost":  6,
+        "rarity":  "Rare",
+        "type":  "steel",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/306.png"
+    },
+    {
+        "id":  307,
+        "name":  "Méditikka",
+        "attack":  3,
+        "health":  2,
+        "cost":  2,
+        "rarity":  "Common",
+        "type":  "fighting",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/307.png"
+    },
+    {
+        "id":  308,
+        "name":  "Charmina",
+        "attack":  5,
+        "health":  4,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "fighting",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/308.png"
+    },
+    {
+        "id":  309,
+        "name":  "Dynavolt",
+        "attack":  4,
+        "health":  3,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "electric",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/309.png"
+    },
+    {
+        "id":  310,
+        "name":  "Élecsprint",
+        "attack":  7,
+        "health":  5,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "electric",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/310.png"
+    },
+    {
+        "id":  311,
+        "name":  "Posipi",
+        "attack":  5,
+        "health":  4,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "electric",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/311.png"
+    },
+    {
+        "id":  312,
+        "name":  "Négapi",
+        "attack":  5,
+        "health":  4,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "electric",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/312.png"
+    },
+    {
+        "id":  313,
+        "name":  "Muciole",
+        "attack":  5,
+        "health":  4,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "bug",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/313.png"
+    },
+    {
+        "id":  314,
+        "name":  "Lumivole",
+        "attack":  5,
+        "health":  4,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "bug",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/314.png"
+    },
+    {
+        "id":  315,
+        "name":  "Rosélia",
+        "attack":  6,
+        "health":  3,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "grass",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/315.png"
+    },
+    {
+        "id":  316,
+        "name":  "Gloupti",
+        "attack":  3,
+        "health":  5,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "poison",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/316.png"
+    },
+    {
+        "id":  317,
+        "name":  "Avaltout",
+        "attack":  6,
+        "health":  7,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "poison",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/317.png"
+    },
+    {
+        "id":  318,
+        "name":  "Carvanha",
+        "attack":  6,
+        "health":  3,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "water",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/318.png"
+    },
+    {
+        "id":  319,
+        "name":  "Sharpedo",
+        "attack":  9,
+        "health":  5,
+        "cost":  7,
+        "rarity":  "Common",
+        "type":  "water",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/319.png"
+    },
+    {
+        "id":  320,
+        "name":  "Wailmer",
+        "attack":  6,
+        "health":  9,
+        "cost":  8,
+        "rarity":  "Common",
+        "type":  "water",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/320.png"
+    },
+    {
+        "id":  321,
+        "name":  "Wailord",
+        "attack":  7,
+        "health":  10,
+        "cost":  8,
+        "rarity":  "Rare",
+        "type":  "water",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/321.png"
+    },
+    {
+        "id":  322,
+        "name":  "Chamallot",
+        "attack":  5,
+        "health":  4,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "fire",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/322.png"
+    },
+    {
+        "id":  323,
+        "name":  "Camérupt",
+        "attack":  8,
+        "health":  5,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "fire",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/323.png"
+    },
+    {
+        "id":  324,
+        "name":  "Chartor",
+        "attack":  7,
+        "health":  5,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "fire",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/324.png"
+    },
+    {
+        "id":  325,
+        "name":  "Spoink",
+        "attack":  4,
+        "health":  4,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "psychic",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/325.png"
+    },
+    {
+        "id":  326,
+        "name":  "Groret",
+        "attack":  5,
+        "health":  5,
+        "cost":  5,
+        "rarity":  "Common",
+        "type":  "psychic",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/326.png"
+    },
+    {
+        "id":  327,
+        "name":  "Spinda",
+        "attack":  5,
+        "health":  4,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "normal",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/327.png"
+    },
+    {
+        "id":  328,
+        "name":  "Kraknoix",
+        "attack":  6,
+        "health":  3,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "ground",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/328.png"
+    },
+    {
+        "id":  329,
+        "name":  "Vibraninf",
+        "attack":  5,
+        "health":  3,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "ground",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/329.png"
+    },
+    {
+        "id":  330,
+        "name":  "Libégon",
+        "attack":  7,
+        "health":  5,
+        "cost":  6,
+        "rarity":  "Rare",
+        "type":  "ground",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/330.png"
+    },
+    {
+        "id":  331,
+        "name":  "Cacnea",
+        "attack":  7,
+        "health":  3,
+        "cost":  5,
+        "rarity":  "Common",
+        "type":  "grass",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/331.png"
+    },
+    {
+        "id":  332,
+        "name":  "Cacturne",
+        "attack":  9,
+        "health":  5,
+        "cost":  7,
+        "rarity":  "Common",
+        "type":  "grass",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/332.png"
+    },
+    {
+        "id":  333,
+        "name":  "Tylton",
+        "attack":  3,
+        "health":  3,
+        "cost":  3,
+        "rarity":  "Common",
+        "type":  "normal",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/333.png"
+    },
+    {
+        "id":  334,
+        "name":  "Altaria",
+        "attack":  6,
+        "health":  5,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "dragon",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/334.png"
+    },
+    {
+        "id":  335,
+        "name":  "Mangriff",
+        "attack":  7,
+        "health":  5,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "normal",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/335.png"
+    },
+    {
+        "id":  336,
+        "name":  "Séviper",
+        "attack":  8,
+        "health":  5,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "poison",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/336.png"
+    },
+    {
+        "id":  337,
+        "name":  "Séléroc",
+        "attack":  6,
+        "health":  6,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "rock",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/337.png"
+    },
+    {
+        "id":  338,
+        "name":  "Solaroc",
+        "attack":  6,
+        "health":  6,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "rock",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/338.png"
+    },
+    {
+        "id":  339,
+        "name":  "Barloche",
+        "attack":  4,
+        "health":  3,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "water",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/339.png"
+    },
+    {
+        "id":  340,
+        "name":  "Barbicha",
+        "attack":  6,
+        "health":  7,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "water",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/340.png"
+    },
+    {
+        "id":  341,
+        "name":  "Écrapince",
+        "attack":  5,
+        "health":  3,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "water",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/341.png"
+    },
+    {
+        "id":  342,
+        "name":  "Colhomard",
+        "attack":  8,
+        "health":  4,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "water",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/342.png"
+    },
+    {
+        "id":  343,
+        "name":  "Balbuto",
+        "attack":  3,
+        "health":  3,
+        "cost":  3,
+        "rarity":  "Common",
+        "type":  "ground",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/343.png"
+    },
+    {
+        "id":  344,
+        "name":  "Kaorine",
+        "attack":  6,
+        "health":  4,
+        "cost":  5,
+        "rarity":  "Rare",
+        "type":  "ground",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/344.png"
+    },
+    {
+        "id":  345,
+        "name":  "Lilia",
+        "attack":  4,
+        "health":  4,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "rock",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/345.png"
+    },
+    {
+        "id":  346,
+        "name":  "Vacilys",
+        "attack":  6,
+        "health":  6,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "rock",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/346.png"
+    },
+    {
+        "id":  347,
+        "name":  "Anorith",
+        "attack":  5,
+        "health":  3,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "rock",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/347.png"
+    },
+    {
+        "id":  348,
+        "name":  "Armaldo",
+        "attack":  8,
+        "health":  5,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "rock",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/348.png"
+    },
+    {
+        "id":  349,
+        "name":  "Barpau",
+        "attack":  1,
+        "health":  1,
+        "cost":  1,
+        "rarity":  "Common",
+        "type":  "water",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/349.png"
+    },
+    {
+        "id":  350,
+        "name":  "Milobellus",
+        "attack":  6,
+        "health":  6,
+        "cost":  6,
+        "rarity":  "Rare",
+        "type":  "water",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/350.png"
+    },
+    {
+        "id":  351,
+        "name":  "Morphéo",
+        "attack":  6,
+        "health":  5,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "normal",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/351.png"
+    },
+    {
+        "id":  352,
+        "name":  "Kecleon",
+        "attack":  6,
+        "health":  4,
+        "cost":  5,
+        "rarity":  "Common",
+        "type":  "normal",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/352.png"
+    },
+    {
+        "id":  353,
+        "name":  "Polichombr",
+        "attack":  6,
+        "health":  3,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "ghost",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/353.png"
+    },
+    {
+        "id":  354,
+        "name":  "Branette",
+        "attack":  8,
+        "health":  4,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "ghost",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/354.png"
+    },
+    {
+        "id":  355,
+        "name":  "Skelénox",
+        "attack":  3,
+        "health":  1,
+        "cost":  2,
+        "rarity":  "Common",
+        "type":  "ghost",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/355.png"
+    },
+    {
+        "id":  356,
+        "name":  "Téraclope",
+        "attack":  5,
+        "health":  3,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "ghost",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/356.png"
+    },
+    {
+        "id":  357,
+        "name":  "Tropius",
+        "attack":  6,
+        "health":  7,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "grass",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/357.png"
+    },
+    {
+        "id":  358,
+        "name":  "Éoko",
+        "attack":  6,
+        "health":  5,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "psychic",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/358.png"
+    },
+    {
+        "id":  359,
+        "name":  "Absol",
+        "attack":  8,
+        "health":  4,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "dark",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/359.png"
+    },
+    {
+        "id":  360,
+        "name":  "Okéoké",
+        "attack":  2,
+        "health":  6,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "psychic",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/360.png"
+    },
+    {
+        "id":  361,
+        "name":  "Stalgamin",
+        "attack":  4,
+        "health":  3,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "ice",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/361.png"
+    },
+    {
+        "id":  362,
+        "name":  "Oniglali",
+        "attack":  6,
+        "health":  5,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "ice",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/362.png"
+    },
+    {
+        "id":  363,
+        "name":  "Obalie",
+        "attack":  4,
+        "health":  5,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "ice",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/363.png"
+    },
+    {
+        "id":  364,
+        "name":  "Phogleur",
+        "attack":  5,
+        "health":  6,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "ice",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/364.png"
+    },
+    {
+        "id":  365,
+        "name":  "Kaimorse",
+        "attack":  7,
+        "health":  7,
+        "cost":  7,
+        "rarity":  "Rare",
+        "type":  "ice",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/365.png"
+    },
+    {
+        "id":  366,
+        "name":  "Coquiperl",
+        "attack":  6,
+        "health":  2,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "water",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/366.png"
+    },
+    {
+        "id":  367,
+        "name":  "Serpang",
+        "attack":  8,
+        "health":  4,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "water",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/367.png"
+    },
+    {
+        "id":  368,
+        "name":  "Rosabyss",
+        "attack":  8,
+        "health":  4,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "water",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/368.png"
+    },
+    {
+        "id":  369,
+        "name":  "Relicanth",
+        "attack":  5,
+        "health":  7,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "water",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/369.png"
+    },
+    {
+        "id":  370,
+        "name":  "Lovdisc",
+        "attack":  3,
+        "health":  3,
+        "cost":  3,
+        "rarity":  "Common",
+        "type":  "water",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/370.png"
+    },
+    {
+        "id":  371,
+        "name":  "Draby",
+        "attack":  5,
+        "health":  3,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "dragon",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/371.png"
+    },
+    {
+        "id":  372,
+        "name":  "Drackhaus",
+        "attack":  6,
+        "health":  4,
+        "cost":  5,
+        "rarity":  "Common",
+        "type":  "dragon",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/372.png"
+    },
+    {
+        "id":  373,
+        "name":  "Drattak",
+        "attack":  10,
+        "health":  6,
+        "cost":  8,
+        "rarity":  "Epic",
+        "type":  "dragon",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/373.png"
+    },
+    {
+        "id":  374,
+        "name":  "Terhal",
+        "attack":  4,
+        "health":  3,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "steel",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/374.png"
+    },
+    {
+        "id":  375,
+        "name":  "Métang",
+        "attack":  5,
+        "health":  4,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "steel",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/375.png"
+    },
+    {
+        "id":  376,
+        "name":  "Métalosse",
+        "attack":  9,
+        "health":  5,
+        "cost":  7,
+        "rarity":  "Epic",
+        "type":  "steel",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/376.png"
+    },
+    {
+        "id":  377,
+        "name":  "Regirock",
+        "attack":  6,
+        "health":  5,
+        "cost":  6,
+        "rarity":  "Legendary",
+        "type":  "rock",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/377.png"
+    },
+    {
+        "id":  378,
+        "name":  "Regice",
+        "attack":  6,
+        "health":  5,
+        "cost":  6,
+        "rarity":  "Legendary",
+        "type":  "ice",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/378.png"
+    },
+    {
+        "id":  379,
+        "name":  "Registeel",
+        "attack":  6,
+        "health":  5,
+        "cost":  6,
+        "rarity":  "Legendary",
+        "type":  "steel",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/379.png"
+    },
+    {
+        "id":  380,
+        "name":  "Latias",
+        "attack":  8,
+        "health":  5,
+        "cost":  6,
+        "rarity":  "Legendary",
+        "type":  "dragon",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/380.png"
+    },
+    {
+        "id":  381,
+        "name":  "Latios",
+        "attack":  9,
+        "health":  5,
+        "cost":  7,
+        "rarity":  "Legendary",
+        "type":  "dragon",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/381.png"
+    },
+    {
+        "id":  382,
+        "name":  "Kyogre",
+        "attack":  10,
+        "health":  7,
+        "cost":  8,
+        "rarity":  "Legendary",
+        "type":  "water",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/382.png"
+    },
+    {
+        "id":  383,
+        "name":  "Groudon",
+        "attack":  10,
+        "health":  7,
+        "cost":  8,
+        "rarity":  "Legendary",
+        "type":  "ground",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/383.png"
+    },
+    {
+        "id":  384,
+        "name":  "Rayquaza",
+        "attack":  10,
+        "health":  7,
+        "cost":  8,
+        "rarity":  "Legendary",
+        "type":  "dragon",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/384.png"
+    },
+    {
+        "id":  385,
+        "name":  "Jirachi",
+        "attack":  8,
+        "health":  7,
+        "cost":  8,
+        "rarity":  "Legendary",
+        "type":  "steel",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/385.png"
+    },
+    {
+        "id":  386,
+        "name":  "Deoxys",
+        "attack":  10,
+        "health":  3,
+        "cost":  6,
+        "rarity":  "Legendary",
+        "type":  "psychic",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/386.png"
+    },
+    {
+        "id":  387,
+        "name":  "Tortipouss",
+        "attack":  5,
+        "health":  4,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "grass",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/387.png"
+    },
+    {
+        "id":  388,
+        "name":  "Boskara",
+        "attack":  6,
+        "health":  5,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "grass",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/388.png"
+    },
+    {
+        "id":  389,
+        "name":  "Torterra",
+        "attack":  7,
+        "health":  6,
+        "cost":  6,
+        "rarity":  "Rare",
+        "type":  "grass",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/389.png"
+    },
+    {
+        "id":  390,
+        "name":  "Ouisticram",
+        "attack":  5,
+        "health":  3,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "fire",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/390.png"
+    },
+    {
+        "id":  391,
+        "name":  "Chimpenfeu",
+        "attack":  6,
+        "health":  4,
+        "cost":  5,
+        "rarity":  "Common",
+        "type":  "fire",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/391.png"
+    },
+    {
+        "id":  392,
+        "name":  "Simiabraz",
+        "attack":  8,
+        "health":  5,
+        "cost":  6,
+        "rarity":  "Rare",
+        "type":  "fire",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/392.png"
+    },
+    {
+        "id":  393,
+        "name":  "Tiplouf",
+        "attack":  4,
+        "health":  4,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "water",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/393.png"
+    },
+    {
+        "id":  394,
+        "name":  "Prinplouf",
+        "attack":  6,
+        "health":  4,
+        "cost":  5,
+        "rarity":  "Common",
+        "type":  "water",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/394.png"
+    },
+    {
+        "id":  395,
+        "name":  "Pingoléon",
+        "attack":  8,
+        "health":  6,
+        "cost":  7,
+        "rarity":  "Rare",
+        "type":  "water",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/395.png"
+    },
+    {
+        "id":  396,
+        "name":  "Étourmi",
+        "attack":  3,
+        "health":  3,
+        "cost":  3,
+        "rarity":  "Common",
+        "type":  "normal",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/396.png"
+    },
+    {
+        "id":  397,
+        "name":  "Étourvol",
+        "attack":  5,
+        "health":  4,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "normal",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/397.png"
+    },
+    {
+        "id":  398,
+        "name":  "Étouraptor",
+        "attack":  7,
+        "health":  6,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "normal",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/398.png"
+    },
+    {
+        "id":  399,
+        "name":  "Keunotor",
+        "attack":  3,
+        "health":  4,
+        "cost":  4,
+        "rarity":  "Common",
+        "type":  "normal",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/399.png"
+    },
+    {
+        "id":  400,
+        "name":  "Castorno",
+        "attack":  6,
+        "health":  5,
+        "cost":  6,
+        "rarity":  "Common",
+        "type":  "normal",
+        "imageUrl":  "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/400.png"
+    }
+]
