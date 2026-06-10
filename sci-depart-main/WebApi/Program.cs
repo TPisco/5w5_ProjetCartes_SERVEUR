@@ -93,6 +93,9 @@ builder.Services.AddScoped<MatchesService>();
 builder.Services.AddScoped<DecksService>();
 builder.Services.AddScoped<StartingCardsService>();
 builder.Services.AddScoped<MatchConfigurationService>();
+builder.Services.AddScoped<PacksService>();
+builder.Services.AddScoped<StatisticsService>();
+builder.Services.AddScoped<MatchRewardsService>();
 
 builder.Services.AddSingleton<MatchMakingBackGroundService>();
 builder.Services.AddHostedService<MatchMakingBackGroundService>(p => p.GetService<MatchMakingBackGroundService>());

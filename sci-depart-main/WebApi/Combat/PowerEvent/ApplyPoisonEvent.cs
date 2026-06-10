@@ -23,7 +23,7 @@ namespace WebApi.Combat.PowerEvent
             //Faire ci-dessus dans ApplyPoisonEvent ^^^^^^
             //Chercher la classe du Status
            
-            PlayerId = defender.Id;
+            PlayerId = defender.PlayerId;
             TargetCardId = defendingCard.Id;
             var poisonDmgToAdd = attackingCard.GetPowerValue(Power.POISON_ATTACK_ID);
             //SI la carte a déjà du poison, l'ajouter au stack

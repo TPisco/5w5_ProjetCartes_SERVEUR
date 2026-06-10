@@ -16,7 +16,6 @@ namespace Models.Models
 
         public int CardId { get; set; }
 
-        [JsonIgnore]
         public virtual Card Card { get; set; }
 
         [JsonIgnore]

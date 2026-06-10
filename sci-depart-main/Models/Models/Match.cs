@@ -9,14 +9,20 @@ namespace Super_Cartes_Infinies.Models
 		}
 
         // Pour créer un nouveau match pour 2 joueurs
-        public Match(Player playerA, Player playerB, IEnumerable<Card> cards)
+        public Match(Player playerA, Player playerB, IEnumerable<Card> cardsA, IEnumerable<Card> cardsB)
         {
             Id = 0;
             IsMatchCompleted = false;
             UserAId = playerA.UserId;
-            PlayerDataA = new MatchPlayerData(playerA, cards);
+            PlayerDataA = new MatchPlayerData(playerA, cardsA);
             UserBId = playerB.UserId;
-            PlayerDataB = new MatchPlayerData(playerB, cards);
+            PlayerDataB = new MatchPlayerData(playerB, cardsB);
+        }
+
+        // Conservé pour compatibilité tests / fallback
+        public Match(Player playerA, Player playerB, IEnumerable<Card> cards)
+            : this(playerA, playerB, cards, cards)
+        {
         }
 
         public int Id { get; set; }
@@ -24,6 +30,7 @@ namespace Super_Cartes_Infinies.Models
         public bool IsPlayerATurn { get; set; } = false;
 
         public bool IsMatchCompleted { get; set; } = false;
+        public bool RewardsApplied { get; set; } = false;
 
 
         // Ici on garde simplement un copie des UserIds et non une véritable référence vers les IdentityUser

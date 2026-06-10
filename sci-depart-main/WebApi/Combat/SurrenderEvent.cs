@@ -9,12 +9,12 @@ namespace Super_Cartes_Infinies.Combat
         public int SurrenderingPlayerId { get; set; }
 
         // L'évènement lorsqu'un joueur joue une carte
-        public SurrenderEvent(Match match, MatchPlayerData surrenderingPlayerData, MatchPlayerData opposingPlayerData)
+        public SurrenderEvent(Match match, MatchPlayerData surrenderingPlayerData, MatchPlayerData opposingPlayerData, int goldWin = 50, int goldLoss = 10)
         {
             SurrenderingPlayerId = surrenderingPlayerData.Player.Id;
             this.Events = new List<MatchEvent>()
             {
-                new EndMatchEvent(match, opposingPlayerData, surrenderingPlayerData)
+                new EndMatchEvent(match, opposingPlayerData, surrenderingPlayerData, goldWin, goldLoss)
             };
         }
     }

@@ -21,6 +21,7 @@ namespace Super_Cartes_Infinies.Data
                     Attack = 5,
                     Health = 8,
                     Cost = 5,
+                    Rarity = CardRarity.Epic,
                     ImageUrl = "https://pm1.aminoapps.com/6906/f456d54f84291a3e3a9532251214cda80cbef906r1-335-431v2_hq.jpg"
                 }, new Card
                 {
@@ -29,6 +30,7 @@ namespace Super_Cartes_Infinies.Data
                     Attack = 10,
                     Health = 5,
                     Cost = 9,
+                    Rarity = CardRarity.Legendary,
                     ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/384.png"
                 }, new Card
                 {
@@ -37,6 +39,7 @@ namespace Super_Cartes_Infinies.Data
                     Attack = 2,
                     Health = 1,
                     Cost = 1,
+                    Rarity = CardRarity.Common,
                     ImageUrl = "https://upload.wikimedia.org/wikipedia/en/2/22/Pok%C3%A9mon_Jigglypuff_art.png"
                 }, new Card
                 {
@@ -45,6 +48,7 @@ namespace Super_Cartes_Infinies.Data
                     Attack = 8,
                     Health = 4,
                     Cost = 6,
+                    Rarity = CardRarity.Epic,
                     ImageUrl = "https://e7.pngegg.com/pngimages/993/391/png-clipart-pokemon-character-illustration-pokemon-x-and-y-pokemon-go-pokemon-black-white-mewtwo-pokemon-go-purple-mammal.png"
                 }, new Card
                 {
@@ -53,6 +57,7 @@ namespace Super_Cartes_Infinies.Data
                     Attack = 7,
                     Health = 7,
                     Cost = 5,
+                    Rarity = CardRarity.Rare,
                     ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/282.png"
                 }, new Card
                 {
@@ -61,6 +66,7 @@ namespace Super_Cartes_Infinies.Data
                     Attack = 4,
                     Health = 2,
                     Cost = 2,
+                    Rarity = CardRarity.Common,
                     ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/065.png"
                 }, new Card
                 {
@@ -69,6 +75,7 @@ namespace Super_Cartes_Infinies.Data
                     Attack = 6,
                     Health = 3,
                     Cost = 4,
+                    Rarity = CardRarity.Rare,
                     ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/095.png"
                 }, new Card
                 {
@@ -77,6 +84,7 @@ namespace Super_Cartes_Infinies.Data
                     Attack = 1,
                     Health = 9,
                     Cost = 2,
+                    Rarity = CardRarity.Common,
                     ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/143.png"
                 }, new Card
                 {
@@ -85,6 +93,7 @@ namespace Super_Cartes_Infinies.Data
                     Attack = 5,
                     Health = 1,
                     Cost = 2,
+                    Rarity = CardRarity.Legendary,
                     ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/151.png"
                 }, new Card
                 {
@@ -93,8 +102,19 @@ namespace Super_Cartes_Infinies.Data
                     Attack = 6,
                     Health = 1,
                     Cost = 2,
+                    Rarity = CardRarity.Rare,
                     ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/006_f2.png"
-                }
+                },
+                new Card { Id = 11, Name = "Pikachu", Attack = 3, Health = 2, Cost = 2, Rarity = CardRarity.Common, ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/025.png" },
+                new Card { Id = 12, Name = "Evoli", Attack = 2, Health = 3, Cost = 1, Rarity = CardRarity.Common, ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/133.png" },
+                new Card { Id = 13, Name = "Magicarpe", Attack = 1, Health = 4, Cost = 1, Rarity = CardRarity.Common, ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/129.png" },
+                new Card { Id = 14, Name = "Lucario", Attack = 5, Health = 4, Cost = 4, Rarity = CardRarity.Rare, ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/448.png" },
+                new Card { Id = 15, Name = "Givrali", Attack = 4, Health = 5, Cost = 3, Rarity = CardRarity.Rare, ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/471.png" },
+                new Card { Id = 16, Name = "Tortank", Attack = 6, Health = 6, Cost = 5, Rarity = CardRarity.Epic, ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/009.png" },
+                new Card { Id = 17, Name = "Florizarre", Attack = 5, Health = 7, Cost = 5, Rarity = CardRarity.Epic, ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/003.png" },
+                new Card { Id = 18, Name = "Amphinobi", Attack = 7, Health = 3, Cost = 4, Rarity = CardRarity.Epic, ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/658.png" },
+                new Card { Id = 19, Name = "Arceus", Attack = 9, Health = 9, Cost = 10, Rarity = CardRarity.Legendary, ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/493.png" },
+                new Card { Id = 20, Name = "Dialga", Attack = 8, Health = 8, Cost = 8, Rarity = CardRarity.Legendary, ImageUrl = "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/483.png" }
                 //,new Card
                 // {
                 //    Id = 11,
@@ -399,7 +419,40 @@ namespace Super_Cartes_Infinies.Data
 
         public static GameConfig seedGameConfig()
         {
-            return new GameConfig { id = 1, nbCardsToDraw = 4, QtManaParTour = 3 };
+            return new GameConfig
+            {
+                id = 1,
+                nbCardsToDraw = 4,
+                QtManaParTour = 3,
+                GoldStarting = 300,
+                GoldWin = 50,
+                GoldLoss = 10,
+                MaxDecks = 10,
+                MaxCardsPerDeck = 30
+            };
+        }
+
+        public static Pack[] SeedPacks()
+        {
+            return new Pack[]
+            {
+                new Pack { Id = 1, Name = "Basic", ImageUrl = "/images/pack-basic.png", Price = 50, CardCount = 3, DefaultRarity = CardRarity.Common },
+                new Pack { Id = 2, Name = "Normal", ImageUrl = "/images/pack-normal.png", Price = 100, CardCount = 4, DefaultRarity = CardRarity.Common },
+                new Pack { Id = 3, Name = "Super", ImageUrl = "/images/pack-super.png", Price = 200, CardCount = 5, DefaultRarity = CardRarity.Rare }
+            };
+        }
+
+        public static PackProbability[] SeedPackProbabilities()
+        {
+            return new PackProbability[]
+            {
+                new PackProbability { Id = 1, PackId = 1, Rarity = CardRarity.Rare, ProbabilityPercent = 30 },
+                new PackProbability { Id = 2, PackId = 2, Rarity = CardRarity.Rare, ProbabilityPercent = 30 },
+                new PackProbability { Id = 3, PackId = 2, Rarity = CardRarity.Epic, ProbabilityPercent = 10 },
+                new PackProbability { Id = 4, PackId = 2, Rarity = CardRarity.Legendary, ProbabilityPercent = 2 },
+                new PackProbability { Id = 5, PackId = 3, Rarity = CardRarity.Epic, ProbabilityPercent = 25 },
+                new PackProbability { Id = 6, PackId = 3, Rarity = CardRarity.Legendary, ProbabilityPercent = 10 }
+            };
         }
     }
 }

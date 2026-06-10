@@ -11,11 +11,13 @@ namespace Super_Cartes_Infinies.Services
     {
         private ApplicationDbContext _dbContext;
         private StartingCardsService _startingCardsService;
+        private MatchConfigurationService _configService;
 
-        public PlayersService(ApplicationDbContext context, StartingCardsService startingCardsService)
+        public PlayersService(ApplicationDbContext context, StartingCardsService startingCardsService, MatchConfigurationService configService)
         {
             _dbContext = context;
             _startingCardsService = startingCardsService;
+            _configService = configService;
         }
 
         public Player CreatePlayer(IdentityUser user)
@@ -24,7 +26,8 @@ namespace Super_Cartes_Infinies.Services
             {
                 Id = 0,
                 UserId = user.Id,
-                Name = user.Email!
+                Name = user.Email!,
+                Gold = _configService.GetGoldStarting()
             };
 
 
@@ -38,7 +41,7 @@ namespace Super_Cartes_Infinies.Services
 
 
 
-            startingDeck.Name = "Default";
+            startingDeck.Name = "Depart";
             startingDeck.IsCurrent = true;
             startingDeck.DeckCards = new List<DeckCards>();
             // TODO: Ajoutez ces cartes au joueur en utilisant le modèle OwnedCard que vous allez devoir ajouter

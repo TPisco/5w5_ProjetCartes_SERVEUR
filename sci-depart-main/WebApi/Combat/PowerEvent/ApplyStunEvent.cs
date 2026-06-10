@@ -15,7 +15,7 @@ namespace WebApi.Combat.PowerEvent
         {
             //À COMPLÉTER
 
-            PlayerId = defender.Id;
+            PlayerId = defender.PlayerId;
             TargetCardId = defendingCard.Id;
             var stunValueToAdd = attackingCard.GetPowerValue(Power.STUN_ATTACK_ID);
             Value = stunValueToAdd;

@@ -18,7 +18,7 @@ namespace WebApi.Combat.PowerEvent
         {
             
 
-            PlayerId = defender.Id;
+            PlayerId = defender.PlayerId;
             TargetCardId = defendingCard.Id;
             var dmgDownValueToAdd = attackingCard.GetPowerValue(Power.DAMAGE_DOWN_ATTACK_ID);
             //SI la carte a déjà du DamageDown, l'ajouter au stack

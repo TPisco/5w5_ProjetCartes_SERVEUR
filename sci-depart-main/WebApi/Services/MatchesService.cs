@@ -13,14 +13,16 @@ namespace Super_Cartes_Infinies.Services
         private PlayersService _playersService;
         private CardsService _cardsService;
         private MatchConfigurationService _matchConfigurationService;
+        private DecksService _decksService;
         private ApplicationDbContext _dbContext;
 
-        public MatchesService(ApplicationDbContext context, WaitingUserService waitingUserService, PlayersService playersService, CardsService cardsService, MatchConfigurationService matchConfigurationService)        {
+        public MatchesService(ApplicationDbContext context, WaitingUserService waitingUserService, PlayersService playersService, CardsService cardsService, MatchConfigurationService matchConfigurationService, DecksService decksService)        {
             _dbContext = context;
             _waitingUserService = waitingUserService;
             _playersService = playersService;
             _cardsService = cardsService;
             _matchConfigurationService = matchConfigurationService;
+            _decksService = decksService;
         }
 
         // Cette fonction est assez flexible car elle peut simplement être appeler lorsqu'un user veut jouer un match
@@ -65,9 +67,9 @@ namespace Super_Cartes_Infinies.Services
                     playerA = _playersService.GetPlayerFromUserId(pairOfUsers.UserAId);
                     playerB = _playersService.GetPlayerFromUserId(pairOfUsers.UserBId);
 
-                    // Création d'un nouveau match
-                    IEnumerable<Card> cards = _cardsService.GetAllCards();
-                    match = new Match(playerA, playerB, cards);
+                    var cardsA = await _decksService.GetMatchDeckCardsAsync(playerA.UserId);
+                    var cardsB = await _decksService.GetMatchDeckCardsAsync(playerB.UserId);
+                    match = new Match(playerA, playerB, cardsA, cardsB);
                     otherPlayerConnectionId = pairOfUsers.UserAConnectionId;
 
                     _dbContext.Update(match);
@@ -191,7 +193,12 @@ namespace Super_Cartes_Infinies.Services
                 opposingPlayerData = match.PlayerDataA;
             }
 
-            var surrenderEvent = new SurrenderEvent(match, currentPlayerData, opposingPlayerData);
+            var surrenderEvent = new SurrenderEvent(
+                match,
+                currentPlayerData,
+                opposingPlayerData,
+                _matchConfigurationService.GetGoldWin(),
+                _matchConfigurationService.GetGoldLoss());
 
             await _dbContext.SaveChangesAsync();
 
@@ -212,6 +219,8 @@ namespace Super_Cartes_Infinies.Services
             if (match.UserAId != userId && match.UserBId != userId)
                 throw new Exception("Le joueur n'est pas dans ce match");
 
+            if ((match.UserAId == userId) != match.IsPlayerATurn)
+                throw new Exception("Ce n'est pas le tour de ce joueur");
 
             MatchPlayerData currentPlayerData;
             MatchPlayerData opposingPlayerData;

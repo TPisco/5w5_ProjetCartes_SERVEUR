@@ -16,10 +16,11 @@ namespace Models.Models
         public string Name { get; set; }
 
         //Liste de DeckCards
-        [JsonIgnore]
         public virtual List<DeckCards> DeckCards { get; set; }
 
 
         public bool IsCurrent { get; set; }
+        public int Wins { get; set; }
+        public int Losses { get; set; }
     }
 }

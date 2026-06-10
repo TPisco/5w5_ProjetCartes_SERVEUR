@@ -24,7 +24,6 @@ public static class UserHandler
 
 
 
-[Authorize]
 public class MatchHub : Hub
 {
 
@@ -33,16 +32,18 @@ public class MatchHub : Hub
     PlayersService _playersService;
     WaitingUserService _waitingUserService;
     UserManager<IdentityUser> _userManager;
+    MatchRewardsService _matchRewardsService;
 
 
   
-    public MatchHub(ApplicationDbContext context, MatchesService matchesService, PlayersService playersService, WaitingUserService waitingUserService, UserManager<IdentityUser> userManager) 
+    public MatchHub(ApplicationDbContext context, MatchesService matchesService, PlayersService playersService, WaitingUserService waitingUserService, UserManager<IdentityUser> userManager, MatchRewardsService matchRewardsService) 
     {
         _context = context;
         _matchesService = matchesService;
         _playersService = playersService;
         _waitingUserService = waitingUserService;
         _userManager = userManager;
+        _matchRewardsService = matchRewardsService;
     }
 
    
@@ -75,6 +76,7 @@ public class MatchHub : Hub
     }
 
     //Join Match
+    [Authorize]
     public async Task onJoinMatchAsync(int? specificMatchId)
     {
         string? connectionId = Context.ConnectionId;
@@ -200,13 +202,42 @@ public class MatchHub : Hub
     }
     // Signal R CHAT
     // Permet d'afficher la liste des matches qui sont joué en ce moment
+    [AllowAnonymous]
     public async Task SeeOngoingGame()
     {
-        var ongoingMatches = _context.Matches.Where(m => m.IsMatchCompleted == false).Include(p => p.PlayerDataA).Include(p => p.PlayerDataB).ToList();
+        var ongoingMatches = _context.Matches
+            .Where(m => m.IsMatchCompleted == false)
+            .Include(p => p.PlayerDataA).ThenInclude(pd => pd.Player)
+            .Include(p => p.PlayerDataB).ThenInclude(pd => pd.Player)
+            .ToList();
         await Clients.Caller.SendAsync("SeeOngoingGame", ongoingMatches);
     }
 
+    [AllowAnonymous]
+    public async Task WatchMatchAsync(int matchId)
+    {
+        var match = await _context.Matches
+            .Include(m => m.PlayerDataA).ThenInclude(pd => pd.Player)
+            .Include(m => m.PlayerDataB).ThenInclude(pd => pd.Player)
+            .FirstOrDefaultAsync(m => m.Id == matchId && !m.IsMatchCompleted);
+
+        if (match == null)
+        {
+            await Clients.Caller.SendAsync("Error", $"Match avec l'ID {matchId} introuvable ou terminé.");
+            return;
+        }
+
+        await Groups.AddToGroupAsync(Context.ConnectionId, MatchGroup(matchId));
+        await Clients.Caller.SendAsync("JoiningMatchData", new JoiningMatchData
+        {
+            Match = match,
+            PlayerA = match.PlayerDataA.Player,
+            PlayerB = match.PlayerDataB.Player
+        });
+    }
+
     // Bannir les spectateurs
+    [Authorize]
     public async Task BanUser(int matchId, string userEmail)
     {
         Super_Cartes_Infinies.Models.Match match = _context.Matches.FirstOrDefault(m => m.Id == matchId);
@@ -276,6 +307,7 @@ public class MatchHub : Hub
 
 
     //End Turn
+    [Authorize]
     public async Task onEndTurnAsync( int matchId)
     {
         string userId = Context.UserIdentifier;
@@ -288,26 +320,48 @@ public class MatchHub : Hub
             throw new InvalidOperationException("Failed to end the turn");
         }
 
-        await Clients.Group(matchId.ToString()).SendAsync("EndTurn", EndTurnEvent);
+        await Clients.Group(MatchGroup(matchId)).SendAsync("EndTurn", EndTurnEvent);
+        await TryApplyRewardsAsync(matchId);
 
     }
 
 
     //Surrender
+    [Authorize]
     public async Task onSurrenderAsync(int matchId)
     {
         string userId = Context.UserIdentifier;
         var SurrenderEvent = await _matchesService.Surrender(userId, matchId);
 
-        await Clients.Group(matchId.ToString()).SendAsync("Surrender", SurrenderEvent);
-
+        await Clients.Group(MatchGroup(matchId)).SendAsync("Surrender", SurrenderEvent);
+        await TryApplyRewardsAsync(matchId);
     }
+
+    [Authorize]
     public async Task onPlayCardAsync(int matchId,int CardBeingPlayedId)
     {
         string userId = Context.UserIdentifier!;
         var playCardEvent = await _matchesService.PlayCard(userId, CardBeingPlayedId, matchId);
 
-        await Clients.Group(matchId.ToString()).SendAsync("PlayCard", playCardEvent);
+        await Clients.Group(MatchGroup(matchId)).SendAsync("PlayCard", playCardEvent);
+        await TryApplyRewardsAsync(matchId);
+    }
+
+    private async Task TryApplyRewardsAsync(int matchId)
+    {
+        var match = await _context.Matches
+            .Include(m => m.PlayerDataA)
+            .Include(m => m.PlayerDataB)
+            .FirstOrDefaultAsync(m => m.Id == matchId);
+
+        if (match?.IsMatchCompleted != true || string.IsNullOrEmpty(match.WinnerUserId))
+            return;
+
+        var winningPlayerId = match.UserAId == match.WinnerUserId
+            ? match.PlayerDataA.PlayerId
+            : match.PlayerDataB.PlayerId;
+
+        await _matchRewardsService.ApplyMatchEndRewardsAsync(matchId, winningPlayerId);
     }
 
 }

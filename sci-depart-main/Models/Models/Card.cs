@@ -16,6 +16,7 @@ namespace Super_Cartes_Infinies.Models
 		public int Health { get; set; }
 		public int Cost { get; set; }
         public string ImageUrl { get; set; } = "";
+        public CardRarity Rarity { get; set; } = CardRarity.Common;
 
         [ValidateNever]
         public virtual List<CardPower> CardPowers { get; set; }

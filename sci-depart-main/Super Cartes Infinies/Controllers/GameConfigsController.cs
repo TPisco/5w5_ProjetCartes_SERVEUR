@@ -71,7 +71,7 @@ namespace Super_Cartes_Infinies.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id,QtManaParTour,nbCardsToDraw")] GameConfig gameConfig)
+        public async Task<IActionResult> Edit(int id, [Bind("id,QtManaParTour,nbCardsToDraw,GoldStarting,GoldWin,GoldLoss,MaxDecks,MaxCardsPerDeck")] GameConfig gameConfig)
         {
             if (id != gameConfig.id)
             {

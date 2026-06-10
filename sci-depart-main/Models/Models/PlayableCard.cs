@@ -21,20 +21,20 @@ namespace Super_Cartes_Infinies.Models
 		public int Health { get; set; }
         public int Attack { get; set; }
 
-        // Nouvelle propriété pour suivre la réduction cumulative de l'attaque
+        // Nouvelle proprit pour suivre la rduction cumulative de l'attaque
        // public int TotalDamageDown { get; set; } = 0;
 
-        //Ajouter cette propriété si nécessaire pour le ChaosEvent
+        //Ajouter cette proprit si ncessaire pour le ChaosEvent
         public bool HasTriggeredChaos { get; set; } = false;
 
         public virtual List<CardStatus> CardStatus { get; set; } = [];
 
-        //Ajout des méthodes pour le premier livrable d'équipe
+        //Ajout des mthodes pour le premier livrable d'quipe
         public bool HasPower(int powerId)
         {
-            // Retourne true si la carte possède ce pouvoir.
-            // On peut utiliser LINQ pour faire ça en une ligne
-            //Remplace la proppriété CardPowers par une méthode
+            // Retourne true si la carte possde ce pouvoir.
+            // On peut utiliser LINQ pour faire a en une ligne
+            //Remplace la propprit CardPowers par une mthode
             // On pourrait aussi faire un Contains() sur la liste de pouvoirs
             //CardPowers.Contains(powerId);
             if (Card.CardPowers == null)
@@ -54,11 +54,10 @@ namespace Super_Cartes_Infinies.Models
         public int GetPowerValue(int powerId)
         {
             // Retourne les valeur du pouvoir pour cette carte.
-            // Simplement retourner 0 si la carte ne possède pas ce pouvoir.
+            // Simplement retourner 0 si la carte ne possde pas ce pouvoir.
 
-            CardPower cardPower = Card.CardPowers.FirstOrDefault(p => p.Power.Id == powerId);
-            if (cardPower != null && cardPower.Power.Value == 0) return cardPower != null ? cardPower.Value : 0;
-            return cardPower != null ? cardPower.Power.Value : 0;
+            CardPower? cardPower = Card.CardPowers?.FirstOrDefault(p => p.Power.Id == powerId);
+            return cardPower?.Value ?? 0;
             
         }
         //public void ApplySatus()
@@ -66,9 +65,9 @@ namespace Super_Cartes_Infinies.Models
 
         public bool HasStatus(int statusId)
         {
-            // Retourne true si la carte possède ce pouvoir.
-            // On peut utiliser LINQ pour faire ça en une ligne
-            //Remplace la proppriété CardPowers par une méthode
+            // Retourne true si la carte possde ce pouvoir.
+            // On peut utiliser LINQ pour faire a en une ligne
+            //Remplace la propprit CardPowers par une mthode
             // On pourrait aussi faire un Contains() sur la liste de pouvoirs
             //CardPowers.Contains(powerId);
             CardStatus cardStatus = CardStatus.FirstOrDefault(s => s.StatusId == statusId);
@@ -87,7 +86,7 @@ namespace Super_Cartes_Infinies.Models
 
             ////Aller chercher le Status dans le DbContext?
             ////Aller chercher le cardStatus dans le dbContext avec le statusId et playableCardId?
-            ////Vérifier si le cardStatus n'est pas null?
+            ////Vrifier si le cardStatus n'est pas null?
 
 
             //if (.Any(c => c))
@@ -104,11 +103,10 @@ namespace Super_Cartes_Infinies.Models
         public int GetStatusValue(int statusId)
         {
             // Retourne les valeur du pouvoir pour cette carte.
-            // Simplement retourner 0 si la carte ne possède pas ce pouvoir.
+            // Simplement retourner 0 si la carte ne possde pas ce pouvoir.
 
-            CardStatus cardStatus = CardStatus.FirstOrDefault(s => s.StatusId == statusId);
-            if (cardStatus != null && cardStatus.Value == 0) return cardStatus != null ? cardStatus.Value : 0;
-            return cardStatus != null ? cardStatus.Value : 0;
+            CardStatus? cardStatus = CardStatus.FirstOrDefault(s => s.StatusId == statusId);
+            return cardStatus?.Value ?? 0;
 
         }
 

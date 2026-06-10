@@ -58,7 +58,7 @@ namespace Super_Cartes_Infinies.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Attack,Health,Cost,ImageUrl")] Card card)
+        public async Task<IActionResult> Create([Bind("Id,Name,Attack,Health,Cost,ImageUrl,Rarity")] Card card)
         {
           
 
@@ -160,7 +160,7 @@ namespace Super_Cartes_Infinies.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, int selectedPowers, int powerValues, [Bind("Id,Name,Attack,Health,Cost,ImageUrl")] Card card)
+        public async Task<IActionResult> Edit(int id, int selectedPowers, int powerValues, [Bind("Id,Name,Attack,Health,Cost,ImageUrl,Rarity")] Card card)
         {
             if (id != card.Id)
             {

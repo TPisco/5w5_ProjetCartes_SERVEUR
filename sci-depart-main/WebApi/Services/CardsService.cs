@@ -19,12 +19,18 @@ namespace Super_Cartes_Infinies.Services
 
         public async Task<IEnumerable<Card>> GetPlayersCards(string userId)
         {
-            // Stub: Pour l'intant, le stub retourne simplement les 8 premières cartes
-            // L'implémentation réelle devra utiliser un service et retourner les cartes qu'un joueur possède
-            // L'implémentation est la responsabilité de la personne en charge de la partie [Enregistrement et connexion]
-            // IdentityUser user = await _dbContext.Users.FindAsync(userId);
+            var player = await _dbContext.Players
+                .Include(p => p.OwnedCards)
+                    .ThenInclude(oc => oc.Card)
+                .FirstOrDefaultAsync(p => p.UserId == userId);
 
-            return _dbContext.OwnedCard.Where(u => u.player.UserId == userId).Select(c => c.Card).ToList();
+            if (player == null)
+                return Enumerable.Empty<Card>();
+
+            return player.OwnedCards
+                .Where(oc => oc.Card != null)
+                .Select(oc => oc.Card)
+                .ToList();
         }
 
         public IEnumerable<Card> GetAllCards()

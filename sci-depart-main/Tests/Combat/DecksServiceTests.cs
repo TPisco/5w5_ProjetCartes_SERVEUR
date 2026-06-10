@@ -1,202 +1,164 @@
-﻿//using Microsoft.EntityFrameworkCore;
-//using Moq;
-//using Super_Cartes_Infinies.Data;
-//using Super_Cartes_Infinies.Services;
-//using Models.Models;
-//using Models.Models;
-//using Super_Cartes_Infinies.Combat;
-//using Super_Cartes_Infinies.Models;
-//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Threading.Tasks;
-//using Super_Cartes_Infinies.Models;
-//using Tests.Services;
+﻿using Microsoft.EntityFrameworkCore;
+using Models.Models;
+using Super_Cartes_Infinies.Data;
+using Super_Cartes_Infinies.Models;
+using Super_Cartes_Infinies.Services;
 
-//[TestClass]
-//public class DecksServiceTests :BaseTests
-//{
-//    private readonly ApplicationDbContext _dbContext;
-//    private readonly DecksService _decksService;
+namespace Tests.Services
+{
+[TestClass]
+public class DecksServiceTests
+{
+    private ApplicationDbContext _dbContext = null!;
+    private DecksService _decksService = null!;
 
-//    public DecksServiceTests()
-//    {
-//        // Configurer une base de données en mémoire
-//        var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-//            .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
-//            .Options;
+    [TestInitialize]
+    public void Init()
+    {
+        var options = new DbContextOptionsBuilder<ApplicationDbContext>()
+            .UseInMemoryDatabase(Guid.NewGuid().ToString())
+            .Options;
 
-//        _dbContext = new ApplicationDbContext(options);
-//        _decksService = new DecksService(_dbContext);
-//    }
+        _dbContext = new ApplicationDbContext(options);
+        _dbContext.GameConfigs.Add(new GameConfig
+        {
+            id = 1,
+            QtManaParTour = 3,
+            nbCardsToDraw = 4,
+            GoldStarting = 300,
+            GoldWin = 20,
+            GoldLoss = 5,
+            MaxDecks = 10,
+            MaxCardsPerDeck = 30
+        });
+        _dbContext.SaveChanges();
 
-//    [TestInitialize]
-//    public void Init()
-//    {
-//        base.Init();
-//    }
+        _decksService = new DecksService(_dbContext, new MatchConfigurationService(_dbContext));
+    }
 
-//    [TestMethod]
-//    public async Task CreateNewDeck_ShouldCreateDeck()
-//    {
-//        // Arrange
-//        var player = new Player { Id = 1, UserId = "user1", Decks = new List<Deck>() };
-//        _dbContext.Players.Add(player);
-//        await _dbContext.SaveChangesAsync();
+    [TestMethod]
+    public async Task CreateNewDeck_ShouldCreateDeck()
+    {
+        var player = new Player { Id = 1, UserId = "user1", Decks = new List<Deck>(), OwnedCards = new List<OwnedCards>() };
+        _dbContext.Players.Add(player);
+        await _dbContext.SaveChangesAsync();
 
-//        // Act
-//        var result = await _decksService.CreateNewDeck("user1", "My New Deck");
+        var result = (await _decksService.CreateNewDeck("user1", "Mon Deck")).ToList();
 
-//        // Assert
-//        Assert.Single(result);
-//        Assert.Equal("Default", result.First().Name);
-//    }
+        Assert.AreEqual(1, result.Count);
+        Assert.AreEqual("Mon Deck", result[0].Name);
+    }
 
-//    [TestMethod]
-//    public async Task DeleteDeckAsync_ShouldDeleteDeck()
-//    {
-//        // Arrange
-//        var player = new Player { Id = 1, UserId = "user1", Decks = new List<Deck>() };
-//        var deck = new Deck { Id = 1, Name = "Test Deck", DeckCards = new List<DeckCards>() };
-//        player.Decks.Add(deck);
-//        _dbContext.Players.Add(player);
-//        await _dbContext.SaveChangesAsync();
+    [TestMethod]
+    public async Task DeleteDeckAsync_ShouldDeleteDeck()
+    {
+        var player = new Player { Id = 1, UserId = "user1", Decks = new List<Deck>(), OwnedCards = new List<OwnedCards>() };
+        var deck = new Deck { Id = 1, Name = "Test Deck", DeckCards = new List<DeckCards>() };
+        player.Decks.Add(deck);
+        _dbContext.Players.Add(player);
+        _dbContext.Decks.Add(deck);
+        await _dbContext.SaveChangesAsync();
 
-//        // Act
-//        var result = await _decksService.DeleteDeckAsync(1, "user1");
+        var result = (await _decksService.DeleteDeckAsync(1, "user1")).ToList();
 
-//        // Assert
-//        Assert.Empty(result);
-//        Assert.Empty(_dbContext.Decks);
-//    }
+        Assert.AreEqual(0, result.Count);
+    }
 
-//    [TestMethod]
-//    public async Task DeleteDeckAsync_ShouldThrowIfDeckNotOwnedByPlayer()
-//    {
-//        // Arrange
-//        var player = new Player { Id = 1, UserId = "user1", Decks = new List<Deck>() };
-//        var otherPlayer = new Player { Id = 2, UserId = "user2", Decks = new List<Deck>() };
-//        var deck = new Deck { Id = 1, Name = "Test Deck", DeckCards = new List<DeckCards>() };
-//        otherPlayer.Decks.Add(deck);
-//        _dbContext.Players.Add(player);
-//        _dbContext.Players.Add(otherPlayer);
-//        await _dbContext.SaveChangesAsync();
+    [TestMethod]
+    public async Task DeleteDeckAsync_ShouldThrowIfDeckNotOwnedByPlayer()
+    {
+        var player = new Player { Id = 1, UserId = "user1", Decks = new List<Deck>(), OwnedCards = new List<OwnedCards>() };
+        var otherPlayer = new Player { Id = 2, UserId = "user2", Decks = new List<Deck>(), OwnedCards = new List<OwnedCards>() };
+        var deck = new Deck { Id = 1, Name = "Test Deck", DeckCards = new List<DeckCards>() };
+        otherPlayer.Decks.Add(deck);
+        _dbContext.Players.AddRange(player, otherPlayer);
+        _dbContext.Decks.Add(deck);
+        await _dbContext.SaveChangesAsync();
 
-//        // Act & Assert
-//        await Assert.ThrowsAsync<InvalidOperationException>(() => _decksService.DeleteDeckAsync(1, "user1"));
-//    }
+        await Assert.ThrowsExceptionAsync<InvalidOperationException>(() => _decksService.DeleteDeckAsync(1, "user1"));
+    }
 
-//    [TestMethod]
-//    public async Task AddCardToDeckAsync_ShouldAddCardToDeck()
-//    {
-//        // Arrange
-//        var player = new Player
-//        {
-//            Id = 1,
-//            UserId = "user1",
-//            Decks = new List<Deck>(),
-//            OwnedCards = new List<OwnedCards>()
-//        };
-//        var deck = new Deck { Id = 1, Name = "Test Deck", DeckCards = new List<DeckCards>() };
-//        var card = new OwnedCards { id = 1, CardId = 1, player = player };
-//        player.Decks.Add(deck);
-//        player.OwnedCards.Add(card);
-//        _dbContext.Players.Add(player);
-//        await _dbContext.SaveChangesAsync();
+    [TestMethod]
+    public async Task AddCardToDeckAsync_ShouldAddCardToDeck()
+    {
+        var card = new Card { Id = 1, Name = "Test", Attack = 1, Health = 1, Cost = 1 };
+        var player = new Player { Id = 1, UserId = "user1", Decks = new List<Deck>(), OwnedCards = new List<OwnedCards>() };
+        var deck = new Deck { Id = 1, Name = "Test Deck", DeckCards = new List<DeckCards>() };
+        var owned = new OwnedCards { id = 1, CardId = 1, Card = card, player = player };
+        player.Decks.Add(deck);
+        player.OwnedCards.Add(owned);
+        _dbContext.Cards.Add(card);
+        _dbContext.Players.Add(player);
+        _dbContext.Decks.Add(deck);
+        _dbContext.OwnedCard.Add(owned);
+        await _dbContext.SaveChangesAsync();
 
-//        // Act
-//        var result = await _decksService.AddCardToDeckAsync(1, 1, "user1");
+        await _decksService.AddCardToDeckAsync(1, 1, "user1");
 
-//        // Assert
-//        Assert.Single(deck.DeckCards);
-//        Assert.Equal(1, deck.DeckCards.First().OwnedCard.id);
-//    }
+        Assert.AreEqual(1, deck.DeckCards.Count);
+    }
 
-//    [TestMethod]
-//    public async Task AddCardToDeckAsync_ShouldThrowIfDeckOrCardNotOwnedByPlayer()
-//    {
-//        // Arrange
-//        var player = new Player
-//        {
-//            Id = 1,
-//            UserId = "user1",
-//            Decks = new List<Deck>(),
-//            OwnedCards = new List<OwnedCards>()
-//        };
-//        var otherPlayer = new Player
-//        {
-//            Id = 2,
-//            UserId = "user2",
-//            Decks = new List<Deck>(),
-//            OwnedCards = new List<OwnedCards>()
-//        };
-//        var deck = new Deck { Id = 1, Name = "Test Deck", DeckCards = new List<DeckCards>() };
-//        var card = new OwnedCards { id = 1, CardId = 1, player = otherPlayer };
-//        otherPlayer.Decks.Add(deck);
-//        otherPlayer.OwnedCards.Add(card);
-//        _dbContext.Players.Add(player);
-//        _dbContext.Players.Add(otherPlayer);
-//        await _dbContext.SaveChangesAsync();
+    [TestMethod]
+    public async Task AddCardToDeckAsync_ShouldThrowIfDeckOrCardNotOwnedByPlayer()
+    {
+        var card = new Card { Id = 1, Name = "Test", Attack = 1, Health = 1, Cost = 1 };
+        var player = new Player { Id = 1, UserId = "user1", Decks = new List<Deck>(), OwnedCards = new List<OwnedCards>() };
+        var otherPlayer = new Player { Id = 2, UserId = "user2", Decks = new List<Deck>(), OwnedCards = new List<OwnedCards>() };
+        var deck = new Deck { Id = 1, Name = "Test Deck", DeckCards = new List<DeckCards>() };
+        var owned = new OwnedCards { id = 1, CardId = 1, Card = card, player = otherPlayer };
+        otherPlayer.Decks.Add(deck);
+        otherPlayer.OwnedCards.Add(owned);
+        _dbContext.Cards.Add(card);
+        _dbContext.Players.AddRange(player, otherPlayer);
+        _dbContext.Decks.Add(deck);
+        _dbContext.OwnedCard.Add(owned);
+        await _dbContext.SaveChangesAsync();
 
-//        // Act & Assert
-//        await Assert.ThrowsAsync<InvalidOperationException>(() => _decksService.AddCardToDeckAsync(1, 1, "user1"));
-//    }
+        await Assert.ThrowsExceptionAsync<InvalidOperationException>(() => _decksService.AddCardToDeckAsync(1, 1, "user1"));
+    }
 
-//    [TestMethod]
-//    public async Task RemoveCardFromDeckAsync_ShouldRemoveCardFromDeck()
-//    {
-//        // Arrange
-//        var player = new Player
-//        {
-//            Id = 1,
-//            UserId = "user1",
-//            Decks = new List<Deck>(),
-//            OwnedCards = new List<OwnedCards>()
-//        };
-//        var deck = new Deck { Id = 1, Name = "Test Deck", DeckCards = new List<DeckCards>() };
-//        var card = new OwnedCards { id = 1, CardId = 1, player = player };
-//        var deckCard = new DeckCards { Id = 1, Deck = deck, OwnedCard = card };
-//        deck.DeckCards.Add(deckCard);
-//        player.Decks.Add(deck);
-//        player.OwnedCards.Add(card);
-//        _dbContext.Players.Add(player);
-//        await _dbContext.SaveChangesAsync();
+    [TestMethod]
+    public async Task RemoveCardFromDeckAsync_ShouldRemoveCardFromDeck()
+    {
+        var card = new Card { Id = 1, Name = "Test", Attack = 1, Health = 1, Cost = 1 };
+        var player = new Player { Id = 1, UserId = "user1", Decks = new List<Deck>(), OwnedCards = new List<OwnedCards>() };
+        var deck = new Deck { Id = 1, Name = "Test Deck", DeckCards = new List<DeckCards>() };
+        var owned = new OwnedCards { id = 1, CardId = 1, Card = card, player = player };
+        var deckCard = new DeckCards { Id = 1, Deck = deck, OwnedCard = owned };
+        deck.DeckCards.Add(deckCard);
+        player.Decks.Add(deck);
+        player.OwnedCards.Add(owned);
+        _dbContext.Cards.Add(card);
+        _dbContext.Players.Add(player);
+        _dbContext.Decks.Add(deck);
+        _dbContext.DeckCards.Add(deckCard);
+        _dbContext.OwnedCard.Add(owned);
+        await _dbContext.SaveChangesAsync();
 
-//        // Act
-//        var result = await _decksService.RemoveCardFromDeckAsync(1, 1, "user1");
+        await _decksService.RemoveCardFromDeckAsync(1, 1, "user1");
 
-//        // Assert
-//        Assert.Empty(deck.DeckCards);
-//    }
-//    [TestMethod]
-//    public async Task RemoveCardFromDeckAsync_ShouldThrowIfDeckNotOwnedByPlayer()
-//    {
-//        // Arrange
-//        var player = new Player
-//        {
-//            Id = 1,
-//            UserId = "user1",
-//            Decks = new List<Deck>(),
-//            OwnedCards = new List<OwnedCards>()
-//        };
-//        var otherPlayer = new Player
-//        {
-//            Id = 2,
-//            UserId = "user2",
-//            Decks = new List<Deck>(),
-//            OwnedCards = new List<OwnedCards>()
-//        };
-//        var deck = new Deck { Id = 1, Name = "Test Deck", DeckCards = new List<DeckCards>() };
-//        var card = new OwnedCards { id = 1, CardId = 1, player = otherPlayer };
-//        var deckCard = new DeckCards { Id = 1, Deck = deck, OwnedCard = card };
-//        deck.DeckCards.Add(deckCard);
-//        otherPlayer.Decks.Add(deck);
-//        otherPlayer.OwnedCards.Add(card);
-//        _dbContext.Players.Add(player);
-//        _dbContext.Players.Add(otherPlayer);
-//        await _dbContext.SaveChangesAsync();
+        Assert.AreEqual(0, deck.DeckCards.Count);
+    }
 
-//        // Act & Assert
-//        await Assert.ThrowsAsync<InvalidOperationException>(() => _decksService.RemoveCardFromDeckAsync(1, 1, "user1"));
-//    }
-//}
+    [TestMethod]
+    public async Task RemoveCardFromDeckAsync_ShouldThrowIfDeckNotOwnedByPlayer()
+    {
+        var card = new Card { Id = 1, Name = "Test", Attack = 1, Health = 1, Cost = 1 };
+        var player = new Player { Id = 1, UserId = "user1", Decks = new List<Deck>(), OwnedCards = new List<OwnedCards>() };
+        var otherPlayer = new Player { Id = 2, UserId = "user2", Decks = new List<Deck>(), OwnedCards = new List<OwnedCards>() };
+        var deck = new Deck { Id = 1, Name = "Test Deck", DeckCards = new List<DeckCards>() };
+        var owned = new OwnedCards { id = 1, CardId = 1, Card = card, player = otherPlayer };
+        var deckCard = new DeckCards { Id = 1, Deck = deck, OwnedCard = owned };
+        deck.DeckCards.Add(deckCard);
+        otherPlayer.Decks.Add(deck);
+        _dbContext.Cards.Add(card);
+        _dbContext.Players.Add(player);
+        _dbContext.Players.Add(otherPlayer);
+        _dbContext.Decks.Add(deck);
+        _dbContext.DeckCards.Add(deckCard);
+        await _dbContext.SaveChangesAsync();
+
+        await Assert.ThrowsExceptionAsync<InvalidOperationException>(() => _decksService.RemoveCardFromDeckAsync(1, 1, "user1"));
+    }
+}
+}

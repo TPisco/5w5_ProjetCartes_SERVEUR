@@ -12,7 +12,7 @@ namespace WebApi.Combat
         public CardDeathEvent(MatchPlayerData playerData, PlayableCard card)
         {
             CardId = card.Id;
-            PlayerId = playerData.Id;
+            PlayerId = playerData.PlayerId;
 
             if (playerData != null)
             {

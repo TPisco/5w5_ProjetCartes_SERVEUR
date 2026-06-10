@@ -6,6 +6,7 @@ using Super_Cartes_Infinies.Models;
 using System.Collections;
 using System.Security.Claims;
 using Models.Models;
+using Models.Models.Dtos;
 
 
 namespace WebApi.Controllers
@@ -43,40 +44,66 @@ namespace WebApi.Controllers
 
         // GET: DeckController/Create
         [HttpPost]
-        public async Task<ActionResult> CreateDeck(string nom)
+        [Authorize]
+        public async Task<ActionResult<IEnumerable<Deck>>> SetCurrentDeck(int deckId)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            return Ok(await _decksService.SetCurrentDeckAsync(deckId, userId!));
+        }
+
+        [HttpPost]
+        [Authorize]
+        public async Task<ActionResult> CreateDeck([FromBody] CreateDeckDto dto)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier)!;
+            try
+            {
+                if (dto.CardIds != null && dto.CardIds.Any())
+                    return Ok(await _decksService.CreateDeckWithCardsAsync(userId, dto.Name, dto.CardIds));
+                return Ok(await _decksService.CreateNewDeck(userId, dto.Name));
+            }
+            catch (InvalidOperationException ex)
+            {
+                return BadRequest(new { Message = ex.Message });
+            }
+        }
+
+        [HttpPost]
+        [Authorize]
+        public async Task<ActionResult> CreateDeckLegacy(string nom)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            return Ok(await _decksService.CreateNewDeck(userId, nom));
+        }
+
+        [HttpPost]
+        [Authorize]
+        public async Task<ActionResult<IEnumerable<Deck>>> AddCard([FromBody] DeckCardActionDto dto) {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+
+            return Ok(await _decksService.AddCardToDeckAsync(dto.DeckId, dto.CardId, userId!));
+
+        }
+
+
+
+
+
+        [HttpPost]
+        [Authorize]
+        public async Task<ActionResult<IEnumerable<Deck>>> RemoveCard([FromBody] DeckCardActionDto dto)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
 
-
-            return Ok(await _decksService.CreateNewDeck(userId,nom));
-        }
-
-        [HttpPost]
-        public async Task<ActionResult<IEnumerable<Deck>>> AddCard(int cardId, int deckId) {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-
-            return Ok(await _decksService.AddCardToDeckAsync(deckId, cardId, userId));
-
-        }
-
-
-
-
-
-        [HttpPost]
-        public async Task<ActionResult<IEnumerable<Deck>>> RemoveCard(int cardId, int deckId)
-        {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-
-            return Ok(await _decksService.RemoveCardFromDeckAsync(deckId, cardId, userId));
+            return Ok(await _decksService.RemoveCardFromDeckAsync(dto.DeckId, dto.CardId, userId!));
 
         }
 
 
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<Deck>>> DeleteDeck( int deckId)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -84,6 +111,21 @@ namespace WebApi.Controllers
 
             return Ok(await _decksService.DeleteDeckAsync(deckId, userId));
 
+        }
+
+        [HttpGet]
+        [Authorize]
+        public async Task<ActionResult<IEnumerable<Card>>> GetAvailableCards(int deckId)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier)!;
+            return Ok(await _decksService.GetAvailableCardsForDeckAsync(deckId, userId));
+        }
+
+        [HttpGet]
+        [Authorize]
+        public ActionResult GetDeckLimits()
+        {
+            return Ok(_decksService.GetDeckLimits());
         }
 
 

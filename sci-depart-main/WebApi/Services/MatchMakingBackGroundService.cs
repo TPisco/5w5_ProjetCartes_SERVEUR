@@ -85,17 +85,18 @@ namespace WebApi.Services
                         }
 
                         // Add both to SignalR group
-                        await _matchHub.Groups.AddToGroupAsync(pair.Player2.ConnectionId, joiningMatchData.Match.Id.ToString(), stoppingToken);
+                        string groupName = $"match_{joiningMatchData.Match.Id}";
+                        await _matchHub.Groups.AddToGroupAsync(pair.Player2.ConnectionId, groupName, stoppingToken);
                         if (joiningMatchData.OtherPlayerConnectionId != null)
                         {
-                            await _matchHub.Groups.AddToGroupAsync(joiningMatchData.OtherPlayerConnectionId, joiningMatchData.Match.Id.ToString(), stoppingToken);
+                            await _matchHub.Groups.AddToGroupAsync(joiningMatchData.OtherPlayerConnectionId, groupName, stoppingToken);
                         }
 
                         // Start the match if ready
                         if (!joiningMatchData.IsStarted)
                         {
                             StartMatchEvent startMatchEvent = await _matchesService.StartMatch(pair.Player2.UserId, joiningMatchData.Match);
-                            await _matchHub.Clients.Group(joiningMatchData.Match.Id.ToString()).SendAsync("StartMatch", startMatchEvent, stoppingToken);
+                            await _matchHub.Clients.Group(groupName).SendAsync("PlayEvent", startMatchEvent, stoppingToken);
                         }
                     }
                 }

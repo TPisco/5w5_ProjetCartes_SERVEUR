@@ -9,14 +9,16 @@ namespace Super_Cartes_Infinies.Services
 	public class DecksService
     {
         private ApplicationDbContext _dbContext;
-        public int maxDecks = 10;
-        public int maxCardsPerDeck = 30;
+        private MatchConfigurationService _configService;
 
-        public DecksService(ApplicationDbContext dbContext)
+        public DecksService(ApplicationDbContext dbContext, MatchConfigurationService configService)
         {
             _dbContext = dbContext;
-
+            _configService = configService;
         }
+
+        public int maxDecks => _configService.GetMaxDecks();
+        public int maxCardsPerDeck => _configService.GetMaxCardsPerDeck();
 
         
         public async Task<IEnumerable<Deck>> GetPlayerDecks(string userId)
@@ -26,9 +28,11 @@ namespace Super_Cartes_Infinies.Services
             var player = await _dbContext.Players
                  .Include(p => p.Decks)
                  .ThenInclude(d => d.DeckCards)
+                 .ThenInclude(dc => dc.OwnedCard)
+                 .ThenInclude(oc => oc.Card)
                  .FirstOrDefaultAsync(p => p.UserId == userId);
 
-            return player.Decks;
+            return player?.Decks ?? Enumerable.Empty<Deck>();
         }
 
       
@@ -41,9 +45,15 @@ namespace Super_Cartes_Infinies.Services
               .ThenInclude(d => d.DeckCards)
               .FirstOrDefaultAsync(p => p.UserId == userId);
 
+            if (player == null)
+                throw new InvalidOperationException("Player not found.");
+
+            if (player.Decks.Count >= maxDecks)
+                throw new InvalidOperationException("Nombre maximum de decks atteint.");
+
             //Création du nouveau Deck avec le nom fourni en paramètres
             Deck newDeck = new Deck();
-            newDeck.Name = "Default";
+            newDeck.Name = string.IsNullOrWhiteSpace(nom) ? "Deck" : nom;
             newDeck.IsCurrent = false;
             //Liste de DeckCards vide lors de la création
             List<DeckCards> deckCards = [];
@@ -72,6 +82,9 @@ namespace Super_Cartes_Infinies.Services
             var deck = player.Decks.FirstOrDefault(d => d.Id == deckId);
             if (deck == null)
                 throw new InvalidOperationException("Deck not found or does not belong to the player.");
+
+            if (deck.IsCurrent)
+                throw new InvalidOperationException("Cannot delete the current deck.");
 
             // Supprimer les cartes associées au deck
             _dbContext.DeckCards.RemoveRange(deck.DeckCards);
@@ -154,6 +167,8 @@ namespace Super_Cartes_Infinies.Services
                 .Include(p => p.OwnedCards)
                 .Include(p => p.Decks)
                 .ThenInclude(d => d.DeckCards)
+                .ThenInclude(dc => dc.OwnedCard)
+                .ThenInclude(oc => oc.Card)
                 .FirstOrDefaultAsync(p => p.UserId == userId);
 
             // Player player = await _dbContext.Players.FindAsync(userId);
@@ -172,16 +187,16 @@ namespace Super_Cartes_Infinies.Services
 
             //Modification de la fonction : On véririe si le joueur peut ajouter une ou plusieurs cartes
 
-          //  var ownedId = player.OwnedCards.FirstOrDefault(oc => oc.id == cardId);
-            // Récupérer la carte possédée
-            var ownedCard = player.OwnedCards.FirstOrDefault(oc => oc.CardId == cardId);
+            // Récupérer une copie possédée disponible pour ce deck
+            var ownedCount = player.OwnedCards.Count(oc => oc.CardId == cardId);
+            var inDeckCount = deck.DeckCards.Count(dc => dc.OwnedCard.CardId == cardId);
+            if (inDeckCount >= ownedCount)
+                throw new InvalidOperationException("Aucune copie disponible de cette carte pour ce deck.");
+
+            var ownedCard = player.OwnedCards
+                .FirstOrDefault(oc => oc.CardId == cardId && !deck.DeckCards.Any(dc => dc.OwnedCard.id == oc.id));
             if (ownedCard == null)
                 throw new InvalidOperationException("Owned card not found or does not belong to the player.");
-
-            // Vérifier si la carte est déjà dans le deck
-            var cardCountInDeck = deck.DeckCards.Count(dc => dc.OwnedCard.id == ownedCard.id);
-            if (cardCountInDeck >= 1) // Une seule copie d'une carte possédée peut être ajoutée
-                throw new InvalidOperationException("This card is already in the deck.");
 
             // Ajouter la carte au deck
             var deckCard = new DeckCards
@@ -228,39 +243,137 @@ namespace Super_Cartes_Infinies.Services
             return player.Decks;
         }
 
-        //Supprimer une carte d'un deck 
-        public async Task<IEnumerable<Deck>> RemoveCardFromDeckAsync(int deckId, int cardId, string userId)
+        public async Task<IEnumerable<Deck>> SetCurrentDeckAsync(int deckId, string userId)
         {
-            // Récupérer le joueur
-            Player player = await _dbContext.Players.FindAsync(userId);
-
-
-       //     Player player = await _dbContext.Players
-       //.Include(p => p.Decks)
-       //.ThenInclude(d => d.DeckCards)
-       //.ThenInclude(dc => dc.OwnedCard)
-       //.FirstOrDefaultAsync(p => p.UserId == userId);
-
-
+            var player = await _dbContext.Players
+                .Include(p => p.Decks)
+                .ThenInclude(d => d.DeckCards)
+                .FirstOrDefaultAsync(p => p.UserId == userId);
 
             if (player == null)
                 throw new InvalidOperationException("Player not found.");
 
-            // Récupérer le deck
             var deck = player.Decks.FirstOrDefault(d => d.Id == deckId);
             if (deck == null)
                 throw new InvalidOperationException("Deck not found or does not belong to the player.");
-            var ownedCard = player.OwnedCards.FirstOrDefault(oc => oc.CardId == cardId);
-            // Vérifier si la carte est dans le deck
-            var deckCard = deck.DeckCards.FirstOrDefault(dc => dc.OwnedCard.id == ownedCard.id);
+
+            foreach (var d in player.Decks)
+                d.IsCurrent = d.Id == deckId;
+
+            await _dbContext.SaveChangesAsync();
+            return player.Decks;
+        }
+
+        public async Task<IEnumerable<Card>> GetMatchDeckCardsAsync(string userId)
+        {
+            var player = await _dbContext.Players
+                .Include(p => p.OwnedCards)
+                    .ThenInclude(oc => oc.Card)
+                        .ThenInclude(c => c.CardPowers)
+                            .ThenInclude(cp => cp.Power)
+                .Include(p => p.Decks)
+                    .ThenInclude(d => d.DeckCards)
+                        .ThenInclude(dc => dc.OwnedCard)
+                            .ThenInclude(oc => oc.Card)
+                                .ThenInclude(c => c.CardPowers)
+                                    .ThenInclude(cp => cp.Power)
+                .FirstOrDefaultAsync(p => p.UserId == userId);
+
+            if (player == null)
+                throw new InvalidOperationException("Player not found.");
+
+            var currentDeck = player.Decks.FirstOrDefault(d => d.IsCurrent) ?? player.Decks.FirstOrDefault();
+            if (currentDeck == null || !currentDeck.DeckCards.Any())
+            {
+                return player.OwnedCards
+                    .Select(oc => oc.Card)
+                    .Where(c => c != null)
+                    .ToList();
+            }
+
+            return currentDeck.DeckCards
+                .Select(dc => dc.OwnedCard.Card)
+                .Where(c => c != null)
+                .ToList();
+        }
+
+        public async Task<IEnumerable<Deck>> CreateDeckWithCardsAsync(string userId, string nom, IEnumerable<int> cardIds)
+        {
+            if (string.IsNullOrWhiteSpace(nom))
+                throw new InvalidOperationException("Le nom du deck est requis.");
+
+            var ids = cardIds?.ToList() ?? new List<int>();
+            if (ids.Count > maxCardsPerDeck)
+                throw new InvalidOperationException($"Un deck ne peut pas contenir plus de {maxCardsPerDeck} cartes.");
+
+            await CreateNewDeck(userId, nom);
+
+            var player = await _dbContext.Players
+                .Include(p => p.Decks)
+                .FirstOrDefaultAsync(p => p.UserId == userId)
+                ?? throw new InvalidOperationException("Player not found.");
+
+            var deck = player.Decks.OrderByDescending(d => d.Id).First();
+
+            foreach (var cardId in ids)
+            {
+                await AddCardToDeckAsync(deck.Id, cardId, userId);
+            }
+
+            return await GetPlayerDecks(userId);
+        }
+
+        public async Task<IEnumerable<Card>> GetAvailableCardsForDeckAsync(int deckId, string userId)
+        {
+            var player = await _dbContext.Players
+                .Include(p => p.OwnedCards).ThenInclude(oc => oc.Card)
+                .Include(p => p.Decks).ThenInclude(d => d.DeckCards).ThenInclude(dc => dc.OwnedCard)
+                .FirstOrDefaultAsync(p => p.UserId == userId)
+                ?? throw new InvalidOperationException("Player not found.");
+
+            var deck = player.Decks.FirstOrDefault(d => d.Id == deckId)
+                ?? throw new InvalidOperationException("Deck not found or does not belong to the player.");
+
+            return player.OwnedCards
+                .Where(oc =>
+                {
+                    var inDeck = deck.DeckCards.Count(dc => dc.OwnedCard.CardId == oc.CardId);
+                    var owned = player.OwnedCards.Count(o => o.CardId == oc.CardId);
+                    return inDeck < owned;
+                })
+                .Select(oc => oc.Card)
+                .GroupBy(c => c.Id)
+                .Select(g => g.First())
+                .OrderBy(c => c.Name)
+                .ToList();
+        }
+
+        public object GetDeckLimits() => new { maxDecks, maxCardsPerDeck };
+
+        //Supprimer une carte d'un deck 
+        public async Task<IEnumerable<Deck>> RemoveCardFromDeckAsync(int deckId, int cardId, string userId)
+        {
+            var player = await _dbContext.Players
+                .Include(p => p.OwnedCards)
+                .Include(p => p.Decks)
+                .ThenInclude(d => d.DeckCards)
+                .ThenInclude(dc => dc.OwnedCard)
+                .ThenInclude(oc => oc.Card)
+                .FirstOrDefaultAsync(p => p.UserId == userId);
+
+            if (player == null)
+                throw new InvalidOperationException("Player not found.");
+
+            var deck = player.Decks.FirstOrDefault(d => d.Id == deckId);
+            if (deck == null)
+                throw new InvalidOperationException("Deck not found or does not belong to the player.");
+
+            var deckCard = deck.DeckCards.FirstOrDefault(dc => dc.OwnedCard.CardId == cardId);
             if (deckCard == null)
                 throw new InvalidOperationException("The card is not in the selected deck.");
 
-            // Supprimer la carte du deck
             deck.DeckCards.Remove(deckCard);
             _dbContext.DeckCards.Remove(deckCard);
-
-            // Sauvegarder les modifications
             await _dbContext.SaveChangesAsync();
 
             return player.Decks;

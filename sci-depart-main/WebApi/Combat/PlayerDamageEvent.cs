@@ -12,7 +12,7 @@ namespace WebApi.Combat
 
         public PlayerDamageEvent( int damage, MatchPlayerData playerData, Match match,MatchPlayerData oppositePlayer)
         {
-            PlayerId = playerData.Id;
+            PlayerId = playerData.PlayerId;
             Damage = damage;
             if (playerData.Health - damage < 0)
             {

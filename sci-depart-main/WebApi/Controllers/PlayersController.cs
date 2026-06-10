@@ -110,6 +110,14 @@ namespace WebApi.Controllers
         }
 
         [Authorize]
+        [HttpGet]
+        public ActionResult<int> GetGold()
+        {
+            var userId = User.FindFirstValue(System.Security.Claims.ClaimTypes.NameIdentifier)!;
+            return _playerService.GetPlayerFromUserId(userId).Gold;
+        }
+
+        [Authorize]
         [HttpGet("{userId}")]
         public async Task< ActionResult<int>> GetElo(string userId)
         {
