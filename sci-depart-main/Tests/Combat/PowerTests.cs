@@ -373,9 +373,9 @@ namespace Tests.Services
                     {
                         Power = new Power
                         {
-                            Id = 1,
-                            Value = 2
-                        }
+                            Id = 1
+                        },
+                        Value = 2
                     }
                 }
             };

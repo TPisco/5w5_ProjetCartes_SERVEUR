@@ -10,6 +10,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Models.Models;
+using WebApi.Configuration;
 
 namespace WebApi.Controllers
 {
@@ -19,11 +20,13 @@ namespace WebApi.Controllers
     {
         readonly UserManager<IdentityUser> _userManager;
         public PlayersService _playerService;
+        private readonly JwtSettings _jwtSettings;
 
-        public PlayersController(UserManager<IdentityUser> userManager, PlayersService playerService)
+        public PlayersController(UserManager<IdentityUser> userManager, PlayersService playerService, JwtSettings jwtSettings)
         {
             _userManager = userManager;
             _playerService = playerService;
+            _jwtSettings = jwtSettings;
         }
 
         [HttpPost]
@@ -61,45 +64,38 @@ namespace WebApi.Controllers
         public async Task<ActionResult> Login(LoginDTO login)
         {
             IdentityUser? identityUser = await _userManager.FindByEmailAsync(login.Username);
-            Player player =  _playerService.GetPlayerFromUserId(identityUser.Id);
-            if (identityUser == null)
-            {
-                identityUser = await _userManager.FindByEmailAsync(login.Username);
-            }
-
-            if (identityUser != null && await _userManager.CheckPasswordAsync(identityUser, login.Password))
-            {
-                IList<string> roles = await _userManager.GetRolesAsync(identityUser);
-                List<Claim> authClaims = new List<Claim>();
-                foreach (string role in roles)
-                {
-                    authClaims.Add(new Claim(ClaimTypes.Role, role));
-                }
-                authClaims.Add(new Claim("PlayerId", player.Id.ToString()));
-                authClaims.Add(new Claim(ClaimTypes.NameIdentifier, identityUser.Id));
-                SymmetricSecurityKey key = new SymmetricSecurityKey(Encoding.UTF8
-                    .GetBytes("LooOOongue Phrase SiNoN Ça ne Marchera PaAaAAAaAas !"));
-                JwtSecurityToken token = new JwtSecurityToken(
-                    issuer: "https://localhost:7179",
-                    audience: "http://localhost:4200",
-                    claims: authClaims,
-                    expires: DateTime.Now.AddMinutes(300),
-                    signingCredentials: new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature)
-                    );
-                return Ok(new
-                {
-                    token = new JwtSecurityTokenHandler().WriteToken(token),
-                    validTo = token.ValidTo,
-                    playerId = identityUser.Id,
-                    username = identityUser.UserName, // Ceci sert déjà à afficher / cacher certains boutons côté Angular
-                    userIntID = player.Id
-                });
-            }
-            else
+            if (identityUser == null || !await _userManager.CheckPasswordAsync(identityUser, login.Password))
             {
                 return StatusCode(StatusCodes.Status400BadRequest,
                     new { Message = "Le nom d'utilisateur ou le mot de passe est invalide." });
             }
+
+            Player player = _playerService.GetPlayerFromUserId(identityUser.Id);
+            IList<string> roles = await _userManager.GetRolesAsync(identityUser);
+            List<Claim> authClaims = new List<Claim>();
+            foreach (string role in roles)
+            {
+                authClaims.Add(new Claim(ClaimTypes.Role, role));
+            }
+            authClaims.Add(new Claim("PlayerId", player.Id.ToString()));
+            authClaims.Add(new Claim(ClaimTypes.NameIdentifier, identityUser.Id));
+            SymmetricSecurityKey key = new SymmetricSecurityKey(Encoding.UTF8
+                .GetBytes(_jwtSettings.Secret));
+            JwtSecurityToken token = new JwtSecurityToken(
+                issuer: _jwtSettings.Issuer,
+                audience: _jwtSettings.Audience,
+                claims: authClaims,
+                expires: DateTime.Now.AddMinutes(300),
+                signingCredentials: new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature)
+                );
+            return Ok(new
+            {
+                token = new JwtSecurityTokenHandler().WriteToken(token),
+                validTo = token.ValidTo,
+                playerId = identityUser.Id,
+                username = identityUser.UserName,
+                userIntID = player.Id
+            });
         }
 
         [Authorize]

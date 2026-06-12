@@ -123,15 +123,16 @@ public class MatchHub : Hub
 
                 if (isSpectator)
                 {
-                    if (!matchData.Match.SpectatorIds.Contains(userId))
+                    var spectatorKey = user?.Email ?? userId;
+                    if (!matchData.Match.SpectatorIds.Contains(spectatorKey))
                     {
-                        matchData.Match.SpectatorIds.Add(userId);
+                        matchData.Match.SpectatorIds.Add(spectatorKey);
                         _context.Matches.Update(matchData.Match);
                         await _context.SaveChangesAsync();
                     }
 
                     // Broadcast that user joined
-                    await Clients.Group(groupName).SendAsync("PlayerJoined", user.Email);
+                    await Clients.Group(groupName).SendAsync("PlayerJoined", spectatorKey);
 
                     var updatedMatch = await _context.Matches
                         .Include(m => m.PlayerDataA)
@@ -140,11 +141,14 @@ public class MatchHub : Hub
                             .ThenInclude(pdb => pdb.Player)
                         .FirstOrDefaultAsync(m => m.Id == matchData.Match.Id);
 
-                    await Clients.Client(connectionId).SendAsync("JoiningMatchData", new JoiningMatchData
+                    await Clients.Client(connectionId).SendAsync("JoiningMatchAsSpectator", new JoiningMatchData
                     {
                         Match = updatedMatch!,
                         PlayerA = updatedMatch.PlayerDataA.Player,
-                        PlayerB = updatedMatch.PlayerDataB.Player
+                        PlayerB = updatedMatch.PlayerDataB.Player,
+                        IsStarted = true,
+                        IsSpectator = true,
+                        SpectatorKey = spectatorKey
                     });
                 }
                 else
@@ -186,11 +190,14 @@ public class MatchHub : Hub
                         await Clients.Group(groupName).SendAsync("PlayerJoined", user.Email);
                     }
 
-                    await Clients.Client(connectionId).SendAsync("JoiningMatchData", new JoiningMatchData
+                    await Clients.Client(connectionId).SendAsync("JoiningMatchAsSpectator", new JoiningMatchData
                     {
                         Match = leMatch,
                         PlayerA = leMatch.PlayerDataA.Player,
-                        PlayerB = leMatch.PlayerDataB.Player
+                        PlayerB = leMatch.PlayerDataB.Player,
+                        IsStarted = true,
+                        IsSpectator = true,
+                        SpectatorKey = user.Email ?? userId
                     });
                 }
             }
@@ -227,68 +234,83 @@ public class MatchHub : Hub
             return;
         }
 
+        string spectatorKey = Context.ConnectionId;
+        if (Context.User?.Identity?.IsAuthenticated == true)
+        {
+            var user = await GetCurrentUserAsync();
+            spectatorKey = user.Email ?? user.Id;
+        }
+
+        if (match.BannedSpectatorIds != null && match.BannedSpectatorIds.Contains(spectatorKey))
+        {
+            await Clients.Caller.SendAsync("BannedFromMatch", match.Id);
+            return;
+        }
+
+        if (!match.SpectatorIds.Contains(spectatorKey))
+        {
+            match.SpectatorIds.Add(spectatorKey);
+            _context.Matches.Update(match);
+            await _context.SaveChangesAsync();
+            await Clients.Group(MatchGroup(matchId)).SendAsync("PlayerJoined", spectatorKey);
+        }
+
         await Groups.AddToGroupAsync(Context.ConnectionId, MatchGroup(matchId));
-        await Clients.Caller.SendAsync("JoiningMatchData", new JoiningMatchData
+
+        var spectatorData = new JoiningMatchData
         {
             Match = match,
             PlayerA = match.PlayerDataA.Player,
-            PlayerB = match.PlayerDataB.Player
-        });
+            PlayerB = match.PlayerDataB.Player,
+            IsStarted = true,
+            IsSpectator = true,
+            SpectatorKey = spectatorKey
+        };
+
+        await Clients.Caller.SendAsync("JoiningMatchAsSpectator", spectatorData);
     }
 
     // Bannir les spectateurs
     [Authorize]
-    public async Task BanUser(int matchId, string userEmail)
+    public async Task BanUser(int matchId, string spectatorKey)
     {
         Super_Cartes_Infinies.Models.Match match = _context.Matches.FirstOrDefault(m => m.Id == matchId);
-        var user = _context.Users.FirstOrDefault(u => u.Email == userEmail);
 
         if (match == null)
         {
             return;
         }
-        else
-        {
-            if (!match.BannedSpectatorIds.Contains(userEmail))
-            {
-                match.BannedSpectatorIds.Add(userEmail);
-                _context.Matches.Update(match);
-                await _context.SaveChangesAsync();
-                await Clients.All.SendAsync("BannedFromMatchWithId", match.Id, userEmail);
 
-            }
-            if (match.SpectatorIds.Contains(userEmail))
-            {
-                match.SpectatorIds.Remove(userEmail);
-            }
+        if (!match.BannedSpectatorIds.Contains(spectatorKey))
+        {
+            match.BannedSpectatorIds.Add(spectatorKey);
         }
 
+        if (match.SpectatorIds.Contains(spectatorKey))
+        {
+            match.SpectatorIds.Remove(spectatorKey);
+        }
+
+        _context.Matches.Update(match);
+        await _context.SaveChangesAsync();
+        await Clients.All.SendAsync("BannedFromMatchWithId", match.Id, spectatorKey);
     }
 
-    public async Task LeaveMatch(int matchId, string userEmail)
+    public async Task LeaveMatch(int matchId, string spectatorKey)
     {
         Super_Cartes_Infinies.Models.Match match = _context.Matches.FirstOrDefault(m => m.Id == matchId);
-        var user = _context.Users.FirstOrDefault(u => u.Email == userEmail);
         if (match == null)
         {
             return;
         }
-        else
+
+        if (match.SpectatorIds.Contains(spectatorKey))
         {
-            if (match.SpectatorIds.Contains(userEmail))
-            {
-
-                if (match.SpectatorIds.Contains(userEmail))
-                {
-                    match.SpectatorIds.Remove(userEmail);
-                    _context.Matches.Update(match);
-                    await _context.SaveChangesAsync();
-                    await Clients.Group($"match_{match.Id}").SendAsync("PlayerLeft");
-                }
-
-            }
+            match.SpectatorIds.Remove(spectatorKey);
+            _context.Matches.Update(match);
+            await _context.SaveChangesAsync();
+            await Clients.Group($"match_{match.Id}").SendAsync("PlayerLeft");
         }
-
     }
 
     public async Task JoinMatchGroup(int matchId)

@@ -8,6 +8,8 @@ namespace Super_Cartes_Infinies.Models.Dtos
         public Player PlayerA { get; set; }
         public Player PlayerB { get; set; }
         public bool IsStarted { get; set; }
+        public bool IsSpectator { get; set; }
+        public string? SpectatorKey { get; set; }
         [JsonIgnore]
         public string OtherPlayerConnectionId { get; set; }
     }

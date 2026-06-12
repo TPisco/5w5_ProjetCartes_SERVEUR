@@ -9,11 +9,16 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.OpenApi.Models;
 using WebApi.Services;
+using WebApi.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+var connectionString = AppConfiguration.ResolveConnectionString(builder.Configuration);
+var jwtSettings = AppConfiguration.ResolveJwtSettings(builder.Configuration, builder.Environment);
+var corsOrigins = AppConfiguration.ResolveCorsOrigins(builder.Configuration, builder.Environment);
+
+builder.Services.AddSingleton(jwtSettings);
+
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseSqlServer(connectionString);
@@ -23,8 +28,6 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddIdentity<IdentityUser, IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultTokenProviders();
-
-
 
 builder.Services.Configure<IdentityOptions>(options =>
 {
@@ -39,7 +42,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", policy =>
     {
-        policy.WithOrigins("http://localhost:4200", "https://localhost:4200");
+        policy.WithOrigins(corsOrigins);
         policy.AllowAnyHeader();
         policy.AllowAnyMethod();
         policy.AllowCredentials();
@@ -54,17 +57,15 @@ builder.Services.AddAuthentication(options =>
 }).AddJwtBearer(options =>
 {
     options.SaveToken = true;
-    options.RequireHttpsMetadata = false; // Lors du développement
+    options.RequireHttpsMetadata = !builder.Environment.IsDevelopment();
     options.TokenValidationParameters = new TokenValidationParameters()
     {
         ValidateAudience = true,
         ValidateIssuer = true,
-        ValidAudience = "http://localhost:4200", // Client -> HTTP
-        ValidIssuer = "https://localhost:7179", // Serveur -> HTTPS
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8
-        .GetBytes("LooOOongue Phrase SiNoN Ça ne Marchera PaAaAAAaAas !"))
+        ValidAudience = jwtSettings.Audience,
+        ValidIssuer = jwtSettings.Issuer,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.Secret))
     };
-
 
     options.Events = new JwtBearerEvents
     {
@@ -72,12 +73,10 @@ builder.Services.AddAuthentication(options =>
         {
             var accessToken = context.Request.Query["access_token"];
 
-            // If the request is for our hub...
             var path = context.HttpContext.Request.Path;
             if (!string.IsNullOrEmpty(accessToken) &&
-                (path.StartsWithSegments("/matchHub")))
+                path.StartsWithSegments("/matchHub"))
             {
-                // Read the token out of the query string
                 context.Token = accessToken;
             }
             return Task.CompletedTask;
@@ -85,7 +84,6 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
-// Injection de dépendance
 builder.Services.AddScoped<PlayersService>();
 builder.Services.AddScoped<CardsService>();
 builder.Services.AddSingleton<WaitingUserService>();
@@ -103,7 +101,6 @@ builder.Services.AddHostedService<MatchMakingBackGroundService>(p => p.GetServic
 builder.Services.AddSignalR();
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(opt =>
 {
@@ -136,7 +133,6 @@ builder.Services.AddSwaggerGen(opt =>
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
